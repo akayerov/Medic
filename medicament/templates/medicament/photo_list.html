@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block photolist %}
+<div class=large-8 columns>
+{% if photo_list %}
+     {% for q in photo_list %}
+         <h5>Дата публикации {{ q.photo_date }} </h5>
+         <h4><a href="/albums/{{q.id}}">{{ q.photo_title }}</a></h4>
+         <a href="/albums/{{q.id}}">
+{#            <img src="{% static "albums/" %}{{q.photo_image}}" alt="My image" width=200/> #}
+            <img src="{% static "albums/" %}{{q.photo_image.thumb_path}}" alt="My image"/>
+ 
+            <p>Адрес миниатюры= {{q.photo_image.thumb_path}}</p>
+            <p>Url            = {{q.photo_image.thumb_url}}</p>
+         </a>   
+         <p>{{ q.photo_text }}</p>
+         <h5>{{ q.photo_album}}</h3>
+         <p>Оценка {{q.photo_rating_sum}} Кол {{q.photo_rating_num}} <p>
+         <hr>
+    {% endfor %}
+ {% else %} 
+    <p>Фото не найдены.</p>
+{% endif %}
+</div>
+
+<div class="row">
+   <div class="large-3 large-offset-5 columns">
+    <ul class="pagination">
+       {% if photo_list.has_previous %}
+           <li class="arrow"><a href="/albums/page/{{ photo_list.previous_page_number }}/">&laquo;</a></li>
+       {% else %}
+           <li class="arrow unavailable"><a href="">&laquo;</a></li>
+       {% endif %}
+       
+       {%  for page in  photo_list.paginator.page_range %}
+           {% if page == photo_list.number  %}
+               <li class="current"> <a href="/albums/page/{{ page }}/">{{ page }}</a> </li>
+           {% else %}
+               <li><a  href="/albums/page/{{ page }}/">{{ page }}</a> </li>
+           {% endif %}
+       {% endfor %}
+       {% if photo_list.has_next %}
+           <li class="arrow"><a href="/albums/page/{{ photo_list.next_page_number }}/">&raquo;</a></li>
+       {% else %}
+           <li class="arrow unavailable"><a href="">&raquo;</a></li>
+       {% endif %}
+    </ul> 
+   </div">
+</div>
+{% endblock %}

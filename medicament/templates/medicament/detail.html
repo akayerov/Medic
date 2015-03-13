@@ -1,0 +1,6 @@
+<h1>{{ question.album_text }}</h1>
+<ul>
+{% for photo in question.photo_set.all %}
+    <li>{{ photo.photo_title }}</li>
+{% endfor %}
+</ul>

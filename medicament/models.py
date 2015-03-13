@@ -3,6 +3,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+class Doc_type(models.Model):
+    ''' Тип документа свода
+    '''
+    name =  models.CharField('Наименование',max_length=100)
+    def __str__(self):              # __unicode__ on Python 2
+        return self.name
+
+
 class Period(models.Model):
     name =  models.CharField('Наименование',max_length=100)
     dateb =  models.DateField()
@@ -15,6 +23,14 @@ class Hosp(models.Model):
     name =  models.CharField('Наименование',max_length=100)
     def __str__(self):              # __unicode__ on Python 2
         return self.name
+
+class Doc_Hosp(models.Model):
+    ''' назначение Документов для заполнения больницам
+    '''
+    hosp = models.ForeignKey(Hosp)
+    doc_type =  models.ForeignKey(Doc_type)
+    def __str__(self):              # __unicode__ on Python 2
+        return str(self.hosp) + "-" + str(self.doc_type )
 
 
 class Document(models.Model):
@@ -36,8 +52,7 @@ class Document(models.Model):
                                       default=EDIT)
 
     title  = models.CharField('Заголовок',max_length=100)
-    date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User,default=0)
+    datef = models.DateTimeField(auto_now_add=False)
     def __str__(self):              # __unicode__ on Python 2
         return self.title
 
@@ -51,6 +66,7 @@ class Comment(models.Model):
 class Role(models.Model):
     user = models.ForeignKey(User,default=0)
     hosp = models.ForeignKey(Hosp)
+    tel = models.CharField('Телефон',max_length=20)
     EDIT = 'Р'
     CONTROL = 'К'
     

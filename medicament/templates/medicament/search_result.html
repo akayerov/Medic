@@ -1,0 +1,9 @@
+Список найденных фоток
+     {% for q in Photo %}
+         <p><a> {{ q.photo_date }} </a></p>
+         <p><a> {{ q.photo_title }}  {{ q.photo_text }}  :: {{ q.photo_album }} </a></p>
+         <image src={{path2}}/{{q.photo_image}} >
+         <p><a> {{path2}}/{{q.photo_image}} </a></p>
+       
+    {% endfor %}
+

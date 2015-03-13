@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class=large-8 columns>
+
+
+{% if doc_type_list %}
+     {% for q in doc_type_list %}
+         <h4><a href="/form{{q.id}}">{{ q.name }}</a></h4>
+         <hr>
+    {% endfor %}
+ {% else %} 
+    <p>Мониторинги не найдены</p>
+{% endif %}
+</div>
+{% endblock %}

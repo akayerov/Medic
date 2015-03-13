@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class=medium-10 columns>
+
+
+{% if doc_list %}
+     {% for q in doc_list %}
+         <h5><a href="/monitor/form{{q.id}}">{{ q.period }} : {{ q.hosp }}:{{ q.title }} : {{ q.status }}</a></h5>
+         <table width="100%" border="10">
+            <tr>
+              <td>{{ q.period }}</td>
+              <td>{{ q.hosp }}</td>
+              <td>{{q.title }}</td>
+              <td>{{q.status }}</td>
+            </tr>
+         </table>
+
+
+
+
+         <script type="text/javascript">
+           document.write ('<table width="100%" border="1">');
+           for (i=1; i<6; i++) {
+             document.writeln("<tr>");
+             for (j=1; j<6; j++) 
+            	 if(i==1)
+              	   document.write("<td>" + "{{ q.period}}" + "<\/td>");
+            	 else	 
+            	   document.write("<td>" + i + j + "<\/td>");
+             document.writeln("<\/tr>");
+           }
+           document.write ("<\/table> ");
+         </script> <hr>
+    {% endfor %}
+ {% else %} 
+    <p>Мониторинги не найдены</p>
+{% endif %}
+</div>
+{% endblock %}

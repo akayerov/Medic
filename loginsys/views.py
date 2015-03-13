@@ -5,9 +5,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
-from albums.models import Album,Photo, Comment
 import os
-from PhotoAlbum.settings import BASE_DIR
 from django.core.context_processors import request
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
@@ -27,7 +25,7 @@ def login(request):
         user = auth.authenticate(username=username,password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect("/albums")
+            return redirect("/")
         else:
              args['login_error'] = "Пользователь не найден"
              return render_to_response('login.html', args)
@@ -35,7 +33,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect("/albums")
+    return redirect("/")
 
 def registeruser(request):
     args = {}
@@ -49,7 +47,7 @@ def registeruser(request):
             password1 = newuser_form.cleaned_data['password2']
             user = auth.authenticate(username=user1,password=password1) 
             auth.login(request, user)
-            return redirect("/albums")
+            return redirect("/")
         else:
             args['form'] = newuser_form
             return render_to_response('register.html', args)
