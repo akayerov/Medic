@@ -5,7 +5,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
-from medicament.models import Document,Doc_type
+from medicament.models import Document,Doc_type, Hosp
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
@@ -18,16 +18,27 @@ from django.core.paginator import Paginator
 def monitor_type_list(request):
     if not request.user.is_authenticated():
         return redirect('/auth/login')
-   
-    doc_type_list =  Doc_type.objects.all()
-    return render_to_response('medicament/monitor_list.html', {'doc_type_list': doc_type_list,'username': auth.get_user(request).username})
+    args = {}
+    args.update(csrf(request))
+    
+    args['doc_type_list']    =  Doc_type.objects.all()            
+    args['username'] = auth.get_user(request).username       
+    return render_to_response('medicament/monitor_list.html', args)
 
 def monitoring_list(request):
     if not request.user.is_authenticated():
         return redirect('/auth/login')
-   
-    doc_list =  Document.objects.all()
-    return render_to_response('medicament/document_list.html', {'doc_list': doc_list,'username': auth.get_user(request).username})
+    args = {}
+    args.update(csrf(request))
+
+    if request.POST:
+        args['doc_list']    =  Document.objects.filter(hosp = 1)            
+    else:
+        args['doc_list']    =  Document.objects.all()            
+    args['mo_list']  =  Hosp.objects.all()            
+    args['username'] = auth.get_user(request).username       
+    
+    return render_to_response('medicament/document_list.html', args)
 
 
 def index(request):

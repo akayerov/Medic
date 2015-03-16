@@ -2,7 +2,9 @@
 {% load staticfiles %}
 
 {% block monitorlist %}
-<div class=large-8 columns>
+<div class="row">
+<div class="large-12 columns">
+<div class="large-8 medium-8 columns">
 
 
 {% if doc_type_list %}
@@ -13,5 +15,10 @@
  {% else %} 
     <p>Мониторинги не найдены</p>
 {% endif %}
+
+</div>
+<div class="large-4 medium-4 columns">
+</div>
+</div>
 </div>
 {% endblock %}

@@ -2,40 +2,74 @@
 {% load staticfiles %}
 
 {% block monitorlist %}
-<div class=medium-10 columns>
-
-
-{% if doc_list %}
+<div class="row">
+<div class="large-12 columns">
+<div class="large-8 medium-8 columns">
+     <h4>Лекарственное обеспечение</h4>
+    
+ {% if doc_list %}
+     <div class="panel">
+        <div class="row">
+     	<div class="large-4 medium-4 columns">
+	         <h6>МО</h6> 
+        </div>
+     	<div class="large-3 medium-3 columns">
+	         <h6>Период</h6> 
+        </div>
+     	<div class="large-2 medium-2 columns">
+	         <h6>Срок</h6> 
+        </div>
+     	<div class="large-3 medium-3 columns">
+	         <h6>Состояние</h6> 
+        </div>
+        </div>
+        <hr>
      {% for q in doc_list %}
-         <h5><a href="/monitor/form{{q.id}}">{{ q.period }} : {{ q.hosp }}:{{ q.title }} : {{ q.status }}</a></h5>
-         <table width="100%" border="10">
-            <tr>
-              <td>{{ q.period }}</td>
-              <td>{{ q.hosp }}</td>
-              <td>{{q.title }}</td>
-              <td>{{q.status }}</td>
-            </tr>
-         </table>
-
-
-
-
-         <script type="text/javascript">
-           document.write ('<table width="100%" border="1">');
-           for (i=1; i<6; i++) {
-             document.writeln("<tr>");
-             for (j=1; j<6; j++) 
-            	 if(i==1)
-              	   document.write("<td>" + "{{ q.period}}" + "<\/td>");
-            	 else	 
-            	   document.write("<td>" + i + j + "<\/td>");
-             document.writeln("<\/tr>");
-           }
-           document.write ("<\/table> ");
-         </script> <hr>
+        <div class="row">
+     	<div class="large-4 medium-4 columns">
+	         <h6><a href="/monitor/form{{q.id}}">{{ q.hosp }}</a></h6> 
+        </div>
+     	<div class="large-3 medium-3 columns">
+	         <h6><a href="/monitor/form{{q.id}}">{{q.period}}</a></h6> 
+        </div>
+     	<div class="large-2 medium-2 columns">
+	         <h6><a href="/monitor/form{{q.id}}">{{q.datef}}</a></h6> 
+        </div>
+     	<div class="large-3 medium-3 columns">
+	         <h6><a href="/monitor/form{{q.id}}">{{ q.get_status_display }}</a></h6> 
+        </div>
+        </div>
+        <hr>
     {% endfor %}
+    </div>
  {% else %} 
     <p>Мониторинги не найдены</p>
 {% endif %}
 </div>
+<div class="large-4 medium-4 columns">
+    <h4>Отбор</h4>
+    <div class="panel">
+       <form>
+          {% csrf_token %}
+         <label input type="date" id=dateb>C</label>
+         <input type="date" id="dateb">
+         <label input type="date" id=datee>По</label>
+         <input type="date" id="datee">
+         
+         <label>МО</label>
+         <input list="mo_test">
+         <datalist id="mo_test">
+         {% for q1 in mo_list %}
+           <option value="{{q1.id}}:{{q1.name}}"> </option>
+         {% endfor %}
+         </datalist>
+         <hr>
+         <input type="submit" formmethod="post">
+         
+       </form> 
+    </div>
+</div>
+</div>
+</div>
+
 {% endblock %}

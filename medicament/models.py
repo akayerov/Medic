@@ -16,7 +16,7 @@ class Period(models.Model):
     dateb =  models.DateField()
     datee =  models.DateField()
     def __str__(self):              # __unicode__ on Python 2
-        return self.name + ' (' + str(self.dateb) + ' - ' + str(self.datee) + ')'
+        return self.name
     
 
 class Hosp(models.Model):
@@ -52,7 +52,7 @@ class Document(models.Model):
                                       default=EDIT)
 
     title  = models.CharField('Заголовок',max_length=100)
-    datef = models.DateTimeField(auto_now_add=False)
+    datef = models.DateField(auto_now_add=False)
     def __str__(self):              # __unicode__ on Python 2
         return self.title
 
