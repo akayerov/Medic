@@ -5,66 +5,118 @@
 <div class="row">
 <div class="large-12 columns">
 <div class="large-8 medium-8 columns">
-     <h4>Лекарственное обеспечение</h4>
+     <h4><a href="/form1">Лекарственное обеспечение</a></h4>
     
  {% if doc_list %}
+ 
      <div class="panel">
         <div class="row">
-     	<div class="large-4 medium-4 columns">
-	         <h6>МО</h6> 
+		    <table>
+				<tr>
+				  <td><h6>МО</h6></td>
+				  <td><h6>Период</h6></td>
+				  <td><h6>Срок до</h6></td>
+				  <td><h6>Состояние</h6></td>
+				</tr >		    
+			     {% for q in doc_list %}
+				<tr class="rowsel">
+				  <td><h6><a href="/monitor/{{q.id}}">{{ q.hosp }}</a></h6></td>
+				  <td><h6><a href="/monitor/{{q.id}}">{{q.period}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{q.id}}">{{q.datef}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{q.id}}">{{q.get_status_display}}</a></h6></td>
+				</tr>		    
+			    {% endfor %}
+		    </table>
         </div>
-     	<div class="large-3 medium-3 columns">
-	         <h6>Период</h6> 
-        </div>
-     	<div class="large-2 medium-2 columns">
-	         <h6>Срок</h6> 
-        </div>
-     	<div class="large-3 medium-3 columns">
-	         <h6>Состояние</h6> 
-        </div>
-        </div>
-        <hr>
-     {% for q in doc_list %}
-        <div class="row">
-     	<div class="large-4 medium-4 columns">
-	         <h6><a href="/monitor/form{{q.id}}">{{ q.hosp }}</a></h6> 
-        </div>
-     	<div class="large-3 medium-3 columns">
-	         <h6><a href="/monitor/form{{q.id}}">{{q.period}}</a></h6> 
-        </div>
-     	<div class="large-2 medium-2 columns">
-	         <h6><a href="/monitor/form{{q.id}}">{{q.datef}}</a></h6> 
-        </div>
-     	<div class="large-3 medium-3 columns">
-	         <h6><a href="/monitor/form{{q.id}}">{{ q.get_status_display }}</a></h6> 
-        </div>
-        </div>
-        <hr>
-    {% endfor %}
     </div>
+
  {% else %} 
     <p>Мониторинги не найдены</p>
 {% endif %}
 </div>
+{#   Элементы управления                           #}
 <div class="large-4 medium-4 columns">
     <h4>Отбор</h4>
     <div class="panel">
        <form>
-          {% csrf_token %}
-         <label input type="date" id=dateb>C</label>
-         <input type="date" id="dateb">
-         <label input type="date" id=datee>По</label>
-         <input type="date" id="datee">
-         
+         {% csrf_token %}
          <label>МО</label>
+ {% comment %} 
          <input list="mo_test">
          <datalist id="mo_test">
          {% for q1 in mo_list %}
-           <option value="{{q1.id}}:{{q1.name}}"> </option>
+           <option value="{{q1.id}}">{{q1.name}}</option>
          {% endfor %}
          </datalist>
+ {% endcomment %}
+         <select multiple name="mo[]">
+           {% for q1 in mo_list %}
+             <option value="{{q1.id}}">{{q1.name}}</option>
+           {% endfor %}
+         </select>  
+         <label>Период</label>
+         <select size="1" name="period">
+           {% if period > 0 %}
+             <option value="0">По всем</option>
+           {% else %}
+             <option selected value="0">По всем</option>
+           {% endif %}
+           
+           {% for p1 in period_list %}
+
+           {% if p1.id == period %}
+             <option selected value="{{p1.id}}">{{p1.name}}</option>
+           {% else %}
+             <option value="{{p1.id}}">{{p1.name}}</option>
+           {% endif %}
+           {% endfor %}
+         </select>  
+         <label>Статус</label>
+         <select size="1" name="status">
+             <option value="0">По всем</option>
+             {% if status == 'E' %} 
+	            <option selected value="E">Редактирование</option>
+             {% else %}
+	            <option value="E">Редактирование</option>
+             {% endif %}
+             {% if status == 'W' %} 
+	            <option selected value="W">Согласование</option>
+             {% else %}
+	            <option value="W">Согласование</option>
+             {% endif %}
+             {% if status == 'C' %} 
+	            <option selected value="C">Корректировка</option>
+             {% else %}
+	            <option value="C">Корректировка</option>
+             {% endif %}
+             {% if status == 'F' %} 
+	            <option selected value="C">Завершено</option>
+             {% else %}
+	            <option value="F">Завершено</option>
+             {% endif %}
+         </select>  
+         <button class="button" name="button_filter" value="1" type="submit" formmethod="post">Отбор</button>         
+
+         {% if right_all %}
          <hr>
-         <input type="submit" formmethod="post">
+         <h5>Сводка</h5>
+         <button class="button" name="button_report" value="6" type="submit" formmethod="post">Показать</button>   
+
+         <hr>
+         <h5>Создать новый отчет</h5>
+         <label>Период</label>
+         <select size="1" name="period_new">
+           {% for p1 in period_list %}
+             <option value="{{p1.id}}">{{p1.name}}</option>
+           {% endfor %}
+         </select>  
+         <label>Срок сдачи</label>
+         <input type='date' name='datef'>
+         <button class="button" name="button_create" value="2" type="submit" formmethod="post">Создать</button>   
+         {% if not isOk %}
+           <h5><blink>Ошибка при создании!</blink></h5>               
+         {% endif %}
+         {% endif %}
          
        </form> 
     </div>

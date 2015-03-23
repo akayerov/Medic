@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404, render_to_response,\
     redirect
 from django.http import Http404
@@ -5,12 +6,15 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
-from medicament.models import Document,Doc_type, Hosp
+from medicament.models import Document,Doc_type, Hosp, Period, Role, Comment
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
 # пагинация урок 12
 from django.core.paginator import Paginator
+from medicament.forms import CommentForm
+# мой модуль для работы с базами
+from medicament.oper_with_base import create_new_report, add_action_in_comment, save_doc
 
 
 # Начинаем со списка Альбомов
@@ -25,20 +29,151 @@ def monitor_type_list(request):
     args['username'] = auth.get_user(request).username       
     return render_to_response('medicament/monitor_list.html', args)
 
+
 def monitoring_list(request):
     if not request.user.is_authenticated():
         return redirect('/auth/login')
+    
+#   Определение доступа
+    usr =  auth.get_user(request)
+    role = Role.objects.get(user=usr)
+    if role.role == "К":
+        see_all = True                # see_all  контроль и создание новых отчетов
+        user_hosp = 0
+    else:
+        see_all = False
+        user_hosp = role.hosp
+   
+                 
     args = {}
     args.update(csrf(request))
-
+    m = 0
+    period = 0
+    status = 0
+    isOk = True 
     if request.POST:
-        args['doc_list']    =  Document.objects.filter(hosp = 1)            
-    else:
-        args['doc_list']    =  Document.objects.all()            
-    args['mo_list']  =  Hosp.objects.all()            
+        if see_all and 'button_create' in request.POST:
+            if 'period_new' in request.POST:
+                if request.POST['period_new']:
+                    periodInt = int(request.POST['period_new'])
+                    datef = request.POST['datef']
+                    isOk = create_new_report(1, periodInt, datef)          # тип 1 мониторинга
+        if not see_all:
+            m = user_hosp.id  
+        if 'mo[]' in request.POST:
+            mo1 = request.POST['mo[]']
+            m = int(mo1)
+        if 'period' in request.POST:
+            period = int(request.POST['period'])
+        if 'status' in request.POST:
+            status = request.POST['status']
+        is_filter = False 
+        if m > 0:
+            args['doc_list']    =  Document.objects.filter(hosp = m)
+            is_filter = True
+        if period > 0:
+            if is_filter:
+                args['doc_list']    =  args['doc_list'].filter(period = period)
+            else:    
+                args['doc_list']    =  Document.objects.filter(period = period)
+                is_filter = True
+        if status != '0':
+            if is_filter:
+                args['doc_list']    =  args['doc_list'].filter(status = status)
+            else:    
+                args['doc_list']    =  Document.objects.filter(status = status)
+                is_filter = True
+        if not is_filter:
+            args['doc_list']    =  Document.objects.all()            
+    else:   # Первый вход по GET
+        if see_all: 
+            args['doc_list']    =  Document.objects.all()            
+        else: 
+            args['doc_list']    = Document.objects.filter(hosp = user_hosp)
+# во всех случаях    
+    if not see_all: 
+        args['mo_list']  =  Hosp.objects.filter(id=user_hosp.id)
+    else:                
+        args['mo_list']  =  Hosp.objects.all()
+    args['period_list']  =  Period.objects.all()            
     args['username'] = auth.get_user(request).username       
+    args['right_all'] = see_all       
+    args['isOk'] = isOk       
+    
+#    filtr = [m,period,status]
+    args['period'] = period       
+    args['status'] = status       
     
     return render_to_response('medicament/document_list.html', args)
+
+def monitoring_form(request, question_id):
+    if not request.user.is_authenticated():
+        return redirect('/auth/login')
+    
+#   Определение доступа
+    usr =  auth.get_user(request)
+    role = Role.objects.get(user=usr)
+    if role.role == "К":
+        see_all = True                # see_all  контроль и создание новых отчетов
+        user_hosp = 0
+    else:
+        see_all = False
+        user_hosp = role.hosp
+   
+                 
+    args = {}
+    args.update(csrf(request))
+    m = 0
+    period = 0
+    status = 0
+    isOk = True 
+    actionComment =  Comment.EMPTY
+    
+    if request.POST:
+            save_doc(request,question_id)
+            response = redirect('/form1')
+            return response
+    else:   # Первый вход по GET
+        args['doc']    =  Document.objects.get(pk=question_id)            
+# во всех случаях    
+    if not see_all: 
+        args['mo_list']  =  Hosp.objects.filter(id=user_hosp.id)
+    else:                
+        args['mo_list']  =  Hosp.objects.all()
+    args['period_list']  =  Period.objects.all()            
+    args['username'] = auth.get_user(request).username       
+
+    args['right_operator'] = not see_all       
+#    args['right_operator'] = True       
+    args['right_control'] = see_all       
+    args['isOk'] = isOk  
+    
+    comment_form = CommentForm      
+    args['comment']  =  Comment.objects.filter(document = question_id)            
+    args['form']     =  comment_form     
+  
+    return render_to_response('medicament/document_form.html', args)
+
+
+def add_comment(request, question_id):
+    enable = request.user.is_active
+    if request.POST and ('pause' not in request.session) and enable:
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.document = Document.objects.get(id = question_id)
+            comment.user = request.user
+            comment.save()
+            # далее работа с сессией, чтобы исключить повторную отправку комментария
+            request.session.set_expiry(60);
+            request.session['pause'] =  True;
+        
+    return redirect('/monitor/' + question_id)
+
+
+
+
+
 
 
 def index(request):
@@ -106,7 +241,7 @@ def photo_detail(request, question_id):
     args['photo']    =  Photo.objects.get(id = question_id)            
     args['comment']  =  Comment.objects.filter(comment_photo_id = question_id)            
     args['form']     =  comment_form     
-    args['username'] = auth.get_user(request).username       
+    args['username'] = auth.get_user(request).username   
    
     return render_to_response('albums/photo_detail.html', args)
 
@@ -125,22 +260,7 @@ def add_like(request, question_id):
         raise Http404  
     return redirect('/albums/' + question_id)
 
-def add_comment(request, question_id):
-#    if request.POST and ('pause' not in request.session):
-# теперь отправка только авторизованным пользоавтелям разрешена
-    enable = request.user.is_active
-    if request.POST and ('pause' not in request.session) and enable:
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit = False)
-            comment.comment_photo = Photo.objects.get(id = question_id)
-            comment.comment_user = request.user
-            comment.save()
-            # далее работа с сессией, чтобы исключить повторную отправку комментария
-            request.session.set_expiry(60);
-            request.session['pause'] =  True;
-        
-    return redirect('/albums/' + question_id)
+
 
 def search(request): 
     if 'q' in request.GET:

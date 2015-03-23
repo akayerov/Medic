@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class="row">
+<div class="large-12 columns">
+     <h4><a href="/form1">Лекарственное обеспечение</a></h4>
+    
+ {% if doc %}
+     <div class="row">
+     <div class="large-12 columns">
+     <div class="panel">
+	     	<div class="large-4 medium-4 columns">
+		         <h6>{{ doc.hosp }}</h6> 
+	        </div>
+	     	<div class="large-3 medium-3 columns">
+		         <h6>{{ doc.period}}</h6> 
+	        </div>
+	     	<div class="large-2 medium-2 columns">
+		         <h6>{{doc.datef}}</h6> 
+	        </div>
+	     	<div class="large-3 medium-3 columns">
+		         <h6>{{ doc.get_status_display }}</h6> 
+	        </div>
+
+          <form>
+           {% csrf_token %}
+          <table class="table id="table1">
+		   <caption>Мониторинг лекарственого обеспечения</caption>
+		   <tr>
+		    <th></th>
+		    <th>Колонка 1</th>
+		    <th>Колонка 2</th>
+		    <th>Колонка 3</th>
+		    <th>Колонка 4</th>
+		    <th>Колонка 5</th>
+		    <th>Колонка 6</th>
+		    <th>Колонка 7</th>
+		    <th>Колонка 8</th>
+		   </tr>
+		   <tr>
+		        <td><h6>Строка 1</h6></td><td><input type="number" name="c1_1" min="0" max="100" step="1" size="3" value="{{doc.c1_1}}"></td>
+		        <td>{{doc.c1_1}}</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		   </tr>
+		   <tr>
+		        <td><h6>Строка 2</h6></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		   </tr>
+		   <tr>
+		        <td><h6>Строка 3</h6></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		   </tr>
+		   <tr>
+		        <td><h6>Строка 4</h6></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		   </tr>
+  		</table>
+        {% if right_operator %}
+        {% if doc.status == 'E' or doc.status == 'C' %}
+    		<button class="button" name="button_save" value="1" type="submit" formmethod="post">Сохранить</button>         
+    		<button class="button" name="button_send_control" value="2" type="submit" formmethod="post">На согласование</button>         
+        {% endif %}
+        {% endif %}
+        {% if right_control %}
+        {% if doc.status == 'W' %}
+  	    	<button class="button" name="button_isOK" value="3" type="submit" formmethod="post">Согласовано</button>         
+  		    <button class="button" name="button_isNotOK" value="4" type="submit" formmethod="post">Не согласовано</button>         
+        {% endif %}
+        {% endif %}
+
+  		</form>
+    </div>
+    </div>
+       <div class="large-offset-1 large-8 columns">
+         <h4>Комментарии</h4>
+         {% if comment %}
+         {% for c in comment %}
+         <h6>{{c.user.first_name}} {{c.user.last_name}}:  {{c.date}}:  {{c.get_action_display}}<h6>
+         <p>{{c.text}}<p>
+         <hr>
+         {% endfor %}
+         {% endif %}
+         {% if doc.status != 'F' %}
+         <form action="/monitor/add_comment/{{doc.id}}/" method = "post">
+            {%csrf_token%}
+            {{form}}
+  		    <button class="button" name="button_addComment" value="5" type="submit" formmethod="post">Добавить</button>         
+         </form>
+         {% endif %}
+      </div>
+    </div>
+ {% else %} 
+    <p>Мониторинги не найдены‹</p>
+{% endif %}
+</div>
+
+{% endblock %}

@@ -1,23 +1,19 @@
 from django.contrib import admin
-from medicament.models import Doc_type, Period, Hosp, Role, Row, Document, TabDocument, Comment
+from medicament.models import Doc_type, Period, Hosp, Role, Document, Comment, Doc_Hosp
 # Register your models here.
 
 admin.site.register(Doc_type)
 admin.site.register(Period)
 admin.site.register(Hosp)
 admin.site.register(Role)
-admin.site.register(Row)
+admin.site.register(Doc_Hosp)
 
-#class PhotoInline(admin.TabularInline):     
-class TabDocumentInline(admin.TabularInline):
-    model = TabDocument
-    extra = 0
 class CommentInline(admin.TabularInline):
     model = Comment
     extra = 0
 
 class DocumentAdmin(admin.ModelAdmin):
-    inlines = [TabDocumentInline, CommentInline]
+    inlines = [CommentInline]
     
 
 

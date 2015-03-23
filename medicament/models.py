@@ -36,25 +36,74 @@ class Doc_Hosp(models.Model):
 class Document(models.Model):
     period = models.ForeignKey(Period)
     hosp = models.ForeignKey(Hosp)
-    EDIT = 'Р'
-    WAITCONTROL = 'О'
-    NEEDCHANGE = 'И'
-    COMPELETE = 'Ф'
+    EDIT = 'E'
+    WAITCONTROL = 'W'
+    NEEDCHANGE = 'C'
+    COMPELETE = 'F'
     
     STATE_IN_DOC = (
         (EDIT, 'Редактирование'),
-        (WAITCONTROL, 'Ожидание утвержд'),
-        (NEEDCHANGE, 'Не утверждено'),
+        (WAITCONTROL, 'Согласование'),
+        (NEEDCHANGE, 'Корректировка'),
         (COMPELETE, 'Завершено'),
     )
     status = models.CharField('Статус',max_length=1,
                                       choices=STATE_IN_DOC,
                                       default=EDIT)
 
-    title  = models.CharField('Заголовок',max_length=100)
     datef = models.DateField(auto_now_add=False)
+    
+    c1_1 = models.IntegerField('Кол1-1', default=0)
+    c1_2 = models.IntegerField('Кол1-2',  default=0)
+    c1_3 = models.IntegerField('Кол1-3',  default=0)
+    c1_4 = models.IntegerField('Кол1-4',  default=0)
+    c1_5 = models.IntegerField('Кол1-5',  default=0)
+    c1_6 = models.IntegerField('Кол1-6',  default=0)
+    c1_7 = models.IntegerField('Кол1-7',  default=0)
+    c1_8 = models.IntegerField('Кол1-8',  default=0)
+
+    c2_1 = models.IntegerField('Кол2-1', default=0)
+    c2_2 = models.IntegerField('Кол2-2',  default=0)
+    c2_3 = models.IntegerField('Кол2-3',  default=0)
+    c2_4 = models.IntegerField('Кол2-4',  default=0)
+    c2_5 = models.IntegerField('Кол2-5',  default=0)
+    
+    c3_1 = models.IntegerField('Кол3-1', default=0)
+    c3_5 = models.IntegerField('Кол3-5',  default=0)
+    c3_6 = models.IntegerField('Кол3-6',  default=0)
+    c3_7 = models.IntegerField('Кол3-7',  default=0)
+    c3_8 = models.IntegerField('Кол3-8',  default=0)
+    
+    c4_1 = models.IntegerField('Кол4-1', default=0)
+    c4_2 = models.IntegerField('Кол4-2',  default=0)
+    c4_3 = models.IntegerField('Кол4-3',  default=0)
+    c4_4 = models.IntegerField('Кол4-4',  default=0)
+    c4_5 = models.IntegerField('Кол4-5',  default=0)
+    c4_6 = models.IntegerField('Кол4-6',  default=0)
+    c4_7 = models.IntegerField('Кол4-7',  default=0)
+    c4_8 = models.IntegerField('Кол4-8',  default=0)
+    
+    def show_view(self):
+        h = str(self.hosp)
+        h1 = "{0:<23}".format(h)
+        if self.status == 'E':
+            i = 0
+        elif self.status == 'W':
+            i = 1
+        elif self.status == 'C':
+            i = 2
+        else:
+            i = 3        
+        s = [h1,str(self.period)]  
+        res = "______".join(s)
+        res = res + "____" + str(self.datef) + "____"  
+        res = res + str(Document.STATE_IN_DOC[i][1])
+          
+        return res 
+         
+    
     def __str__(self):              # __unicode__ on Python 2
-        return self.title
+        return str(self.hosp) + ':' + str(self.period)
 
    
 class Comment(models.Model):
@@ -62,6 +111,21 @@ class Comment(models.Model):
     text = models.TextField('Текст комментария')
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User,default=0)
+    EMPTY = 'E'
+    ON_CONTROL = 'O'
+    CONTROL_YES = 'Y'
+    CONTROL_NO = 'N'
+
+    ACTION_COMMENT = (
+        (EMPTY, ''),
+        (ON_CONTROL, 'На согласование'),
+        (CONTROL_YES, 'Согласовано'),
+        (CONTROL_NO, 'Не согласовано'),
+    )
+    action = models.CharField('Действие',max_length=1,
+                                      choices= ACTION_COMMENT,
+                                      default=EMPTY)
+
 
 class Role(models.Model):
     user = models.ForeignKey(User,default=0)
@@ -80,20 +144,4 @@ class Role(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return str(self.hosp) + ':' + str(self.user)
 
-class Row(models.Model):
-    name = models.CharField('Наименование',max_length=100) 
-    def __str__(self):              # __unicode__ on Python 2
-        return str(self.name)
-
-class TabDocument(models.Model):
-    document  = models.ForeignKey(Document, default=0)
-    row = models.ForeignKey(Row,default=0)
-    col1 = models.IntegerField('Кол1', default=0)
-    col2 = models.IntegerField('Кол2',  default=0)
-    col3 = models.IntegerField('Кол3',  default=0)
-    col4 = models.IntegerField('Кол4',  default=0)
-    col5 = models.IntegerField('Кол5',  default=0)
-    col6 = models.IntegerField('Кол6',  default=0)
-    col7 = models.IntegerField('Кол7',  default=0)
-    col8 = models.IntegerField('Кол8',  default=0)
 
