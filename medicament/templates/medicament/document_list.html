@@ -51,7 +51,11 @@
  {% endcomment %}
          <select multiple name="mo[]">
            {% for q1 in mo_list %}
-             <option value="{{q1.id}}">{{q1.name}}</option>
+	         {% if q1.id == hosp %}
+               <option selected value="{{q1.id}}">{{q1.name}}</option>
+             {% else %}
+               <option value="{{q1.id}}">{{q1.name}}</option>
+             {% endif %}
            {% endfor %}
          </select>  
          <label>Период</label>

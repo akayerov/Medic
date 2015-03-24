@@ -14,7 +14,7 @@ from django.contrib import auth
 from django.core.paginator import Paginator
 from medicament.forms import CommentForm
 # мой модуль для работы с базами
-from medicament.oper_with_base import create_new_report, add_action_in_comment, save_doc
+from medicament.oper_with_base import create_new_report, add_action_in_comment, save_doc, calc_sum
 
 
 # Начинаем со списка Альбомов
@@ -51,7 +51,13 @@ def monitoring_list(request):
     period = 0
     status = 0
     isOk = True 
+    result = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
+    
+    html_response = 'medicament/document_list.html'
     if request.POST:
+        if see_all and 'button_report' in request.POST:
+            html_response = 'medicament/report_list.html'
+            
         if see_all and 'button_create' in request.POST:
             if 'period_new' in request.POST:
                 if request.POST['period_new']:
@@ -84,7 +90,13 @@ def monitoring_list(request):
                 args['doc_list']    =  Document.objects.filter(status = status)
                 is_filter = True
         if not is_filter:
-            args['doc_list']    =  Document.objects.all()            
+            args['doc_list']    =  Document.objects.all()
+# после выборки по фильрам если надо счиатть отчет, то вызываю сответствующую функцию
+        if see_all and 'button_report' in request.POST:
+            html_response = 'medicament/report_list.html'
+           
+            result = calc_sum(args['doc_list'])
+            
     else:   # Первый вход по GET
         if see_all: 
             args['doc_list']    =  Document.objects.all()            
@@ -103,8 +115,10 @@ def monitoring_list(request):
 #    filtr = [m,period,status]
     args['period'] = period       
     args['status'] = status       
+    args['result'] = result       
+    args['hosp'] = m       
     
-    return render_to_response('medicament/document_list.html', args)
+    return render_to_response(html_response, args)
 
 def monitoring_form(request, question_id):
     if not request.user.is_authenticated():
@@ -128,11 +142,14 @@ def monitoring_form(request, question_id):
     status = 0
     isOk = True 
     actionComment =  Comment.EMPTY
-    
+    error = ''
     if request.POST:
-            save_doc(request,question_id)
+        if save_doc(request,question_id):
             response = redirect('/form1')
             return response
+        else:
+            args['doc']    =  Document.objects.get(pk=question_id)
+            error = "Сумма по столбцам превышает итог"  
     else:   # Первый вход по GET
         args['doc']    =  Document.objects.get(pk=question_id)            
 # во всех случаях    
@@ -147,6 +164,7 @@ def monitoring_form(request, question_id):
 #    args['right_operator'] = True       
     args['right_control'] = see_all       
     args['isOk'] = isOk  
+    args['error']   =  error     
     
     comment_form = CommentForm      
     args['comment']  =  Comment.objects.filter(document = question_id)            

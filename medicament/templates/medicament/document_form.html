@@ -22,11 +22,13 @@
 	     	<div class="large-3 medium-3 columns">
 		         <h6>{{ doc.get_status_display }}</h6> 
 	        </div>
-
+          <div class="large-12 columns">
+          <h5 class="error_mess">{{error}}</h5>
+          </div>
           <form>
            {% csrf_token %}
           <table class="table id="table1">
-		   <caption>Мониторинг лекарственого обеспечения</caption>
+		   <caption>Мониторинг лекарственного обеспечения</caption>
 		   <tr>
 		    <th></th>
 		    <th>Колонка 1</th>
@@ -39,17 +41,48 @@
 		    <th>Колонка 8</th>
 		   </tr>
 		   <tr>
-		        <td><h6>Строка 1</h6></td><td><input type="number" name="c1_1" min="0" max="100" step="1" size="3" value="{{doc.c1_1}}"></td>
-		        <td>{{doc.c1_1}}</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		        <td><h6>Строка 1</h6></td>
+		        <td><input type="number" name="c1_1" min="0" max="100" step="1" size="3" value="{{doc.c1_1}}"></td>
+		        <td><input type="number" name="c1_2" min="0" max="100" step="1" size="3" value="{{doc.c1_2}}"></td>
+		        <td><input type="number" name="c1_3" min="0" max="100" step="1" size="3" value="{{doc.c1_3}}"></td>
+		        <td><input type="number" name="c1_4" min="0" max="100" step="1" size="3" value="{{doc.c1_4}}"></td>
+		        <td><input type="number" name="c1_5" min="0" max="100" step="1" size="3" value="{{doc.c1_5}}"></td>
+		        <td><input type="number" name="c1_6" min="0" max="100" step="1" size="3" value="{{doc.c1_6}}"></td>
+		        <td><input type="number" name="c1_7" min="0" max="100" step="1" size="3" value="{{doc.c1_7}}"></td>
+		        <td><input type="number" name="c1_8" min="0" max="100" step="1" size="3" value="{{doc.c1_8}}"></td>
 		   </tr>
 		   <tr>
-		        <td><h6>Строка 2</h6></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		        <td><h6>Строка 2</h6></td>
+		        <td><input type="number" name="c2_1" min="0" max="100" step="1" size="3" value="{{doc.c2_1}}"></td>
+		        <td><input type="number" name="c2_2" min="0" max="100" step="1" size="3" value="{{doc.c2_2}}"></td>
+		        <td><input type="number" name="c2_3" min="0" max="100" step="1" size="3" value="{{doc.c2_3}}"></td>
+		        <td><input type="number" name="c2_4" min="0" max="100" step="1" size="3" value="{{doc.c2_4}}"></td>
+		        <td><input type="number" name="c2_5" min="0" max="100" step="1" size="3" value="{{doc.c2_5}}"></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
 		   </tr>
 		   <tr>
-		        <td><h6>Строка 3</h6></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		        <td><h6>Строка 3</h6></td>
+		        <td><input type="number" name="c3_1" min="0" max="100" step="1" size="3" value="{{doc.c3_1}}"></td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		        <td><input type="number" name="c3_5" min="0" max="100" step="1" size="3" value="{{doc.c3_5}}"></td>
+		        <td><input type="number" name="c3_6" min="0" max="100" step="1" size="3" value="{{doc.c3_6}}"></td>
+		        <td><input type="number" name="c3_7" min="0" max="100" step="1" size="3" value="{{doc.c3_7}}"></td>
+		        <td><input type="number" name="c3_8" min="0" max="100" step="1" size="3" value="{{doc.c3_8}}"></td>
 		   </tr>
 		   <tr>
-		        <td><h6>Строка 4</h6></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td>
+		        <td><h6>Строка 4</h6></td>
+		        <td><input type="number" name="c4_1" min="0" max="100" step="1" size="3" value="{{doc.c4_1}}"></td>
+		        <td><input type="number" name="c4_2" min="0" max="100" step="1" size="3" value="{{doc.c4_2}}"></td>
+		        <td><input type="number" name="c4_3" min="0" max="100" step="1" size="3" value="{{doc.c4_3}}"></td>
+		        <td><input type="number" name="c4_4" min="0" max="100" step="1" size="3" value="{{doc.c4_4}}"></td>
+		        <td><input type="number" name="c4_5" min="0" max="100" step="1" size="3" value="{{doc.c4_5}}"></td>
+		        <td><input type="number" name="c4_6" min="0" max="100" step="1" size="3" value="{{doc.c4_6}}"></td>
+		        <td><input type="number" name="c4_7" min="0" max="100" step="1" size="3" value="{{doc.c4_7}}"></td>
+		        <td><input type="number" name="c4_8" min="0" max="100" step="1" size="3" value="{{doc.c4_8}}"></td>
 		   </tr>
   		</table>
         {% if right_operator %}

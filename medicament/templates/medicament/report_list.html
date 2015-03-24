@@ -1,0 +1,120 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class="row">
+<div class="large-12 columns">
+     <h4><a href="/form1">Лекарственное обеспечение Отчет</a></h4>
+    
+ {% if doc_list %}
+ 	 {% for q in doc_list %}
+     <div class="panel">
+        <div class="row">
+          <div class="large-12 columns">
+             <div class="large-4 large-4 columns">
+				<h6>{{ q.hosp }}</h6>
+             </div>
+             <div class="large-2 large-4 columns">
+				  <h6>{{q.period}}</h>
+             </div>
+             <div class="large-3 large-4 columns">
+				  <h6>{{q.get_status_display}}</h6>
+             </div>
+          </div>
+        </div>
+      </div>
+     <table>
+       <thead>
+         <tr>
+  		   <td>
+  		      
+  		   </td>
+  		   <td>
+  		      Колонка1
+  		   </td>
+  		   <td>
+  		      Колонка2
+  		   </td>
+  		   <td>
+  		      Колонка3
+  		   </td>
+  		   <td>
+  		      Колонка4
+  		   </td>
+  		   <td>
+  		      Колонка5
+  		   </td>
+  		   <td>
+  		      Колонка6
+  		   </td>
+  		   <td>
+  		      Колонка7
+  		   </td>
+  		   <td>
+  		      Колонка8
+  		   </td>
+         </tr>
+       </thead> 
+       <tbody>
+         <tr>
+           <td>Строка1</td>
+           <td>{{q.c1_1}}</td><td>{{q.c1_2}}</td><td>{{q.c1_3}}</td><td>{{q.c1_4}}</td>
+           <td>{{q.c1_5}}</td><td>{{q.c1_6}}</td><td>{{q.c1_7}}</td><td>{{q.c1_8}}</td>
+         </tr>               
+       </tbody>         
+     </table>
+ {% endfor %}
+     <h2>ИТОГО</h2> 
+     <table>
+       <thead>
+         <tr>
+  		   <td>
+  		      
+  		   </td>
+  		   <td>
+  		      Колонка1
+  		   </td>
+  		   <td>
+  		      Колонка2
+  		   </td>
+  		   <td>
+  		      Колонка3
+  		   </td>
+  		   <td>
+  		      Колонка4
+  		   </td>
+  		   <td>
+  		      Колонка5
+  		   </td>
+  		   <td>
+  		      Колонка6
+  		   </td>
+  		   <td>
+  		      Колонка7
+  		   </td>
+  		   <td>
+  		      Колонка8
+  		   </td>
+         </tr>
+       </thead> 
+       <tbody>
+            {% for r in result %}
+              <tr>            
+              <td>Строка1</td>
+            {% for c in r %}
+               <td>{{c}}</td>
+            {% endfor %}
+               </tr>            
+            {% endfor %}
+       </tbody>         
+     </table>
+
+
+ {% else %} 
+    <p>Мониторинги не найдены</p>
+{% endif %}
+</div>
+
+</div>
+
+{% endblock %}
