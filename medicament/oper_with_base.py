@@ -4,6 +4,7 @@
 '''
 from medicament.models import Document,Doc_type, Hosp, Period, Role, Comment, Doc_Hosp
 from django.core.exceptions import ObjectDoesNotExist
+from pyexcelerate import Workbook
 
 def create_new_report(type,periodInt, datef):
     ''' Возвращает True, если добавление записей прошло успешно
@@ -146,3 +147,9 @@ def calc_sum(doc):
     
     return s
 
+def export_to_excel(doc):
+    res = calc_sum(doc)
+#    data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] # data is a 2D array
+    wb = Workbook()
+    wb.new_sheet("sheet name", data=res)
+    wb.save("c:\output.xlsx")

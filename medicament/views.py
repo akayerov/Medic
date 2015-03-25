@@ -14,7 +14,7 @@ from django.contrib import auth
 from django.core.paginator import Paginator
 from medicament.forms import CommentForm
 # мой модуль для работы с базами
-from medicament.oper_with_base import create_new_report, add_action_in_comment, save_doc, calc_sum
+from medicament.oper_with_base import create_new_report, add_action_in_comment, save_doc, calc_sum, export_to_excel
 
 
 # Начинаем со списка Альбомов
@@ -88,11 +88,12 @@ def monitoring_list(request):
                 is_filter = True
         if not is_filter:
             args['doc_list']    =  Document.objects.all()
-# после выборки по фильрам если надо счиатть отчет, то вызываю сответствующую функцию
+# после выборки по фильрам если надо считать отчет, то вызываю сответствующую функцию
         if see_all and 'button_report' in request.POST:
             html_response = 'medicament/report_list.html'
             result = calc_sum(args['doc_list'])
-            
+        elif see_all and 'button_export' in request.POST:
+            export_to_excel(args['doc_list'])   
     else:   # Первый вход по GET
         if see_all: 
             args['doc_list']    =  Document.objects.all()            

@@ -3,18 +3,12 @@
 '''
 @author: a_kayerov
 '''
-def list_find(lst): 
-    for x in lst:
-        print(x) 
-        for elem in x:
-            print(elem)  
-    return 0
 
-s = [["line1",0,0,0,0,0,0,0,0],["line2",0,0,0,0,0,0,0,0],["line3",0,0,0,0,0,0,0,0],["line4",0,0,0,0,0,0,0,0]]
-row = ["line1","line2","line3","line4"]    
+from pyexcelerate import Workbook
 
-list_find(s) 
+data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] # data is a 2D array
 
-
-
-     
+wb = Workbook()
+wb.new_sheet("sheet name", data=data)
+wb.save("c:\output.xlsx")
+print("OK")
