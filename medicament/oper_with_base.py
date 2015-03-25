@@ -37,13 +37,15 @@ def save_doc(request,question_id):
     set_fields(request,doc)
 
     if 'button_save' in request.POST:
-        if not is_valid(doc):
-            return False 
+        ret_mess = is_valid(doc)
+        if not ret_mess[0]:      # [False,"Error_mess"]
+            return ret_mess 
         doc.status = Document.EDIT
         doc.save()
     elif 'button_send_control' in request.POST:
-        if not is_valid(doc):
-            return False 
+        ret_mess = is_valid(doc)
+        if not ret_mess[0]:      # [False,"Error_mess"]
+            return ret_mess 
         doc.status = Document.WAITCONTROL
         actionComment = Comment.ON_CONTROL
         doc.save()
@@ -58,7 +60,7 @@ def save_doc(request,question_id):
         actionComment = Comment.CONTROL_NO
         doc.save()
         add_action_in_comment(request, doc, actionComment)
-    return True
+    return [True,'OK']
 
 def set_fields(request,doc):
     ''' Заполнение полей модели данными формы. 
@@ -100,45 +102,47 @@ def is_valid(doc):
         Специфично для каждой формы
     '''
     if int(doc.c1_1) < int(doc.c1_2) + int(doc.c1_3) + int(doc.c1_4) + int(doc.c1_5) + int(doc.c1_6) + int(doc.c1_7) +  + int(doc.c1_8):
-        return False
+        ret = [False,'Итого по строке 1 меньше суммы по столбцам'] 
+        return ret
     else:
-        return True
+        ret = [True,'OK']
+        return ret
    
     
 def calc_sum(doc):
     ''' Возвращает Суммы данных отчетов
     '''
-    s = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
+    s = [["Строка1",0,0,0,0,0,0,0,0],["Строка2",0,0,0,0,0,0,0,0],["Строка3",0,0,0,0,0,0,0,0],["Строка4",0,0,0,0,0,0,0,0]]
     for d in doc:
-        s[0][0] = s[0][0] + d.c1_1
-        s[0][1] = s[0][1] + d.c1_2
-        s[0][2] = s[0][2] + d.c1_3
-        s[0][3] = s[0][3] + d.c1_4
-        s[0][4] = s[0][4] + d.c1_5
-        s[0][5] = s[0][5] + d.c1_6
-        s[0][6] = s[0][6] + d.c1_7
-        s[0][7] = s[0][7] + d.c1_8
+        s[0][1] = s[0][1] + d.c1_1
+        s[0][2] = s[0][2] + d.c1_2
+        s[0][3] = s[0][3] + d.c1_3
+        s[0][4] = s[0][4] + d.c1_4
+        s[0][5] = s[0][5] + d.c1_5
+        s[0][6] = s[0][6] + d.c1_6
+        s[0][7] = s[0][7] + d.c1_7
+        s[0][8] = s[0][8] + d.c1_8
 
-        s[1][0] = s[1][0] + d.c2_1
-        s[1][1] = s[1][1] + d.c2_2
-        s[1][2] = s[1][2] + d.c2_3
-        s[1][3] = s[1][3] + d.c2_4
-        s[1][4] = s[1][4] + d.c2_5
+        s[1][1] = s[1][1] + d.c2_1
+        s[1][2] = s[1][2] + d.c2_2
+        s[1][3] = s[1][3] + d.c2_3
+        s[1][4] = s[1][4] + d.c2_4
+        s[1][5] = s[1][5] + d.c2_5
 
-        s[2][0] = s[2][0] + d.c3_1
-        s[2][4] = s[2][4] + d.c3_5
-        s[2][5] = s[2][5] + d.c3_6
-        s[2][6] = s[2][6] + d.c3_7
-        s[2][7] = s[2][7] + d.c3_8
+        s[2][1] = s[2][1] + d.c3_1
+        s[2][5] = s[2][5] + d.c3_5
+        s[2][6] = s[2][6] + d.c3_6
+        s[2][7] = s[2][7] + d.c3_7
+        s[2][8] = s[2][8] + d.c3_8
 
-        s[3][0] = s[3][0] + d.c4_1
-        s[3][1] = s[3][1] + d.c4_2
-        s[3][2] = s[3][2] + d.c4_3
-        s[3][3] = s[3][3] + d.c4_4
-        s[3][4] = s[3][4] + d.c4_5
-        s[3][5] = s[3][5] + d.c4_6
-        s[3][6] = s[3][6] + d.c4_7
-        s[3][7] = s[3][7] + d.c4_8
-      
+        s[3][1] = s[3][1] + d.c4_1
+        s[3][2] = s[3][2] + d.c4_2
+        s[3][3] = s[3][3] + d.c4_3
+        s[3][4] = s[3][4] + d.c4_4
+        s[3][5] = s[3][5] + d.c4_5
+        s[3][6] = s[3][6] + d.c4_6
+        s[3][7] = s[3][7] + d.c4_7
+        s[3][8] = s[3][8] + d.c4_8
+    
     return s
 

@@ -51,13 +51,10 @@ def monitoring_list(request):
     period = 0
     status = 0
     isOk = True 
-    result = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
-    
+    result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
     html_response = 'medicament/document_list.html'
+
     if request.POST:
-        if see_all and 'button_report' in request.POST:
-            html_response = 'medicament/report_list.html'
-            
         if see_all and 'button_create' in request.POST:
             if 'period_new' in request.POST:
                 if request.POST['period_new']:
@@ -94,7 +91,6 @@ def monitoring_list(request):
 # после выборки по фильрам если надо счиатть отчет, то вызываю сответствующую функцию
         if see_all and 'button_report' in request.POST:
             html_response = 'medicament/report_list.html'
-           
             result = calc_sum(args['doc_list'])
             
     else:   # Первый вход по GET
@@ -115,8 +111,9 @@ def monitoring_list(request):
 #    filtr = [m,period,status]
     args['period'] = period       
     args['status'] = status       
-    args['result'] = result       
     args['hosp'] = m       
+
+    args['result'] = result       
     
     return render_to_response(html_response, args)
 
@@ -144,12 +141,14 @@ def monitoring_form(request, question_id):
     actionComment =  Comment.EMPTY
     error = ''
     if request.POST:
-        if save_doc(request,question_id):
+        ret_mess = save_doc(request,question_id)
+        if ret_mess[0]:
             response = redirect('/form1')
             return response
         else:
             args['doc']    =  Document.objects.get(pk=question_id)
-            error = "Сумма по столбцам превышает итог"  
+#            error = "Сумма по столбцам превышает итог"  
+            error = ret_mess[1]
     else:   # Первый вход по GET
         args['doc']    =  Document.objects.get(pk=question_id)            
 # во всех случаях    

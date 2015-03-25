@@ -25,90 +25,86 @@
       </div>
      <table>
        <thead>
-         <tr>
-  		   <td>
-  		      
-  		   </td>
-  		   <td>
-  		      Колонка1
-  		   </td>
-  		   <td>
-  		      Колонка2
-  		   </td>
-  		   <td>
-  		      Колонка3
-  		   </td>
-  		   <td>
-  		      Колонка4
-  		   </td>
-  		   <td>
-  		      Колонка5
-  		   </td>
-  		   <td>
-  		      Колонка6
-  		   </td>
-  		   <td>
-  		      Колонка7
-  		   </td>
-  		   <td>
-  		      Колонка8
-  		   </td>
-         </tr>
-       </thead> 
-       <tbody>
-         <tr>
-           <td>Строка1</td>
-           <td>{{q.c1_1}}</td><td>{{q.c1_2}}</td><td>{{q.c1_3}}</td><td>{{q.c1_4}}</td>
-           <td>{{q.c1_5}}</td><td>{{q.c1_6}}</td><td>{{q.c1_7}}</td><td>{{q.c1_8}}</td>
-         </tr>               
-       </tbody>         
+		   <tr>
+		    <th></th>
+		    <th>Колонка 1</th>
+		    <th>Колонка 2</th>
+		    <th>Колонка 3</th>
+		    <th>Колонка 4</th>
+		    <th>Колонка 5</th>
+		    <th>Колонка 6</th>
+		    <th>Колонка 7</th>
+		    <th>Колонка 8</th>
+		   </tr>
+		   <tr>
+		        <td>Строка 1</td>
+		        <td>{{q.c1_1}}</td>
+		        <td>{{q.c1_2}}</td>
+		        <td>{{q.c1_3}}</td>
+		        <td>{{q.c1_4}}</td>
+		        <td>{{q.c1_5}}</td>
+		        <td>{{q.c1_6}}</td>
+		        <td>{{q.c1_7}}</td>
+		        <td>{{q.c1_8}}</td>
+		   </tr>
+		   <tr>
+		        <td>Строка 2</td>
+		        <td>{{q.c2_1}}</td>
+		        <td>{{q.c2_2}}</td>
+		        <td>{{q.c2_3}}</td>
+		        <td>{{q.c2_4}}</td>
+		        <td>{{q.c2_5}}</td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		   </tr>
+		   <tr>
+		        <td>Строка 3</td>
+		        <td>{{q.c3_1}}</td>
+		        <td></td>
+		        <td></td>
+		        <td></td>
+		        <td>{{q.c3_5}}</td>
+		        <td>{{q.c3_6}}</td>
+		        <td>{{q.c3_7}}</td>
+		        <td>{{q.c3_8}}</td>
+		   </tr>
+		   <tr>
+		        <td>Строка 4</td>
+		        <td>{{q.c1_1}}</td>
+		        <td>{{q.c1_2}}</td>
+		        <td>{{q.c1_3}}</td>
+		        <td>{{q.c1_4}}</td>
+		        <td>{{q.c1_5}}</td>
+		        <td>{{q.c1_6}}</td>
+		        <td>{{q.c1_7}}</td>
+		        <td>{{q.c1_8}}</td>
+		   </tr>
      </table>
  {% endfor %}
      <h2>ИТОГО</h2> 
      <table>
        <thead>
-         <tr>
-  		   <td>
-  		      
-  		   </td>
-  		   <td>
-  		      Колонка1
-  		   </td>
-  		   <td>
-  		      Колонка2
-  		   </td>
-  		   <td>
-  		      Колонка3
-  		   </td>
-  		   <td>
-  		      Колонка4
-  		   </td>
-  		   <td>
-  		      Колонка5
-  		   </td>
-  		   <td>
-  		      Колонка6
-  		   </td>
-  		   <td>
-  		      Колонка7
-  		   </td>
-  		   <td>
-  		      Колонка8
-  		   </td>
-         </tr>
-       </thead> 
-       <tbody>
-            {% for r in result %}
-              <tr>            
-              <td>Строка1</td>
-            {% for c in r %}
-               <td>{{c}}</td>
-            {% endfor %}
-               </tr>            
-            {% endfor %}
-       </tbody>         
+		   <tr>
+		    <th></th>
+		    <th>Колонка 1</th>
+		    <th>Колонка 2</th>
+		    <th>Колонка 3</th>
+		    <th>Колонка 4</th>
+		    <th>Колонка 5</th>
+		    <th>Колонка 6</th>
+		    <th>Колонка 7</th>
+		    <th>Колонка 8</th>
+		   </tr>
+        </thead>
+        {% for r in result %}
+		   <tr>
+        {% for r1 in r %}
+		   <td>{{r1}}</td>
+		{% endfor%}        
+           </tr>
+		{% endfor%}        
      </table>
-
 
  {% else %} 
     <p>Мониторинги не найдены</p>
