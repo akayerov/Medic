@@ -16,6 +16,9 @@ from medicament.forms import CommentForm
 # мой модуль для работы с базами
 from medicament.oper_with_base import create_new_report, add_action_in_comment, save_doc, calc_sum, export_to_excel
 
+import os
+import mimetypes
+
 
 # Начинаем со списка Альбомов
 # простейший
@@ -93,8 +96,11 @@ def monitoring_list(request):
             html_response = 'medicament/report_list.html'
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
-            export_to_excel(args['doc_list']) 
-#            return redirect('output.xlsx')
+            file_name = export_to_excel(args['doc_list']) 
+        #    export(request)
+            return redirect("/monitor/export/" + file_name)
+   
+
               
     else:   # Первый вход по GET
         if see_all: 
@@ -190,6 +196,23 @@ def add_comment(request, question_id):
         
     return redirect('/monitor/' + question_id)
 
+def export(request,question_id):
+        ''' Экспорт в Excel
+        '''
+        excel_file_name = question_id
+        fp = open(excel_file_name, "rb");
+        response = HttpResponse(fp.read());
+        fp.close();
+        
+        file_type = mimetypes.guess_type(excel_file_name);
+        if file_type is None:
+            file_type = 'application/octet-stream';
+        response['Content-Type'] = file_type
+        response['Content-Length'] = str(os.stat(excel_file_name).st_size);
+        response['Content-Disposition'] = "attachment; filename=report.xlsx";
+        os.remove(excel_file_name)
+
+        return response;
 
 
 

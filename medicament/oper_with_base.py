@@ -5,6 +5,8 @@
 from medicament.models import Document,Doc_type, Hosp, Period, Role, Comment, Doc_Hosp
 from django.core.exceptions import ObjectDoesNotExist
 from pyexcelerate import Workbook
+from random import random
+
 
 def create_new_report(type,periodInt, datef):
     ''' Возвращает True, если добавление записей прошло успешно
@@ -152,5 +154,8 @@ def export_to_excel(doc):
 #    data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] # data is a 2D array
     wb = Workbook()
     wb.new_sheet("sheet name", data=res)
-    wb.save("output.xlsx")
+    name_file = ".\\static\\rep" + str(int(random()*100000000)) + ".xlsx" 
+    wb.save(name_file)
+    return name_file
+
     
