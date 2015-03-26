@@ -152,4 +152,5 @@ def export_to_excel(doc):
 #    data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] # data is a 2D array
     wb = Workbook()
     wb.new_sheet("sheet name", data=res)
-    wb.save("c:\output.xlsx")
+    wb.save("output.xlsx")
+    

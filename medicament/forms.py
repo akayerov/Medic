@@ -3,6 +3,6 @@ from medicament.models import Comment
 
 class CommentForm(ModelForm):
     class Meta:
-        model = Comment
+        model = Comment       #help me
         fields = ['text']
         

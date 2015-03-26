@@ -93,7 +93,9 @@ def monitoring_list(request):
             html_response = 'medicament/report_list.html'
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
-            export_to_excel(args['doc_list'])   
+            export_to_excel(args['doc_list']) 
+#            return redirect('output.xlsx')
+              
     else:   # Первый вход по GET
         if see_all: 
             args['doc_list']    =  Document.objects.all()            
