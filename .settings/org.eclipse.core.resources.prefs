@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
 encoding//loginsys/views.py=UTF-8
+encoding//medicament/Form/form1.py=utf-8
+encoding//medicament/Form/form2.py=utf-8
+encoding//medicament/migrations/0009_remove_document_title.py=utf-8
 encoding//medicament/models.py=utf-8
 encoding//medicament/oper_with_base.py=utf-8
 encoding//medicament/templates/main.html=UTF-8
@@ -7,7 +10,7 @@ encoding//medicament/templates/medicament=UTF-8
 encoding//medicament/templates/medicament/document_form.html=UTF-8
 encoding//medicament/templates/medicament/document_list.html=UTF-8
 encoding//medicament/templates/medicament/monitor_list.html=UTF-8
-encoding//medicament/templates/medicament/report_list.html=UTF-8
+encoding//medicament/templates/medicament/report_list2.html=UTF-8
 encoding//medicament/test.py=utf-8
 encoding//medicament/views.py=utf-8
 encoding/<project>=UTF-8
