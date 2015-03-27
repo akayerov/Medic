@@ -18,7 +18,7 @@ def save_doc_form1(request, type, id_doc):
 
 
 def set_fields_form1(request, doc):
-    ''' Заполнение полей модели данными формы. 
+    ''' Заполнение полей модели данными формы . 
         Специфично для каждой формы
     '''
     doc.c1_1 = request.POST['c1_1'] 
