@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class="row">
+<div class="large-12 columns">
+     <h4><a href="/form/1">Лекарственное обеспечение Отчет</a></h4>
+    
+ {% if doc_list %}
+     <h2>ИТОГО</h2>
+     <table>
+       <thead>
+		   <tr>
+		    <th></th>
+		    <th>Колонка 1</th>
+		    <th>Колонка 2</th>
+		    <th>Колонка 3</th>
+		    <th>Колонка 4</th>
+		    <th>Колонка 5</th>
+		    <th>Колонка 6</th>
+		    <th>Колонка 7</th>
+		    <th>Колонка 8</th>
+		   </tr>
+        </thead>
+        {% for r in result %}
+        <tr class="itog_row">	
+ 	    <td>+</td>
+        {% for r1 in r %}
+		   <td>{{r1}}</td>
+		{% endfor%}        
+        </tr>
+   	       {% for q in doc_list %}
+            <tr class="detail_row">
+ 	 	      <td></td>
+              {% if forloop.parentloop.counter0 == 0 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c1_1}}</td>
+	            <td>{{q.c1_2}}</td>
+	            <td>{{q.c1_3}}</td>
+	            <td>{{q.c1_4}}</td>
+	            <td>{{q.c1_5}}</td>
+	            <td>{{q.c1_6}}</td>
+	            <td>{{q.c1_7}}</td>
+	            <td>{{q.c1_8}}</td>
+              {% elif forloop.parentloop.counter0 == 1 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_1}}</td>
+		        <td>{{q.c2_2}}</td>
+	    	    <td>{{q.c2_3}}</td>
+	        	<td>{{q.c2_4}}</td>
+	       		<td>{{q.c2_5}}</td>
+	        	<td></td>
+	       		<td></td>
+	       		<td></td>
+              {% elif forloop.parentloop.counter0 == 2 %}
+		        <td>{{q.hosp}}</td>
+		        <td>{{q.c3_1}}</td>
+	    	    <td></td>
+	  		    <td></td>
+ 		        <td></td>
+		        <td>{{q.c3_5}}</td>
+		        <td>{{q.c3_6}}</td>
+	  	        <td>{{q.c3_7}}</td>
+ 		        <td>{{q.c3_8}}</td>
+              {% elif forloop.parentloop.counter0 == 3 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c4_1}}</td>
+	            <td>{{q.c4_2}}</td>
+	            <td>{{q.c4_3}}</td>
+	            <td>{{q.c4_4}}</td>
+	            <td>{{q.c4_5}}</td>
+	            <td>{{q.c4_6}}</td>
+	            <td>{{q.c4_7}}</td>
+	            <td>{{q.c4_8}}</td>
+	          {% endif %}
+   	        </tr>  
+   	       {% endfor %}
+		{% endfor%}        
+     </table>
+     <form>
+         {%csrf_token%}
+         <button class="button" name="button_export" value="7" type="submit" formmethod="post">Экспорт в Excel</button>   
+     </form>
+ {% else %} 
+    <p>Мониторинги не найдены</p>
+{% endif %}
+</div>
+
+</div>
+
+{% endblock %}

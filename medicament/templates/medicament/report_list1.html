@@ -82,7 +82,7 @@
 		   </tr>
      </table>
  {% endfor %}
-     <h2>ИТОГО</h2> 
+     <h2>ИТОГО</h2>
      <table>
        <thead>
 		   <tr>
@@ -101,8 +101,21 @@
 		   <tr>
         {% for r1 in r %}
 		   <td>{{r1}}</td>
-		{% endfor%}        
            </tr>
+   	       {% for q1 in doc_list %}
+            <tr>
+	        <td>{{q1.hosp}}</td>
+	        <td>{{q1.c1_1}}</td>
+	        <td>{{q1.c1_2}}</td>
+	        <td>{{q1.c1_3}}</td>
+	        <td>{{q1.c1_4}}</td>
+	        <td>{{q1.c1_5}}</td>
+	        <td>{{q1.c1_6}}</td>
+	        <td>{{q1.c1_7}}</td>
+	        <td>{{q1.c1_8}}</td>
+   	        </tr>  
+   	       {% endfor %}
+		{% endfor%}        
 		{% endfor%}        
      </table>
 

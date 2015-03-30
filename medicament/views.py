@@ -59,7 +59,8 @@ def monitoring_list(request, question_id):
         new_doc =  create_report_form1   # функция создания новых отчетов
         calc_sum = calc_sum_form1
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
-        html_response_rep = 'medicament/report_list1.html'
+#        html_response_rep = 'medicament/report_list1.html'         # Обычная форма
+        html_response_rep = 'medicament/report_JQ_list1.html'       # Форма с JQuery
     if type==2:
         doc = Doc2                     # используемая модель
         new_doc =  create_report_form2   # функция создания новых отчетов
@@ -115,6 +116,7 @@ def monitoring_list(request, question_id):
             html_response = html_response_rep
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
+            assert False
             file_name = export_to_excel(calc_sum, args['doc_list']) 
         #    export(request)
             return redirect("/monitor/export/" + file_name)

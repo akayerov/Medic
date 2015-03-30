@@ -4,6 +4,7 @@
 '''
 from medicament.oper_with_base import create_new_report, save_doc
 from medicament.models import Doc1
+from django.db.models import Sum
 
 def create_report_form1(periodInt, datef):
     ''' Возвращает True, если добавление записей прошло успешно
@@ -62,41 +63,49 @@ def is_valid_form1(doc):
     else:
         ret = [True,'OK']
         return ret
-    
+
 def calc_sum_form1(doc):
     ''' Возвращает Суммы данных отчетов
     '''
+    aq = doc.aggregate(Sum('c1_1'),Sum('c1_2'),Sum('c1_3'),Sum('c1_4'),Sum('c1_5'),Sum('c1_6'),Sum('c1_7'),Sum('c1_8'), \
+                       Sum('c2_1'),Sum('c2_2'),Sum('c2_3'),Sum('c2_4'),Sum('c2_5'), \
+                       Sum('c3_1'),Sum('c3_5'),Sum('c3_6'),Sum('c3_7'),Sum('c3_8'), \
+                       Sum('c4_1'),Sum('c4_2'),Sum('c4_3'),Sum('c4_4'),Sum('c4_5'),Sum('c4_6'),Sum('c4_7'),Sum('c4_8'), \
+                      )
+    
     s = [["Строка1",0,0,0,0,0,0,0,0],["Строка2",0,0,0,0,0,0,0,0],["Строка3",0,0,0,0,0,0,0,0],["Строка4",0,0,0,0,0,0,0,0]]
-    for d in doc:
-        s[0][1] = s[0][1] + d.c1_1
-        s[0][2] = s[0][2] + d.c1_2
-        s[0][3] = s[0][3] + d.c1_3
-        s[0][4] = s[0][4] + d.c1_4
-        s[0][5] = s[0][5] + d.c1_5
-        s[0][6] = s[0][6] + d.c1_6
-        s[0][7] = s[0][7] + d.c1_7
-        s[0][8] = s[0][8] + d.c1_8
+   
+    s[0][1] = aq['c1_1__sum']
+    s[0][2] = aq['c1_2__sum']
+    s[0][3] = aq['c1_3__sum']
+    s[0][4] = aq['c1_4__sum']
+    s[0][5] = aq['c1_5__sum']
+    s[0][6] = aq['c1_6__sum']
+    s[0][7] = aq['c1_7__sum']
+    s[0][8] = aq['c1_8__sum']
 
-        s[1][1] = s[1][1] + d.c2_1
-        s[1][2] = s[1][2] + d.c2_2
-        s[1][3] = s[1][3] + d.c2_3
-        s[1][4] = s[1][4] + d.c2_4
-        s[1][5] = s[1][5] + d.c2_5
-
-        s[2][1] = s[2][1] + d.c3_1
-        s[2][5] = s[2][5] + d.c3_5
-        s[2][6] = s[2][6] + d.c3_6
-        s[2][7] = s[2][7] + d.c3_7
-        s[2][8] = s[2][8] + d.c3_8
-
-        s[3][1] = s[3][1] + d.c4_1
-        s[3][2] = s[3][2] + d.c4_2
-        s[3][3] = s[3][3] + d.c4_3
-        s[3][4] = s[3][4] + d.c4_4
-        s[3][5] = s[3][5] + d.c4_5
-        s[3][6] = s[3][6] + d.c4_6
-        s[3][7] = s[3][7] + d.c4_7
-        s[3][8] = s[3][8] + d.c4_8
+    s[1][1] = aq['c2_1__sum']
+    s[1][2] = aq['c2_2__sum']
+    s[1][3] = aq['c2_3__sum']
+    s[1][4] = aq['c2_4__sum']
+    s[1][5] = aq['c2_5__sum']
+ 
+    s[2][1] = aq['c3_1__sum']
+    s[2][5] = aq['c3_5__sum']
+    s[2][6] = aq['c3_6__sum']
+    s[2][7] = aq['c3_7__sum']
+    s[2][8] = aq['c3_8__sum']
+ 
+    s[3][1] = aq['c4_1__sum']
+    s[3][2] = aq['c4_2__sum']
+    s[3][3] = aq['c4_3__sum']
+    s[3][4] = aq['c4_4__sum']
+    s[3][5] = aq['c4_5__sum']
+    s[3][6] = aq['c4_6__sum']
+    s[3][7] = aq['c4_7__sum']
+    s[3][8] = aq['c4_8__sum']
+     
+ 
     return s
 
 
