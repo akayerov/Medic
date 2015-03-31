@@ -39,6 +39,8 @@ def monitor_type_list(request):
 
 
 def monitoring_list(request, question_id):
+      
+        
     if not request.user.is_authenticated():
         return redirect('/auth/login')
     
@@ -51,8 +53,7 @@ def monitoring_list(request, question_id):
     else:
         see_all = False
         user_hosp = role.hosp
-        
-# тест для просмотра множества типов мониторинга  v2  
+
     type = int(question_id)
     if type==1:
         doc = Doc1                     # используемая модель
@@ -66,13 +67,13 @@ def monitoring_list(request, question_id):
         new_doc =  create_report_form2   # функция создания новых отчетов
         calc_sum = calc_sum_form2
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
-        html_response_rep = 'medicament/report_list2.html'
+        html_response_rep = 'medicament/report_JQ_list2.html'
  # конец изменениям                    
     args = {}
     args.update(csrf(request))
     m = 0
     period = 0
-    status = 0
+    status = '0'
     isOk = True 
     result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
     html_response = 'medicament/document_list.html'
@@ -116,9 +117,7 @@ def monitoring_list(request, question_id):
             html_response = html_response_rep
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
-            assert False
             file_name = export_to_excel(calc_sum, args['doc_list']) 
-        #    export(request)
             return redirect("/monitor/export/" + file_name)
    
 
@@ -233,7 +232,7 @@ def add_comment(request, question_id):
     return redirect('/monitor/' + question_id)
 
 def export(request,question_id):
-        ''' Экспорт в Excel
+        ''' Загрузка сформированного файла Excel на клиент  с последующим его удалением с сервера
         '''
         excel_file_name = question_id
         fp = open(excel_file_name, "rb");
