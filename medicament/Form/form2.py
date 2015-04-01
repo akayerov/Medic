@@ -102,6 +102,7 @@ def calc_sum_form2(doc):
 
 def exp_to_excel_form2(calc_sum, doc):
     res = calc_sum(doc)
+    assert False
     name_file = "c:\\STATIC\\Form2.xlsx" 
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active

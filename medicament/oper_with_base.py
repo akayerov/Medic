@@ -4,6 +4,7 @@
 '''
 from medicament.models import Document,Doc_type, Hosp, Period, Role, Comment, Doc_Hosp,Doc1,Doc2
 from django.core.exceptions import ObjectDoesNotExist
+import os
 # хорошо  создает!
 #from pyexcelerate import Workbook
 # Умееет читать и изменять!!!!
@@ -74,5 +75,8 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc):
         doc.save()
         add_action_in_comment(request, doc, actionComment)
     return [True,'OK']
+
+def get_name(namefile):
+    return os.path.dirname(os.path.dirname(__file__)) +  namefile
 
     

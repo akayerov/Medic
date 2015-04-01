@@ -2,7 +2,7 @@
 '''
 @author: a_kayerov
 '''
-from medicament.oper_with_base import create_new_report, save_doc
+from medicament.oper_with_base import create_new_report, save_doc, get_name
 from medicament.models import Doc1
 from django.db.models import Sum
 from random import random
@@ -120,7 +120,9 @@ def calc_sum_form1(doc):
 
 def exp_to_excel_form1(calc_sum, doc):
     res = calc_sum(doc)
-    name_file = "c:\\STATIC\\Form2.xlsx" 
+    
+    name_file = get_name("\\medicament\\Form\\Form1.xlsx")
+
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active
     sheet['B8'] = res[0][1]
@@ -153,7 +155,7 @@ def exp_to_excel_form1(calc_sum, doc):
 
     name_file = ".\\static\\rep" + str(int(random()*100000000)) + ".xlsx" 
     wb.save(name_file)
-#    save_workbook(wb,name_file)
+    
     return name_file
 
 
