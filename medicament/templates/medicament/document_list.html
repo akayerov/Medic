@@ -4,8 +4,8 @@
 {% block monitorlist %}
 <div class="row">
 <div class="large-12 columns">
+     <h4><a href="/form/{{doc_type.id}}">{{doc_type.name}}</a></h4>
 <div class="large-8 medium-8 columns">
-     <h4><a href="/form1">Лекарственное обеспечение</a></h4>
     
  {% if doc_list %}
  
@@ -20,10 +20,10 @@
 				</tr >		    
 			     {% for q in doc_list %}
 				<tr class="rowsel">
-				  <td><h6><a href="/monitor/{{q.id}}">{{ q.hosp }}</a></h6></td>
-				  <td><h6><a href="/monitor/{{q.id}}">{{q.period}}</a></h6></td>
-				  <td><h6><a href="/monitor/{{q.id}}">{{q.datef}}</a></h6></td>
-				  <td><h6><a href="/monitor/{{q.id}}">{{q.get_status_display}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{ q.hosp }}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{q.period}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{q.datef}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{q.get_status_display}}</a></h6></td>
 				</tr>		    
 			    {% endfor %}
 		    </table>
@@ -36,10 +36,10 @@
 </div>
 {#   Элементы управления                           #}
 <div class="large-4 medium-4 columns">
-    <h4>Отбор</h4>
     <div class="panel">
        <form>
          {% csrf_token %}
+         <h5>Отбор</h5>
          <label>МО</label>
  {% comment %} 
          <input list="mo_test">
@@ -105,7 +105,6 @@
          <hr>
          <h5>Сводка</h5>
          <button class="button" name="button_report" value="6" type="submit" formmethod="post">Показать</button>   
-         <button class="button" name="button_export" value="7" type="submit" formmethod="post">Экспорт в Excel</button>   
          <hr>
          <h5>Создать новый отчет</h5>
          <label>Период</label>

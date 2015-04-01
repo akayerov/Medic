@@ -9,7 +9,7 @@
 
 {% if doc_type_list %}
      {% for q in doc_type_list %}
-         <h4><a href="/form{{q.id}}">{{ q.name }}</a></h4>
+         <h4><a href="/form/{{q.id}}">{{ q.name }}</a></h4>
          <hr>
     {% endfor %}
  {% else %} 
