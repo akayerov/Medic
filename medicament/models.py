@@ -52,7 +52,42 @@ class Document(models.Model):
                                       default=EDIT)
 
     datef = models.DateField(auto_now_add=False)
+    def __str__(self):              # __unicode__ on P2
+        return str(self.period) + ':' + str(self.hosp)
+
+class Doc1(Document):
+    c1_1 = models.IntegerField('Кол1-1', default=0)
+    c1_2 = models.IntegerField('Кол1-2',  default=0)
+    c1_3 = models.IntegerField('Кол1-3',  default=0)
+    c1_4 = models.IntegerField('Кол1-4',  default=0)
+    c1_5 = models.IntegerField('Кол1-5',  default=0)
+
+    c2_1 = models.IntegerField('Кол2-1', default=0)
+    c2_6 = models.IntegerField('Кол2-6', default=0)
+    c2_7 = models.IntegerField('Кол2-7',  default=0)
+    c2_8 = models.IntegerField('Кол2-8',  default=0)
     
+    c3_1 = models.IntegerField('Кол3-1', default=0)
+    c3_2 = models.IntegerField('Кол3-2', default=0)
+    c3_3 = models.IntegerField('Кол3-3', default=0)
+    c3_4 = models.IntegerField('Кол3-4', default=0)
+    c3_5 = models.IntegerField('Кол3-5',  default=0)
+    c3_6 = models.IntegerField('Кол3-6',  default=0)
+    c3_7 = models.IntegerField('Кол3-7',  default=0)
+    c3_8 = models.IntegerField('Кол3-8',  default=0)
+    
+    c4_1 = models.IntegerField('Кол4-1', default=0)
+    c4_2 = models.IntegerField('Кол4-2',  default=0)
+    c4_3 = models.IntegerField('Кол4-3',  default=0)
+    c4_4 = models.IntegerField('Кол4-4',  default=0)
+    c4_5 = models.IntegerField('Кол4-5',  default=0)
+    c4_6 = models.IntegerField('Кол4-6',  default=0)
+    c4_7 = models.IntegerField('Кол4-7',  default=0)
+    c4_8 = models.IntegerField('Кол4-8',  default=0)
+    def __str__(self):              # __unicode__ on Python 2
+        return str(self.period) + ':' + str(self.hosp)
+
+class Doc2(Document):
     c1_1 = models.IntegerField('Кол1-1', default=0)
     c1_2 = models.IntegerField('Кол1-2',  default=0)
     c1_3 = models.IntegerField('Кол1-3',  default=0)
@@ -82,30 +117,10 @@ class Document(models.Model):
     c4_6 = models.IntegerField('Кол4-6',  default=0)
     c4_7 = models.IntegerField('Кол4-7',  default=0)
     c4_8 = models.IntegerField('Кол4-8',  default=0)
-    
-    def show_view(self):
-        h = str(self.hosp)
-        h1 = "{0:<23}".format(h)
-        if self.status == 'E':
-            i = 0
-        elif self.status == 'W':
-            i = 1
-        elif self.status == 'C':
-            i = 2
-        else:
-            i = 3        
-        s = [h1,str(self.period)]  
-        res = "______".join(s)
-        res = res + "____" + str(self.datef) + "____"  
-        res = res + str(Document.STATE_IN_DOC[i][1])
-          
-        return res 
-         
-    
     def __str__(self):              # __unicode__ on Python 2
-        return str(self.hosp) + ':' + str(self.period)
+        return str(self.period) + ':' + str(self.hosp)
 
-   
+
 class Comment(models.Model):
     document  = models.ForeignKey(Document, default=0)
     text = models.TextField('Текст комментария')
