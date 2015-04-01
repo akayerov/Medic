@@ -1,61 +1,71 @@
 {% extends 'medicament/document_form.html' %}
 {% block monitorform %}
-          <table class="table id="table1">
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <caption>Мониторинг {{doc_type.name}}</caption>
 		   <tr>
 		    <th></th>
-		    <th>Колонка 1</th>
-		    <th>Колонка 2</th>
-		    <th>Колонка 3</th>
-		    <th>Колонка 4</th>
-		    <th>Колонка 5</th>
-		    <th>Колонка 6</th>
-		    <th>Колонка 7</th>
-		    <th>Колонка 8</th>
+		    <th>Всего</th>
+		    <th>Дети(0-18), Всего</th>
+		    <th>В т.ч дети до 3-х лет</th>
+		    <th>Мужчины старше 60, женщины старше 55</th>
+		    <th>Инвалиды и участники ВОВ*</th>
+		    <th>Сахарный диабет</th>
+		    <th>Бронхиальная астма</th>
+		    <th>Онкологические заболевания</th>
 		   </tr>
 		   <tr>
-		        <td  width="15%"><h6>Строка 1</h6></td>
-		        <td><input type="number" name="c1_1" min="0" max="100" step="1" size="3" value="{{doc.c1_1}}"></td>
-		        <td><input type="number" name="c1_2" min="0" max="100" step="1" size="3" value="{{doc.c1_2}}"></td>
-		        <td><input type="number" name="c1_3" min="0" max="100" step="1" size="3" value="{{doc.c1_3}}"></td>
-		        <td><input type="number" name="c1_4" min="0" max="100" step="1" size="3" value="{{doc.c1_4}}"></td>
-		        <td><input type="number" name="c1_5" min="0" max="100" step="1" size="3" value="{{doc.c1_5}}"></td>
-		        <td><input type="number" name="c1_6" min="0" max="100" step="1" size="3" value="{{doc.c1_6}}"></td>
-		        <td><input type="number" name="c1_7" min="0" max="100" step="1" size="3" value="{{doc.c1_7}}"></td>
-		        <td><input type="number" name="c1_8" min="0" max="100" step="1" size="3" value="{{doc.c1_8}}"></td>
+		        <td class="row_mess" colspan="9" ><h5>Высокозатратные нозологии (в соответствии с постановлением Правительства Российской Федерации от 18.10.2007 № 682)</h5></td>
 		   </tr>
 		   <tr>
-		        <td><h6>Строка 2</h6></td>
-		        <td><input type="number" name="c2_1" min="0" max="100" step="1" size="3" value="{{doc.c2_1}}"></td>
-		        <td><input type="number" name="c2_2" min="0" max="100" step="1" size="3" value="{{doc.c2_2}}"></td>
-		        <td><input type="number" name="c2_3" min="0" max="100" step="1" size="3" value="{{doc.c2_3}}"></td>
-		        <td><input type="number" name="c2_4" min="0" max="100" step="1" size="3" value="{{doc.c2_4}}"></td>
-		        <td><input type="number" name="c2_5" min="0" max="100" step="1" size="3" value="{{doc.c2_5}}"></td>
+		        <td  width="15%"><h6>Выписано рецептов**</h6></td>
+		        <td><input type="number" name="c1_1" min="0" max="999999" size="7" value="{{doc.c1_1}}"></td>
+		        <td><input type="number" name="c1_2" min="0" max="999999" size="6" value="{{doc.c1_2}}"></td>
+		        <td><input type="number" name="c1_3" min="0" max="999999" size="6" value="{{doc.c1_3}}"></td>
+		        <td><input type="number" name="c1_4" min="0" max="999999" size="6" value="{{doc.c1_4}}"></td>
+		        <td><input type="number" name="c1_5" min="0" max="999999" size="6" value="{{doc.c1_5}}"></td>
 		        <td></td>
 		        <td></td>
 		        <td></td>
 		   </tr>
 		   <tr>
-		        <td><h6>Строка 3</h6></td>
-		        <td><input type="number" name="c3_1" min="0" max="100" step="1" size="3" value="{{doc.c3_1}}"></td>
+		        <td class="row_mess" colspan="9"><h5>Федеральное обеспечение</h5></td>
+		   </tr>
+		   
+		   <tr>
+		        <td><h6>Численность категории льготополучателей</h6></td>
+		        <td><input type="number" name="c2_1" min="0" max="10000" step="1" size="6" value="{{doc.c2_1}}"></td>
 		        <td></td>
 		        <td></td>
 		        <td></td>
-		        <td><input type="number" name="c3_5" min="0" max="100" step="1" size="3" value="{{doc.c3_5}}"></td>
-		        <td><input type="number" name="c3_6" min="0" max="100" step="1" size="3" value="{{doc.c3_6}}"></td>
-		        <td><input type="number" name="c3_7" min="0" max="100" step="1" size="3" value="{{doc.c3_7}}"></td>
-		        <td><input type="number" name="c3_8" min="0" max="100" step="1" size="3" value="{{doc.c3_8}}"></td>
+		        <td></td>
+		        <td><input type="number" name="c2_6" min="0" max="10000" step="1" size="6" value="{{doc.c2_6}}"></td>
+		        <td><input type="number" name="c2_7" min="0" max="10000" step="1" size="6" value="{{doc.c2_7}}"></td>
+		        <td><input type="number" name="c2_8" min="0" max="10000" step="1" size="6" value="{{doc.c2_8}}"></td>
 		   </tr>
 		   <tr>
-		        <td><h6>Строка 4</h6></td>
-		        <td><input type="number" name="c4_1" min="0" max="100" step="1" size="3" value="{{doc.c4_1}}"></td>
-		        <td><input type="number" name="c4_2" min="0" max="100" step="1" size="3" value="{{doc.c4_2}}"></td>
-		        <td><input type="number" name="c4_3" min="0" max="100" step="1" size="3" value="{{doc.c4_3}}"></td>
-		        <td><input type="number" name="c4_4" min="0" max="100" step="1" size="3" value="{{doc.c4_4}}"></td>
-		        <td><input type="number" name="c4_5" min="0" max="100" step="1" size="3" value="{{doc.c4_5}}"></td>
-		        <td><input type="number" name="c4_6" min="0" max="100" step="1" size="3" value="{{doc.c4_6}}"></td>
-		        <td><input type="number" name="c4_7" min="0" max="100" step="1" size="3" value="{{doc.c4_7}}"></td>
-		        <td><input type="number" name="c4_8" min="0" max="100" step="1" size="3" value="{{doc.c4_8}}"></td>
+		        <td><h6> Выписано рецептов**</h6></td>
+		        <td><input type="number" name="c3_1" min="0" max="10000" step="1" size="6" value="{{doc.c3_1}}"></td>
+		        <td><input type="number" name="c3_2" min="0" max="10000" step="1" size="6" value="{{doc.c3_2}}"></td>
+		        <td><input type="number" name="c3_3" min="0" max="10000" step="1" size="6" value="{{doc.c3_3}}"></td>
+		        <td><input type="number" name="c3_4" min="0" max="10000" step="1" size="6" value="{{doc.c3_4}}"></td>
+		        <td><input type="number" name="c3_5" min="0" max="10000" step="1" size="6" value="{{doc.c3_5}}"></td>
+		        <td><input type="number" name="c3_6" min="0" max="10000" step="1" size="6" value="{{doc.c3_6}}"></td>
+		        <td><input type="number" name="c3_7" min="0" max="10000" step="1" size="5" value="{{doc.c3_7}}"></td>
+		        <td><input type="number" name="c3_8" min="0" max="10000" step="1" size="4" value="{{doc.c3_8}}"></td>
+		   </tr>
+		   <tr >
+		        <td class="row_mess" colspan="9"><h5>Региональное обеспечение</h5></td>
+		   </tr>
+		   <tr>
+		        <td><h6> Выписано рецептов**</h6></td>
+		        <td><input type="number" name="c4_1" min="0" max="10000" step="1" size="5" value="{{doc.c4_1}}"></td>
+		        <td><input type="number" name="c4_2" min="0" max="10000" step="1" size="5" value="{{doc.c4_2}}"></td>
+		        <td><input type="number" name="c4_3" min="0" max="10000" step="1" size="5" value="{{doc.c4_3}}"></td>
+		        <td><input type="number" name="c4_4" min="0" max="10000" step="1" size="5" value="{{doc.c4_4}}"></td>
+		        <td><input type="number" name="c4_5" min="0" max="10000" step="1" size="5" value="{{doc.c4_5}}"></td>
+		        <td><input type="number" name="c4_6" min="0" max="10000" step="1" size="5" value="{{doc.c4_6}}"></td>
+		        <td><input type="number" name="c4_7" min="0" max="10000" step="1" size="5" value="{{doc.c4_7}}"></td>
+		        <td><input type="number" name="c4_8" min="0" max="10000" step="1" size="5" value="{{doc.c4_8}}"></td>
 		   </tr>
   		</table>
 {% endblock %}

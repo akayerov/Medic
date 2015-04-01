@@ -10,7 +10,6 @@ encoding//medicament/templates/medicament=UTF-8
 encoding//medicament/templates/medicament/document_form.html=UTF-8
 encoding//medicament/templates/medicament/document_list.html=UTF-8
 encoding//medicament/templates/medicament/monitor_list.html=UTF-8
-encoding//medicament/templates/medicament/report_list2.html=UTF-8
 encoding//medicament/test.py=utf-8
 encoding//medicament/views.py=utf-8
 encoding/<project>=UTF-8

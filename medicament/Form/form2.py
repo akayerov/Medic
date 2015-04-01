@@ -4,6 +4,8 @@
 '''
 from medicament.oper_with_base import create_new_report, save_doc
 from medicament.models import Doc2
+from random import random
+import openpyxl
 
 def create_report_form2(periodInt, datef):
     ''' Возвращает True, если добавление записей прошло успешно
@@ -97,6 +99,44 @@ def calc_sum_form2(doc):
         s[3][7] = s[3][7] + d.c4_7
         s[3][8] = s[3][8] + d.c4_8
     return s
+
+def exp_to_excel_form2(calc_sum, doc):
+    res = calc_sum(doc)
+    name_file = "c:\\STATIC\\Form2.xlsx" 
+    wb = openpyxl.load_workbook(name_file)
+    sheet = wb.active
+    sheet['B8'] = res[0][1]
+    sheet['C8'] = res[0][2]
+    sheet['D8'] = res[0][3]
+    sheet['E8'] = res[0][4]
+    sheet['F8'] = res[0][5]
+
+    sheet['G10'] = res[1][6]
+    sheet['H10'] = res[1][7]
+    sheet['I10'] = res[1][8]
+
+    sheet['B11'] = res[2][1]
+    sheet['C11'] = res[2][2]
+    sheet['D11'] = res[2][3]
+    sheet['E11'] = res[2][4]
+    sheet['F11'] = res[2][5]
+    sheet['G11'] = res[2][6]
+    sheet['H11'] = res[2][7]
+    sheet['I11'] = res[2][8]
+
+    sheet['B13'] = res[3][1]
+    sheet['C13'] = res[3][2]
+    sheet['D13'] = res[3][3]
+    sheet['E13'] = res[3][4]
+    sheet['F13'] = res[3][5]
+    sheet['G13'] = res[3][6]
+    sheet['H13'] = res[3][7]
+    sheet['I13'] = res[3][8]
+
+    name_file = ".\\static\\rep" + str(int(random()*100000000)) + ".xlsx" 
+    wb.save(name_file)
+#    save_workbook(wb,name_file)
+    return name_file
 
 
     

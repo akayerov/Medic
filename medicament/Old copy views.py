@@ -14,12 +14,12 @@ from django.contrib import auth
 from django.core.paginator import Paginator
 from medicament.forms import CommentForm
 # мой модуль для работы с базами
-from medicament.oper_with_base import save_doc, get_ids
+from medicament.oper_with_base import save_doc, export_to_excel, get_ids
 # по каждому типу докумпентов
 from medicament.Form.form1 import create_report_form1, calc_sum_form1,\
-    save_doc_form1,exp_to_excel_form1
+    save_doc_form1
 from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
-    save_doc_form2,exp_to_excel_form2
+    save_doc_form2
 
 import os
 import mimetypes
@@ -39,8 +39,6 @@ def monitor_type_list(request):
 
 
 def monitoring_list(request, question_id):
-      
-        
     if not request.user.is_authenticated():
         return redirect('/auth/login')
     
@@ -53,28 +51,27 @@ def monitoring_list(request, question_id):
     else:
         see_all = False
         user_hosp = role.hosp
-
+        
+# тест для просмотра множества типов мониторинга   
     type = int(question_id)
     if type==1:
         doc = Doc1                     # используемая модель
         new_doc =  create_report_form1   # функция создания новых отчетов
         calc_sum = calc_sum_form1
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
-        html_response_rep = 'medicament/report_JQ_list1.html'       # Форма с JQuery
-        export_to_excel = exp_to_excel_form1
-    elif type==2:
+        html_response_rep = 'medicament/report_list1.html'
+    if type==2:
         doc = Doc2                     # используемая модель
         new_doc =  create_report_form2   # функция создания новых отчетов
         calc_sum = calc_sum_form2
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
-        html_response_rep = 'medicament/report_JQ_list2.html'
-        export_to_excel = exp_to_excel_form1
+        html_response_rep = 'medicament/report_list2.html'
  # конец изменениям                    
     args = {}
     args.update(csrf(request))
     m = 0
     period = 0
-    status = '0'
+    status = 0
     isOk = True 
     result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
     html_response = 'medicament/document_list.html'
@@ -119,6 +116,7 @@ def monitoring_list(request, question_id):
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
             file_name = export_to_excel(calc_sum, args['doc_list']) 
+        #    export(request)
             return redirect("/monitor/export/" + file_name)
    
 
@@ -233,7 +231,7 @@ def add_comment(request, question_id):
     return redirect('/monitor/' + question_id)
 
 def export(request,question_id):
-        ''' Загрузка сформированного файла Excel на клиент  с последующим его удалением с сервера
+        ''' Экспорт в Excel
         '''
         excel_file_name = question_id
         fp = open(excel_file_name, "rb");
@@ -258,6 +256,100 @@ def export(request,question_id):
 def index(request):
     return HttpResponse("Hello, world. You're at the album index.")
 
+# возращает 5 последних элементов
+def index1(request):
+    latest_albums_list = Album.objects.order_by('-id')[:5]
+    output = ', '.join([p.album_text for p in latest_albums_list])
+    return HttpResponse(output)
+# использует шаблон + контекст
+def index2(request):
+    latest_albums_list = Album.objects.order_by('-id')[:5]
+    template = loader.get_template('albums/index2.html')
+    context = RequestContext(request, {
+        'latest_albums_list': latest_albums_list,
+    })
+    return HttpResponse(template.render(context))
+# с использованием render
+def index3(request):
+#   latest_albums_list = Album.objects.order_by('-id')[:5]
+#   latest_albums_list = Album.objects.all();
+    latest_albums_list = Album.objects.order_by('-photo_date').all()
+    context = {'latest_albums_list': latest_albums_list }
+    return render(request, 'albums/index2.html', context)
+# Варианты перехода к деталям
+def detail(request, question_id):
+    try:
+        question = Album.objects.get(pk=question_id)
+    except Album.DoesNotExist:
+        raise Http404
+    return render(request, 'albums/detail.html', {'question': question}) 
+   
+def detail1(request, question_id):
+    question = get_object_or_404(Album, pk=question_id)
+    return render(request, 'albums/detail.html', {'question': question})
+
+#-----Далее по входу сразу имееем список фотографий с комментариями ############################################
+def photo_list(request,page_number=1):
+#   photo_list = Photo.objects.all();
+    photo_list = Photo.objects.order_by('-photo_date').all()
+    cur_page = Paginator(photo_list, 3)  
+    # по 3 фотки на станицу    
+    
+    context = {'photo_list': cur_page.page(page_number),  'username': auth.get_user(request).username }
+    
+    return render(request, 'albums/photo_list.html', context)
+# вариант 1
+#def photo_detail(request, question_id):
+#    photo = Photo.objects.get(id = question_id) 
+#    comment = Comment.objects.filter(comment_photo_id = question_id)
+#    comment_form = Comment 
+##    assert False        При False останавливает и  выводит состояние
+#    context = {'photo': photo, 'comment': comment, 'form': comment_form }
+#    return render(request, 'albums/photo_detail.html', context)
+
+def photo_detail(request, question_id):
+#    photo = Photo.objects.get(id = question_id) 
+#    comment = Comment.objects.filter(comment_photo_id = question_id)
+ 
+    comment_form = CommentForm 
+    args = {}
+    args.update(csrf(request))
+    
+    args['photo']    =  Photo.objects.get(id = question_id)            
+    args['comment']  =  Comment.objects.filter(comment_photo_id = question_id)            
+    args['form']     =  comment_form     
+    args['username'] = auth.get_user(request).username   
+   
+    return render_to_response('albums/photo_detail.html', args)
+
+def add_like(request, question_id):
+    try:
+        if not question_id in request.COOKIES:
+            photo = Photo.objects.get(id = question_id) 
+            photo.photo_rating_num += 1
+            photo.save()
+            # далее рабта с куками
+            response = redirect('/albums/' + question_id)
+            response.set_cookie(question_id, "TestCookie")
+            return response
+        
+    except ObjectDoesNotExist:
+        raise Http404  
+    return redirect('/albums/' + question_id)
+
+
+
+def search(request): 
+    if 'q' in request.GET:
+        q = request.GET['q']
+        if q:
+            photos = Photo.objects.filter(photo_title__icontains=q)
+#            return render_to_response('albums/search_result.html', {'Photo': photos, 'query': q})   рабочий
+            return render_to_response('albums/photo_list.html', {'photo_list': photos, 'path2': ""})
+        else:
+            return render_to_response('albums/search.html', {'Error': True})
+    else:
+        return render_to_response('albums/search.html', {'Error': True})
 
 def test(request): 
     return render_to_response('albums/test.html', {})
