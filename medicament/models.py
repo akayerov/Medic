@@ -62,7 +62,6 @@ class Doc1(Document):
     c1_4 = models.IntegerField('Кол1-4',  default=0)
     c1_5 = models.IntegerField('Кол1-5',  default=0)
 
-    c2_1 = models.IntegerField('Кол2-1', default=0)
     c2_6 = models.IntegerField('Кол2-6', default=0)
     c2_7 = models.IntegerField('Кол2-7',  default=0)
     c2_8 = models.IntegerField('Кол2-8',  default=0)

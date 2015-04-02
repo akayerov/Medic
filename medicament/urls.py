@@ -8,8 +8,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', views.monitor_type_list),
 # ПОпытка использовать тот же механизм списка мониторингов для другого типа мониторинга
-    url(r'^form/(?P<question_id>\d+)/$', views.monitoring_list),
-    
+#    url(r'^form/(?P<question_id>\d+)/$', views.monitoring_list),
+    url(r'^form/(?P<question_id>.+)/$', views.monitoring_list),
     url(r'^monitor/$', views.monitoring_form),
     url(r'^monitor/add_comment/(?P<question_id>\d+)/$', views.add_comment, name='add_comment'),
     url(r'^monitor/export/(?P<question_id>.+)/$', views.export, name='export'),

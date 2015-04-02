@@ -18,16 +18,40 @@
 				  <td><h6>Срок до</h6></td>
 				  <td><h6>Состояние</h6></td>
 				</tr >		    
-			     {% for q in doc_list %}
+			     {% for q in doc_page %}
 				<tr class="rowsel">
-				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{ q.hosp }}</a></h6></td>
-				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{q.period}}</a></h6></td>
-				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{q.datef}}</a></h6></td>
-				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}}">{{q.get_status_display}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{ q.hosp }}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{q.period}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{q.datef}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{q.get_status_display}}</a></h6></td>
 				</tr>		    
 			    {% endfor %}
 		    </table>
+
+			   <div class="large-12">
+			    <ul class="pagination">
+			       {% if doc_page.has_previous %}
+			           <li class="arrow"><a href="/form/{{doc_type.id}},{{ doc_page.previous_page_number }},{{hosp}},{{period}},{{status}}/">&laquo;</a></li>
+			       {% else %}
+			           <li class="arrow unavailable">&laquo;</li>
+			       {% endif %}
+			       
+			       {%  for page in   doc_page.paginator.page_range %}
+			           {% if page ==  doc_page.number  %}
+			               <li class="current"> <a href="/form/{{doc_type.id}},{{page}},{{hosp}},{{period}},{{status}}/">{{ page }}</a> </li>
+			           {% else %}
+			               <li><a  href="/form/{{doc_type.id}},{{page}},{{hosp}},{{period}},{{status}}/">{{ page }}</a> </li>
+			           {% endif %}
+			       {% endfor %}
+			       {% if  doc_page.has_next %}
+			           <li class="arrow"><a href="/form/{{doc_type.id}},{{ doc_page.next_page_number}},{{hosp}},{{period}},{{status}}/">&raquo;</a></li>
+			       {% else %}
+			           <li class="arrow unavailable">&raquo;</li>
+			       {% endif %}
+			    </ul> 
+			   </div>
         </div>
+			
     </div>
 
  {% else %} 
@@ -50,6 +74,11 @@
          </datalist>
  {% endcomment %}
          <select multiple name="mo[]">
+           {% if hosp > 0 %}
+             <option value="0">По всем</option>
+           {% else %}
+             <option selected value="0">По всем</option>
+           {% endif %}
            {% for q1 in mo_list %}
 	         {% if q1.id == hosp %}
                <option selected value="{{q1.id}}">{{q1.name}}</option>

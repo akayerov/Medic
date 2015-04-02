@@ -31,7 +31,6 @@ def set_fields_form1(request, doc):
     doc.c1_4 = request.POST['c1_4'] 
     doc.c1_5 = request.POST['c1_5'] 
 
-    doc.c2_1 = request.POST['c2_1'] 
     doc.c2_6 = request.POST['c2_6'] 
     doc.c2_7 = request.POST['c2_7'] 
     doc.c2_8 = request.POST['c2_8'] 
@@ -62,9 +61,6 @@ def is_valid_form1(doc):
     if int(doc.c1_1) < int(doc.c1_2) + int(doc.c1_3) + int(doc.c1_4) + int(doc.c1_5):
         ret = [False,'Итого по строке 1 меньше суммы по столбцам'] 
         return ret
-    elif int(doc.c2_1) < int(doc.c2_6) + int(doc.c2_7) + int(doc.c2_8):
-        ret = [False,'Итого по строке 2 меньше суммы по столбцам'] 
-        return ret
     elif int(doc.c3_1) < int(doc.c3_2) + int(doc.c3_3) + int(doc.c3_4) + int(doc.c3_5) + int(doc.c3_6) + int(doc.c3_7) + int(doc.c3_8):
         ret = [False,'Итого по строке 3 меньше суммы по столбцам'] 
         return ret
@@ -79,7 +75,7 @@ def calc_sum_form1(doc):
     ''' Возвращает Суммы данных отчетов
     '''
     aq = doc.aggregate(Sum('c1_1'),Sum('c1_2'),Sum('c1_3'),Sum('c1_4'),Sum('c1_5'), \
-                       Sum('c2_1'),Sum('c2_6'),Sum('c2_7'),Sum('c2_8'), \
+                       Sum('c2_6'),Sum('c2_7'),Sum('c2_8'), \
                        Sum('c3_1'),Sum('c3_2'),Sum('c3_3'),Sum('c3_4'),Sum('c3_5'),Sum('c3_6'),Sum('c3_7'),Sum('c3_8'), \
                        Sum('c4_1'),Sum('c4_2'),Sum('c4_3'),Sum('c4_4'),Sum('c4_5'),Sum('c4_6'),Sum('c4_7'),Sum('c4_8'), \
                       )
@@ -92,7 +88,6 @@ def calc_sum_form1(doc):
     s[0][4] = aq['c1_4__sum']
     s[0][5] = aq['c1_5__sum']
 
-    s[1][1] = aq['c2_1__sum']
     s[1][6] = aq['c2_6__sum']
     s[1][7] = aq['c2_7__sum']
     s[1][8] = aq['c2_8__sum']
@@ -118,9 +113,8 @@ def calc_sum_form1(doc):
  
     return s
 
-def exp_to_excel_form1(calc_sum, doc):
-    res = calc_sum(doc)
-    
+def exp_to_excel_form1(doc):
+    res =  calc_sum_form1(doc)
     name_file = get_name("\\medicament\\Form\\Form1.xlsx")
 
     wb = openpyxl.load_workbook(name_file)
@@ -153,7 +147,7 @@ def exp_to_excel_form1(calc_sum, doc):
     sheet['H13'] = res[3][7]
     sheet['I13'] = res[3][8]
 
-    name_file = ".\\static\\rep" + str(int(random()*100000000)) + ".xlsx" 
+    name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
     wb.save(name_file)
     
     return name_file

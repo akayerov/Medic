@@ -4,7 +4,19 @@
 {% block monitorlist %}
 <div class="row">
 <div class="large-12 columns">
-     <h4><a href="/form/{{doc_type.id}}">{{doc_type.name}}</a></h4>
+     <h4><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}}">{{doc_type.name}}</a></h4>
+<div class="large-3 columns">
+     <h4>{{period_name}}</h4>
+</div>     
+<div class="large-3 columns">
+     <h4>{{period}}</h4>
+</div>    
+<div class="large-3 columns">
+     <h4>{{status}}</h4>
+ </div>    
+<div class="large-3 columns">
+     <h4></h4>
+</div>
     
  {% if doc_list %}
      <h2>ИТОГО</h2>
@@ -81,6 +93,9 @@
      <form>
          {%csrf_token%}
          <button class="button" name="button_export" value="7" type="submit" formmethod="post">Экспорт в Excel</button>   
+         <input  class="par_hidden" type="text" size="1" name="mo[]" value={{hosp}}>
+         <input  class="par_hidden" type="text" size="1" name="period" value={{period}}>
+         <input  class="par_hidden" type="text" size="1" name="status" value={{status}}>
      </form>
  {% else %} 
     <p>Мониторинги не найдены</p>

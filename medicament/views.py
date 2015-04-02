@@ -24,6 +24,7 @@ from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
 import os
 import mimetypes
 
+NUM_RECORD_ON_PAGE = 2     # число записей на странице списка
 
 # Начинаем со списка Альбомов
 # простейший
@@ -38,12 +39,32 @@ def monitor_type_list(request):
     return render_to_response('medicament/monitor_list.html', args)
 
 
-def monitoring_list(request, question_id):
+def monitoring_list(request, question_id ):
+#    if 'button_export' in request.POST:
+#        assert False
       
-        
     if not request.user.is_authenticated():
         return redirect('/auth/login')
     
+# разбор параметра
+# Разделим question id на части     xxx,yyy где xxx - тип мониторинга, yyy - номер страницы пагинации
+    gid = get_ids(question_id)   
+    type = int(gid[0])
+    if len(gid) > 1:
+        page_number = int(gid[1])
+    else:
+        page_number=1  
+    m = 0
+    period = 0
+    status = '0'
+    start_filter = False
+    if len(gid) == 5:
+        m = int(gid[2])
+        period = int(gid[3])
+        status = gid[4]
+        start_filter = True
+        
+
 #   Определение доступа
     usr =  auth.get_user(request)
     role = Role.objects.get(user=usr)
@@ -54,7 +75,6 @@ def monitoring_list(request, question_id):
         see_all = False
         user_hosp = role.hosp
 
-    type = int(question_id)
     if type==1:
         doc = Doc1                     # используемая модель
         new_doc =  create_report_form1   # функция создания новых отчетов
@@ -68,33 +88,32 @@ def monitoring_list(request, question_id):
         calc_sum = calc_sum_form2
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
         html_response_rep = 'medicament/report_JQ_list2.html'
-        export_to_excel = exp_to_excel_form1
+        export_to_excel = exp_to_excel_form2
  # конец изменениям                    
     args = {}
     args.update(csrf(request))
-    m = 0
-    period = 0
-    status = '0'
     isOk = True 
     result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
     html_response = 'medicament/document_list.html'
 
-    if request.POST:
+    if  start_filter or request.POST:
         if see_all and 'button_create' in request.POST:
             if 'period_new' in request.POST:
                 if request.POST['period_new']:
                     periodInt = int(request.POST['period_new'])
                     datef = request.POST['datef']
                     isOk = new_doc(periodInt, datef)          # создать новые мониторинги
-        if not see_all:
-            m = user_hosp.id  
-        if 'mo[]' in request.POST:
-            mo1 = request.POST['mo[]']
-            m = int(mo1)
-        if 'period' in request.POST:
-            period = int(request.POST['period'])
-        if 'status' in request.POST:
-            status = request.POST['status']
+        if request.POST: 
+            page_number=1      # после нового отбора обязательно делать так!!!
+            if not see_all:
+                m = user_hosp.id  
+            if 'mo[]' in request.POST:
+                mo1 = request.POST['mo[]']
+                m = int(mo1)
+            if 'period' in request.POST:
+                period = int(request.POST['period'])
+            if 'status' in request.POST:
+                status = request.POST['status']
         is_filter = False 
         if m > 0:
             args['doc_list']    =  doc.objects.filter(hosp = m)
@@ -113,16 +132,15 @@ def monitoring_list(request, question_id):
                 is_filter = True
         if not is_filter:
             args['doc_list']    =  doc.objects.all()
-# после выборки по фильрам если надо считать отчет, то вызываю сответствующую функцию
+# после выборки по фильтрам если надо считать отчет, то вызываю сответствующую функцию
         if see_all and 'button_report' in request.POST:
             html_response = html_response_rep
+            args['period_name']  =  Period.objects.get(pk=period)            
+            
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
-            file_name = export_to_excel(calc_sum, args['doc_list']) 
+            file_name = export_to_excel(args['doc_list']) 
             return redirect("/monitor/export/" + file_name)
-   
-
-              
     else:   # Первый вход по GET
         if see_all: 
             args['doc_list']    =  doc.objects.all()            
@@ -141,12 +159,18 @@ def monitoring_list(request, question_id):
     args['isOk'] = isOk       
     
 #    filtr = [m,period,status]
+    args['page_number'] = page_number      
     args['period'] = period       
     args['status'] = status       
     args['hosp'] = m       
 
-    args['result'] = result       
-    
+    args['result'] = result    
+#   сортировка
+#    args['doc_list'] = args['doc_list'].order_by('-id')    
+#   пагинатор
+    cur_page = Paginator(args['doc_list'], NUM_RECORD_ON_PAGE)  
+    args['doc_page'] = cur_page.page(page_number)
+     
     return render_to_response(html_response, args)
 
 def monitoring_form(request, question_id):
@@ -162,11 +186,24 @@ def monitoring_form(request, question_id):
     else:
         see_all = False
         user_hosp = role.hosp
-# Разделим question id на части     xxx,yyy где xxx - тип мониторинга, yyy - сквозной номер документа
+# Разделим question id на части     xxx,yyy,zzz где xxx - тип мониторинга, yyy - номер страницы paginator - для возвращения на страницу
+# zzz - сквозной номре документв
+
     gid = get_ids(question_id)   
     type = int(gid[0])
     doc_id = gid[1]
-    
+    if len(gid) == 6:
+        page_number = int(gid[2])
+        m = int(gid[3])  
+        period = int(gid[4])
+        status = gid[5]
+    else:
+        page_number=1  
+        m = 0  
+        period = 0
+        status = '0'
+
+# Настройка типа документа  
     if type == 1:
         doc = Doc1
         save_doc = save_doc_form1
@@ -178,16 +215,14 @@ def monitoring_form(request, question_id):
                  
     args = {}
     args.update(csrf(request))
-    m = 0
-    period = 0
-    status = 0
     isOk = True 
     actionComment =  Comment.EMPTY
     error = ''
     if request.POST:
         ret_mess = save_doc(request,type,doc_id)
         if ret_mess[0]:
-            response = redirect('/form/' + str(type))
+            response = redirect('/form/' + str(type) + ',' + str(page_number) + ',' + str(m) \
+                                + ',' + str(period) + ',' + status)
             return response
         else:
             args['doc']    =  doc.objects.get(pk=doc_id)
@@ -197,23 +232,28 @@ def monitoring_form(request, question_id):
         args['doc']    =  doc.objects.get(pk=doc_id)            
 # во всех случаях    
     args['doc_type']  =  Doc_type.objects.get(pk=type)
-    if not see_all: 
-        args['mo_list']  =  Hosp.objects.filter(id=user_hosp.id)
-    else:                
-        args['mo_list']  =  Hosp.objects.all()
-    args['period_list']  =  Period.objects.all()            
+  
+#    if not see_all: 
+#        args['mo_list']  =  Hosp.objects.filter(id=user_hosp.id)
+#    else:                
+#        args['mo_list']  =  Hosp.objects.all()
+#    args['period_list']  =  Period.objects.all()            
     args['username'] = auth.get_user(request).username       
 
     args['right_operator'] = not see_all       
-#    args['right_operator'] = True       
     args['right_control'] = see_all       
     args['isOk'] = isOk  
     args['error']   =  error     
+    args['page_number']   =  page_number       # для пагинации     
     
     comment_form = CommentForm      
     args['comment']  =  Comment.objects.filter(document = doc_id)            
     args['form']     =  comment_form     
   
+    args['period'] = period       
+    args['status'] = status       
+    args['hosp'] = m       
+
     return render_to_response(html_response, args)
 
 
