@@ -4,22 +4,15 @@
 {% block monitorlist %}
 <div class="row">
 <div class="large-12 columns">
-     <h4><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}}">{{doc_type.name}}</a></h4>
-<div class="large-3 columns">
-     <h4>{{period_name}}</h4>
-</div>     
-<div class="large-3 columns">
-     <h4>{{period}}</h4>
-</div>    
-<div class="large-3 columns">
-     <h4>{{status}}</h4>
- </div>    
-<div class="large-3 columns">
-     <h4></h4>
-</div>
+     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}}">{{doc_type.name}}</a></h4>
     
  {% if doc_list %}
-     <h2>ИТОГО</h2>
+     <div class="large-3 columns">
+        <h4>ИТОГО</h2>
+     </div>     
+     <div class="large-6 columns">
+        <h4>{{period_name}}</h2>
+     </div>     
      <table>
        <thead>
 		   <tr>

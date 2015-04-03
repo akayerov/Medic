@@ -9,6 +9,7 @@ import os
 #from pyexcelerate import Workbook
 # Умееет читать и изменять!!!!
 import openpyxl
+import datetime
 
 def get_ids(str_id):
     l = str_id.split(',')
@@ -49,6 +50,7 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc):
         if not ret_mess[0]:      # [False,"Error_mess"]
             return ret_mess 
         doc.status = Document.EDIT
+        doc.date_mod = datetime.datetime.now()
         doc.save()
     elif 'button_send_control' in request.POST:
         set_fields(request, doc)
@@ -57,12 +59,14 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc):
             return ret_mess 
         doc.status = Document.WAITCONTROL
         actionComment = Comment.ON_CONTROL
+        doc.date_mod = datetime.datetime.now()
         doc.save()
         add_action_in_comment(request, doc, actionComment)
     elif 'button_isOK' in request.POST:
         ret_mess = is_valid(doc)
         if not ret_mess[0]:      # [False,"Error_mess"]
             return ret_mess 
+        doc.date_mod = datetime.datetime.now()
         doc.status = Document.COMPELETE
         actionComment = Comment.CONTROL_YES
 # Уступка - дает право изменять документ при согласовании, однако пройдя внутреннюю проверку is_valid
@@ -72,6 +76,7 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc):
     elif 'button_isNotOK':    
         doc.status = Document.NEEDCHANGE
         actionComment = Comment.CONTROL_NO
+        doc.date_mod = datetime.datetime.now()
         doc.save()
         add_action_in_comment(request, doc, actionComment)
     return [True,'OK']

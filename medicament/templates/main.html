@@ -13,7 +13,7 @@
      .detail_row { background: #eeeeee }
      .row.full-width {
         width: 100%;
-        max-width: 100%; 
+        max-width: 80rem !important; 
      }
      .row_mess {
         align:"center" !important
@@ -26,8 +26,22 @@
     <script type="text/javascript" src="{% static 'js/jqia2.support.js'%}"></script>
     <script type="text/javascript">
         $(function(){
-          $("table").click(swapThemOn).dblclick(swapThemOff);
+           /* $("table").click(swapThemOn).dblclick(swapThemOff);*/
+          $("table").bind('click', ftrigger )
+          
+          /*alert($('button').length + ' elements!');*/
         });  
+
+        function testsubmit() {
+           alert("Submit")
+        }
+
+        function ftrigger() {
+         	$('tr.detail_row').toggle();
+      	 /*	$('tr.detail_row').slideToggle("fast"); */
+
+        }
+        
         function swapThemOn() {
             $('tr.detail_row').show();
         }

@@ -52,6 +52,7 @@ class Document(models.Model):
                                       default=EDIT)
 
     datef = models.DateField(auto_now_add=False)
+    date_mod= models.DateTimeField(auto_now_add=True)
     def __str__(self):              # __unicode__ on P2
         return str(self.period) + ':' + str(self.hosp)
 

@@ -24,7 +24,7 @@ from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
 import os
 import mimetypes
 
-NUM_RECORD_ON_PAGE = 2     # число записей на странице списка
+NUM_RECORD_ON_PAGE = 3   # число записей на странице списка
 
 # Начинаем со списка Альбомов
 # простейший
@@ -74,7 +74,8 @@ def monitoring_list(request, question_id ):
     else:
         see_all = False
         user_hosp = role.hosp
-
+        m = role.hosp.id
+        
     if type==1:
         doc = Doc1                     # используемая модель
         new_doc =  create_report_form1   # функция создания новых отчетов
@@ -93,7 +94,6 @@ def monitoring_list(request, question_id ):
     args = {}
     args.update(csrf(request))
     isOk = True 
-    result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
     html_response = 'medicament/document_list.html'
 
     if  start_filter or request.POST:
@@ -133,7 +133,7 @@ def monitoring_list(request, question_id ):
         if not is_filter:
             args['doc_list']    =  doc.objects.all()
 # после выборки по фильтрам если надо считать отчет, то вызываю сответствующую функцию
-        if see_all and 'button_report' in request.POST:
+        if see_all and period > 0 and 'button_report' in request.POST:
             html_response = html_response_rep
             args['period_name']  =  Period.objects.get(pk=period)            
             
@@ -166,7 +166,7 @@ def monitoring_list(request, question_id ):
 
     args['result'] = result    
 #   сортировка
-#    args['doc_list'] = args['doc_list'].order_by('-id')    
+    args['doc_list'] = args['doc_list'].order_by('-date_mod')    
 #   пагинатор
     cur_page = Paginator(args['doc_list'], NUM_RECORD_ON_PAGE)  
     args['doc_page'] = cur_page.page(page_number)
