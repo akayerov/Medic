@@ -24,7 +24,7 @@ from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
 import os
 import mimetypes
 
-NUM_RECORD_ON_PAGE = 3   # число записей на странице списка
+NUM_RECORD_ON_PAGE = 50   # число записей на странице списка
 
 # Начинаем со списка Альбомов
 # простейший
@@ -269,8 +269,8 @@ def add_comment(request, question_id):
             # далее работа с сессией, чтобы исключить повторную отправку комментария
             request.session.set_expiry(60);
             request.session['pause'] =  True;
-        
-    return redirect('/monitor/' + question_id)
+# отладить -здесь не учитываются изменения, произошедшие за последне время        
+    return redirect('/form/' + question_id)
 
 def export(request,question_id):
         ''' Загрузка сформированного файла Excel на клиент  с последующим его удалением с сервера

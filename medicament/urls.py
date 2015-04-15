@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 #    url(r'^form/(?P<question_id>\d+)/$', views.monitoring_list),
     url(r'^form/(?P<question_id>.+)/$', views.monitoring_list),
     url(r'^monitor/$', views.monitoring_form),
-    url(r'^monitor/add_comment/(?P<question_id>\d+)/$', views.add_comment, name='add_comment'),
+    url(r'^monitor/add_comment/(?P<question_id>.+)/$', views.add_comment, name='add_comment'),
     url(r'^monitor/export/(?P<question_id>.+)/$', views.export, name='export'),
     url(r'^monitor/(?P<question_id>.+)/$', views.monitoring_form, name='monitoring_form'),
 

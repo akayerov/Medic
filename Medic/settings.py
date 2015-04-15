@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for Medic project.
 
@@ -61,8 +62,17 @@ WSGI_APPLICATION = 'Medic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#       'ENGINE': 'django.db.backends.sqlite3',
+#       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
+        "HOST": '127.0.0.1',
+        'NAME': 'medic',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'OPTIONS': {
+          'autocommit': True,
+        },
     }
 }
 

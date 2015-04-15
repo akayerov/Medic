@@ -22,52 +22,43 @@ def set_fields_form2(request, doc):
     ''' Заполнение полей модели данными формы. 
         Специфично для каждой формы
     '''
-    doc.c1_1 = request.POST['c1_1'] 
-    doc.c1_2 = request.POST['c1_2'] 
-    doc.c1_3 = request.POST['c1_3'] 
-    doc.c1_4 = request.POST['c1_4'] 
-    doc.c1_5 = request.POST['c1_5'] 
-    doc.c1_6 = request.POST['c1_6'] 
-    doc.c1_7 = request.POST['c1_7'] 
-    doc.c1_8 = request.POST['c1_8'] 
 
-    doc.c2_1 = request.POST['c2_1'] 
+    doc.c1 = request.POST['c1'] 
+    doc.c2 = request.POST['c2'] 
     doc.c2_2 = request.POST['c2_2'] 
     doc.c2_3 = request.POST['c2_3'] 
-    doc.c2_4 = request.POST['c2_4'] 
-    doc.c2_5 = request.POST['c2_5'] 
-
+    doc.c3   = request.POST['c3'] 
+    doc.c3_0 = request.POST['c3_0'] 
     doc.c3_1 = request.POST['c3_1'] 
-    doc.c3_5 = request.POST['c3_5'] 
-    doc.c3_6 = request.POST['c3_6'] 
-    doc.c3_7 = request.POST['c3_7'] 
-    doc.c3_8 = request.POST['c3_8'] 
+    doc.c3_1_1 = request.POST['c3_1_1'] 
+    doc.c3_1_2 = request.POST['c3_1_2'] 
 
+    doc.c3_2 = request.POST['c3_2'] 
+    doc.c3_2_1 = request.POST['c3_2_1'] 
+    doc.c3_2_2 = request.POST['c3_2_2'] 
+    doc.c4 = request.POST['c4'] 
     doc.c4_1 = request.POST['c4_1'] 
-    doc.c4_2 = request.POST['c4_2'] 
-    doc.c4_3 = request.POST['c4_3'] 
-    doc.c4_4 = request.POST['c4_4'] 
-    doc.c4_5 = request.POST['c4_5'] 
-    doc.c4_6 = request.POST['c4_6'] 
-    doc.c4_7 = request.POST['c4_7'] 
-    doc.c4_8 = request.POST['c4_8'] 
+    doc.c5 = request.POST['c5'] 
+    doc.c6 = request.POST['c6'] 
 
 
 def is_valid_form2(doc):
     ''' Проверка заполнения формы на корректность 
         Специфично для каждой формы
     '''
-    if int(doc.c1_1) < int(doc.c1_2) + int(doc.c1_3) + int(doc.c1_4) + int(doc.c1_5) + int(doc.c1_6) + int(doc.c1_7) +  + int(doc.c1_8):
-        ret = [False,'Итого по строке 1 меньше суммы по столбцам'] 
-        return ret
-    else:
-        ret = [True,'OK']
-        return ret
+#    if int(doc.c1_1) < int(doc.c1_2) + int(doc.c1_3) + int(doc.c1_4) + int(doc.c1_5) + int(doc.c1_6) + int(doc.c1_7) +  + int(doc.c1_8):
+#        ret = [False,'Итого по строке 1 меньше суммы по столбцам'] 
+#        return ret
+#    else:
+#        ret = [True,'OK']
+#        return ret
+    ret = [True,'OK']
+    return ret
     
 def calc_sum_form2(doc):
     ''' Возвращает Суммы данных отчетов
     '''
-    s = [["Строка1",0,0,0,0,0,0,0,0],["Строка2",0,0,0,0,0,0,0,0],["Строка3",0,0,0,0,0,0,0,0],["Строка4",0,0,0,0,0,0,0,0]]
+    s = ["Строка1",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     for d in doc:
         s[0][1] = s[0][1] + d.c1_1
         s[0][2] = s[0][2] + d.c1_2

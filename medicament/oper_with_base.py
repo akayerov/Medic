@@ -31,7 +31,8 @@ def create_new_report(type,doc,periodInt, datef):
 def add_action_in_comment(request, doc,  action):
     ''' Добавить лог действий по документу в комментарий
     '''
-    comment = Comment.objects.create()
+#    comment = Comment.objects.create()
+    comment = Comment()
     comment.document = doc
     comment.action = action
     comment.user = request.user
