@@ -219,7 +219,14 @@ def monitoring_form(request, question_id):
     actionComment =  Comment.EMPTY
     error = ''
     if request.POST:
-        ret_mess = save_doc(request,type,doc_id)
+        if  'button_addComment' in request.POST:
+            add_comment(request, question_id)    # 
+            mode_comment = False
+        else:
+            mode_comment = True
+
+        ret_mess = save_doc(request,type,doc_id, mode_comment)
+                    
         if ret_mess[0]:
             response = redirect('/form/' + str(type) + ',' + str(page_number) + ',' + str(m) \
                                 + ',' + str(period) + ',' + status)
@@ -258,19 +265,35 @@ def monitoring_form(request, question_id):
 
 
 def add_comment(request, question_id):
+
+    gid = get_ids(question_id)   
+    stype = int(gid[0])
+    sdoc_id = gid[1]
+    if len(gid) == 6:
+        spage_number = int(gid[2])
+        shosp = int(gid[3])  
+        speriod = int(gid[4])
+        sstatus = gid[5]
+    else:
+        spage_number=1  
+        shosp = 0  
+        speriod = 0
+        sstatus = '0'
+
     enable = request.user.is_active
     if request.POST and ('pause' not in request.session) and enable:
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit = False)
-            comment.document = Document.objects.get(id = question_id)
+            comment.document = Document.objects.get(id =  sdoc_id )
             comment.user = request.user
             comment.save()
-            # далее работа с сессией, чтобы исключить повторную отправку комментария
+            # далее работа с сессией, чтобы исключить повторную отправку комментария раньше чем через 20 секунд
             request.session.set_expiry(60);
             request.session['pause'] =  True;
 # отладить -здесь не учитываются изменения, произошедшие за последне время        
-    return redirect('/form/' + question_id)
+    return redirect('/form/' + str(stype) + ',' + str(spage_number) + ',' + str(shosp) \
+                                + ',' + str(speriod) + ',' + sstatus)
 
 def export(request,question_id):
         ''' Загрузка сформированного файла Excel на клиент  с последующим его удалением с сервера

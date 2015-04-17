@@ -15,10 +15,10 @@ def create_report_form1(periodInt, datef):
     '''
     return create_new_report(1,Doc1,periodInt,datef)
 
-def save_doc_form1(request, type, id_doc):
+def save_doc_form1(request, type, id_doc, mode_comment):
     ''' Сохранить запись Document + комментарий с новой записью в комментрии с действием пользователя
     '''
-    return save_doc(Doc1,set_fields_form1, is_valid_form1, request, type, id_doc)
+    return save_doc(Doc1,set_fields_form1, is_valid_form1, request, type, id_doc, mode_comment)
 
 
 def set_fields_form1(request, doc):

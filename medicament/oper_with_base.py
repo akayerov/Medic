@@ -39,7 +39,7 @@ def add_action_in_comment(request, doc,  action):
     comment.save()
     return True
 
-def save_doc( tdoc, set_fields, is_valid, request, type, id_doc):
+def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
     ''' Сохранить запись Document + комментарий с новой записью в комментрии с действием пользователя
     '''
     doc = tdoc.objects.get(pk=id_doc);
@@ -48,21 +48,25 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc):
     if 'button_save' in request.POST:
         set_fields(request, doc)
         ret_mess = is_valid(doc)
-        if not ret_mess[0]:      # [False,"Error_mess"]
-            return ret_mess 
         doc.status = Document.EDIT
         doc.date_mod = datetime.datetime.now()
         doc.save()
+        if not ret_mess[0]:      # [False,"Error_mess"]
+            return ret_mess 
     elif 'button_send_control' in request.POST:
         set_fields(request, doc)
         ret_mess = is_valid(doc)
         if not ret_mess[0]:      # [False,"Error_mess"]
+            doc.status = Document.EDIT
+            doc.date_mod = datetime.datetime.now()
+            doc.save()
             return ret_mess 
         doc.status = Document.WAITCONTROL
         actionComment = Comment.ON_CONTROL
         doc.date_mod = datetime.datetime.now()
         doc.save()
-        add_action_in_comment(request, doc, actionComment)
+        if mode_comment:
+            add_action_in_comment(request, doc, actionComment)
     elif 'button_isOK' in request.POST:
         ret_mess = is_valid(doc)
         if not ret_mess[0]:      # [False,"Error_mess"]
@@ -73,13 +77,15 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc):
 # Уступка - дает право изменять документ при согласовании, однако пройдя внутреннюю проверку is_valid
         set_fields(request, doc)
         doc.save()
-        add_action_in_comment(request, doc, actionComment)
+        if mode_comment:
+            add_action_in_comment(request, doc, actionComment)
     elif 'button_isNotOK':    
         doc.status = Document.NEEDCHANGE
         actionComment = Comment.CONTROL_NO
         doc.date_mod = datetime.datetime.now()
         doc.save()
-        add_action_in_comment(request, doc, actionComment)
+        if mode_comment:
+            add_action_in_comment(request, doc, actionComment)
     return [True,'OK']
 
 def get_name(namefile):
