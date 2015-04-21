@@ -15,17 +15,25 @@ def get_ids(str_id):
     l = str_id.split(',')
     return l
 
-def create_new_report(type,doc,periodInt, datef):
+def create_new_report(type,doc,periodInt, datef, copyfunc):
     ''' Возвращает True, если добавление записей прошло успешно
         В противном случае возвращает False
+        Ищем документы за прежний период, если находим, то заполняем
     '''
     period = Period.objects.get(pk=periodInt)
+    period_prev = period.prev
     num_rec = doc.objects.filter(period = period).count()     
     if num_rec > 0:
         return False
     for dh in Doc_Hosp.objects.filter(doc_type = type):
         odoc = doc.objects.create(hosp=dh.hosp, period=period, datef=datef)
-#        doc.save()
+        # если предыдущий период есть, попробуем заполнить документ из предыдущего
+        if period_prev:       
+            doc_prevList = doc.objects.filter(period = period_prev, hosp = dh.hosp, status='F')
+            if doc_prevList:
+                doc_prev = doc_prevList[0]
+                copyfunc(doc_prev, odoc)
+                odoc.save()
     return True
 
 def add_action_in_comment(request, doc,  action):

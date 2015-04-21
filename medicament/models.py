@@ -15,6 +15,7 @@ class Period(models.Model):
     name =  models.CharField('Наименование',max_length=100)
     dateb =  models.DateField()
     datee =  models.DateField()
+    prev = models.ForeignKey('self', null=True, blank=True)      # ссылка на документ предудущего периода с которым сверяемся
     def __str__(self):              # __unicode__ on Python 2
         return self.name
     
@@ -53,6 +54,10 @@ class Document(models.Model):
 
     datef = models.DateField(auto_now_add=False)
     date_mod= models.DateTimeField(auto_now_add=True)
+# !!! поле null=true делает поле sql базы null возможным, blank=true разрешает работать формам - т.е админке!!!!!
+# иначе не получится оставить поле не заполненным - а это бывает иногда необходимо!!!!      
+#    doc_prev = models.ForeignKey('self', null=True, blank=True)    # ссылка на документ предудущего периода с которым сверяемся
+#   отбой, излишне достаточно иметь предудущий период
     def __str__(self):              # __unicode__ on P2
         return str(self.period) + ':' + str(self.hosp)
 

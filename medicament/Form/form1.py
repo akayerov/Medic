@@ -10,10 +10,11 @@ import openpyxl
 
 
 def create_report_form1(periodInt, datef):
-    ''' Возвращает True, если добавление записей прошло успешно
+    ''' Создание новых документов (в новом периоде)
+        Возвращает True, если добавление записей прошло успешно
         В противном случае возвращает False
     '''
-    return create_new_report(1,Doc1,periodInt,datef)
+    return create_new_report(1,Doc1,periodInt,datef, copy_fields_form1)
 
 def save_doc_form1(request, type, id_doc, mode_comment):
     ''' Сохранить запись Document + комментарий с новой записью в комментрии с действием пользователя
@@ -21,9 +22,21 @@ def save_doc_form1(request, type, id_doc, mode_comment):
     return save_doc(Doc1,set_fields_form1, is_valid_form1, request, type, id_doc, mode_comment)
 
 
+def copy_fields_form1(ds, dd):
+    ''' Копирование полей - указать все поля для копирования 
+        Для каждой формы
+    '''
+    dd.c1_1 = ds.c1_1 
+    dd.c1_2 = ds.c1_2 
+    dd.c1_3 = ds.c1_3 
+    dd.c1_4 = ds.c1_4 
+    dd.c1_5 = ds.c1_5 
+
+
+
 def set_fields_form1(request, doc):
     ''' Заполнение полей модели данными формы . 
-        Специфично для каждой формы
+        Для каждой формы
     '''
     doc.c1_1 = request.POST['c1_1'] 
     doc.c1_2 = request.POST['c1_2'] 
@@ -115,7 +128,8 @@ def calc_sum_form1(doc):
 
 def exp_to_excel_form1(doc):
     res =  calc_sum_form1(doc)
-    name_file = get_name("\\medicament\\Form\\Form1.xlsx")
+#   name_file = get_name("\\medicament\\Form\\Form1.xlsx")
+    name_file = get_name("/medicament/Form/Form1.xlsx")
 
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active
@@ -147,7 +161,8 @@ def exp_to_excel_form1(doc):
     sheet['H13'] = res[3][7]
     sheet['I13'] = res[3][8]
 
-    name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
+ #   name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
+    name_file =  get_name("/medicament/Form/rep" + str(int(random()*100000000)) + ".xlsx") 
     wb.save(name_file)
     
     return name_file
