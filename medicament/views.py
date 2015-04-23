@@ -23,6 +23,7 @@ from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
 
 import os
 import mimetypes
+from _overlapped import NULL
 
 NUM_RECORD_ON_PAGE = 50   # число записей на странице списка
 
@@ -212,7 +213,8 @@ def monitoring_form(request, question_id):
         doc = Doc2
         save_doc = save_doc_form2
         html_response = "medicament/doc_form2.html"
-                 
+# конец настройки по типам!
+                   
     args = {}
     args.update(csrf(request))
     isOk = True 
@@ -239,12 +241,12 @@ def monitoring_form(request, question_id):
         args['doc']    =  doc.objects.get(pk=doc_id)            
 # во всех случаях    
     args['doc_type']  =  Doc_type.objects.get(pk=type)
-  
-#    if not see_all: 
-#        args['mo_list']  =  Hosp.objects.filter(id=user_hosp.id)
-#    else:                
-#        args['mo_list']  =  Hosp.objects.all()
-#    args['period_list']  =  Period.objects.all()            
+# ищем документ предыдущего периода 
+    doc_prevList = doc.objects.filter(period = args['doc'].period.prev , hosp = args['doc'].hosp)
+    if doc_prevList:
+        args['doc_prev'] = doc_prevList[0]
+# для визуального контроля
+
     args['username'] = auth.get_user(request).username       
 
     args['right_operator'] = not see_all       

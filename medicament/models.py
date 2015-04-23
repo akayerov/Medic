@@ -21,7 +21,9 @@ class Period(models.Model):
     
 
 class Hosp(models.Model):
-    name =  models.CharField('Наименование',max_length=100)
+    name =  models.CharField('Наименование Краткое',max_length=64)
+    name_full =  models.CharField('Наименование Полное',max_length=255)
+    
     def __str__(self):              # __unicode__ on Python 2
         return self.name
 
