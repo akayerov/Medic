@@ -6,7 +6,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
-from medicament.models import Document,Doc_type, Hosp, Period, Role, Comment, Doc1, Doc2
+from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Doc1, Doc2
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
@@ -62,7 +62,7 @@ def monitoring_list(request, question_id ):
         m = int(gid[2])
         period = int(gid[3])
         status = gid[4]
-        region = gid[5]
+        region = int(gid[5])
         start_filter = True
         
 
@@ -119,14 +119,15 @@ def monitoring_list(request, question_id ):
                 status = request.POST['status']
         is_filter = False 
 
-#        if see_all and region > 0:
-#        if see_all:
-#            args['doc_list']    =  doc.objects.filter(hosp.region = 1)
-#            is_filter = True
-        
+        if see_all and region > 0:
+            args['doc_list']    =  doc.objects.filter(hosp__region = region)
+            is_filter = True
         if m > 0:
-#        if m > 0 and is_filter==False:
-            args['doc_list']    =  doc.objects.filter(hosp = m)
+            if is_filter:
+                args['doc_list']    =  args['doc_list'].filter(hosp = m)
+            else:    
+                args['doc_list']    =  doc.objects.filter(hosp = m)
+                is_filter = True
             is_filter = True
         if period > 0:
             if is_filter:
@@ -163,6 +164,7 @@ def monitoring_list(request, question_id ):
         args['mo_list']  =  Hosp.objects.filter(id=user_hosp.id)
     else:                
         args['mo_list']  =  Hosp.objects.all()
+        args['region_list']  =  Region.objects.all()
     args['period_list']  =  Period.objects.all()            
     args['username'] = auth.get_user(request).username       
     args['right_all'] = see_all       
@@ -172,7 +174,9 @@ def monitoring_list(request, question_id ):
     args['page_number'] = page_number      
     args['period'] = period       
     args['status'] = status       
-    args['hosp'] = m       
+    args['hosp'] = m  
+    args['region'] = region       
+     
 
     args['result'] = result    
 #   сортировка
@@ -202,16 +206,18 @@ def monitoring_form(request, question_id):
     gid = get_ids(question_id)   
     type = int(gid[0])
     doc_id = gid[1]
-    if len(gid) == 6:
+    if len(gid) == 7:
         page_number = int(gid[2])
         m = int(gid[3])  
         period = int(gid[4])
         status = gid[5]
+        region = int(gid[6])
     else:
         page_number=1  
         m = 0  
         period = 0
         status = '0'
+        region = 0
 
 # Настройка типа документа  
     if type == 1:
@@ -240,7 +246,7 @@ def monitoring_form(request, question_id):
                     
         if ret_mess[0]:
             response = redirect('/form/' + str(type) + ',' + str(page_number) + ',' + str(m) \
-                                + ',' + str(period) + ',' + status)
+                                + ',' + str(period) + ',' + status + ',' + str(region))
             return response
         else:
             args['doc']    =  doc.objects.get(pk=doc_id)
@@ -271,6 +277,7 @@ def monitoring_form(request, question_id):
     args['period'] = period       
     args['status'] = status       
     args['hosp'] = m       
+    args['region'] = region       
 
     return render_to_response(html_response, args)
 
@@ -280,17 +287,19 @@ def add_comment(request, question_id):
     gid = get_ids(question_id)   
     stype = int(gid[0])
     sdoc_id = gid[1]
-    if len(gid) == 6:
+    if len(gid) == 7:
         spage_number = int(gid[2])
         shosp = int(gid[3])  
         speriod = int(gid[4])
         sstatus = gid[5]
+        sregion = int(gid[6])
     else:
         spage_number=1  
         shosp = 0  
         speriod = 0
         sstatus = '0'
-
+        sregion = 0
+        
     enable = request.user.is_active
     if request.POST and ('pause' not in request.session) and enable:
         form = CommentForm(request.POST)
@@ -304,7 +313,7 @@ def add_comment(request, question_id):
             request.session['pause'] =  True;
 # отладить -здесь не учитываются изменения, произошедшие за последне время        
     return redirect('/form/' + str(stype) + ',' + str(spage_number) + ',' + str(shosp) \
-                                + ',' + str(speriod) + ',' + sstatus)
+                                + ',' + str(speriod) + ',' + sstatus + ',' + str(sregion))
 
 def export(request,question_id):
         ''' Загрузка сформированного файла Excel на клиент  с последующим его удалением с сервера

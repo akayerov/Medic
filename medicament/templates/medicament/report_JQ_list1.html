@@ -4,7 +4,7 @@
 {% block monitorlist %}
 <div class="row">
 <div class="large-12 columns">
-     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}}">{{doc_type.name}}</a></h4>
+     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h4>
     
  {% if doc_list %}
      <div class="large-3 columns">
@@ -89,6 +89,7 @@
          <input  class="par_hidden" type="text" size="1" name="mo[]" value={{hosp}}>
          <input  class="par_hidden" type="text" size="1" name="period" value={{period}}>
          <input  class="par_hidden" type="text" size="1" name="status" value={{status}}>
+         <input  class="par_hidden" type="text" size="1" name="status" value={{region}}>
      </form>
  {% else %} 
     <p>Мониторинги не найдены</p>

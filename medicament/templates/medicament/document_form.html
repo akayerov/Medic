@@ -4,7 +4,7 @@
 {% block monitorlist %}
 <div class="row full-width">
 <div class="large-12 columns">
-     <h4><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}}">{{doc_type.name}}</a></h4>
+     <h4><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h4>
     
  {% if doc %}
      <div class="row full-width">
@@ -56,7 +56,7 @@
          {% endfor %}
          {% endif %}
          {% if doc.status != 'F' %}
-         <form action="monitor/add_comment/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}}/" method = "post">
+         <form action="monitor/add_comment/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}/" method = "post">
             {%csrf_token%}
             {{form}}
   		    <button class="button" name="button_addComment" value="5" type="submit" formmethod="post">Добавить</button>         

@@ -13,6 +13,7 @@ def create_report_form1(periodInt, datef):
     ''' Создание новых документов (в новом периоде)
         Возвращает True, если добавление записей прошло успешно
         В противном случае возвращает False
+        copy_fiields_formX - функция начального заполнения
     '''
     return create_new_report(1,Doc1,periodInt,datef, copy_fields_form1)
 
@@ -24,7 +25,8 @@ def save_doc_form1(request, type, id_doc, mode_comment):
 
 def copy_fields_form1(ds, dd):
     ''' Копирование полей - указать все поля для копирования 
-        Для каждой формы
+        Для каждой формы, 
+        ВЫЗЫВАЕТСЯ ТОЛЬКО ДЛЯ ДОКУМЕНТОВ В СОСТОЯНИИ ЗАВЕШЕНО- незаполненные и несогласаованные документы такой обработке не подлежат!
     '''
     dd.c1_1 = ds.c1_1 
     dd.c1_2 = ds.c1_2 
@@ -32,7 +34,27 @@ def copy_fields_form1(ds, dd):
     dd.c1_4 = ds.c1_4 
     dd.c1_5 = ds.c1_5 
 
+    dd.c2_6 = ds.c2_6 
+    dd.c2_7 = ds.c2_7 
+    dd.c2_8 = ds.c2_8 
 
+    dd.c3_1 = ds.c3_1 
+    dd.c3_2 = ds.c3_2 
+    dd.c3_3 = ds.c3_3 
+    dd.c3_4 = ds.c3_4 
+    dd.c3_5 = ds.c3_5 
+    dd.c3_6 = ds.c3_6 
+    dd.c3_7 = ds.c3_7 
+    dd.c3_8 = ds.c3_8 
+
+    dd.c4_1 = ds.c4_1 
+    dd.c4_2 = ds.c4_2 
+    dd.c4_3 = ds.c4_3 
+    dd.c4_4 = ds.c4_4 
+    dd.c4_5 = ds.c4_5 
+    dd.c4_6 = ds.c4_6 
+    dd.c4_7 = ds.c4_7 
+    dd.c4_8 = ds.c4_8 
 
 def set_fields_form1(request, doc):
     ''' Заполнение полей модели данными формы . 
@@ -67,7 +89,7 @@ def set_fields_form1(request, doc):
     doc.c4_8 = request.POST['c4_8'] 
 
 
-def is_valid_form1(doc):
+def is_valid_form1(doc, doc_prev):
     ''' Проверка заполнения формы на корректность 
         Специфично для каждой формы
     '''
@@ -79,6 +101,9 @@ def is_valid_form1(doc):
         return ret
     elif int(doc.c4_1) < int(doc.c4_2) + int(doc.c4_3) + int(doc.c4_4) + int(doc.c4_5) + int(doc.c4_6) + int(doc.c4_7) + int(doc.c4_8):
         ret = [False,'Итого по строке 4 меньше суммы по столбцам'] 
+        return ret
+    elif doc_prev and int(doc.c1_2) < int(doc_prev.c1_2):
+        ret = [False,'По строке 1 предыдущщий период больше нынешнего'] 
         return ret
     else:
         ret = [True,'OK']

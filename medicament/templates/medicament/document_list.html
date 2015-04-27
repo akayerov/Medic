@@ -64,29 +64,42 @@
        <form>
          {% csrf_token %}
          <h5>Отбор</h5>
-         <label>МО</label>
- {% comment %} 
-         <input list="mo_test">
-         <datalist id="mo_test">
-         {% for q1 in mo_list %}
-           <option value="{{q1.id}}">{{q1.name}}</option>
-         {% endfor %}
-         </datalist>
- {% endcomment %}
-         <select multiple name="mo[]">
-           {% if hosp > 0 %}
-             <option value="0">По всем</option>
-           {% else %}
-             <option selected value="0">По всем</option>
-           {% endif %}
-           {% for q1 in mo_list %}
-	         {% if q1.id == hosp %}
-               <option selected value="{{q1.id}}">{{q1.name}}</option>
-             {% else %}
-               <option value="{{q1.id}}">{{q1.name}}</option>
-             {% endif %}
-           {% endfor %}
-         </select>  
+         {% if right_all %}
+	         <label>Район</label>
+	         <select size="1" name="region">
+	           {% if region > 0 %}
+	             <option value="0">По всем</option>
+	           {% else %}
+	             <option selected value="0">По всем</option>
+	           {% endif %}
+	           
+	           {% for p1 in region_list %}
+	
+	           {% if p1.id == region %}
+	             <option selected value="{{p1.id}}">{{p1.name}}</option>
+	           {% else %}
+	             <option value="{{p1.id}}">{{p1.name}}</option>
+	           {% endif %}
+	           {% endfor %}
+	         </select>  
+	
+	         <label>МО</label>
+	         <select multiple name="mo[]">
+	           {% if hosp > 0 %}
+	             <option value="0">По всем</option>
+	           {% else %}
+	             <option selected value="0">По всем</option>
+	           {% endif %}
+	           {% for q1 in mo_list %}
+		         {% if q1.id == hosp %}
+	               <option selected value="{{q1.id}}">{{q1.name}}</option>
+	             {% else %}
+	               <option value="{{q1.id}}">{{q1.name}}</option>
+	             {% endif %}
+	           {% endfor %}
+	         </select>  
+         {% endif %}
+
          <label>Период</label>
          <select size="1" name="period">
            {% if period > 0 %}

@@ -36,6 +36,19 @@ def create_new_report(type,doc,periodInt, datef, copyfunc):
                 odoc.save()
     return True
 
+def get_doc_prev(doc, tdoc):
+    '''
+      Возвращает ЗАВЕРШЕННЫЙ документ предудущего периода или ничего
+    '''
+    period = Period.objects.get(pk=doc.period.id)
+    period_prev = doc.period.prev
+    doc_prevList = tdoc.objects.filter(period = period_prev, hosp = doc.hosp , status='F')
+    if doc_prevList:
+        return doc_prevList[0]
+    else:
+        return None
+
+
 def add_action_in_comment(request, doc,  action):
     ''' Добавить лог действий по документу в комментарий
     '''
@@ -51,11 +64,11 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
     ''' Сохранить запись Document + комментарий с новой записью в комментрии с действием пользователя
     '''
     doc = tdoc.objects.get(pk=id_doc);
-
+    doc_prev = get_doc_prev(doc, tdoc)
 
     if 'button_save' in request.POST:
         set_fields(request, doc)
-        ret_mess = is_valid(doc)
+        ret_mess = is_valid(doc, doc_prev)
         doc.status = Document.EDIT
         doc.date_mod = datetime.datetime.now()
         doc.save()
@@ -63,7 +76,7 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
             return ret_mess 
     elif 'button_send_control' in request.POST:
         set_fields(request, doc)
-        ret_mess = is_valid(doc)
+        ret_mess = is_valid(doc, doc_prev)
         if not ret_mess[0]:      # [False,"Error_mess"]
             doc.status = Document.EDIT
             doc.date_mod = datetime.datetime.now()
@@ -76,7 +89,7 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
         if mode_comment:
             add_action_in_comment(request, doc, actionComment)
     elif 'button_isOK' in request.POST:
-        ret_mess = is_valid(doc)
+        ret_mess = is_valid(doc,doc_prev)
         if not ret_mess[0]:      # [False,"Error_mess"]
             return ret_mess 
         doc.date_mod = datetime.datetime.now()
