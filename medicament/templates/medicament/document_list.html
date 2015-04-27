@@ -98,9 +98,9 @@
            {% for p1 in period_list %}
 
            {% if p1.id == period %}
-             <option selected value="{{p1.id}}">{{p1.name}}</option>
+             <option selected value="{{p1.id}}">{{p1.name}} ({{p1.dateb|date:"d/m/y"}}-{{p1.datee|date:"d/m/y"}})</option>
            {% else %}
-             <option value="{{p1.id}}">{{p1.name}}</option>
+             <option value="{{p1.id}}">{{p1.name}} ({{p1.dateb|date:"d/m/y"}}-{{p1.datee|date:"d/m/y"}})</option>
            {% endif %}
            {% endfor %}
          </select>  
@@ -139,7 +139,7 @@
          <label>Период</label>
          <select size="1" name="period_new">
            {% for p1 in period_list %}
-             <option value="{{p1.id}}">{{p1.name}}</option>
+             <option value="{{p1.id}}">{{p1.name}} ({{p1.dateb|date:"d/m/y"}}-{{p1.datee|date:"d/m/y"}})</option>
            {% endfor %}
          </select>  
          <label>Срок сдачи</label>

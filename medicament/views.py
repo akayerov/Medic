@@ -27,7 +27,7 @@ from _overlapped import NULL
 
 NUM_RECORD_ON_PAGE = 50   # число записей на странице списка
 
-# Начинаем со списка Альбомов
+
 # простейший
 def monitor_type_list(request):
     if not request.user.is_authenticated():
@@ -41,8 +41,6 @@ def monitor_type_list(request):
 
 
 def monitoring_list(request, question_id ):
-#    if 'button_export' in request.POST:
-#        assert False
       
     if not request.user.is_authenticated():
         return redirect('/auth/login')
@@ -55,14 +53,16 @@ def monitoring_list(request, question_id ):
         page_number = int(gid[1])
     else:
         page_number=1  
+    region = 0
     m = 0
     period = 0
     status = '0'
     start_filter = False
-    if len(gid) == 5:
+    if len(gid) == 6:
         m = int(gid[2])
         period = int(gid[3])
         status = gid[4]
+        region = gid[5]
         start_filter = True
         
 
@@ -108,6 +108,8 @@ def monitoring_list(request, question_id ):
             page_number=1      # после нового отбора обязательно делать так!!!
             if not see_all:
                 m = user_hosp.id  
+            if 'region' in request.POST:
+                region = int(request.POST['region'])
             if 'mo[]' in request.POST:
                 mo1 = request.POST['mo[]']
                 m = int(mo1)
@@ -116,7 +118,14 @@ def monitoring_list(request, question_id ):
             if 'status' in request.POST:
                 status = request.POST['status']
         is_filter = False 
+
+#        if see_all and region > 0:
+#        if see_all:
+#            args['doc_list']    =  doc.objects.filter(hosp.region = 1)
+#            is_filter = True
+        
         if m > 0:
+#        if m > 0 and is_filter==False:
             args['doc_list']    =  doc.objects.filter(hosp = m)
             is_filter = True
         if period > 0:
@@ -315,6 +324,17 @@ def export(request,question_id):
 
         return response;
 
+def contact_list(request):
+    '''  Список контактов
+    '''
+    if not request.user.is_authenticated():
+        return redirect('/auth/login')
+    args = {}
+    args.update(csrf(request))
+    
+    args['username'] = auth.get_user(request).username       
+    args['role']  =  Role.objects.all()
+    return render_to_response('medicament/contact_list.html', args)
 
 
 

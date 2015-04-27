@@ -19,10 +19,17 @@ class Period(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return self.name
     
+class Region(models.Model):
+    ''' Регионы
+    '''
+    name = models.CharField('Регион',max_length=32)
+    def __str__(self):              # __unicode__ on Python 2
+        return str(self.name)
 
 class Hosp(models.Model):
     name =  models.CharField('Наименование Краткое',max_length=64)
     name_full =  models.CharField('Наименование Полное',max_length=255)
+    region = models.ForeignKey(Region, null=True, blank=True)
     
     def __str__(self):              # __unicode__ on Python 2
         return self.name
@@ -34,6 +41,26 @@ class Doc_Hosp(models.Model):
     doc_type =  models.ForeignKey(Doc_type)
     def __str__(self):              # __unicode__ on Python 2
         return str(self.hosp) + "-" + str(self.doc_type )
+
+class Role(models.Model):
+    ''' Назначение ролей пользователей
+    '''
+    user = models.ForeignKey(User)
+    hosp = models.ForeignKey(Hosp)
+    tel = models.CharField('Телефон',max_length=20)
+    EDIT = 'Р'
+    CONTROL = 'К'
+    
+    STATE_IN_RIGHT = (
+        (EDIT, 'Редактирование'),
+        (CONTROL, 'Контроль'),
+    )
+    role = models.CharField('Роль',max_length=1,
+                                      choices=STATE_IN_RIGHT,
+                                      default=EDIT)
+    def __str__(self):              # __unicode__ on Python 2
+        return str(self.hosp) + ':' + str(self.user)
+
 
 
 class Document(models.Model):
@@ -139,23 +166,5 @@ class Comment(models.Model):
     action = models.CharField('Действие',max_length=1,
                                       choices= ACTION_COMMENT,
                                       default=EMPTY)
-
-
-class Role(models.Model):
-    user = models.ForeignKey(User)
-    hosp = models.ForeignKey(Hosp)
-    tel = models.CharField('Телефон',max_length=20)
-    EDIT = 'Р'
-    CONTROL = 'К'
-    
-    STATE_IN_RIGHT = (
-        (EDIT, 'Редактирование'),
-        (CONTROL, 'Контроль'),
-    )
-    role = models.CharField('Роль',max_length=1,
-                                      choices=STATE_IN_RIGHT,
-                                      default=EDIT)
-    def __str__(self):              # __unicode__ on Python 2
-        return str(self.hosp) + ':' + str(self.user)
 
 

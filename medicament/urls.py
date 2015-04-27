@@ -7,6 +7,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'Medic.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', views.monitor_type_list),
+    url(r'^contact/', views.contact_list, name='contact_list'),
+
 # ПОпытка использовать тот же механизм списка мониторингов для другого типа мониторинга
 #    url(r'^form/(?P<question_id>\d+)/$', views.monitoring_list),
     url(r'^form/(?P<question_id>.+)/$', views.monitoring_list),

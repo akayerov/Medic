@@ -67,6 +67,7 @@ DATABASES = {
 #        'ENGINE': 'django.db.backends.mysql',
         'ENGINE': 'mysql.connector.django',
         "HOST": '127.0.0.1',
+#        "HOST": '192.168.65.222',
         'NAME': 'medic',
         'USER': 'root',
         'PASSWORD': '1234',
