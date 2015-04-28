@@ -2,7 +2,7 @@
 '''
 @author: a_kayerov
 '''
-from medicament.oper_with_base import create_new_report, save_doc, get_name
+from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region
 from medicament.models import Doc1
 from django.db.models import Sum
 from random import random
@@ -13,13 +13,14 @@ def create_report_form1(periodInt, datef):
     ''' Создание новых документов (в новом периоде)
         Возвращает True, если добавление записей прошло успешно
         В противном случае возвращает False
-        copy_fiields_formX - функция начального заполнения
+        copy_fields_formX - функция начального заполнения
     '''
     return create_new_report(1,Doc1,periodInt,datef, copy_fields_form1)
 
 def save_doc_form1(request, type, id_doc, mode_comment):
     ''' Сохранить запись Document + комментарий с новой записью в комментрии с действием пользователя
-    '''
+        Установить собственый параментрв DOCx,set_fields_formx, is_valid_formx
+    ''' 
     return save_doc(Doc1,set_fields_form1, is_valid_form1, request, type, id_doc, mode_comment)
 
 
@@ -103,7 +104,7 @@ def is_valid_form1(doc, doc_prev):
         ret = [False,'Итого по строке 4 меньше суммы по столбцам'] 
         return ret
     elif doc_prev and int(doc.c1_2) < int(doc_prev.c1_2):
-        ret = [False,'По строке 1 предыдущщий период больше нынешнего'] 
+        ret = [False,'Значение в строке 1 в предыдущщий период больше нынешнего'] 
         return ret
     else:
         ret = [True,'OK']
@@ -151,13 +152,18 @@ def calc_sum_form1(doc):
  
     return s
 
-def exp_to_excel_form1(doc):
+def exp_to_excel_form1(doc, iperiod, iregion):
     res =  calc_sum_form1(doc)
+    speriod = get_period_namef(iperiod)
+    region = get_region(iregion)
 #   name_file = get_name("\\medicament\\Form\\Form1.xlsx")
     name_file = get_name("/medicament/Form/Form1.xlsx")
 
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active
+    sheet['B2'] = speriod
+    if region:
+        sheet['F2'] = region.name
     sheet['B8'] = res[0][1]
     sheet['C8'] = res[0][2]
     sheet['D8'] = res[0][3]

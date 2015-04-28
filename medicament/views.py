@@ -82,14 +82,14 @@ def monitoring_list(request, question_id ):
         new_doc =  create_report_form1   # функция создания новых отчетов
         calc_sum = calc_sum_form1
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
-        html_response_rep = 'medicament/report_JQ_list1.html'       # Форма с JQuery
+        html_response_rep = 'medicament/report_form1.html'       # Форма с JQuery
         export_to_excel = exp_to_excel_form1
     elif type==2:
         doc = Doc2                     # используемая модель
         new_doc =  create_report_form2   # функция создания новых отчетов
         calc_sum = calc_sum_form2
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
-        html_response_rep = 'medicament/report_JQ_list2.html'
+        html_response_rep = 'medicament/report_form2.html'
         export_to_excel = exp_to_excel_form2
  #### Далее не изменять без необходимости                    
     args = {}
@@ -147,10 +147,12 @@ def monitoring_list(request, question_id ):
         if see_all and period > 0 and 'button_report' in request.POST:
             html_response = html_response_rep
             args['period_name']  =  Period.objects.get(pk=period)            
+            if region > 0:
+                args['region_name']  =  Region.objects.get(pk=region)            
             
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
-            file_name = export_to_excel(args['doc_list']) 
+            file_name = export_to_excel(args['doc_list'],period,region) 
             return redirect("/monitor/export/" + file_name)
     else:   # Первый вход по GET
         if see_all: 

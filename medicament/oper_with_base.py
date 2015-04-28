@@ -2,7 +2,7 @@
 '''
 @author: a_kayerov
 '''
-from medicament.models import Document,Doc_type, Hosp, Period, Role, Comment, Doc_Hosp,Doc1,Doc2
+from medicament.models import Document,Doc_type, Hosp, Period, Role, Region, Comment, Doc_Hosp,Doc1,Doc2
 from django.core.exceptions import ObjectDoesNotExist
 import os
 # хорошо  создает!
@@ -112,4 +112,23 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
 def get_name(namefile):
     return os.path.dirname(os.path.dirname(__file__)) +  namefile
 
-    
+def get_period(iperiod):
+    if iperiod > 0:
+        return Period.objects.get(pk=iperiod)
+    else:
+        return None
+
+def get_region(iregion):
+    if iregion > 0:
+        return Region.objects.get(pk=iregion)
+    else:
+        return None
+
+def get_period_namef(iperiod):
+    if iperiod > 0:
+        p = Period.objects.get(pk=iperiod)
+        res = p.name + " (" + p.dateb.strftime("%d/%m/%y") + "-" + p.datee.strftime("%d/%m/%y") +")"
+        return res
+    else:
+        return ""
+

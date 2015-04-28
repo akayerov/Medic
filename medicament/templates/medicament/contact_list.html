@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class="row full-width">
+    
+ {% if role %}
+     <div class="panel">
+        <div class="row full-width">
+		    <table>
+				<tr>
+				  <td><h6>МО</h6></td>
+				  <td><h6>Фамилия</h6></td>
+				  <td><h6>Имя</h6></td>
+				  <td><h6>Телефон</h6></td>
+				  <td><h6>E-mail</h6></td>
+				</tr >		    
+			     {% for u in role %}
+				<tr class="rowsel">
+				  <td><h6>{{u.hosp}}</h6></td>
+				  <td><h6>{{u.user.last_name}}</h6></td>
+				  <td><h6>{{u.user.first_name}}</h6></td>
+				  <td><h6>{{u.tel}}</h6></td>
+				  <td><h6>{{u.user.email}}</h6></td>
+				</tr>		    
+			    {% endfor %}
+		    </table>
+
+        </div>
+			
+    </div>
+{% endif %}
+ </div>
+
+
+
+{% endblock %}

@@ -4,14 +4,17 @@
 {% block monitorlist %}
 <div class="row">
 <div class="large-12 columns">
-     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h4>
+     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h3>
     
  {% if doc_list %}
-     <div class="large-3 columns">
-        <h4>ИТОГО</h2>
+     <div class="medium-3 columns">
+        <h4>ИТОГО</h4>
      </div>     
-     <div class="large-6 columns">
-        <h4>{{period_name}} ({{period_name.dateb|date:"d/m/y"}}-{{period_name.datee|date:"d/m/y"}})</h2>
+     <div class="medium-3 columns">
+        <h5>{{period_name}} ({{period_name.dateb|date:"d/m/y"}}-{{period_name.datee|date:"d/m/y"}})</h5>
+     </div>     
+     <div class="medium-3 columns">
+        <h5>{{region_name}}</h5>
      </div>     
      <table>
        <thead>
@@ -89,7 +92,7 @@
          <input  class="par_hidden" type="text" size="1" name="mo[]" value={{hosp}}>
          <input  class="par_hidden" type="text" size="1" name="period" value={{period}}>
          <input  class="par_hidden" type="text" size="1" name="status" value={{status}}>
-         <input  class="par_hidden" type="text" size="1" name="status" value={{region}}>
+         <input  class="par_hidden" type="text" size="1" name="region" value={{region}}>
      </form>
  {% else %} 
     <p>Мониторинги не найдены</p>
