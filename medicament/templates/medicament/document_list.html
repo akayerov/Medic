@@ -22,7 +22,7 @@
 				<tr class="rowsel">
 				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{ q.hosp }}</a></h6></td>
 				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{q.period}}</a></h6></td>
-				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{q.datef}}</a></h6></td>
+				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{q.datef|date:"d/m/y"}}</a></h6></td>
 				  <td><h6><a href="/monitor/{{doc_type.id}},{{q.id}},{{doc_page.number}},{{hosp}},{{period}},{{status}}">{{q.get_status_display}}</a></h6></td>
 				</tr>		    
 			    {% endfor %}

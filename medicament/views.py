@@ -23,7 +23,7 @@ from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
 
 import os
 import mimetypes
-from _overlapped import NULL
+
 
 NUM_RECORD_ON_PAGE = 50   # число записей на странице списка
 
