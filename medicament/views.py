@@ -77,14 +77,14 @@ def monitoring_list(request, question_id ):
         user_hosp = role.hosp
         m = role.hosp.id
 # По типам документов        
-    if type==1:
+    if type==1:   # Лекарства
         doc = Doc1                     # используемая модель
         new_doc =  create_report_form1   # функция создания новых отчетов
         calc_sum = calc_sum_form1
         result = [['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0],['',0,0,0,0,0,0,0,0]]
         html_response_rep = 'medicament/report_form1.html'       # Форма с JQuery
         export_to_excel = exp_to_excel_form1
-    elif type==2:
+    elif type==2:  # кадры
         doc = Doc2                     # используемая модель
         new_doc =  create_report_form2   # функция создания новых отчетов
         calc_sum = calc_sum_form2

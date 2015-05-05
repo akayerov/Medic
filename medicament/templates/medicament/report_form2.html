@@ -4,29 +4,101 @@
 {% block monitorlist %}
 <div class="row">
 <div class="large-12 columns">
-     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}}">{{doc_type.name}}</a></h4>
+     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h3>
     
  {% if doc_list %}
-     <div class="large-3 columns">
-        <h4>ИТОГО2</h2>
+     <div class="medium-3 columns">
+        <h4>ИТОГО</h4>
      </div>     
-     <div class="large-6 columns">
-        <h4>{{period_name}}</h2>
+     <div class="medium-3 columns">
+        <h5>{{period_name}} ({{period_name.dateb|date:"d/m/y"}}-{{period_name.datee|date:"d/m/y"}})</h5>
      </div>     
-     <div class="row">
-        <div class="small-3 columns"></div>
-        <div class="small-2 columns">
-           <h5>Всего</h5>
-        </div>
-        <div class="small-1 columns">Дети(0-18), Всего</div>
-        <div class="small-1 columns">В т.ч дети до 3-х лет</div>
-        <div class="small-1 columns">Мужчины старше 60, женщины старше 55</div>
-        <div class="small-1 columns">Инвалиды и участники ВОВ*</div>
-        <div class="small-1 columns">Сахарный диабет</div>
-        <div class="small-1 columns">Бронхиальная астма</div>
-        <div class="small-1 columns">Онкологические заболевания</div>
-      </div>
+     <div class="medium-3 columns">
+        <h5>{{region_name}}</h5>
+     </div>     
+     <table>
+       <thead>
+		   <tr>
+		    <th></th>
+		    <th></th>
+		    <th>Всего</th>
+		    <th>Дети(0-18), Всего</th>
+		    <th>В т.ч дети до 3-х лет</th>
+		    <th>Мужчины старше 60, женщины старше 55</th>
+		    <th>Инвалиды и участники ВОВ*</th>
+		    <th>Сахарный диабет</th>
+		    <th>Бронхиальная астма</th>
+		    <th>Онкологические заболевания</th>
+		   </tr>
+        </thead>
+        {% for r in result %}
+        <tr class="itog_row">	
+ 	    <td>+</td>
+        {% for r1 in r %}
+		   <td>{{r1}}</td>
+		{% endfor%}        
+        </tr>
+   	       {% for q in doc_list %}
+            <tr class="detail_row">
+ 	 	      <td></td>
+              {% if forloop.parentloop.counter0 == 0 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c1_1}}</td>
+	            <td>{{q.c1_2}}</td>
+	            <td>{{q.c1_3}}</td>
+	            <td>{{q.c1_4}}</td>
+	            <td>{{q.c1_5}}</td>
+	            <td>{{q.c1_6}}</td>
+	            <td>{{q.c1_7}}</td>
+	            <td>{{q.c1_8}}</td>
+              {% elif forloop.parentloop.counter0 == 1 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_1}}</td>
+		        <td>{{q.c2_2}}</td>
+	    	    <td>{{q.c2_3}}</td>
+	        	<td>{{q.c2_4}}</td>
+	       		<td>{{q.c2_5}}</td>
+	        	<td></td>
+	       		<td></td>
+	       		<td></td>
+              {% elif forloop.parentloop.counter0 == 2 %}
+		        <td>{{q.hosp}}</td>
+		        <td>{{q.c3_1}}</td>
+	    	    <td></td>
+	  		    <td></td>
+ 		        <td></td>
+		        <td>{{q.c3_5}}</td>
+		        <td>{{q.c3_6}}</td>
+	  	        <td>{{q.c3_7}}</td>
+ 		        <td>{{q.c3_8}}</td>
+              {% elif forloop.parentloop.counter0 == 3 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c4_1}}</td>
+	            <td>{{q.c4_2}}</td>
+	            <td>{{q.c4_3}}</td>
+	            <td>{{q.c4_4}}</td>
+	            <td>{{q.c4_5}}</td>
+	            <td>{{q.c4_6}}</td>
+	            <td>{{q.c4_7}}</td>
+	            <td>{{q.c4_8}}</td>
+	          {% endif %}
+   	        </tr>  
+   	       {% endfor %}
+		{% endfor%}        
+     </table>
+     <form>
+         {%csrf_token%}
+         <button class="button" name="button_export" value="7" type="submit" formmethod="post">Экспорт в Excel</button>   
+         <input  class="par_hidden" type="text" size="1" name="mo[]" value={{hosp}}>
+         <input  class="par_hidden" type="text" size="1" name="period" value={{period}}>
+         <input  class="par_hidden" type="text" size="1" name="status" value={{status}}>
+         <input  class="par_hidden" type="text" size="1" name="region" value={{region}}>
+     </form>
+ {% else %} 
+    <p>Мониторинги не найдены</p>
 {% endif %}
+</div>
+
 </div>
 
 {% endblock %}

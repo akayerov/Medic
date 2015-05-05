@@ -1,158 +1,290 @@
 {% extends 'medicament/document_form.html' %}
 {% block monitorform %}
-	     <div class="row full-width">
-		   <h4>Мониторинг: {{doc_type.name}}</h4>
-	     </div>
-	     <div class="row full-width">
-	        <div class="medium-3 columns">
-	           <h5>Показатель</h5>
-	        </div>
-	        <div class="medium-2 columns">
-	           <h5>Всего</h5>
-	        </div>
-	        <div class="medium-1 columns">Дети(0-18), Всего</div>
-	        <div class="medium-1 columns">В т.ч дети до 3-х лет</div>
-	        <div class="medium-1 columns">Мужчины старше 60, женщины старше 55</div>
-	        <div class="medium-1 columns">Инвалиды и участники ВОВ*</div>
-	        <div class="medium-1 columns">Сахарный диабет</div>
-	        <div class="medium-1 columns"><p>Бронхиаль<wbr>ная астма</p></div>
-	        <div class="medium-1 columns">Онкологи<wbr>ческие заболевания</div>
-	      </div>
- 	      <div class="row full-width">
-	        <div class="medium-12 columns">
-		       <div class="row_mess" ><h5>Высокозатратные нозологии (в соответствии с постановлением Правительства Российской Федерации от 18.10.2007 № 682)</h5>
-		       </div>
-	        </div>
-	      </div>
- 	      <div class="row full-width">
-	        <div class="medium-3 columns">
-		        <h6>Выписано рецептов**</h6>
-	        </div>
-	        <div class="medium-2 columns">
-		        <input type="number" name="c1_1" min="0" max="999999" size="7" value="{{doc.c1_1}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c1_2" min="0" max="999999" size="7" value="{{doc.c1_2}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c1_3" min="0" max="999999" size="7" value="{{doc.c1_3}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c1_4" min="0" max="999999" size="7" value="{{doc.c1_4}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c1_5" min="0" max="999999" size="7" value="{{doc.c1_5}}">
-	        </div>
-	        <div class="medium-1 columns">
-                <h6>X</h6> 
-	        </div>
-	        <div class="medium-1 columns">
-                <h6>X</h6> 
-	        </div>
-	        <div class="medium-1 columns">
-                <h6>X</h6> 
-	        </div>
-	      </div>
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <caption>Мониторинг: {{doc_type.name}}</caption>
+		   <tr>
+		    <th width="50%">Показатель</th>
+		    <th>Значение</th>
+		    <th>Прошлый период</th>
+		   </tr>
+		   <tr>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица 2.1. Численность и структура кадров работников здравоохранения</h5></td>
+		   </tr>
+		   <tr>
+		     <td><h6>Число врачей (без аспирантов, интернов и ординаторов), работающих в медицинских организациях субъекта Российской Федерации</h6></td>
+		     <td><input type="number" name="c2_1" min="0" max="9999" size="6" value="{{doc.c2_1}}"></td>
+		     <td>{{doc_prev.c2_1}}</td>
+		   <tr>
+		     <td><h6>Число среднего медицинского персонала, работающего в медицинских организациях субъекта Российской Федерации</h6></td>
+		     <td><input type="number" name="c2_2" min="0" max="9999" size="6" value="{{doc.c2_2}}"></td>
+		     <td>{{doc_prev.c2_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Число участковых врачей (без аспирантов, интернов и ординаторов), оказывающих медицинскую помощь сельскому населению (выбрать из справочника), всего</h6></td>
+		     <td><input type="number" name="c2_3" min="0" max="9999" size="6" value="{{doc.c2_3}}"></td>
+		     <td>{{doc_prev.c2_3}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>в том силе,</h6></td>
+		     <td></td>
+		     <td></td>
+		   </tr>
+		   <tr>
+		     <td><h6>Участковый врач терапевт</h6></td>
+		     <td><input type="number" name="c2_3_1" min="0" max="9999" size="6" value="{{doc.c2_3_1}}"></td>
+		     <td>{{doc_prev.c2_3_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Участковый врач педиатр</h6></td>
+		     <td><input type="number" name="c2_3_2" min="0" max="9999" size="6" value="{{doc.c2_3_2}}"></td>
+		     <td>{{doc_prev.c2_3_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Врач общей практики</h6></td>
+		     <td><input type="number" name="c2_3_3" min="0" max="9999" size="6" value="{{doc.c2_3_3}}"></td>
+		     <td>{{doc_prev.c2_3_3}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Число среднего медицинского персонала, оказывающего медицинскую помощь сельскому населению (выбрать из справочника), всего</h6></td>
+		     <td><input type="number" name="c2_4" min="0" max="9999" size="6" value="{{doc.c2_4}}"></td>
+		     <td>{{doc_prev.c2_4}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>в том силе,</h6></td>
+		     <td></td>
+		     <td></td>
+		   </tr>
+		   <tr>
+		     <td><h6>Участковая медицинская сестра врача терапевта</h6></td>
+		     <td><input type="number" name="c2_4_1" min="0" max="9999" size="6" value="{{doc.c2_4_1}}"></td>
+		     <td>{{doc_prev.c2_4_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Участковая медицинская сестра врача педиатра</h6></td>
+		     <td><input type="number" name="c2_4_2" min="0" max="9999" size="6" value="{{doc.c2_4_2}}"></td>
+		     <td>{{doc_prev.c2_4_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Участковая медицинская сестра врача общей практики</h6></td>
+		     <td><input type="number" name="c2_4_3" min="0" max="9999" size="6" value="{{doc.c2_4_3}}"></td>
+		     <td>{{doc_prev.c2_4_3}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Число врачей клинических специальностей (выбрать из списка), всего</h6></td>
+		     <td><input type="number" name="c2_5" min="0" max="9999" size="6" value="{{doc.c2_5}}"></td>
+		     <td>{{doc_prev.c2_5}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>в том силе,</h6></td>
+		     <td></td>
+		     <td></td>
+		   </tr>
+		   <tr>
+		     <td><h6>акушеры-гинекологи</h6></td>
+		     <td><input type="number" name="c2_5_1" min="0" max="9999" size="6" value="{{doc.c2_5_1}}"></td>
+		     <td>{{doc_prev.c2_5_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>аллергологи-иммунологи</h6></td>
+		     <td><input type="number" name="c2_5_2" min="0" max="9999" size="6" value="{{doc.c2_5_2}}"></td>
+		     <td>{{doc_prev.c2_5_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>гастроэнтерологи</h6></td>
+		     <td><input type="number" name="c2_5_3" min="0" max="9999" size="6" value="{{doc.c2_5_3}}"></td>
+		     <td>{{doc_prev.c2_5_3}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>гематологи</h6></td>
+		     <td><input type="number" name="c2_5_4" min="0" max="9999" size="6" value="{{doc.c2_5_4}}"></td>
+		     <td>{{doc_prev.c2_5_4}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>гериатры</h6></td>
+		     <td><input type="number" name="c2_5_5" min="0" max="9999" size="6" value="{{doc.c2_5_5}}"></td>
+		     <td>{{doc_prev.c2_5_5}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>дерматовенерологи</h6></td>
+		     <td><input type="number" name="c2_5_6" min="0" max="9999" size="6" value="{{doc.c2_5_6}}"></td>
+		     <td>{{doc_prev.c2_5_6}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>диабетологи</h6></td>
+		     <td><input type="number" name="c2_5_7" min="0" max="9999" size="6" value="{{doc.c2_5_7}}"></td>
+		     <td>{{doc_prev.c2_5_7}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>инфекционисты</h6></td>
+		     <td><input type="number" name="c2_5_8" min="0" max="9999" size="6" value="{{doc.c2_5_8}}"></td>
+		     <td>{{doc_prev.c2_5_8}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>кардиологи</h6></td>
+		     <td><input type="number" name="c2_5_9" min="0" max="9999" size="6" value="{{doc.c2_5_9}}"></td>
+		     <td>{{doc_prev.c2_5_9}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>кардиологи детские</h6></td>
+		     <td><input type="number" name="c2_5_10" min="0" max="9999" size="6" value="{{doc.c2_5_10}}"></td>
+		     <td>{{doc_prev.c2_5_10}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>колопроктологи</h6></td>
+		     <td><input type="number" name="c2_5_11" min="0" max="9999" size="6" value="{{doc.c2_5_11}}"></td>
+		     <td>{{doc_prev.c2_5_11}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>неврологи</h6></td>
+		     <td><input type="number" name="c2_5_12" min="0" max="9999" size="6" value="{{doc.c2_5_12}}"></td>
+		     <td>{{doc_prev.c2_5_12}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>нейрохирурги</h6></td>
+		     <td><input type="number" name="c2_5_13" min="0" max="9999" size="6" value="{{doc.c2_5_13}}"></td>
+		     <td>{{doc_prev.c2_5_13}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>неонатологи</h6></td>
+		     <td><input type="number" name="c2_5_14" min="0" max="9999" size="6" value="{{doc.c2_5_14}}"></td>
+		     <td>{{doc_prev.c2_5_14}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>нефрологи</h6></td>
+		     <td><input type="number" name="c2_5_15" min="0" max="9999" size="6" value="{{doc.c2_5_15}}"></td>
+		     <td>{{doc_prev.c2_5_15}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>общей практики (семейные)</h6></td>
+		     <td><input type="number" name="c2_5_16" min="0" max="9999" size="6" value="{{doc.c2_5_16}}"></td>
+		     <td>{{doc_prev.c2_5_16}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>онкологи</h6></td>
+		     <td><input type="number" name="c2_5_17" min="0" max="9999" size="6" value="{{doc.c2_5_17}}"></td>
+		     <td>{{doc_prev.c2_5_17}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>онкологи детские</h6></td>
+		     <td><input type="number" name="c2_5_18" min="0" max="9999" size="6" value="{{doc.c2_5_18}}"></td>
+		     <td>{{doc_prev.c2_5_18}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>оториноларингологи</h6></td>
+		     <td><input type="number" name="c2_5_19" min="0" max="9999" size="6" value="{{doc.c2_5_19}}"></td>
+		     <td>{{doc_prev.c2_5_19}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>офтальмологи</h6></td>
+		     <td><input type="number" name="c2_5_20" min="0" max="9999" size="6" value="{{doc.c2_5_20}}"></td>
+		     <td>{{doc_prev.c2_5_20}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>педиатры</h6></td>
+		     <td><input type="number" name="c2_5_21" min="0" max="9999" size="6" value="{{doc.c2_5_21}}"></td>
+		     <td>{{doc_prev.c2_5_21}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>профпатологи</h6></td>
+		     <td><input type="number" name="c2_5_22" min="0" max="9999" size="6" value="{{doc.c2_5_22}}"></td>
+		     <td>{{doc_prev.c2_5_22}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>no рентгенэндоваскулярным диагностике и лечению</h6></td>
+		     <td><input type="number" name="c2_5_23" min="0" max="9999" size="6" value="{{doc.c2_5_23}}"></td>
+		     <td>{{doc_prev.c2_5_23}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>психиатры</h6></td>
+		     <td><input type="number" name="c2_5_24" min="0" max="9999" size="6" value="{{doc.c2_5_24}}"></td>
+		     <td>{{doc_prev.c2_5_24}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>психиатры-наркологи</h6></td>
+		     <td><input type="number" name="c2_5_25" min="0" max="9999" size="6" value="{{doc.c2_5_25}}"></td>
+		     <td>{{doc_prev.c2_5_25}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>пульмонологи</h6></td>
+		     <td><input type="number" name="c2_5_26" min="0" max="9999" size="6" value="{{doc.c2_5_26}}"></td>
+		     <td>{{doc_prev.c2_5_26}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>ревматологи</h6></td>
+		     <td><input type="number" name="c2_5_27" min="0" max="9999" size="6" value="{{doc.c2_5_27}}"></td>
+		     <td>{{doc_prev.c2_5_27}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>скорой медицинской помощи</h6></td>
+		     <td><input type="number" name="c2_5_28" min="0" max="9999" size="6" value="{{doc.c2_5_28}}"></td>
+		     <td>{{doc_prev.c2_5_28}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>терапевты</h6></td>
+		     <td><input type="number" name="c2_5_29" min="0" max="9999" size="6" value="{{doc.c2_5_29}}"></td>
+		     <td>{{doc_prev.c2_5_29}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>травматология и ортопеды</h6></td>
+		     <td><input type="number" name="c2_5_30" min="0" max="9999" size="6" value="{{doc.c2_5_30}}"></td>
+		     <td>{{doc_prev.c2_5_30}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>урологи</h6></td>
+		     <td><input type="number" name="c2_5_31" min="0" max="9999" size="6" value="{{doc.c2_5_31}}"></td>
+		     <td>{{doc_prev.c2_5_31}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>урологи-андрологи детские</h6></td>
+		     <td><input type="number" name="c2_5_32" min="0" max="9999" size="6" value="{{doc.c2_5_32}}"></td>
+		     <td>{{doc_prev.c2_5_32}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>фтизиатры</h6></td>
+		     <td><input type="number" name="c2_5_33" min="0" max="9999" size="6" value="{{doc.c2_5_33}}"></td>
+		     <td>{{doc_prev.c2_5_33}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>хирурги</h6></td>
+		     <td><input type="number" name="c2_5_34" min="0" max="9999" size="6" value="{{doc.c2_5_34}}"></td>
+		     <td>{{doc_prev.c2_5_34}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>хирурги детские</h6></td>
+		     <td><input type="number" name="c2_5_35" min="0" max="9999" size="6" value="{{doc.c2_5_35}}"></td>
+		     <td>{{doc_prev.c2_5_35}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>хирурги пластические</h6></td>
+		     <td><input type="number" name="c2_5_36" min="0" max="9999" size="6" value="{{doc.c2_5_36}}"></td>
+		     <td>{{doc_prev.c2_5_36}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>хирурги сердечно-сосудистые</h6></td>
+		     <td><input type="number" name="c2_5_37" min="0" max="9999" size="6" value="{{doc.c2_5_37}}"></td>
+		     <td>{{doc_prev.c2_5_37}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>хирурги торакальные</h6></td>
+		     <td><input type="number" name="c2_5_38" min="0" max="9999" size="6" value="{{doc.c2_5_38}}"></td>
+		     <td>{{doc_prev.c2_5_38}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>хирурги челюстно-лицевые</h6></td>
+		     <td><input type="number" name="c2_5_39" min="0" max="9999" size="6" value="{{doc.c2_5_39}}"></td>
+		     <td>{{doc_prev.c2_5_39}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>эндокринологи</h6></td>
+		     <td><input type="number" name="c2_5_40" min="0" max="9999" size="6" value="{{doc.c2_5_40}}"></td>
+		     <td>{{doc_prev.c2_5_40}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>эндокринологи детские</h6></td>
+		     <td><input type="number" name="c2_5_41" min="0" max="9999" size="6" value="{{doc.c2_5_41}}"></td>
+		     <td>{{doc_prev.c2_5_41}}</td>
+		   </tr>
 
- 	      <div class="row full-width">
-	        <div class="medium-12 columns">
-		       <div class="row_mess" ><h5>Федеральное обеспечение</h5>
-		       </div>
-	        </div>
-	      </div>
- 	      <div class="row full-width">
-	        <div class="medium-3 columns">
-		        <h6>Численность категории льготополучателей</h6>
-	        </div>
-	        <div class="medium-2 columns">
-		        <h6>X</h6>
-	        </div>
-	        <div class="medium-1 columns">
-		        <h6>X</h6>
-	        </div>
-	        <div class="medium-1 columns">
-		        <h6>X</h6>
-	        </div>
-	        <div class="medium-1 columns">
-		        <h6>X</h6>
-	        </div>
-	        <div class="medium-1 columns">
-                <h6>X</h6> 
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c2_6" min="0" max="999999" size="7" value="{{doc.c2_6}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c2_7" min="0" max="999999" size="7" value="{{doc.c2_7}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c2_8" min="0" max="999999" size="7" value="{{doc.c2_8}}">
-	        </div>
-	      </div>
- 	      <div class="row full-width">
-	        <div class="medium-3 columns">
-		        <h6> Выписано рецептов**</h6>
-	        </div>
-	        <div class="medium-2 columns">
-		        <input type="number" name="c3_1" min="0" max="999999" size="7" value="{{doc.c3_1}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c3_2" min="0" max="999999" size="7" value="{{doc.c3_2}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c3_3" min="0" max="999999" size="7" value="{{doc.c3_3}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c3_4" min="0" max="999999" size="7" value="{{doc.c3_4}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c3_5" min="0" max="999999" size="7" value="{{doc.c3_5}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c3_6" min="0" max="999999" size="7" value="{{doc.c3_6}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c3_7" min="0" max="999999" size="7" value="{{doc.c3_7}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c3_8" min="0" max="999999" size="7" value="{{doc.c3_8}}">
-	        </div>
-	      </div>
- 	      <div class="row full-width">
-	        <div class="medium-12 columns">
-		       <div class="row_mess" ><h5>Региональное обеспечение</h5>
-		       </div>
-	        </div>
-	      </div>
- 	      <div class="row full-width">
-	        <div class="medium-3 columns">
-		        <h6> Выписано рецептов**</h6>
-	        </div>
-	        <div class="medium-2 columns">
-		        <input type="number" name="c4_1" min="0" max="999999" size="7" value="{{doc.c4_1}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c4_2" min="0" max="999999" size="7" value="{{doc.c4_2}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c4_3" min="0" max="999999" size="7" value="{{doc.c4_3}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c4_4" min="0" max="999999" size="7" value="{{doc.c4_4}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c4_5" min="0" max="999999" size="7" value="{{doc.c4_5}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c4_6" min="0" max="999999" size="7" value="{{doc.c4_6}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c4_7" min="0" max="999999" size="7" value="{{doc.c4_7}}">
-	        </div>
-	        <div class="medium-1 columns">
-		        <input type="number" name="c4_8" min="0" max="999999" size="7" value="{{doc.c4_8}}">
-	        </div>
-	      </div>
-
+  		</table>
 {% endblock %}
 
