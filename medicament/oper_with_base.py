@@ -66,7 +66,7 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
     doc = tdoc.objects.get(pk=id_doc);
     doc_prev = get_doc_prev(doc, tdoc)
 
-    if 'button_save' in request.POST:
+    if 'button_save' in request.POST or 'button_export' in request.POST:
         set_fields(request, doc)
         ret_mess = is_valid(doc, doc_prev)
         doc.status = Document.EDIT

@@ -226,10 +226,12 @@ def monitoring_form(request, question_id):
         doc = Doc1
         save_doc = save_doc_form1
         html_response = "medicament/doc_form1.html"
+        export_to_excel = exp_to_excel_form1
     elif type == 2: 
         doc = Doc2
         save_doc = save_doc_form2
         html_response = "medicament/doc_form2.html"
+        export_to_excel = exp_to_excel_form2
 # конец настройки по типам!
                    
     args = {}
@@ -246,10 +248,15 @@ def monitoring_form(request, question_id):
 
         ret_mess = save_doc(request,type,doc_id, mode_comment)
                     
-        if ret_mess[0]:
-            response = redirect('/form/' + str(type) + ',' + str(page_number) + ',' + str(m) \
+        if ret_mess[0]:  # проверка прошла нормально
+            if  'button_export' in request.POST:
+                args['doc']    =  doc.objects.filter(pk=doc_id)
+                file_name = export_to_excel(args['doc'],period,region) 
+                return redirect("/monitor/export/" + file_name)
+            else:      
+                response = redirect('/form/' + str(type) + ',' + str(page_number) + ',' + str(m) \
                                 + ',' + str(period) + ',' + status + ',' + str(region))
-            return response
+                return response
         else:
             args['doc']    =  doc.objects.get(pk=doc_id)
 #            error = "Сумма по столбцам превышает итог"  
