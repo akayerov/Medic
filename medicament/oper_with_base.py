@@ -11,6 +11,16 @@ import os
 import openpyxl
 import datetime
 
+class statistic():
+    def init (self, rec_all=0, rec_fltr=0, rec_complete=0,rec_soglas=0,rec_correct=0,rec_edit=0): 
+        self.rec_all = rec_all;
+        self.rec_fltr = rec_fltr;
+        self.rec_complete = rec_complete;
+        self.rec_soglas = rec_soglas;
+        self.rec_correct = rec_correct;
+        self.rec_edit = rec_edit;
+    
+
 def get_ids(str_id):
     l = str_id.split(',')
     return l
@@ -96,7 +106,8 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
         doc.status = Document.COMPELETE
         actionComment = Comment.CONTROL_YES
 # Уступка - дает право изменять документ при согласовании, однако пройдя внутреннюю проверку is_valid
-        set_fields(request, doc)
+# пока отключено
+#       set_fields(request, doc)
         doc.save()
         if mode_comment:
             add_action_in_comment(request, doc, actionComment)
@@ -118,9 +129,18 @@ def get_period(iperiod):
     else:
         return None
 
+def get_region_name(mode, doc, iregion):
+    if mode == 0:
+        if iregion > 0:
+            return Region.objects.get(pk=iregion).name
+        else:
+            return "Свод по Ярословской области"
+    elif mode == 1:
+        return doc[0].hosp.name        
+    
 def get_region(iregion):
     if iregion > 0:
-        return Region.objects.get(pk=iregion)
+        return Region.objects.get(pk=iregion).name
     else:
         return None
 

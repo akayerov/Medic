@@ -14,7 +14,7 @@ from django.contrib import auth
 from django.core.paginator import Paginator
 from medicament.forms import CommentForm
 # мой модуль для работы с базами
-from medicament.oper_with_base import save_doc, get_ids
+from medicament.oper_with_base import save_doc, get_ids, statistic
 # по каждому типу докумпентов
 from medicament.Form.form1 import create_report_form1, calc_sum_form1,\
     save_doc_form1,exp_to_excel_form1
@@ -119,6 +119,10 @@ def monitoring_list(request, question_id ):
                 status = request.POST['status']
         is_filter = False 
 
+        if period > 0:
+            stat = statistic()
+            stat.rec_all =  doc.objects.filter(period = period).count();        
+
         if see_all and region > 0:
             args['doc_list']    =  doc.objects.filter(hosp__region = region)
             is_filter = True
@@ -152,7 +156,12 @@ def monitoring_list(request, question_id ):
             
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
-            file_name = export_to_excel(args['doc_list'],period,region) 
+            stat.rec_fltr = args['doc_list'].count();        
+            stat.rec_complete =  args['doc_list'].filter(status = 'F').count();        
+            stat.rec_soglas   =  args['doc_list'].filter(status = 'W').count();        
+            stat.rec_correct  =  args['doc_list'].filter(status = 'C').count();        
+            stat.rec_edit     =  args['doc_list'].filter(status = 'E').count();        
+            file_name = export_to_excel(args['doc_list'],period,region, 0, stat) 
             return redirect("/monitor/export/" + file_name)
     else:   # Первый вход по GET
         if see_all: 
@@ -245,13 +254,18 @@ def monitoring_form(request, question_id):
             mode_comment = False
         else:
             mode_comment = True
-
+        if  'button_export' in request.POST:                 # Кнопка Export доступна во всех режимах, поэтому работает без сохранения
+            args['doc']    =  doc.objects.filter(pk=doc_id)  # выбор документа фильтром с списке, чтобы функция вывода в excel работала единообразно
+            odoc = args['doc'][0];
+            file_name = export_to_excel(args['doc'],odoc.period.id,region,1) 
+            return redirect("/monitor/export/" + file_name)
+        
         ret_mess = save_doc(request,type,doc_id, mode_comment)
                     
         if ret_mess[0]:  # проверка прошла нормально
-            if  'button_export' in request.POST:
+            if  'button_export' in request.POST:             # Эта ветка на память, сюда не должна попадать
                 args['doc']    =  doc.objects.filter(pk=doc_id)
-                file_name = export_to_excel(args['doc'],period,region) 
+                file_name = export_to_excel(args['doc'], doc.period,region,1) 
                 return redirect("/monitor/export/" + file_name)
             else:      
                 response = redirect('/form/' + str(type) + ',' + str(page_number) + ',' + str(m) \

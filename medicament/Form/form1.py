@@ -2,11 +2,14 @@
 '''
 @author: a_kayerov
 '''
-from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region
-from medicament.models import Doc1
 from django.db.models import Sum
 from random import random
 import openpyxl
+from openpyxl.styles import Font
+
+from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name
+from medicament.models import Doc1
+from _datetime import datetime
 
 
 def create_report_form1(periodInt, datef):
@@ -152,18 +155,35 @@ def calc_sum_form1(doc):
  
     return s
 
-def exp_to_excel_form1(doc, iperiod, iregion):
+def exp_to_excel_form1(doc, iperiod, iregion, mode, stat = None):    # mode = 0 по региону или группе больниц  mode = 1 - по конкретной больнице
     res =  calc_sum_form1(doc)
     speriod = get_period_namef(iperiod)
-    region = get_region(iregion)
-#   name_file = get_name("\\medicament\\Form\\Form1.xlsx")
+    sregion = get_region_name(mode,doc,iregion)
     name_file = get_name("/medicament/Form/Form1.xlsx")
 
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active
     sheet['B2'] = speriod
-    if region:
-        sheet['F2'] = region.name
+    sheet['A1'] = sregion
+    if mode==0:
+        sheet['A20'] = "Статистика по отчету"  
+        sheet['A21'] = "Организаций предоставляющих, Всего"
+        sheet['B21'] = stat.rec_all
+        sheet['A22'] = "Отобрано в отчет, Всего"
+        sheet['B22'] = stat.rec_fltr
+        sheet['A23'] = "Завершено"
+        sheet['B23'] = stat.rec_complete
+        sheet['A24'] = "Согласование"
+        sheet['B24'] = stat.rec_soglas
+        sheet['A25'] = "Корректировка"
+        sheet['B25'] = stat.rec_correct
+        sheet['A26'] = "Редактирование"
+        sheet['B26'] = stat.rec_edit
+
+    sheet['A28'] = "Выведено в системе Мед+ " + str(datetime.now()) 
+    sheet['A28'].font = Font(size=5)
+
+    
     sheet['B8'] = res[0][1]
     sheet['C8'] = res[0][2]
     sheet['D8'] = res[0][3]
@@ -191,6 +211,7 @@ def exp_to_excel_form1(doc, iperiod, iregion):
     sheet['G13'] = res[3][6]
     sheet['H13'] = res[3][7]
     sheet['I13'] = res[3][8]
+
 
  #   name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
     name_file =  get_name("/medicament/Form/rep" + str(int(random()*100000000)) + ".xlsx") 
