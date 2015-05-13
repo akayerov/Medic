@@ -28,7 +28,7 @@
           <form>
            {% csrf_token %}
            {% block monitorform %} {% endblock %}
-     
+   
            {% if right_operator %}
            {% if doc.status == 'E' or doc.status == 'C' %}
     		 <button class="button" name="button_save" value="1" type="submit" formmethod="post">Сохранить</button>         

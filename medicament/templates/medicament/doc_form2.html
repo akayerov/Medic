@@ -1,4 +1,4 @@
-{% extends 'medicament/document_form.html' %}
+﻿{% extends 'medicament/document_form.html' %}
 {% block monitorform %}
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <caption>Мониторинг: {{doc_type.name}}</caption>
@@ -11,16 +11,16 @@
   	         <td class="row_mess" colspan="3" ><h5>Таблица 2.1. Численность и структура кадров работников здравоохранения</h5></td>
 		   </tr>
 		   <tr>
-		     <td><h6>1. Число врачей (без аспирантов, интернов и ординаторов), работающих в медицинских организациях субъекта Российской Федерации</h6></td>
+		     <td><h6>2.1. Число врачей (без аспирантов, интернов и ординаторов), работающих в медицинских организациях субъекта Российской Федерации</h6></td>
 		     <td><input type="number" name="c2_1" min="0" max="9999" size="6" value="{{doc.c2_1}}"></td>
 		     <td>{{doc_prev.c2_1}}</td>
 		   <tr>
-		     <td><h6>2. Число среднего медицинского персонала, работающего в медицинских организациях субъекта Российской Федерации</h6></td>
+		     <td><h6>2.2. Число среднего медицинского персонала, работающего в медицинских организациях субъекта Российской Федерации</h6></td>
 		     <td><input type="number" name="c2_2" min="0" max="9999" size="6" value="{{doc.c2_2}}"></td>
 		     <td>{{doc_prev.c2_2}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>3. Число участковых врачей (без аспирантов, интернов и ординаторов), оказывающих медицинскую помощь сельскому населению (выбрать из справочника), всего</h6></td>
+		     <td><h6>2.3. Число участковых врачей (без аспирантов, интернов и ординаторов), оказывающих медицинскую помощь сельскому населению (выбрать из справочника), всего</h6></td>
 		     <td><input type="number" name="c2_3" min="0" max="9999" size="6" value="{{doc.c2_3}}"></td>
 		     <td>{{doc_prev.c2_3}}</td>
 		   </tr>
@@ -30,22 +30,22 @@
 		     <td></td>
 		   </tr>
 		   <tr>
-		     <td><h6>3.1 Участковый врач терапевт</h6></td>
+		     <td><h6>2.3.1 Участковый врач терапевт</h6></td>
 		     <td><input type="number" name="c2_3_1" min="0" max="9999" size="6" value="{{doc.c2_3_1}}"></td>
 		     <td>{{doc_prev.c2_3_1}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>3.2 Участковый врач педиатр</h6></td>
+		     <td><h6>2.3.2 Участковый врач педиатр</h6></td>
 		     <td><input type="number" name="c2_3_2" min="0" max="9999" size="6" value="{{doc.c2_3_2}}"></td>
 		     <td>{{doc_prev.c2_3_2}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>3.3 Врач общей практики</h6></td>
+		     <td><h6>2.3.3 Врач общей практики</h6></td>
 		     <td><input type="number" name="c2_3_3" min="0" max="9999" size="6" value="{{doc.c2_3_3}}"></td>
 		     <td>{{doc_prev.c2_3_3}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>4. Число среднего медицинского персонала, оказывающего медицинскую помощь сельскому населению (выбрать из справочника), всего</h6></td>
+		     <td><h6>2.4. Число среднего медицинского персонала, оказывающего медицинскую помощь сельскому населению (выбрать из справочника), всего</h6></td>
 		     <td><input type="number" name="c2_4" min="0" max="9999" size="6" value="{{doc.c2_4}}"></td>
 		     <td>{{doc_prev.c2_4}}</td>
 		   </tr>
@@ -55,22 +55,22 @@
 		     <td></td>
 		   </tr>
 		   <tr>
-		     <td><h6>4.1 Участковая медицинская сестра врача терапевта</h6></td>
+		     <td><h6>2.4.1 Участковая медицинская сестра врача терапевта</h6></td>
 		     <td><input type="number" name="c2_4_1" min="0" max="9999" size="6" value="{{doc.c2_4_1}}"></td>
 		     <td>{{doc_prev.c2_4_1}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>4.2 Участковая медицинская сестра врача педиатра</h6></td>
+		     <td><h6>2.4.2 Участковая медицинская сестра врача педиатра</h6></td>
 		     <td><input type="number" name="c2_4_2" min="0" max="9999" size="6" value="{{doc.c2_4_2}}"></td>
 		     <td>{{doc_prev.c2_4_2}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>4.3 Участковая медицинская сестра врача общей практики</h6></td>
+		     <td><h6>2.4.3 Участковая медицинская сестра врача общей практики</h6></td>
 		     <td><input type="number" name="c2_4_3" min="0" max="9999" size="6" value="{{doc.c2_4_3}}"></td>
 		     <td>{{doc_prev.c2_4_3}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5. Число врачей клинических специальностей (выбрать из списка), всего</h6></td>
+		     <td><h6>2.5. Число врачей клинических специальностей (выбрать из списка), всего</h6></td>
 		     <td><input type="number" name="c2_5" min="0" max="9999" size="6" value="{{doc.c2_5}}"></td>
 		     <td>{{doc_prev.c2_5}}</td>
 		   </tr>
@@ -80,247 +80,247 @@
 		     <td></td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.1 акушеры-гинекологи</h6></td>
+		     <td><h6>2.5.1 акушеры-гинекологи</h6></td>
 		     <td><input type="number" name="c2_5_1" min="0" max="9999" size="6" value="{{doc.c2_5_1}}"></td>
 		     <td>{{doc_prev.c2_5_1}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.2 аллергологи-иммунологи</h6></td>
+		     <td><h6>2.5.2 аллергологи-иммунологи</h6></td>
 		     <td><input type="number" name="c2_5_2" min="0" max="9999" size="6" value="{{doc.c2_5_2}}"></td>
 		     <td>{{doc_prev.c2_5_2}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.3 гастроэнтерологи</h6></td>
+		     <td><h6>2.5.3 гастроэнтерологи</h6></td>
 		     <td><input type="number" name="c2_5_3" min="0" max="9999" size="6" value="{{doc.c2_5_3}}"></td>
 		     <td>{{doc_prev.c2_5_3}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.4 гематологи</h6></td>
+		     <td><h6>2.5.4 гематологи</h6></td>
 		     <td><input type="number" name="c2_5_4" min="0" max="9999" size="6" value="{{doc.c2_5_4}}"></td>
 		     <td>{{doc_prev.c2_5_4}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.5 гериатры</h6></td>
+		     <td><h6>2.5.5 гериатры</h6></td>
 		     <td><input type="number" name="c2_5_5" min="0" max="9999" size="6" value="{{doc.c2_5_5}}"></td>
 		     <td>{{doc_prev.c2_5_5}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.6 дерматовенерологи</h6></td>
+		     <td><h6>2.5.6 дерматовенерологи</h6></td>
 		     <td><input type="number" name="c2_5_6" min="0" max="9999" size="6" value="{{doc.c2_5_6}}"></td>
 		     <td>{{doc_prev.c2_5_6}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.7 диабетологи</h6></td>
+		     <td><h6>2.5.7 диабетологи</h6></td>
 		     <td><input type="number" name="c2_5_7" min="0" max="9999" size="6" value="{{doc.c2_5_7}}"></td>
 		     <td>{{doc_prev.c2_5_7}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.8 инфекционисты</h6></td>
+		     <td><h6>2.5.8 инфекционисты</h6></td>
 		     <td><input type="number" name="c2_5_8" min="0" max="9999" size="6" value="{{doc.c2_5_8}}"></td>
 		     <td>{{doc_prev.c2_5_8}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.9 кардиологи</h6></td>
+		     <td><h6>2.5.9 кардиологи</h6></td>
 		     <td><input type="number" name="c2_5_9" min="0" max="9999" size="6" value="{{doc.c2_5_9}}"></td>
 		     <td>{{doc_prev.c2_5_9}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.10 кардиологи детские</h6></td>
+		     <td><h6>2.5.10 кардиологи детские</h6></td>
 		     <td><input type="number" name="c2_5_10" min="0" max="9999" size="6" value="{{doc.c2_5_10}}"></td>
 		     <td>{{doc_prev.c2_5_10}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.11 колопроктологи</h6></td>
+		     <td><h6>2.5.11 колопроктологи</h6></td>
 		     <td><input type="number" name="c2_5_11" min="0" max="9999" size="6" value="{{doc.c2_5_11}}"></td>
 		     <td>{{doc_prev.c2_5_11}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.12 неврологи</h6></td>
+		     <td><h6>2.5.12 неврологи</h6></td>
 		     <td><input type="number" name="c2_5_12" min="0" max="9999" size="6" value="{{doc.c2_5_12}}"></td>
 		     <td>{{doc_prev.c2_5_12}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.13 нейрохирурги</h6></td>
+		     <td><h6>2.5.13 нейрохирурги</h6></td>
 		     <td><input type="number" name="c2_5_13" min="0" max="9999" size="6" value="{{doc.c2_5_13}}"></td>
 		     <td>{{doc_prev.c2_5_13}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.14 неонатологи</h6></td>
+		     <td><h6>2.5.14 неонатологи</h6></td>
 		     <td><input type="number" name="c2_5_14" min="0" max="9999" size="6" value="{{doc.c2_5_14}}"></td>
 		     <td>{{doc_prev.c2_5_14}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.15 нефрологи</h6></td>
+		     <td><h6>2.5.15 нефрологи</h6></td>
 		     <td><input type="number" name="c2_5_15" min="0" max="9999" size="6" value="{{doc.c2_5_15}}"></td>
 		     <td>{{doc_prev.c2_5_15}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.16 общей практики (семейные)</h6></td>
+		     <td><h6>2.5.16 общей практики (семейные)</h6></td>
 		     <td><input type="number" name="c2_5_16" min="0" max="9999" size="6" value="{{doc.c2_5_16}}"></td>
 		     <td>{{doc_prev.c2_5_16}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.17 онкологи</h6></td>
+		     <td><h6>2.5.17 онкологи</h6></td>
 		     <td><input type="number" name="c2_5_17" min="0" max="9999" size="6" value="{{doc.c2_5_17}}"></td>
 		     <td>{{doc_prev.c2_5_17}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.18 онкологи детские</h6></td>
+		     <td><h6>2.5.18 онкологи детские</h6></td>
 		     <td><input type="number" name="c2_5_18" min="0" max="9999" size="6" value="{{doc.c2_5_18}}"></td>
 		     <td>{{doc_prev.c2_5_18}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.19 оториноларингологи</h6></td>
+		     <td><h6>2.5.19 оториноларингологи</h6></td>
 		     <td><input type="number" name="c2_5_19" min="0" max="9999" size="6" value="{{doc.c2_5_19}}"></td>
 		     <td>{{doc_prev.c2_5_19}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.20 офтальмологи</h6></td>
+		     <td><h6>2.5.20 офтальмологи</h6></td>
 		     <td><input type="number" name="c2_5_20" min="0" max="9999" size="6" value="{{doc.c2_5_20}}"></td>
 		     <td>{{doc_prev.c2_5_20}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.21 педиатры</h6></td>
+		     <td><h6>2.5.21 педиатры</h6></td>
 		     <td><input type="number" name="c2_5_21" min="0" max="9999" size="6" value="{{doc.c2_5_21}}"></td>
 		     <td>{{doc_prev.c2_5_21}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.22 профпатологи</h6></td>
+		     <td><h6>2.5.22 профпатологи</h6></td>
 		     <td><input type="number" name="c2_5_22" min="0" max="9999" size="6" value="{{doc.c2_5_22}}"></td>
 		     <td>{{doc_prev.c2_5_22}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.23 no рентгенэндоваскулярным диагностике и лечению</h6></td>
+		     <td><h6>2.5.23 no рентгенэндоваскулярным диагностике и лечению</h6></td>
 		     <td><input type="number" name="c2_5_23" min="0" max="9999" size="6" value="{{doc.c2_5_23}}"></td>
 		     <td>{{doc_prev.c2_5_23}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.24 психиатры</h6></td>
+		     <td><h6>2.5.24 психиатры</h6></td>
 		     <td><input type="number" name="c2_5_24" min="0" max="9999" size="6" value="{{doc.c2_5_24}}"></td>
 		     <td>{{doc_prev.c2_5_24}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.25 психиатры-наркологи</h6></td>
+		     <td><h6>2.5.25 психиатры-наркологи</h6></td>
 		     <td><input type="number" name="c2_5_25" min="0" max="9999" size="6" value="{{doc.c2_5_25}}"></td>
 		     <td>{{doc_prev.c2_5_25}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.26 пульмонологи</h6></td>
+		     <td><h6>2.5.26 пульмонологи</h6></td>
 		     <td><input type="number" name="c2_5_26" min="0" max="9999" size="6" value="{{doc.c2_5_26}}"></td>
 		     <td>{{doc_prev.c2_5_26}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.27 ревматологи</h6></td>
+		     <td><h6>2.5.27 ревматологи</h6></td>
 		     <td><input type="number" name="c2_5_27" min="0" max="9999" size="6" value="{{doc.c2_5_27}}"></td>
 		     <td>{{doc_prev.c2_5_27}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.28 скорой медицинской помощи</h6></td>
+		     <td><h6>2.5.28 скорой медицинской помощи</h6></td>
 		     <td><input type="number" name="c2_5_28" min="0" max="9999" size="6" value="{{doc.c2_5_28}}"></td>
 		     <td>{{doc_prev.c2_5_28}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.29 терапевты</h6></td>
+		     <td><h6>2.5.29 терапевты</h6></td>
 		     <td><input type="number" name="c2_5_29" min="0" max="9999" size="6" value="{{doc.c2_5_29}}"></td>
 		     <td>{{doc_prev.c2_5_29}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.30 травматология и ортопеды</h6></td>
+		     <td><h6>2.5.30 травматология и ортопеды</h6></td>
 		     <td><input type="number" name="c2_5_30" min="0" max="9999" size="6" value="{{doc.c2_5_30}}"></td>
 		     <td>{{doc_prev.c2_5_30}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.31 урологи</h6></td>
+		     <td><h6>2.5.31 урологи</h6></td>
 		     <td><input type="number" name="c2_5_31" min="0" max="9999" size="6" value="{{doc.c2_5_31}}"></td>
 		     <td>{{doc_prev.c2_5_31}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.32 урологи-андрологи детские</h6></td>
+		     <td><h6>2.5.32 урологи-андрологи детские</h6></td>
 		     <td><input type="number" name="c2_5_32" min="0" max="9999" size="6" value="{{doc.c2_5_32}}"></td>
 		     <td>{{doc_prev.c2_5_32}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.33 фтизиатры</h6></td>
+		     <td><h6>2.5.33 фтизиатры</h6></td>
 		     <td><input type="number" name="c2_5_33" min="0" max="9999" size="6" value="{{doc.c2_5_33}}"></td>
 		     <td>{{doc_prev.c2_5_33}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.34 хирурги</h6></td>
+		     <td><h6>2.5.34 хирурги</h6></td>
 		     <td><input type="number" name="c2_5_34" min="0" max="9999" size="6" value="{{doc.c2_5_34}}"></td>
 		     <td>{{doc_prev.c2_5_34}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.35 хирурги детские</h6></td>
+		     <td><h6>2.5.35 хирурги детские</h6></td>
 		     <td><input type="number" name="c2_5_35" min="0" max="9999" size="6" value="{{doc.c2_5_35}}"></td>
 		     <td>{{doc_prev.c2_5_35}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.36 хирурги пластические</h6></td>
+		     <td><h6>2.5.36 хирурги пластические</h6></td>
 		     <td><input type="number" name="c2_5_36" min="0" max="9999" size="6" value="{{doc.c2_5_36}}"></td>
 		     <td>{{doc_prev.c2_5_36}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.37 хирурги сердечно-сосудистые</h6></td>
+		     <td><h6>2.5.37 хирурги сердечно-сосудистые</h6></td>
 		     <td><input type="number" name="c2_5_37" min="0" max="9999" size="6" value="{{doc.c2_5_37}}"></td>
 		     <td>{{doc_prev.c2_5_37}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.38 хирурги торакальные</h6></td>
+		     <td><h6>2.5.38 хирурги торакальные</h6></td>
 		     <td><input type="number" name="c2_5_38" min="0" max="9999" size="6" value="{{doc.c2_5_38}}"></td>
 		     <td>{{doc_prev.c2_5_38}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.39 хирурги челюстно-лицевые</h6></td>
+		     <td><h6>2.5.39 хирурги челюстно-лицевые</h6></td>
 		     <td><input type="number" name="c2_5_39" min="0" max="9999" size="6" value="{{doc.c2_5_39}}"></td>
 		     <td>{{doc_prev.c2_5_39}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.40 эндокринологи</h6></td>
+		     <td><h6>2.5.40 эндокринологи</h6></td>
 		     <td><input type="number" name="c2_5_40" min="0" max="9999" size="6" value="{{doc.c2_5_40}}"></td>
 		     <td>{{doc_prev.c2_5_40}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>5.41 эндокринологи детские</h6></td>
+		     <td><h6>2.5.41 эндокринологи детские</h6></td>
 		     <td><input type="number" name="c2_5_41" min="0" max="9999" size="6" value="{{doc.c2_5_41}}"></td>
 		     <td>{{doc_prev.c2_5_41}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>6. Число среднего медицинского персонала, работающих с  врачами клинических специальностей</h6></td>
+		     <td><h6>2.6. Число среднего медицинского персонала, работающих с  врачами клинических специальностей</h6></td>
 		     <td><input type="number" name="c2_6" min="0" max="9999" size="6" value="{{doc.c2_6}}"></td>
 		     <td>{{doc_prev.c2_6}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>7. Число врачей, работающих в медицинских организациях, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
+		     <td><h6>2.7. Число врачей, работающих в медицинских организациях, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
 		     <td><input type="number" name="c2_7" min="0" max="9999" size="6" value="{{doc.c2_7}}"></td>
 		     <td>{{doc_prev.c2_7}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>8. Число занятых  врачебных должностей, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
+		     <td><h6>2.8. Число занятых  врачебных должностей, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
 		     <td><input type="number" name="c2_8" min="0" max="9999" size="6" value="{{doc.c2_8}}"></td>
 		     <td>{{doc_prev.c2_8}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>9. Число среднего медицинского персонала, работающих в медицинских организациях, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
+		     <td><h6>2.9. Число среднего медицинского персонала, работающих в медицинских организациях, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
 		     <td><input type="number" name="c2_9" min="0" max="9999" size="6" value="{{doc.c2_9}}"></td>
 		     <td>{{doc_prev.c2_9}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>10. Число занятых  должностей  среднего медицинского персонала, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
+		     <td><h6>2.10. Число занятых  должностей  среднего медицинского персонала, оказывающих медицинскую помощь в амбулаторных условиях</h6></td>
 		     <td><input type="number" name="c2_10" min="0" max="9999" size="6" value="{{doc.c2_10}}"></td>
 		     <td>{{doc_prev.c2_10}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>11. Число штатных должностей врачей, оказывающих медицинскую  помощь в амбулаторных условиях</h6></td>
+		     <td><h6>2.11. Число штатных должностей врачей, оказывающих медицинскую  помощь в амбулаторных условиях</h6></td>
 		     <td><input type="number" name="c2_11" min="0" max="9999" size="6" value="{{doc.c2_11}}"></td>
 		     <td>{{doc_prev.c2_11}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>12. Число штатных должностей среднего медицинского персонала, оказывающих медицинскую помощь  в амбулаторных условиях</h6></td>
+		     <td><h6>2.12. Число штатных должностей среднего медицинского персонала, оказывающих медицинскую помощь  в амбулаторных условиях</h6></td>
 		     <td><input type="number" name="c2_12" min="0" max="9999" size="6" value="{{doc.c2_12}}"></td>
 		     <td>{{doc_prev.c2_12}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13. Число  врачей дефицитных для субъекта Российской Федерации должностей на конец отчетного периода (выбрать из справочника), всего</h6></td>
+		     <td><h6>2.13. Число  врачей дефицитных для субъекта Российской Федерации должностей на конец отчетного периода (выбрать из справочника), всего</h6></td>
 		     <td><input type="number" name="c2_13" min="0" max="9999" size="6" value="{{doc.c2_13}}"></td>
 		     <td>{{doc_prev.c2_13}}</td>
 		   </tr>
@@ -330,625 +330,1197 @@
 		     <td></td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.1 акушеры – гинекологи</h6></td>
+		     <td><h6>2.13.1 акушеры – гинекологи</h6></td>
 		     <td><input type="number" name="c2_13_1" min="0" max="9999" size="6" value="{{doc.c2_13_1}}"></td>
 		     <td>{{doc_prev.c2_13_1}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.2 - их них акушеры – гинекологи цехового врачебного участка</h6></td>
+		     <td><h6>2.13.2 - их них акушеры – гинекологи цехового врачебного участка</h6></td>
 		     <td><input type="number" name="c2_13_2" min="0" max="9999" size="6" value="{{doc.c2_13_2}}"></td>
 		     <td>{{doc_prev.c2_13_2}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.3 аллергологи – иммунологи</h6></td>
+		     <td><h6>2.13.3 аллергологи – иммунологи</h6></td>
 		     <td><input type="number" name="c2_13_3" min="0" max="9999" size="6" value="{{doc.c2_13_3}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td>{{doc_prev.c2_13_3}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.4 анестезиологи – реаниматологи</h6></td>
+		     <td><h6>2.13.4 анестезиологи – реаниматологи</h6></td>
 		     <td><input type="number" name="c2_13_4" min="0" max="9999" size="6" value="{{doc.c2_13_4}}"></td>
 		     <td>{{doc_prev.c2_13_4}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.5 бактериологи</h6></td>
+		     <td><h6>2.13.5 бактериологи</h6></td>
 		     <td><input type="number" name="c2_13_5" min="0" max="9999" size="6" value="{{doc.c2_13_5}}"></td>
 		     <td>{{doc_prev.c2_13_5}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.6 вирусологи</h6></td>
+		     <td><h6>2.13.6 вирусологи</h6></td>
 		     <td><input type="number" name="c2_13_6" min="0" max="9999" size="6" value="{{doc.c2_13_6}}"></td>
 		     <td>{{doc_prev.c2_13_6}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.7 врачи здравпунктов</h6></td>
+		     <td><h6>2.13.7 врачи здравпунктов</h6></td>
 		     <td><input type="number" name="c2_13_7" min="0" max="9999" size="6" value="{{doc.c2_13_7}}"></td>
 		     <td>{{doc_prev.c2_13_7}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.8 гастроэнтерологи</h6></td>
+		     <td><h6>2.13.8 гастроэнтерологи</h6></td>
 		     <td><input type="number" name="c2_13_8" min="0" max="9999" size="6" value="{{doc.c2_13_8}}"></td>
 		     <td>{{doc_prev.c2_13_8}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.9 гематологи</h6></td>
+		     <td><h6>2.13.9 гематологи</h6></td>
 		     <td><input type="number" name="c2_13_9" min="0" max="9999" size="6" value="{{doc.c2_13_9}}"></td>
 		     <td>{{doc_prev.c2_13_9}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.10 генетики</h6></td>
+		     <td><h6>2.13.10 генетики</h6></td>
 		     <td><input type="number" name="c2_13_10" min="0" max="9999" size="6" value="{{doc.c2_13_10}}"></td>
 		     <td>{{doc_prev.c2_13_10}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.11 гериатры</h6></td>
+		     <td><h6>2.13.11 гериатры</h6></td>
 		     <td><input type="number" name="c2_13_11" min="0" max="9999" size="6" value="{{doc.c2_13_11}}"></td>
 		     <td>{{doc_prev.c2_13_11}}</td>
 		   </tr>
-		     <td><h6>13.12 дезинфектологи</h6></td>
+		     <td><h6>2.13.12 дезинфектологи</h6></td>
 		     <td><input type="number" name="c2_13_12" min="0" max="9999" size="6" value="{{doc.c2_13_12}}"></td>
 		     <td>{{doc_prev.c2_13_12}}</td>
 		   </tr>
 		   </tr>
-		     <td><h6>13.13 дерматовенерологи</h6></td>
+		     <td><h6>2.13.13 дерматовенерологи</h6></td>
 		     <td><input type="number" name="c2_13_13" min="0" max="9999" size="6" value="{{doc.c2_13_13}}"></td>
 		     <td>{{doc_prev.c2_13_13}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.14 диабетологи</h6></td>
+		     <td><h6>2.13.14 диабетологи</h6></td>
 		     <td><input type="number" name="c2_13_14" min="0" max="9999" size="6" value="{{doc.c2_13_14}}"></td>
 		     <td>{{doc_prev.c2_13_14}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.15 диетологи</h6></td>
+		     <td><h6>2.13.15 диетологи</h6></td>
 		     <td><input type="number" name="c2_13_15" min="0" max="9999" size="6" value="{{doc.c2_13_15}}"></td>
 		     <td>{{doc_prev.c2_13_15}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.16 инфекционисты</h6></td>
+		     <td><h6>2.13.16 инфекционисты</h6></td>
 		     <td><input type="number" name="c2_13_16" min="0" max="9999" size="6" value="{{doc.c2_13_16}}"></td>
 		     <td>{{doc_prev.c2_13_16}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.17 кардиологи</h6></td>
+		     <td><h6>2.13.17 кардиологи</h6></td>
 		     <td><input type="number" name="c2_13_17" min="0" max="9999" size="6" value="{{doc.c2_13_17}}"></td>
 		     <td>{{doc_prev.c2_13_17}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.18 кардиологи детские</h6></td>
+		     <td><h6>2.13.18 кардиологи детские</h6></td>
 		     <td><input type="number" name="c2_13_18" min="0" max="9999" size="6" value="{{doc.c2_13_18}}"></td>
 		     <td>{{doc_prev.c2_13_18}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.19 клинической лабораторной диагностики</h6></td>
+		     <td><h6>2.13.19 клинической лабораторной диагностики</h6></td>
 		     <td><input type="number" name="c2_13_19" min="0" max="9999" size="6" value="{{doc.c2_13_19}}"></td>
 		     <td>{{doc_prev.c2_13_19}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.20 клинические микологи</h6></td>
+		     <td><h6>2.13.20 клинические микологи</h6></td>
 		     <td><input type="number" name="c2_13_20" min="0" max="9999" size="6" value="{{doc.c2_13_20}}"></td>
 		     <td>{{doc_prev.c2_13_20}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.21 колопроктологи</h6></td>
+		     <td><h6>2.13.21 колопроктологи</h6></td>
 		     <td><input type="number" name="c2_13_21" min="0" max="9999" size="6" value="{{doc.c2_13_21}}"></td>
 		     <td>{{doc_prev.c2_13_21}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.22 косметологи</h6></td>
+		     <td><h6>2.13.22 косметологи</h6></td>
 		     <td><input type="number" name="c2_13_22" min="0" max="9999" size="6" value="{{doc.c2_13_22}}"></td>
 		     <td>{{doc_prev.c2_13_22}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.23 лаборанты</h6></td>
+		     <td><h6>2.13.23 лаборанты</h6></td>
 		     <td><input type="number" name="c2_13_23" min="0" max="9999" size="6" value="{{doc.c2_13_23}}"></td>
 		     <td>{{doc_prev.c2_13_23}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.24 лабораторные генетики</h6></td>
+		     <td><h6>2.13.24 лабораторные генетики</h6></td>
 		     <td><input type="number" name="c2_13_24" min="0" max="9999" size="6" value="{{doc.c2_13_24}}"></td>
 		     <td>{{doc_prev.c2_13_24}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.25 лабораторные микологи</h6></td>
+		     <td><h6>2.13.25 лабораторные микологи</h6></td>
 		     <td><input type="number" name="c2_13_25" min="0" max="9999" size="6" value="{{doc.c2_13_25}}"></td>
 		     <td>{{doc_prev.c2_13_25}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.26 мануальной терапии</h6></td>
+		     <td><h6>2.13.26 мануальной терапии</h6></td>
 		     <td><input type="number" name="c2_13_26" min="0" max="9999" size="6" value="{{doc.c2_13_26}}"></td>
 		     <td>{{doc_prev.c2_13_26}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.27 методисты</h6></td>
+		     <td><h6>2.13.27 методисты</h6></td>
 		     <td><input type="number" name="c2_13_27" min="0" max="9999" size="6" value="{{doc.c2_13_27}}"></td>
 		     <td>{{doc_prev.c2_13_27}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.28 неврологи</h6></td>
+		     <td><h6>2.13.28 неврологи</h6></td>
 		     <td><input type="number" name="c2_13_28" min="0" max="9999" size="6" value="{{doc.c2_13_28}}"></td>
 		     <td>{{doc_prev.c2_13_28}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.29 нейрохирурги</h6></td>
+		     <td><h6>2.13.29 нейрохирурги</h6></td>
 		     <td><input type="number" name="c2_13_29" min="0" max="9999" size="6" value="{{doc.c2_13_29}}"></td>
 		     <td>{{doc_prev.c2_13_29}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.30 нефрологи</h6></td>
+		     <td><h6>2.13.30 неонатолог</h6></td>
 		     <td><input type="number" name="c2_13_30" min="0" max="9999" size="6" value="{{doc.c2_13_30}}"></td>
 		     <td>{{doc_prev.c2_13_30}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.31 общей практики (семейные)</h6></td>
+		     <td><h6>2.13.31 нефрологи</h6></td>
 		     <td><input type="number" name="c2_13_31" min="0" max="9999" size="6" value="{{doc.c2_13_31}}"></td>
 		     <td>{{doc_prev.c2_13_31}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.32 онкологи</h6></td>
+		     <td><h6>2.13.32 общей практики (семейные)</h6></td>
 		     <td><input type="number" name="c2_13_32" min="0" max="9999" size="6" value="{{doc.c2_13_32}}"></td>
 		     <td>{{doc_prev.c2_13_32}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.33 онкологи детские</h6></td>
+		     <td><h6>2.13.33 онкологи</h6></td>
 		     <td><input type="number" name="c2_13_33" min="0" max="9999" size="6" value="{{doc.c2_13_33}}"></td>
 		     <td>{{doc_prev.c2_13_33}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.34 ортодонты</h6></td>
+		     <td><h6>2.13.34 онкологи детские</h6></td>
 		     <td><input type="number" name="c2_13_34" min="0" max="9999" size="6" value="{{doc.c2_13_34}}"></td>
 		     <td>{{doc_prev.c2_13_34}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.35 остеопаты</h6></td>
+		     <td><h6>2.13.35 ортодонты</h6></td>
 		     <td><input type="number" name="c2_13_35" min="0" max="9999" size="6" value="{{doc.c2_13_35}}"></td>
 		     <td>{{doc_prev.c2_13_35}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.36 оториноларингологи</h6></td>
+		     <td><h6>2.13.36 остеопаты</h6></td>
 		     <td><input type="number" name="c2_13_36" min="0" max="9999" size="6" value="{{doc.c2_13_36}}"></td>
 		     <td>{{doc_prev.c2_13_36}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.37 офтальмологи</h6></td>
+		     <td><h6>2.13.37 оториноларингологи</h6></td>
 		     <td><input type="number" name="c2_13_37" min="0" max="9999" size="6" value="{{doc.c2_13_37}}"></td>
 		     <td>{{doc_prev.c2_13_37}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.38 </h6></td>
+		     <td><h6>2.13.38 офтальмологи</h6></td>
 		     <td><input type="number" name="c2_13_38" min="0" max="9999" size="6" value="{{doc.c2_13_38}}"></td>
 		     <td>{{doc_prev.c2_13_38}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.39 </h6></td>
+		     <td><h6>2.13.39 офтальмологи-протезисты</h6></td>
 		     <td><input type="number" name="c2_13_39" min="0" max="9999" size="6" value="{{doc.c2_13_39}}"></td>
 		     <td>{{doc_prev.c2_13_39}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.40 </h6></td>
+		     <td><h6>2.13.40 паразитологи</h6></td>
 		     <td><input type="number" name="c2_13_40" min="0" max="9999" size="6" value="{{doc.c2_13_40}}"></td>
 		     <td>{{doc_prev.c2_13_40}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.41 </h6></td>
+		     <td><h6>2.13.41 патологоанатомы</h6></td>
 		     <td><input type="number" name="c2_13_41" min="0" max="9999" size="6" value="{{doc.c2_13_41}}"></td>
 		     <td>{{doc_prev.c2_13_41}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.42 </h6></td>
+		     <td><h6>2.13.42 педиатры – всего</h6></td>
 		     <td><input type="number" name="c2_13_42" min="0" max="9999" size="6" value="{{doc.c2_13_42}}"></td>
 		     <td>{{doc_prev.c2_13_42}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.43 </h6></td>
+		     <td><h6>2.13.43 - из них: педиатры участковые (включая педиатров участковых приписных участков)</h6></td>
 		     <td><input type="number" name="c2_13_43" min="0" max="9999" size="6" value="{{doc.c2_13_43}}"></td>
 		     <td>{{doc_prev.c2_13_43}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.44 </h6></td>
+		     <td><h6>2.13.44 - педиатры городские (районные)</h6></td>
 		     <td><input type="number" name="c2_13_44" min="0" max="9999" size="6" value="{{doc.c2_13_44}}"></td>
 		     <td>{{doc_prev.c2_13_44}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.45 </h6></td>
+		     <td><h6>2.13.45 по авиационной и космической медицине</h6></td>
 		     <td><input type="number" name="c2_13_45" min="0" max="9999" size="6" value="{{doc.c2_13_45}}"></td>
 		     <td>{{doc_prev.c2_13_45}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.46 </h6></td>
+		     <td><h6>2.13.46 по водолазной медицине</h6></td>
 		     <td><input type="number" name="c2_13_46" min="0" max="9999" size="6" value="{{doc.c2_13_46}}"></td>
 		     <td>{{doc_prev.c2_13_46}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.47 </h6></td>
+		     <td><h6>2.13.47 по гигиене детей и подростков</h6></td>
 		     <td><input type="number" name="c2_13_47" min="0" max="9999" size="6" value="{{doc.c2_13_47}}"></td>
 		     <td>{{doc_prev.c2_13_47}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.48 </h6></td>
+		     <td><h6>2.13.48 по гигиене питания</h6></td>
 		     <td><input type="number" name="c2_13_48" min="0" max="9999" size="6" value="{{doc.c2_13_48}}"></td>
 		     <td>{{doc_prev.c2_13_48}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.49 </h6></td>
+		     <td><h6>2.13.49 по гигиене труда</h6></td>
 		     <td><input type="number" name="c2_13_49" min="0" max="9999" size="6" value="{{doc.c2_13_49}}"></td>
 		     <td>{{doc_prev.c2_13_49}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.50 </h6></td>
+		     <td><h6>2.13.50 по гигиеническому воспитанию</h6></td>
 		     <td><input type="number" name="c2_13_50" min="0" max="9999" size="6" value="{{doc.c2_13_50}}"></td>
 		     <td>{{doc_prev.c2_13_50}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.51 </h6></td>
+		     <td><h6>2.13.51 по коммунальной гигиене</h6></td>
 		     <td><input type="number" name="c2_13_51" min="0" max="9999" size="6" value="{{doc.c2_13_51}}"></td>
 		     <td>{{doc_prev.c2_13_51}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.52 </h6></td>
+		     <td><h6>2.13.52 по лечебной физкультуре</h6></td>
 		     <td><input type="number" name="c2_13_52" min="0" max="9999" size="6" value="{{doc.c2_13_52}}"></td>
 		     <td>{{doc_prev.c2_13_52}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.53 </h6></td>
+		     <td><h6>2.13.53 по медико-социальной экспертизе</h6></td>
 		     <td><input type="number" name="c2_13_53" min="0" max="9999" size="6" value="{{doc.c2_13_53}}"></td>
 		     <td>{{doc_prev.c2_13_53}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.54 </h6></td>
+		     <td><h6>2.13.54 по медицинской профилактике</h6></td>
 		     <td><input type="number" name="c2_13_54" min="0" max="9999" size="6" value="{{doc.c2_13_54}}"></td>
 		     <td>{{doc_prev.c2_13_54}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.55 </h6></td>
+		     <td><h6>2.13.55 по медицинской реабилитации</h6></td>
 		     <td><input type="number" name="c2_13_55" min="0" max="9999" size="6" value="{{doc.c2_13_55}}"></td>
 		     <td>{{doc_prev.c2_13_55}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.56 </h6></td>
+		     <td><h6>2.13.56 по общей гигиене</h6></td>
 		     <td><input type="number" name="c2_13_56" min="0" max="9999" size="6" value="{{doc.c2_13_56}}"></td>
 		     <td>{{doc_prev.c2_13_56}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.57 </h6></td>
+		     <td><h6>2.13.57 по паллиативной медицинской помощи</h6></td>
 		     <td><input type="number" name="c2_13_57" min="0" max="9999" size="6" value="{{doc.c2_13_57}}"></td>
 		     <td>{{doc_prev.c2_13_57}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.58 </h6></td>
+		     <td><h6>2.13.58 по радиационной гигиене</h6></td>
 		     <td><input type="number" name="c2_13_58" min="0" max="9999" size="6" value="{{doc.c2_13_58}}"></td>
 		     <td>{{doc_prev.c2_13_58}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.59 </h6></td>
+		     <td><h6>2.13.59 по рентгенэдоваскулярным диагностике и лечению</h6></td>
 		     <td><input type="number" name="c2_13_59" min="0" max="9999" size="6" value="{{doc.c2_13_59}}"></td>
 		     <td>{{doc_prev.c2_13_59}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.60 </h6></td>
+		     <td><h6>2.13.60 по санитарно-гигиеническим лабораторным исследованиям</h6></td>
 		     <td><input type="number" name="c2_13_60" min="0" max="9999" size="6" value="{{doc.c2_13_60}}"></td>
 		     <td>{{doc_prev.c2_13_60}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.61 </h6></td>
+		     <td><h6>2.13.61 по спортивной медицине</h6></td>
 		     <td><input type="number" name="c2_13_61" min="0" max="9999" size="6" value="{{doc.c2_13_61}}"></td>
 		     <td>{{doc_prev.c2_13_61}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.62 </h6></td>
+		     <td><h6>2.13.62 приемного отделения</h6></td>
 		     <td><input type="number" name="c2_13_62" min="0" max="9999" size="6" value="{{doc.c2_13_62}}"></td>
 		     <td>{{doc_prev.c2_13_62}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.63 </h6></td>
+		     <td><h6>2.13.63 профпатологи</h6></td>
 		     <td><input type="number" name="c2_13_63" min="0" max="9999" size="6" value="{{doc.c2_13_63}}"></td>
 		     <td>{{doc_prev.c2_13_63}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.64 </h6></td>
+		     <td><h6>2.13.64 психиатры</h6></td>
 		     <td><input type="number" name="c2_13_64" min="0" max="9999" size="6" value="{{doc.c2_13_64}}"></td>
 		     <td>{{doc_prev.c2_13_64}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.65 </h6></td>
+		     <td><h6>2.13.65 - из них: участковые</h6></td>
 		     <td><input type="number" name="c2_13_65" min="0" max="9999" size="6" value="{{doc.c2_13_65}}"></td>
 		     <td>{{doc_prev.c2_13_65}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.66 </h6></td>
+		     <td><h6>2.13.66 - психиатры детские</h6></td>
 		     <td><input type="number" name="c2_13_66" min="0" max="9999" size="6" value="{{doc.c2_13_66}}"></td>
 		     <td>{{doc_prev.c2_13_66}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.67 </h6></td>
+		     <td><h6>2.13.67 - из них психиатры детские участковые</h6></td>
 		     <td><input type="number" name="c2_13_67" min="0" max="9999" size="6" value="{{doc.c2_13_67}}"></td>
 		     <td>{{doc_prev.c2_13_67}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.68 </h6></td>
+		     <td><h6>2.13.68 - психиатры подростковые</h6></td>
 		     <td><input type="number" name="c2_13_68" min="0" max="9999" size="6" value="{{doc.c2_13_68}}"></td>
 		     <td>{{doc_prev.c2_13_68}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.69 </h6></td>
+		     <td><h6>2.13.69 - из них психиатры подростковые участковые</h6></td>
 		     <td><input type="number" name="c2_13_69" min="0" max="9999" size="6" value="{{doc.c2_13_69}}"></td>
 		     <td>{{doc_prev.c2_13_69}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.70 </h6></td>
+		     <td><h6>2.13.70 - психиатры-наркологи</h6></td>
 		     <td><input type="number" name="c2_13_70" min="0" max="9999" size="6" value="{{doc.c2_13_70}}"></td>
 		     <td>{{doc_prev.c2_13_70}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.71 </h6></td>
+		     <td><h6>2.13.71 - из них психиатры-наркологи участковые</h6></td>
 		     <td><input type="number" name="c2_13_71" min="0" max="9999" size="6" value="{{doc.c2_13_71}}"></td>
 		     <td>{{doc_prev.c2_13_71}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.72 </h6></td>
+		     <td><h6>2.13.72 психотерапевты</h6></td>
 		     <td><input type="number" name="c2_13_72" min="0" max="9999" size="6" value="{{doc.c2_13_72}}"></td>
 		     <td>{{doc_prev.c2_13_72}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.73 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.73 пульмонологи</h6></td>
+		     <td><input type="number" name="c2_13_73" min="0" max="9999" size="6" value="{{doc.c2_13_73}}"></td>
+		     <td>{{doc_prev.c2_13_73}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.74 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.74 радиологи</h6></td>
+		     <td><input type="number" name="c2_13_74" min="0" max="9999" size="6" value="{{doc.c2_13_74}}"></td>
+		     <td>{{doc_prev.c2_13_74}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.75 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.75 радиотерапевты</h6></td>
+		     <td><input type="number" name="c2_13_75" min="0" max="9999" size="6" value="{{doc.c2_13_75}}"></td>
+		     <td>{{doc_prev.c2_13_75}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.76 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.76 ревматологи</h6></td>
+		     <td><input type="number" name="c2_13_76" min="0" max="9999" size="6" value="{{doc.c2_13_76}}"></td>
+		     <td>{{doc_prev.c2_13_76}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.77 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.77 рентгенологи</h6></td>
+		     <td><input type="number" name="c2_13_77" min="0" max="9999" size="6" value="{{doc.c2_13_77}}"></td>
+		     <td>{{doc_prev.c2_13_77}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.78 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.78 рефлексотерапевты</h6></td>
+		     <td><input type="number" name="c2_13_78" min="0" max="9999" size="6" value="{{doc.c2_13_78}}"></td>
+		     <td>{{doc_prev.c2_13_78}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.79 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.79 сексологи</h6></td>
+		     <td><input type="number" name="c2_13_79" min="0" max="9999" size="6" value="{{doc.c2_13_79}}"></td>
+		     <td>{{doc_prev.c2_13_79}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6>13.80 </h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.80 стажеры</h6></td>
+		     <td><input type="number" name="c2_13_80" min="0" max="9999" size="6" value="{{doc.c2_13_80}}"></td>
+		     <td>{{doc_prev.c2_13_80}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.81 статистики</h6></td>
+		     <td><input type="number" name="c2_13_81" min="0" max="9999" size="6" value="{{doc.c2_13_81}}"></td>
+		     <td>{{doc_prev.c2_13_81}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.82 стоматологи</h6></td>
+		     <td><input type="number" name="c2_13_82" min="0" max="9999" size="6" value="{{doc.c2_13_82}}"></td>
+		     <td>{{doc_prev.c2_13_82}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.83 стоматологи детские</h6></td>
+		     <td><input type="number" name="c2_13_83" min="0" max="9999" size="6" value="{{doc.c2_13_83}}"></td>
+		     <td>{{doc_prev.c2_13_83}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.84 стоматологи-ортопеды</h6></td>
+		     <td><input type="number" name="c2_13_84" min="0" max="9999" size="6" value="{{doc.c2_13_84}}"></td>
+		     <td>{{doc_prev.c2_13_84}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.85 стоматологи-терапевты</h6></td>
+		     <td><input type="number" name="c2_13_85" min="0" max="9999" size="6" value="{{doc.c2_13_85}}"></td>
+		     <td>{{doc_prev.c2_13_85}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.86 стоматологи-хирурги</h6></td>
+		     <td><input type="number" name="c2_13_86" min="0" max="9999" size="6" value="{{doc.c2_13_86}}"></td>
+		     <td>{{doc_prev.c2_13_86}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.87 судебно-психиатрические эксперты</h6></td>
+		     <td><input type="number" name="c2_13_87" min="0" max="9999" size="6" value="{{doc.c2_13_87}}"></td>
+		     <td>{{doc_prev.c2_13_87}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.89 судовые врачи</h6></td>
+		     <td><input type="number" name="c2_13_89" min="0" max="9999" size="6" value="{{doc.c2_13_89}}"></td>
+		     <td>{{doc_prev.c2_13_89}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.90 сурдологи-оториноларингологи</h6></td>
+		     <td><input type="number" name="c2_13_90" min="0" max="9999" size="6" value="{{doc.c2_13_90}}"></td>
+		     <td>{{doc_prev.c2_13_90}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.91 сурдологи-протезисты</h6></td>
+		     <td><input type="number" name="c2_13_91" min="0" max="9999" size="6" value="{{doc.c2_13_91}}"></td>
+		     <td>{{doc_prev.c2_13_91}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.92 терапевты - всего</h6></td>
+		     <td><input type="number" name="c2_13_92" min="0" max="9999" size="6" value="{{doc.c2_13_92}}"></td>
+		     <td>{{doc_prev.c2_13_92}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.93 - из них: терапевты участковые</h6></td>
+		     <td><input type="number" name="c2_13_93" min="0" max="9999" size="6" value="{{doc.c2_13_93}}"></td>
+		     <td>{{doc_prev.c2_13_93}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.94 - терапевты участковые цеховых врачебных участков</h6></td>
+		     <td><input type="number" name="c2_13_94" min="0" max="9999" size="6" value="{{doc.c2_13_94}}"></td>
+		     <td>{{doc_prev.c2_13_94}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.95 - терапевты амбулаторий</h6></td>
+		     <td><input type="number" name="c2_13_95" min="0" max="9999" size="6" value="{{doc.c2_13_95}}"></td>
+		     <td>{{doc_prev.c2_13_95}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.96 - терапевты подростковые</h6></td>
+		     <td><input type="number" name="c2_13_96" min="0" max="9999" size="6" value="{{doc.c2_13_96}}"></td>
+		     <td>{{doc_prev.c2_13_96}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.97 токсикологи</h6></td>
+		     <td><input type="number" name="c2_13_97" min="0" max="9999" size="6" value="{{doc.c2_13_97}}"></td>
+		     <td>{{doc_prev.c2_13_97}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.98 травматологи - ортопеды</h6></td>
+		     <td><input type="number" name="c2_13_98" min="0" max="9999" size="6" value="{{doc.c2_13_98}}"></td>
+		     <td>{{doc_prev.c2_13_98}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.99 трансфузиологи</h6></td>
+		     <td><input type="number" name="c2_13_99" min="0" max="9999" size="6" value="{{doc.c2_13_99}}"></td>
+		     <td>{{doc_prev.c2_13_99}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.100 ультразвуковой диагностики</h6></td>
+		     <td><input type="number" name="c2_13_100" min="0" max="9999" size="6" value="{{doc.c2_13_100}}"></td>
+		     <td>{{doc_prev.c2_13_100}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.101 урологи</h6></td>
+		     <td><input type="number" name="c2_13_101" min="0" max="9999" size="6" value="{{doc.c2_13_101}}"></td>
+		     <td>{{doc_prev.c2_13_101}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.102 урологи-андрологи детские</h6></td>
+		     <td><input type="number" name="c2_13_102" min="0" max="9999" size="6" value="{{doc.c2_13_102}}"></td>
+		     <td>{{doc_prev.c2_13_102}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.103 фармакологи клинические</h6></td>
+		     <td><input type="number" name="c2_13_103" min="0" max="9999" size="6" value="{{doc.c2_13_103}}"></td>
+		     <td>{{doc_prev.c2_13_103}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.104 физиотерапевты</h6></td>
+		     <td><input type="number" name="c2_13_104" min="0" max="9999" size="6" value="{{doc.c2_13_104}}"></td>
+		     <td>{{doc_prev.c2_13_104}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.105 фтизиатры</h6></td>
+		     <td><input type="number" name="c2_13_105" min="0" max="9999" size="6" value="{{doc.c2_13_105}}"></td>
+		     <td>{{doc_prev.c2_13_105}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.106 - из них: фтизиатры участковые</h6></td>
+		     <td><input type="number" name="c2_13_106" min="0" max="9999" size="6" value="{{doc.c2_13_106}}"></td>
+		     <td>{{doc_prev.c2_13_106}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.107 функциональной диагностики</h6></td>
+		     <td><input type="number" name="c2_13_107" min="0" max="9999" size="6" value="{{doc.c2_13_107}}"></td>
+		     <td>{{doc_prev.c2_13_107}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.108 хирурги</h6></td>
+		     <td><input type="number" name="c2_13_108" min="0" max="9999" size="6" value="{{doc.c2_13_108}}"></td>
+		     <td>{{doc_prev.c2_13_108}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.109 хирурги детские</h6></td>
+		     <td><input type="number" name="c2_13_109" min="0" max="9999" size="6" value="{{doc.c2_13_109}}"></td>
+		     <td>{{doc_prev.c2_13_109}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.110 хирурги пластические</h6></td>
+		     <td><input type="number" name="c2_13_110" min="0" max="9999" size="6" value="{{doc.c2_13_110}}"></td>
+		     <td>{{doc_prev.c2_13_110}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.111 хирурги сердечно-сосудистые</h6></td>
+		     <td><input type="number" name="c2_13_111" min="0" max="9999" size="6" value="{{doc.c2_13_111}}"></td>
+		     <td>{{doc_prev.c2_13_111}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.112 хирурги торакальные</h6></td>
+		     <td><input type="number" name="c2_13_112" min="0" max="9999" size="6" value="{{doc.c2_13_112}}"></td>
+		     <td>{{doc_prev.c2_13_112}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.113 хирурги челюстно-лицевые</h6></td>
+		     <td><input type="number" name="c2_13_113" min="0" max="9999" size="6" value="{{doc.c2_13_113}}"></td>
+		     <td>{{doc_prev.c2_13_113}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.114 эндокринологи</h6></td>
+		     <td><input type="number" name="c2_13_114" min="0" max="9999" size="6" value="{{doc.c2_13_114}}"></td>
+		     <td>{{doc_prev.c2_13_114}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.115 эндокринологи детские</h6></td>
+		     <td><input type="number" name="c2_13_115" min="0" max="9999" size="6" value="{{doc.c2_13_115}}"></td>
+		     <td>{{doc_prev.c2_13_115}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.116 эндоскописты</h6></td>
+		     <td><input type="number" name="c2_13_116" min="0" max="9999" size="6" value="{{doc.c2_13_116}}"></td>
+		     <td>{{doc_prev.c2_13_116}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.117 эпидемиологи</h6></td>
+		     <td><input type="number" name="c2_13_117" min="0" max="9999" size="6" value="{{doc.c2_13_117}}"></td>
+		     <td>{{doc_prev.c2_13_117}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.118 прочие</h6></td>
+		     <td><input type="number" name="c2_13_118" min="0" max="9999" size="6" value="{{doc.c2_13_118}}"></td>
+		     <td>{{doc_prev.c2_13_118}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.119 Специалисты с высшим немедицинским образованием – всего:</h6></td>
+		     <td><input type="number" name="c2_13_119" min="0" max="9999" size="6" value="{{doc.c2_13_119}}"></td>
+		     <td>{{doc_prev.c2_13_119}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.120 - из них специалисты: биологи</h6></td>
+		     <td><input type="number" name="c2_13_120" min="0" max="9999" size="6" value="{{doc.c2_13_120}}"></td>
+		     <td>{{doc_prev.c2_13_120}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.121 - психологи медицинские</h6></td>
+		     <td><input type="number" name="c2_13_121" min="0" max="9999" size="6" value="{{doc.c2_13_121}}"></td>
+		     <td>{{doc_prev.c2_13_121}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.122 - инструкторы-методисты по лечебной физкультуре</h6></td>
+		     <td><input type="number" name="c2_13_122" min="0" max="9999" size="6" value="{{doc.c2_13_122}}"></td>
+		     <td>{{doc_prev.c2_13_122}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.123 - судебные эксперты</h6></td>
+		     <td><input type="number" name="c2_13_123" min="0" max="9999" size="6" value="{{doc.c2_13_123}}"></td>
+		     <td>{{doc_prev.c2_13_123}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.13.124 - химики-эксперты</h6></td>
+		     <td><input type="number" name="c2_13_124" min="0" max="9999" size="6" value="{{doc.c2_13_124}}"></td>
+		     <td>{{doc_prev.c2_13_124}}</td>
 		   </tr>
 		   <tr>
-		     <td><h6></h6></td>
-		     <td><input type="number" name="c2_13_" min="0" max="9999" size="6" value="{{doc.c2_13_}}"></td>
-		     <td>{{doc_prev.c2_13_}}</td>
+		     <td><h6>2.14.Число среднего медицинского персонала дефицитных для субъекта Российской Федерации должностей на конец отчетного периода (выбрать из справочника), всего</h6></td>
+		     <td><input type="number" name="c2_14" min="0" max="9999" size="6" value="{{doc.c2_14}}"></td>
+		     <td>{{doc_prev.c2_14}}</td>
 		   </tr>
-
+		   <tr>
+		     <td><h6>2.14.1 акушерки</h6></td>
+		     <td><input type="number" name="c2_14_1" min="0" max="9999" size="6" value="{{doc.c2_14_1}}"></td>
+		     <td>{{doc_prev.c2_14_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.2 гигиенисты стоматологические</h6></td>
+		     <td><input type="number" name="c2_14_2" min="0" max="9999" size="6" value="{{doc.c2_14_2}}"></td>
+		     <td>{{doc_prev.c2_14_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.3 заведующие</h6></td>
+		     <td><input type="number" name="c2_14_3" min="0" max="9999" size="6" value="{{doc.c2_14_3}}"></td>
+		     <td>{{doc_prev.c2_14_3}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.4 - из них: заведущие фельдшерско-акушерским пунктом</h6></td>
+		     <td><input type="number" name="c2_14_4" min="0" max="9999" size="6" value="{{doc.c2_14_4}}"></td>
+		     <td>{{doc_prev.c2_14_4}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.5 зубные врачи</h6></td>
+		     <td><input type="number" name="c2_14_5" min="0" max="9999" size="6" value="{{doc.c2_14_5}}"></td>
+		     <td>{{doc_prev.c2_14_5}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.6 зубные техники</h6></td>
+		     <td><input type="number" name="c2_14_6" min="0" max="9999" size="6" value="{{doc.c2_14_6}}"></td>
+		     <td>{{doc_prev.c2_14_6}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.7 инструкторы-дезинфекторы</h6></td>
+		     <td><input type="number" name="c2_14_7" min="0" max="9999" size="6" value="{{doc.c2_14_7}}"></td>
+		     <td>{{doc_prev.c2_14_7}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.8 инструкторы по гигиеническому воспитанию</h6></td>
+		     <td><input type="number" name="c2_14_8" min="0" max="9999" size="6" value="{{doc.c2_14_8}}"></td>
+		     <td>{{doc_prev.c2_14_8}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.9 инструкторы по лечебной физкультуре</h6></td>
+		     <td><input type="number" name="c2_14_9" min="0" max="9999" size="6" value="{{doc.c2_14_9}}"></td>
+		     <td>{{doc_prev.c2_14_9}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.10 инструкторы по трудовой терапии</h6></td>
+		     <td><input type="number" name="c2_14_10" min="0" max="9999" size="6" value="{{doc.c2_14_10}}"></td>
+		     <td>{{doc_prev.c2_14_10}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.11 лаборанты</h6></td>
+		     <td><input type="number" name="c2_14_11" min="0" max="9999" size="6" value="{{doc.c2_14_11}}"></td>
+		     <td>{{doc_prev.c2_14_11}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.12 медицинские лабораторные техники (фельдшеры-лаборанты)</h6></td>
+		     <td><input type="number" name="c2_14_12" min="0" max="9999" size="6" value="{{doc.c2_14_12}}"></td>
+		     <td>{{doc_prev.c2_14_12}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.13 медицинские сестры</h6></td>
+		     <td><input type="number" name="c2_14_13" min="0" max="9999" size="6" value="{{doc.c2_14_13}}"></td>
+		     <td>{{doc_prev.c2_14_13}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.14 - анестезисты</h6></td>
+		     <td><input type="number" name="c2_14_14" min="0" max="9999" size="6" value="{{doc.c2_14_14}}"></td>
+		     <td>{{doc_prev.c2_14_14}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.15 - врачей общей практики (семейных врачей)</h6></td>
+		     <td><input type="number" name="c2_14_15" min="0" max="9999" size="6" value="{{doc.c2_14_15}}"></td>
+		     <td>{{doc_prev.c2_14_15}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.16 - диетические</h6></td>
+		     <td><input type="number" name="c2_14_16" min="0" max="9999" size="6" value="{{doc.c2_14_16}}"></td>
+		     <td>{{doc_prev.c2_14_16}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.17 - медико-социальной помощи</h6></td>
+		     <td><input type="number" name="c2_14_17" min="0" max="9999" size="6" value="{{doc.c2_14_17}}"></td>
+		     <td>{{doc_prev.c2_14_17}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.18 - медицинская сестра (фельдшер) по приему вызовов скорой медицинской помощи и передаче их выездным бригадам скорой медицинской помощи</h6></td>
+		     <td><input type="number" name="c2_14_18" min="0" max="9999" size="6" value="{{doc.c2_14_18}}"></td>
+		     <td>{{doc_prev.c2_14_18}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.19 - операционные</h6></td>
+		     <td><input type="number" name="c2_14_19" min="0" max="9999" size="6" value="{{doc.c2_14_19}}"></td>
+		     <td>{{doc_prev.c2_14_19}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.20 - палатные (постовые)</h6></td>
+		     <td><input type="number" name="c2_14_20" min="0" max="9999" size="6" value="{{doc.c2_14_20}}"></td>
+		     <td>{{doc_prev.c2_14_20}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.21 - патронажные</h6></td>
+		     <td><input type="number" name="c2_14_21" min="0" max="9999" size="6" value="{{doc.c2_14_21}}"></td>
+		     <td>{{doc_prev.c2_14_21}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.22 - перевязочной</h6></td>
+		     <td><input type="number" name="c2_14_22" min="0" max="9999" size="6" value="{{doc.c2_14_22}}"></td>
+		     <td>{{doc_prev.c2_14_22}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.23 - по косметологии</h6></td>
+		     <td><input type="number" name="c2_14_23" min="0" max="9999" size="6" value="{{doc.c2_14_23}}"></td>
+		     <td>{{doc_prev.c2_14_23}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.24 - по массажу</h6></td>
+		     <td><input type="number" name="c2_14_24" min="0" max="9999" size="6" value="{{doc.c2_14_24}}"></td>
+		     <td>{{doc_prev.c2_14_24}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.25 - приемного отделения</h6></td>
+		     <td><input type="number" name="c2_14_25" min="0" max="9999" size="6" value="{{doc.c2_14_25}}"></td>
+		     <td>{{doc_prev.c2_14_25}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.26 - процедурной</h6></td>
+		     <td><input type="number" name="c2_14_26" min="0" max="9999" size="6" value="{{doc.c2_14_26}}"></td>
+		     <td>{{doc_prev.c2_14_26}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.27 - по реабилитации</h6></td>
+		     <td><input type="number" name="c2_14_27" min="0" max="9999" size="6" value="{{doc.c2_14_27}}"></td>
+		     <td>{{doc_prev.c2_14_27}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.28 - старшие</h6></td>
+		     <td><input type="number" name="c2_14_28" min="0" max="9999" size="6" value="{{doc.c2_14_28}}"></td>
+		     <td>{{doc_prev.c2_14_28}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.29 - стерилизационной</h6></td>
+		     <td><input type="number" name="c2_14_29" min="0" max="9999" size="6" value="{{doc.c2_14_29}}"></td>
+		     <td>{{doc_prev.c2_14_29}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.30 - участковые врачей-терапевтов участковых</h6></td>
+		     <td><input type="number" name="c2_14_30" min="0" max="9999" size="6" value="{{doc.c2_14_30}}"></td>
+		     <td>{{doc_prev.c2_14_30}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.31 - участковые врачей-педиатров участковых</h6></td>
+		     <td><input type="number" name="c2_14_31" min="0" max="9999" size="6" value="{{doc.c2_14_31}}"></td>
+		     <td>{{doc_prev.c2_14_31}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.32 - по физиотерапии</h6></td>
+		     <td><input type="number" name="c2_14_32" min="0" max="9999" size="6" value="{{doc.c2_14_32}}"></td>
+		     <td>{{doc_prev.c2_14_32}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.33 - по функциональной диагностике</h6></td>
+		     <td><input type="number" name="c2_14_33" min="0" max="9999" size="6" value="{{doc.c2_14_33}}"></td>
+		     <td>{{doc_prev.c2_14_33}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.34 медицинские дезинфекторы</h6></td>
+		     <td><input type="number" name="c2_14_34" min="0" max="9999" size="6" value="{{doc.c2_14_34}}"></td>
+		     <td>{{doc_prev.c2_14_34}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.35 медицинские оптики-оптометристы</h6></td>
+		     <td><input type="number" name="c2_14_35" min="0" max="9999" size="6" value="{{doc.c2_14_35}}"></td>
+		     <td>{{doc_prev.c2_14_35}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.36 медицинские регистраторы</h6></td>
+		     <td><input type="number" name="c2_14_36" min="0" max="9999" size="6" value="{{doc.c2_14_36}}"></td>
+		     <td>{{doc_prev.c2_14_36}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.37 медицинские статистики</h6></td>
+		     <td><input type="number" name="c2_14_37" min="0" max="9999" size="6" value="{{doc.c2_14_37}}"></td>
+		     <td>{{doc_prev.c2_14_37}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.38 медицинские технологи</h6></td>
+		     <td><input type="number" name="c2_14_38" min="0" max="9999" size="6" value="{{doc.c2_14_38}}"></td>
+		     <td>{{doc_prev.c2_14_38}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.39 помощники врачей</h6></td>
+		     <td><input type="number" name="c2_14_39" min="0" max="9999" size="6" value="{{doc.c2_14_39}}"></td>
+		     <td>{{doc_prev.c2_14_39}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.40 рентгенолаборанты</h6></td>
+		     <td><input type="number" name="c2_14_40" min="0" max="9999" size="6" value="{{doc.c2_14_40}}"></td>
+		     <td>{{doc_prev.c2_14_40}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.41 фельдшеры</h6></td>
+		     <td><input type="number" name="c2_14_41" min="0" max="9999" size="6" value="{{doc.c2_14_41}}"></td>
+		     <td>{{doc_prev.c2_14_41}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.42 - из них: фельдшеры скорой медицинской помощи</h6></td>
+		     <td><input type="number" name="c2_14_42" min="0" max="9999" size="6" value="{{doc.c2_14_42}}"></td>
+		     <td>{{doc_prev.c2_14_42}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.43 - фельдшеры-наркологи</h6></td>
+		     <td><input type="number" name="c2_14_43" min="0" max="9999" size="6" value="{{doc.c2_14_43}}"></td>
+		     <td>{{doc_prev.c2_14_43}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.44 - фельдшеры-водители скорой медицинской помощи</h6></td>
+		     <td><input type="number" name="c2_14_44" min="0" max="9999" size="6" value="{{doc.c2_14_44}}"></td>
+		     <td>{{doc_prev.c2_14_44}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.14.45 прочий средний медицинский персонал</h6></td>
+		     <td><input type="number" name="c2_14_45" min="0" max="9999" size="6" value="{{doc.c2_14_45}}"></td>
+		     <td>{{doc_prev.c2_14_45}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.15.Число участковых врачей терапевтов, работающих в медицинских организациях субъекта Российской Федерации</h6></td>
+		     <td><input type="number" name="c2_15" min="0" max="9999" size="6" value="{{doc.c2_15}}"></td>
+		     <td>{{doc_prev.c2_15}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.16.Число участковых врачей педиатров, работающих в медицинских организациях субъекта Российской Федерации</h6></td>
+		     <td><input type="number" name="c2_16" min="0" max="9999" size="6" value="{{doc.c2_16}}"></td>
+		     <td>{{doc_prev.c2_16}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.17.Число врачей общей практики (семейных врачей), работающих в медицинских организациях субъекта Российской Федерации</h6></td>
+		     <td><input type="number" name="c2_17" min="0" max="9999" size="6" value="{{doc.c2_17}}"></td>
+		     <td>{{doc_prev.c2_17}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.18.Число участковых медицинских сестер участкового врача терапевта</h6></td>
+		     <td><input type="number" name="c2_18" min="0" max="9999" size="6" value="{{doc.c2_18}}"></td>
+		     <td>{{doc_prev.c2_18}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.19.Число участковых медицинских сестер участкового врача педиатра</h6></td>
+		     <td><input type="number" name="c2_19" min="0" max="9999" size="6" value="{{doc.c2_19}}"></td>
+		     <td>{{doc_prev.c2_19}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.20.Число участковых медицинских сестер врача общей практики (семейного врача)</h6></td>
+		     <td><input type="number" name="c2_20" min="0" max="9999" size="6" value="{{doc.c2_20}}"></td>
+		     <td>{{doc_prev.c2_20}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.21.Число штатных должностей участковых врачей терапевтов</h6></td>
+		     <td><input type="number" name="c2_21" min="0" max="9999" size="6" value="{{doc.c2_21}}"></td>
+		     <td>{{doc_prev.c2_21}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.22.Число штатных должностей участковых врачей педиатров</h6></td>
+		     <td><input type="number" name="c2_22" min="0" max="9999" size="6" value="{{doc.c2_22}}"></td>
+		     <td>{{doc_prev.c2_22}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.23.Число штатных должностей врачей общей практики (семейного врача)</h6></td>
+		     <td><input type="number" name="c2_23" min="0" max="9999" size="6" value="{{doc.c2_23}}"></td>
+		     <td>{{doc_prev.c2_23}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.24.Число штатных должностей участковых медицинских сестер участкового врача терапевта</h6></td>
+		     <td><input type="number" name="c2_24" min="0" max="9999" size="6" value="{{doc.c2_24}}"></td>
+		     <td>{{doc_prev.c2_24}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.25.Число штатных должностей участковых медицинских сестер участкового врача педиатра</h6></td>
+		     <td><input type="number" name="c2_25" min="0" max="9999" size="6" value="{{doc.c2_25}}"></td>
+		     <td>{{doc_prev.c2_25}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.26.Число штатных должностей участковых медицинских сестер врача общей практики (семейного врача)</h6></td>
+		     <td><input type="number" name="c2_26" min="0" max="9999" size="6" value="{{doc.c2_26}}"></td>
+		     <td>{{doc_prev.c2_26}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.27.Число врачей, привлеченных на работу в медицинские организации субъекта Российской Федерации</h6></td>
+		     <td><input type="number" name="c2_27" min="0" max="9999" size="6" value="{{doc.c2_27}}"></td>
+		     <td>{{doc_prev.c2_27}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>2.28.Число среднего медицинского персонала, привлеченного на работу в медицинские организации субъекта Российской Федерации</h6></td>
+		     <td><input type="number" name="c2_28" min="0" max="9999" size="6" value="{{doc.c2_28}}"></td>
+		     <td>{{doc_prev.c2_28}}</td>
+		   </tr>
+		   </tr>
+		   <tr>
+  	         <td class="row_mess" colspan="3" ><h5>3.1. Число медицинских специалистов, получающих социальные льготы</h5></td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.1 Число врачей, получивших жилье из нуждающихся в улучшении жилищных условий, всего, из них</h6></td>
+		     <td><input type="number" name="c3_1" min="0" max="9999" size="6" value="{{doc.c3_1}}"></td>
+		     <td>{{doc_prev.c3_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.2 - по социальному найму</h6></td>
+		     <td><input type="number" name="c3_2" min="0" max="9999" size="6" value="{{doc.c3_2}}"></td>
+		     <td>{{doc_prev.c3_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.3 - служебное жилье</h6></td>
+		     <td><input type="number" name="c3_3" min="0" max="9999" size="6" value="{{doc.c3_3}}"></td>
+		     <td>{{doc_prev.c3_3}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.4 - предоставление общежития</h6></td>
+		     <td><input type="number" name="c3_4" min="0" max="9999" size="6" value="{{doc.c3_4}}"></td>
+		     <td>{{doc_prev.c3_4}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.5 Число врачей, приобретших жилье из нуждающихся в улучшении жилищных условий, всего, из них:</h6></td>
+		     <td><input type="number" name="c3_5" min="0" max="9999" size="6" value="{{doc.c3_5}}"></td>
+		     <td>{{doc_prev.c3_5}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.6 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части стоимости приобретаемого (строящегося) жилья</h6></td>
+		     <td><input type="number" name="c3_6" min="0" max="9999" size="6" value="{{doc.c3_6}}"></td>
+		     <td>{{doc_prev.c3_6}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.7 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части платежа по кредитному договору (договору займа)</h6></td>
+		     <td><input type="number" name="c3_7" min="0" max="9999" size="6" value="{{doc.c3_7}}"></td>
+		     <td>{{doc_prev.c3_7}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.8 - на основе льготного кредитования</h6></td>
+		     <td><input type="number" name="c3_8" min="0" max="9999" size="6" value="{{doc.c3_8}}"></td>
+		     <td>{{doc_prev.c3_8}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.9 Число врачей, нуждающихся в улучшении жилищных условий</h6></td>
+		     <td><input type="number" name="c3_9" min="0" max="9999" size="6" value="{{doc.c3_9}}"></td>
+		     <td>{{doc_prev.c3_9}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.10 Число врачей, обеспеченных жильем, из числа врачей, привлеченных в субъект Российской Федерации</h6></td>
+		     <td><input type="number" name="c3_10" min="0" max="9999" size="6" value="{{doc.c3_10}}"></td>
+		     <td>{{doc_prev.c3_10}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.11 Число врачей, нуждающихся в улучшении жилищных условий из числа врачей, привлеченных в субъект Российской Федерации</h6></td>
+		     <td><input type="number" name="c3_11" min="0" max="9999" size="6" value="{{doc.c3_11}}"></td>
+		     <td>{{doc_prev.c3_11}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.12 Число среднего медицинского персонала, получившего жилье из нуждающихся в улучшении жилищных условий, всего, из них:</h6></td>
+		     <td><input type="number" name="c3_12" min="0" max="9999" size="6" value="{{doc.c3_12}}"></td>
+		     <td>{{doc_prev.c3_12}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.13 - по социальному найму</h6></td>
+		     <td><input type="number" name="c3_13" min="0" max="9999" size="6" value="{{doc.c3_13}}"></td>
+		     <td>{{doc_prev.c3_13}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.14 - служебное жилье</h6></td>
+		     <td><input type="number" name="c3_14" min="0" max="9999" size="6" value="{{doc.c3_14}}"></td>
+		     <td>{{doc_prev.c3_14}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.15 - предоставление места в общежитии</h6></td>
+		     <td><input type="number" name="c3_15" min="0" max="9999" size="6" value="{{doc.c3_15}}"></td>
+		     <td>{{doc_prev.c3_15}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.16 Число среднего медицинского персонала, приобретшего жилье из нуждающихся в улучшении жилищных условий, всего, из них:</h6></td>
+		     <td><input type="number" name="c3_16" min="0" max="9999" size="6" value="{{doc.c3_16}}"></td>
+		     <td>{{doc_prev.c3_16}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.17 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части стоимости приобретаемого (строящегося) жилья</h6></td>
+		     <td><input type="number" name="c3_17" min="0" max="9999" size="6" value="{{doc.c3_17}}"></td>
+		     <td>{{doc_prev.c3_17}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.18 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части платежа по кредитному договору (договору займа)</h6></td>
+		     <td><input type="number" name="c3_18" min="0" max="9999" size="6" value="{{doc.c3_18}}"></td>
+		     <td>{{doc_prev.c3_18}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.19 - на основе льготного кредитования</h6></td>
+		     <td><input type="number" name="c3_19" min="0" max="9999" size="6" value="{{doc.c3_19}}"></td>
+		     <td>{{doc_prev.c3_19}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.20 Число среднего медицинского персонала, нуждающихся в улучшении жилищных условий</h6></td>
+		     <td><input type="number" name="c3_20" min="0" max="9999" size="6" value="{{doc.c3_20}}"></td>
+		     <td>{{doc_prev.c3_20}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.21 Число среднего медицинского персонала, обеспеченных жильем, из числа средних медицинских работников, привлеченных в субъект Российской Федерации</h6></td>
+		     <td><input type="number" name="c3_21" min="0" max="9999" size="6" value="{{doc.c3_21}}"></td>
+		     <td>{{doc_prev.c3_21}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.22 Число среднего медицинского персонала, нуждающихся в улучшении жилищных условий из числа средних медицинских работников, привлеченных в субъект Российской Федерации</h6></td>
+		     <td><input type="number" name="c3_22" min="0" max="9999" size="6" value="{{doc.c3_22}}"></td>
+		     <td>{{doc_prev.c3_22}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.23 Число врачей, получивших безвозмездно земельный участок для строительства (покупки) жилья, всего</h6></td>
+		     <td><input type="number" name="c3_23" min="0" max="9999" size="6" value="{{doc.c3_23}}"></td>
+		     <td>{{doc_prev.c3_23}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.24 - в том числе, привлеченных в субъект Российской Федерации</h6></td>
+		     <td><input type="number" name="c3_24" min="0" max="9999" size="6" value="{{doc.c3_24}}"></td>
+		     <td>{{doc_prev.c3_24}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.25 Число среднего медицинского персонала, получивших безвозмездно земельный участок для строительства (покупки) жилья, всего</h6></td>
+		     <td><input type="number" name="c3_25" min="0" max="9999" size="6" value="{{doc.c3_25}}"></td>
+		     <td>{{doc_prev.c3_25}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.26 - в том числе, привлеченных в субъект Российской Федерации</h6></td>
+		     <td><input type="number" name="c3_26" min="0" max="9999" size="6" value="{{doc.c3_26}}"></td>
+		     <td>{{doc_prev.c3_26}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.27 Число врачей, получивших компенсацию расходов за аренду жилого помещения</h6></td>
+		     <td><input type="number" name="c3_27" min="0" max="9999" size="6" value="{{doc.c3_27}}"></td>
+		     <td>{{doc_prev.c3_27}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.28 Число среднего медицинского персонала, получивших компенсацию расходов за аренду жилого помещения</h6></td>
+		     <td><input type="number" name="c3_28" min="0" max="9999" size="6" value="{{doc.c3_28}}"></td>
+		     <td>{{doc_prev.c3_28}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.29 Число врачей, получивших единовременные денежные выплаты при заключении трудового договора («подъмные»), с указанием программ – Земский доктор, иные</h6></td>
+		     <td><input type="number" name="c3_29" min="0" max="9999" size="6" value="{{doc.c3_29}}"></td>
+		     <td>{{doc_prev.c3_29}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.30 Число среднего медицинского персонала, получивших единовременные денежные выплаты при заключении трудового договора («подъмные»), с указанием программ – Земский доктор, иные</h6></td>
+		     <td><input type="number" name="c3_30" min="0" max="9999" size="6" value="{{doc.c3_30}}"></td>
+		     <td>{{doc_prev.c3_30}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.31 Число врачей, получивших ежемесячные денежные выплаты</h6></td>
+		     <td><input type="number" name="c3_31" min="0" max="9999" size="6" value="{{doc.c3_31}}"></td>
+		     <td>{{doc_prev.c3_31}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.32 Число среднего медицинского персонала, получивших ежемесячные денежные выплаты</h6></td>
+		     <td><input type="number" name="c3_32" min="0" max="9999" size="6" value="{{doc.c3_32}}"></td>
+		     <td>{{doc_prev.c3_32}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.33 Число студентов образовательных учреждений высшего профессионального образования, получивших доплаты к стипендиям</h6></td>
+		     <td><input type="number" name="c3_33" min="0" max="9999" size="6" value="{{doc.c3_33}}"></td>
+		     <td>{{doc_prev.c3_33}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.34 Число студентов образовательных учреждений среднего профессионального образования, получивших доплаты к стипендиям</h6></td>
+		     <td><input type="number" name="c3_34" min="0" max="9999" size="6" value="{{doc.c3_34}}"></td>
+		     <td>{{doc_prev.c3_34}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.35 Число врачей, получивших компенсацию расходов на оплату жилищно-коммунальных услуг</h6></td>
+		     <td><input type="number" name="c3_35" min="0" max="9999" size="6" value="{{doc.c3_35}}"></td>
+		     <td>{{doc_prev.c3_35}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.36 Число среднего медицинского персонала, получивших компенсацию расходов на оплату жилищно-коммунальных услуг</h6></td>
+		     <td><input type="number" name="c3_36" min="0" max="9999" size="6" value="{{doc.c3_36}}"></td>
+		     <td>{{doc_prev.c3_36}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.37 Число врачей, которые воспользовались внеочередным предоставлением места в дошкольной образовательной организации</h6></td>
+		     <td><input type="number" name="c3_37" min="0" max="9999" size="6" value="{{doc.c3_37}}"></td>
+		     <td>{{doc_prev.c3_37}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.38 Число среднего медицинского персонала, которые воспользовались внеочередным предоставлением места в дошкольной образовательной организации</h6></td>
+		     <td><input type="number" name="c3_38" min="0" max="9999" size="6" value="{{doc.c3_38}}"></td>
+		     <td>{{doc_prev.c3_38}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>3.39 Число муниципальных образований в субъекте Российской Федерации, оказывающих меры социальной поддержки медицинским работникам</h6></td>
+		     <td><input type="number" name="c3_39" min="0" max="9999" size="6" value="{{doc.c3_39}}"></td>
+		     <td>{{doc_prev.c3_39}}</td>
+		   </tr>
+		   <tr>
+  	         <td class="row_mess" colspan="3" ><h5>4.1. Число подготовленных и повысивших уровень квалификации медицинских кадров</h5></td>
+		   </tr>
+		   <tr>
+		   <tr>
+		     <td><h6>4.1 Число врачей, прошедших обучение по программам дополнительного профессионального образования (повышение квалификации)</h6></td>
+		     <td><input type="number" name="c4_1" min="0" max="9999" size="6" value="{{doc.c4_1}}"></td>
+		     <td>{{doc_prev.c4_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.2 Число врачей, прошедших обучение по программам дополнительного профессионального образования (профессиональная переподготовка)</h6></td>
+		     <td><input type="number" name="c4_2" min="0" max="9999" size="6" value="{{doc.c4_2}}"></td>
+		     <td>{{doc_prev.c4_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.3 Число врачей, направленных на целевую подготовку в интернатуре</h6></td>
+		     <td><input type="number" name="c4_3" min="0" max="9999" size="6" value="{{doc.c4_3}}"></td>
+		     <td>{{doc_prev.c4_3}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.4 Число врачей, направленных на целевую подготовку в ординатуре</h6></td>
+		     <td><input type="number" name="c4_4" min="0" max="9999" size="6" value="{{doc.c4_4}}"></td>
+		     <td>{{doc_prev.c4_4}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.5 Число врачей, завершивших обучение в интернатуре, всего</h6></td>
+		     <td><input type="number" name="c4_5" min="0" max="9999" size="6" value="{{doc.c4_5}}"></td>
+		     <td>{{doc_prev.c4_5}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.6 в том числе, завершивших обучение в целевой интернатуре</h6></td>
+		     <td><input type="number" name="c4_6" min="0" max="9999" size="6" value="{{doc.c4_6}}"></td>
+		     <td>{{doc_prev.c4_6}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.7 Число врачей, завершивших обучение в ординатуре, всего</h6></td>
+		     <td><input type="number" name="c4_7" min="0" max="9999" size="6" value="{{doc.c4_7}}"></td>
+		     <td>{{doc_prev.c4_7}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.8 в том числе, завершивших обучение в целевой ординатуре</h6></td>
+		     <td><input type="number" name="c4_8" min="0" max="9999" size="6" value="{{doc.c4_8}}"></td>
+		     <td>{{doc_prev.c4_8}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.9 Число выпускников, трудоустроившихся в медицинских организациях государственной и муниципальной систем здравоохранения субъекта Российской Федерации после завершения обучения в целевой интернатуре</h6></td>
+		     <td><input type="number" name="c4_9" min="0" max="9999" size="6" value="{{doc.c4_9}}"></td>
+		     <td>{{doc_prev.c4_9}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.10 Число выпускников, трудоустроившихся в медицинских организациях государственной и муниципальной систем здравоохранения субъекта Российской Федерации после завершения обучения в целевой ординатуре</h6></td>
+		     <td><input type="number" name="c4_10" min="0" max="9999" size="6" value="{{doc.c4_10}}"></td>
+		     <td>{{doc_prev.c4_10}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.11 Число среднего медицинского персонала, направленного на целевую подготовку по программам среднего профессионального образования (базовая и углубленная подготовка)</h6></td>
+		     <td><input type="number" name="c4_11" min="0" max="9999" size="6" value="{{doc.c4_11}}"></td>
+		     <td>{{doc_prev.c4_11}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.12 Число специалистов со средним медицинским и фармацевтическим образованием, прошедших обучение по программам дополнительного образования в образовательных учреждениях среднего профессионального и дополнительного профессионального образования</h6></td>
+		     <td><input type="number" name="c4_12" min="0" max="9999" size="6" value="{{doc.c4_12}}"></td>
+		     <td>{{doc_prev.c4_12}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.13 Число бюджетных мест в образовательных учреждениях среднего профессионального образования, подведомственных субъекту Российской Федерации</h6></td>
+		     <td><input type="number" name="c4_13" min="0" max="9999" size="6" value="{{doc.c4_13}}"></td>
+		     <td>{{doc_prev.c4_13}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.14 Число внебюджетных мест в образовательных учреждениях среднего профессионального образования, подведомственных субъекту Российской Федерации</h6></td>
+		     <td><input type="number" name="c4_14" min="0" max="9999" size="6" value="{{doc.c4_14}}"></td>
+		     <td>{{doc_prev.c4_14}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>4.15 Число среднего медицинского персонала, трудоустроившихся в медицинских организациях государственной и муниципальной систем здравоохранения после завершения целевой подготовки по программам среднего профессионального образования (базовая и углубленная подготовка)</h6></td>
+		     <td><input type="number" name="c4_15" min="0" max="9999" size="6" value="{{doc.c4_15}}"></td>
+		     <td>{{doc_prev.c4_15}}</td>
+		   </tr>
   		</table>
 {% endblock %}
 

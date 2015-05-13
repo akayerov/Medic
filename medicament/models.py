@@ -321,6 +321,7 @@ class Doc2(Document):
     c2_14_10  = models.IntegerField('Кол2_14_10', default=0)
     c2_14_11  = models.IntegerField('Кол2_14_11', default=0)
     c2_14_12  = models.IntegerField('Кол2_14_12', default=0)
+    c2_14_13  = models.IntegerField('Кол2_14_13', default=0)
     c2_14_14  = models.IntegerField('Кол2_14_14', default=0)
     c2_14_14  = models.IntegerField('Кол2_14_14', default=0)
     c2_14_15  = models.IntegerField('Кол2_14_15', default=0)
