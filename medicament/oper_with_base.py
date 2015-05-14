@@ -134,7 +134,7 @@ def get_region_name(mode, doc, iregion):
         if iregion > 0:
             return Region.objects.get(pk=iregion).name
         else:
-            return "Свод по Ярословской области"
+            return "Свод по Ярославской области"
     elif mode == 1:
         return doc[0].hosp.name        
     

@@ -159,7 +159,7 @@ def exp_to_excel_form1(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
     res =  calc_sum_form1(doc)
     speriod = get_period_namef(iperiod)
     sregion = get_region_name(mode,doc,iregion)
-    name_file = get_name("/medicament/Form/Form1.xlsx")
+    name_file = get_name("/static/Form/Form1.xlsx")
 
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active
