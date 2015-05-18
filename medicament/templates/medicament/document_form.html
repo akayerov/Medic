@@ -28,22 +28,44 @@
           <form>
            {% csrf_token %}
            {% block monitorform %} {% endblock %}
-   
+ 
+           <div class="row">
+           <div class="medium-12 columns">
            {% if right_operator %}
            {% if doc.status == 'E' or doc.status == 'C' %}
-    		 <button class="button" name="button_save" value="1" type="submit" formmethod="post">Сохранить</button>         
-    		 <button class="button" name="button_send_control" value="2" type="submit" formmethod="post">На согласование</button>         
+ 	     	 <div class="medium-2 columns">
+   		       <button class="button" name="button_save" value="1" type="submit" formmethod="post">Сохранить</button>         
+	         </div>
+ 	     	 <div class="medium-3 columns">
+     		   <button class="button" name="button_send_control" value="2" type="submit" formmethod="post">На согласование</button>         
+	         </div>
+ 	     	 <div class="medium-1 columns">
+	         </div>
+ 	     	 <div class="medium-2 columns">
+	         </div>
+ 	     	 <div class="medium-2 columns">
+{% comment %}
+      	       <button class="button" name="button_load" value="6" type="submit" formmethod="post">Загрузить из Excel</button>         
+{% endcomment %}
+	         </div>
+
           {% endif %}
-    		 <button class="button" name="button_export" value="3" type="submit" formmethod="post">Экспорт в Excel</button>         
           {% endif %}
           {% if right_control %}
           {% if doc.status == 'W' %}
+       	    <div class="medium-2 columns">
   	    	<button class="button" name="button_isOK" value="4" type="submit" formmethod="post">Согласовано</button>         
+            </div>
+  	   	    <div class="medium-3 columns">
   		    <button class="button" name="button_isNotOK" value="5" type="submit" formmethod="post">Не согласовано</button>         
+            </div>
           {% endif %}
-    		 <button class="button" name="button_export" value="6" type="submit" formmethod="post">Экспорт в Excel</button>         
           {% endif %}
-
+     	    <div class="medium-2 columns">
+     	    <button class="button" name="button_export" value="3" type="submit" formmethod="post">Экспорт в Excel</button>         
+     	    </div>
+          </div>
+          </div>
   		  </form>
            
     </div>
@@ -52,7 +74,7 @@
          <h4>Комментарии</h4>
          {% if comment %}
          {% for c in comment %}
-         <h6>{{c.user.first_name}} {{c.user.last_name}}:  {{c.date}}:  {{c.get_action_display}}<h6>
+         <h6>{{c.user.first_name}} {{c.user.last_name}}({{c.user}}):  {{c.date}}:  {{c.get_action_display}}<h6>
          <p>{{c.text}}<p>
          <hr>
          {% endfor %}

@@ -634,13 +634,98 @@ def set_fields_form2(request, doc):
     doc.c4_13 = request.POST['c4_13'] 
     doc.c4_14 = request.POST['c4_14'] 
     doc.c4_15 = request.POST['c4_15'] 
+
+    doc.p3_1 = request.POST['p3_1'] 
+    doc.p3_2 = request.POST['p3_2'] 
+    doc.p3_3 = request.POST['p3_3'] 
+    doc.p3_4 = request.POST['p3_4'] 
+    doc.p3_5 = request.POST['p3_5'] 
+    doc.p3_6 = request.POST['p3_6'] 
+    doc.p3_7 = request.POST['p3_7'] 
+    doc.p3_8 = request.POST['p3_8'] 
+    doc.p3_9 = request.POST['p3_9'] 
+    doc.p3_10 = request.POST['p3_10'] 
+    doc.p3_11 = request.POST['p3_11'] 
+    doc.p3_12 = request.POST['p3_12'] 
+    doc.p3_13 = request.POST['p3_13'] 
+    doc.p3_14 = request.POST['p3_14'] 
+    doc.p3_15 = request.POST['p3_15'] 
+    doc.p3_16 = request.POST['p3_16'] 
+    doc.p3_17 = request.POST['p3_17'] 
+    doc.p3_18 = request.POST['p3_18'] 
+    doc.p3_19 = request.POST['p3_19'] 
+    doc.p3_20 = request.POST['p3_20'] 
+    doc.p3_21 = request.POST['p3_21'] 
+    doc.p3_22 = request.POST['p3_22'] 
+    doc.p3_23 = request.POST['p3_23'] 
+    doc.p3_24 = request.POST['p3_24'] 
+    doc.p3_25 = request.POST['p3_25'] 
+    doc.p3_26 = request.POST['p3_26'] 
+    doc.p3_27 = request.POST['p3_27'] 
+    doc.p3_28 = request.POST['p3_28'] 
+    doc.p3_29 = request.POST['p3_29'] 
+    doc.p3_30 = request.POST['p3_30'] 
+    doc.p3_31 = request.POST['p3_31'] 
+    doc.p3_32 = request.POST['p3_32'] 
+    doc.p3_33 = request.POST['p3_33'] 
+    doc.p3_34 = request.POST['p3_34'] 
+    doc.p3_35 = request.POST['p3_35'] 
+    doc.p3_36 = request.POST['p3_36'] 
+    doc.p3_37 = request.POST['p3_37'] 
+    doc.p3_38 = request.POST['p3_38'] 
     
 
 
 def is_valid_form2(doc, doc_prev):
     ''' Проверка заполнения формы на корректность 
-        Специфично для каждой формы
     '''
+    if int(doc.c2_3) != int(doc.c2_3_1) + int(doc.c2_3_2) + int(doc.c2_3_3):
+        ret = [False,'Итого по строке 2.3 не равно сумме 2.3.1 - 2.3.3'] 
+        return ret
+    if int(doc.c2_4) != int(doc.c2_4_1) + int(doc.c2_4_2) + int(doc.c2_4_3):
+        ret = [False,'Итого по строке 2.4 не равно сумме 2.4.1 - 2.4.3'] 
+        return ret
+    if int(doc.c2_13) != int(doc.c2_13_1) + int(doc.c2_13_2) + int(doc.c2_13_3) + int(doc.c2_13_4) + \
+                         int(doc.c2_13_5) + int(doc.c2_13_6) + int(doc.c2_13_7) + int(doc.c2_13_8) + int(doc.c2_13_9) + \
+                         int(doc.c2_13_10) + int(doc.c2_13_11) + int(doc.c2_13_12) + int(doc.c2_13_13) + int(doc.c2_13_14) + \
+                         int(doc.c2_13_15) + int(doc.c2_13_16) + int(doc.c2_13_17) + int(doc.c2_13_18) + int(doc.c2_13_19) + \
+                         int(doc.c2_13_20) + int(doc.c2_13_21) + int(doc.c2_13_22) + int(doc.c2_13_23) + int(doc.c2_13_24) + \
+                         int(doc.c2_13_25) + int(doc.c2_13_26) + int(doc.c2_13_27) + int(doc.c2_13_28) + int(doc.c2_13_29) + \
+                         int(doc.c2_13_30) + int(doc.c2_13_31) + int(doc.c2_13_32) + int(doc.c2_13_33) + int(doc.c2_13_34) + \
+                        int(doc.c2_13_35) + int(doc.c2_13_36) + int(doc.c2_13_37) + int(doc.c2_13_38) + int(doc.c2_13_39) + \
+                        int(doc.c2_13_40) + int(doc.c2_13_41) + int(doc.c2_13_42) + int(doc.c2_13_43) + int(doc.c2_13_44) + \
+                        int(doc.c2_13_45) + int(doc.c2_13_46) + int(doc.c2_13_47) + int(doc.c2_13_48) + int(doc.c2_13_49) + \
+                        int(doc.c2_13_50) + int(doc.c2_13_51) + int(doc.c2_13_52) + int(doc.c2_13_53) + int(doc.c2_13_54) + \
+                        int(doc.c2_13_55) + int(doc.c2_13_56) + int(doc.c2_13_57) + int(doc.c2_13_58) + int(doc.c2_13_59) + \
+                        int(doc.c2_13_60) + int(doc.c2_13_61) + int(doc.c2_13_62) + int(doc.c2_13_63) + int(doc.c2_13_64) + \
+                        int(doc.c2_13_65) + int(doc.c2_13_66) + int(doc.c2_13_67) + int(doc.c2_13_68) + int(doc.c2_13_69) + \
+                        int(doc.c2_13_60) + int(doc.c2_13_61) + int(doc.c2_13_62) + int(doc.c2_13_63) + int(doc.c2_13_64) + \
+                        int(doc.c2_13_65) + int(doc.c2_13_66) + int(doc.c2_13_67) + int(doc.c2_13_68) + int(doc.c2_13_69) + \
+                        int(doc.c2_13_70) + int(doc.c2_13_71) + int(doc.c2_13_72) + int(doc.c2_13_73) + int(doc.c2_13_74) + \
+                        int(doc.c2_13_75) + int(doc.c2_13_76) + int(doc.c2_13_77) + int(doc.c2_13_78) + int(doc.c2_13_79) + \
+                        int(doc.c2_13_80) + int(doc.c2_13_81) + int(doc.c2_13_82) + int(doc.c2_13_83) + int(doc.c2_13_84) + \
+                        int(doc.c2_13_85) + int(doc.c2_13_86) + int(doc.c2_13_87) + int(doc.c2_13_88) + int(doc.c2_13_89) + \
+                        int(doc.c2_13_90) + int(doc.c2_13_91) + int(doc.c2_13_92) + int(doc.c2_13_93) + int(doc.c2_13_94) + \
+                        int(doc.c2_13_95) + int(doc.c2_13_96) + int(doc.c2_13_97) + int(doc.c2_13_98) + int(doc.c2_13_99) + \
+                        int(doc.c2_13_100) + int(doc.c2_13_101) + int(doc.c2_13_102) + int(doc.c2_13_103) + int(doc.c2_13_104) + \
+                        int(doc.c2_13_105) + int(doc.c2_13_106) + int(doc.c2_13_107) + int(doc.c2_13_108) + int(doc.c2_13_109) + \
+                        int(doc.c2_13_110) + int(doc.c2_13_111) + int(doc.c2_13_112) + int(doc.c2_13_113) + int(doc.c2_13_114) + \
+                        int(doc.c2_13_115) + int(doc.c2_13_116) + int(doc.c2_13_117) + int(doc.c2_13_118) + int(doc.c2_13_119) + \
+                        int(doc.c2_13_120) + int(doc.c2_13_121) + int(doc.c2_13_122) + int(doc.c2_13_123) + int(doc.c2_13_124) :
+        ret = [False,'Итого по строке 2.13 не равно сумме 2.13.1 - 2.13.124'] 
+        return ret
+    if int(doc.c2_14) != int(doc.c2_14_1) + int(doc.c2_14_2) + int(doc.c2_14_3) + int(doc.c2_14_4) + \
+                         int(doc.c2_14_5) + int(doc.c2_14_6) + int(doc.c2_14_7) + int(doc.c2_14_8) + int(doc.c2_14_9) + \
+                         int(doc.c2_14_10) + int(doc.c2_14_11) + int(doc.c2_14_12) + int(doc.c2_14_13) + int(doc.c2_14_14) + \
+                         int(doc.c2_14_15) + int(doc.c2_14_16) + int(doc.c2_14_17) + int(doc.c2_14_18) + int(doc.c2_14_19) + \
+                         int(doc.c2_14_20) + int(doc.c2_14_21) + int(doc.c2_14_22) + int(doc.c2_14_23) + int(doc.c2_14_24) + \
+                         int(doc.c2_14_25) + int(doc.c2_14_26) + int(doc.c2_14_27) + int(doc.c2_14_28) + int(doc.c2_14_29) + \
+                         int(doc.c2_14_30) + int(doc.c2_14_31) + int(doc.c2_14_32) + int(doc.c2_14_33) + int(doc.c2_14_34) + \
+                        int(doc.c2_14_35) + int(doc.c2_14_36) + int(doc.c2_14_37) + int(doc.c2_14_38) + int(doc.c2_14_39) + \
+                        int(doc.c2_14_40) + int(doc.c2_14_41) + int(doc.c2_14_42) + int(doc.c2_14_43) + int(doc.c2_14_44) + \
+                        int(doc.c2_14_45):
+        ret = [False,'Итого по строке 2.14 не равно сумме 2.14.1 - 2.14.45'] 
+        return ret
     ret = [True,'OK']
     return ret
 
@@ -985,48 +1070,798 @@ def calc_sum_form2(doc):
 
     return s
 
+def calc_valf3_form2(doc):
+    ''' Возвращает значения в приложении 3.1 
+    '''
+    s = [["3.1 Число врачей, получивших жилье из нуждающихся в улучшении жилищных условий, всего, из них", doc[0].p3_1],
+         ["3.2 - по социальному найму", doc[0].p3_2],
+         ["3.3 - служебное жилье", doc[0].p3_3],
+         ["3.4 - предоставление общежития", doc[0].p3_4],         
+         ["3.5 Число врачей, приобретших жилье из нуждающихся в улучшении жилищных условий, всего, из них:", doc[0].p3_5],
+         ["3.6 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части стоимости приобретаемого (строящегося) жилья", doc[0].p3_6],
+         ["3.7 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части платежа по кредитному договору (договору займа)", doc[0].p3_7],
+         ["3.8 - на основе льготного кредитования", doc[0].p3_8],         
+         ["3.9 Число врачей, нуждающихся в улучшении жилищных условий", doc[0].p3_9],
+         ["3.10 Число врачей, обеспеченных жильем, из числа врачей, привлеченных в субъект Российской Федерации", doc[0].p3_10],
+         ["3.11 Число врачей, нуждающихся в улучшении жилищных условий из числа врачей, привлеченных в субъект Российской Федерации",doc[0].p3_11],
+         ["3.12 Число среднего медицинского персонала, получившего жилье из нуждающихся в улучшении жилищных условий, всего, из них:",doc[0].p3_12],
+         ["3.13 - по социальному найму",doc[0].p3_13],
+         ["3.14 - служебное жилье",doc[0].p3_14],
+         ["3.15 - предоставление места в общежитии",doc[0].p3_15],
+         ["3.16 Число среднего медицинского персонала, приобретшего жилье из нуждающихся в улучшении жилищных условий, всего, из них:",doc[0].p3_16],
+         ["3.17 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части стоимости приобретаемого (строящегося) жилья",doc[0].p3_17],         
+         ["3.18 - с использованием безвозмездной единовременной субсидии (выплаты) на компенсацию части платежа по кредитному договору (договору займа)",doc[0].p3_18],
+         ["3.19 - на основе льготного кредитования",doc[0].p3_19],
+         ["3.20 Число среднего медицинского персонала, нуждающихся в улучшении жилищных условий",doc[0].p3_20],
+         ["3.21 Число среднего медицинского персонала, обеспеченных жильем, из числа средних медицинских работников, привлеченных в субъект Российской Федерации",doc[0].p3_21],         
+         ["3.22 Число среднего медицинского персонала, нуждающихся в улучшении жилищных условий из числа средних медицинских работников, привлеченных в субъект Российской Федерации",doc[0].p3_22],
+         ["3.23 Число врачей, получивших безвозмездно земельный участок для строительства (покупки) жилья, всего",doc[0].p3_23],
+         ["3.24 - в том числе, привлеченных в субъект Российской Федерации",doc[0].p3_24],
+         ["3.25 Число среднего медицинского персонала, получивших безвозмездно земельный участок для строительства (покупки) жилья, всего",doc[0].p3_25],
+         ["3.26 - в том числе, привлеченных в субъект Российской Федерации",doc[0].p3_26],
+         ["3.27 Число врачей, получивших компенсацию расходов за аренду жилого помещения",doc[0].p3_27],
+         ["3.28 Число среднего медицинского персонала, получивших компенсацию расходов за аренду жилого помещения",doc[0].p3_28],
+         ["3.29 Число врачей, получивших единовременные денежные выплаты при заключении трудового договора («подъмные»), с указанием программ – Земский доктор, иные",doc[0].p3_29],
+         ["3.30 Число среднего медицинского персонала, получивших единовременные денежные выплаты при заключении трудового договора («подъмные»), с указанием программ – Земский доктор, иные",doc[0].p3_30],         
+         ["3.31 Число врачей, получивших ежемесячные денежные выплаты",doc[0].p3_31],
+         ["3.32 Число среднего медицинского персонала, получивших ежемесячные денежные выплаты",doc[0].p3_32],
+         ["3.33 Число студентов образовательных учреждений высшего профессионального образования, получивших доплаты к стипендиям",doc[0].p3_33],
+         ["3.34 Число студентов образовательных учреждений среднего профессионального образования, получивших доплаты к стипендиям",doc[0].p3_34],         
+         ["3.35 Число врачей, получивших компенсацию расходов на оплату жилищно-коммунальных услуг",doc[0].p3_35],
+         ["3.36 Число среднего медицинского персонала, получивших компенсацию расходов на оплату жилищно-коммунальных услуг",doc[0].p3_36],
+         ["3.37 Число врачей, которые воспользовались внеочередным предоставлением места в дошкольной образовательной организации",doc[0].p3_37],
+         ["3.38 Число среднего медицинского персонала, которые воспользовались внеочередным предоставлением места в дошкольной образовательной организации",doc[0].p3_38]
+         ]
+ 
+    return s
+
+
+
+
+
 def exp_to_excel_form2(doc, iperiod, iregion, mode, stat = None):    # mode = 0 по региону или группе больниц  mode = 1 - по конкретной больнице
     res =  calc_sum_form2(doc)
     speriod = get_period_namef(iperiod)
     sregion = get_region_name(mode,doc,iregion)
-    name_file = get_name("/static/Form/Form2.xlsx")
+    if mode == 1:
+        name_file = get_name("/static/Form/Form2.xlsx")
+    else:
+        name_file = get_name("/static/Form/Form2_All.xlsx")
 
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active
     sheet['B2'] = speriod
     sheet['B1'] = sregion
     if mode==0:
-        sheet['A200'] = "Статистика по отчету"  
-        sheet['A201'] = "Организаций предоставляющих, Всего"
-        sheet['B201'] = stat.rec_all
-        sheet['A202'] = "Отобрано в отчет, Всего"
-        sheet['B202'] = stat.rec_fltr
-        sheet['A203'] = "Завершено"
-        sheet['B203'] = stat.rec_complete
-        sheet['A204'] = "Согласование"
-        sheet['B204'] = stat.rec_soglas
-        sheet['A205'] = "Корректировка"
-        sheet['B205'] = stat.rec_correct
-        sheet['A206'] = "Редактирование"
-        sheet['B206'] = stat.rec_edit
+        sheet['B310'] = "Статистика по отчету"  
+        sheet['B311'] = "Организаций предоставляющих, Всего"
+        sheet['C311'] = stat.rec_all
+        sheet['B312'] = "Отобрано в отчет, Всего"
+        sheet['C312'] = stat.rec_fltr
+        sheet['B313'] = "Завершено"
+        sheet['C313'] = stat.rec_complete
+        sheet['B314'] = "Согласование"
+        sheet['C314'] = stat.rec_soglas
+        sheet['B315'] = "Корректировка"
+        sheet['C315'] = stat.rec_correct
+        sheet['B316'] = "Редактирование"
+        sheet['C316'] = stat.rec_edit
 
-    sheet['A208'] = "Выведено в системе Мед+ " + str(datetime.now()) 
-    sheet['A208'].font = Font(size=5)
 
-    sheet['B7'] = "Таблица 2.1. Численность и структура кадров работников здравоохранения"
-    startrow = 8 
-    for i in range(0,195):
+    startrow = 7 
+    for i in range(0,296):
         srA = "B" + str(startrow + i)
         srB = "C" + str(startrow + i)
         sheet[srA] = res[i][0]
         sheet[srB] = res[i][1]
-        
-
+# вывод только для конкретной МО для все  не выводится        
+    if mode == 1:
+        res = calc_valf3_form2(doc)
+        startrow = 307 
+        for i in range(0,38):
+            srA = "B" + str(startrow + i)
+            srB = "C" + str(startrow + i)
+            sheet[srA] = res[i][0]
+            sheet[srB] = res[i][1]
+                
+        sheet['A346'] = "Выведено в системе Мед+ " + str(datetime.now()) 
+        sheet['A346'].font = Font(size=5)
+    else:
+        sheet['A318'] = "Выведено в системе Мед+ " + str(datetime.now()) 
+        sheet['A318'].font = Font(size=5)
+ 
  #   name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
     name_file =  get_name("/medicament/Form/rep" + str(int(random()*100000000)) + ".xlsx") 
     wb.save(name_file)
     
     return name_file
 
+def load_from_excel_form2(doc_id, filename):
+    d  =  Doc2.objects.get(pk=doc_id)
+    name_file = ("C:\\MedPlus\\" + filename)
+
+    wb = openpyxl.load_workbook(name_file)
+    sheet = wb.active
+    startrow = 7 
+    for i in range(0,296):
+        c = "C" + str(startrow + i)
+        if   i==0:
+            d.c2_1 = sheet[c].value
+        elif i==1:
+            d.c2_2 = sheet[c].value
+        elif i==2:
+            d.c2_3 = sheet[c].value
+        elif i==3:
+            d.c2_3_1 = sheet[c].value
+        elif i==4:
+            d.c2_3_2 = sheet[c].value
+        elif i==5:
+            d.c2_3_3 = sheet[c].value
+        elif i==6:
+            d.c2_4 = sheet[c].value
+        elif i==7:
+            d.c2_4_1 = sheet[c].value
+        elif i==8:
+            d.c2_4_2 = sheet[c].value
+        elif i==9:
+            d.c2_4_3 = sheet[c].value
+        elif i==10:
+            d.c2_5 = sheet[c].value
+        elif i==11:
+            d.c2_5_1 = sheet[c].value
+        elif i==12:
+            d.c2_5_2 = sheet[c].value
+        elif i==13:
+            d.c2_5_3 = sheet[c].value
+        elif i==14:
+            d.c2_5_4 = sheet[c].value
+        elif i==15:
+            d.c2_5_5 = sheet[c].value
+        elif i==16:
+            d.c2_5_6 = sheet[c].value
+        elif i==17:
+            d.c2_5_7 = sheet[c].value
+        elif i==18:
+            d.c2_5_8 = sheet[c].value
+        elif i==19:
+            d.c2_5_9 = sheet[c].value
+        elif i==20:
+            d.c2_5_10 = sheet[c].value
+        elif i==21:
+            d.c2_5_11 = sheet[c].value
+        elif i==22:
+            d.c2_5_12 = sheet[c].value
+        elif i==23:
+            d.c2_5_13 = sheet[c].value
+        elif i==24:
+            d.c2_5_14 = sheet[c].value
+        elif i==25:
+            d.c2_5_15 = sheet[c].value
+        elif i==26:
+            d.c2_5_16 = sheet[c].value
+        elif i==27:
+            d.c2_5_17 = sheet[c].value
+        elif i==28:
+            d.c2_5_18 = sheet[c].value
+        elif i==29:
+            d.c2_5_19 = sheet[c].value
+        elif i==30:
+            d.c2_5_20 = sheet[c].value
+        elif i==31:
+            d.c2_5_21 = sheet[c].value
+        elif i==32:
+            d.c2_5_22 = sheet[c].value
+        elif i==33:
+            d.c2_5_23 = sheet[c].value
+        elif i==34:
+            d.c2_5_24 = sheet[c].value
+        elif i==35:
+            d.c2_5_25 = sheet[c].value
+        elif i==36:
+            d.c2_5_26 = sheet[c].value
+        elif i==37:
+            d.c2_5_27 = sheet[c].value
+        elif i==38:
+            d.c2_5_28 = sheet[c].value
+        elif i==39:
+            d.c2_5_29 = sheet[c].value
+        elif i==40:
+            d.c2_5_30 = sheet[c].value
+        elif i==41:
+            d.c2_5_31 = sheet[c].value
+        elif i==42:
+            d.c2_5_32 = sheet[c].value
+        elif i==43:
+            d.c2_5_33 = sheet[c].value
+        elif i==44:
+            d.c2_5_34 = sheet[c].value
+        elif i==45:
+            d.c2_5_35 = sheet[c].value
+        elif i==46:
+            d.c2_5_36 = sheet[c].value
+        elif i==47:
+            d.c2_5_37 = sheet[c].value
+        elif i==48:
+            d.c2_5_38 = sheet[c].value
+        elif i==49:
+            d.c2_5_39 = sheet[c].value
+        elif i==50:
+            d.c2_5_40 = sheet[c].value
+        elif i==51:
+            d.c2_5_41 = sheet[c].value
+        elif i==52:
+            d.c2_6 = sheet[c].value
+        elif i==53:
+            d.c2_7 = sheet[c].value
+        elif i==54:
+            d.c2_8 = sheet[c].value
+        elif i==55:
+            d.c2_9 = sheet[c].value
+        elif i==56:
+            d.c2_10 = sheet[c].value
+        elif i==57:
+            d.c2_11 = sheet[c].value
+        elif i==58:
+            d.c2_12 = sheet[c].value
+        elif i==59:
+            d.c2_13 = sheet[c].value
+        elif i==60:
+            d.c2_13_1 = sheet[c].value
+        elif i==61:
+            d.c2_13_2 = sheet[c].value
+        elif i==62:
+            d.c2_13_3 = sheet[c].value
+        elif i==63:
+            d.c2_13_4 = sheet[c].value
+        elif i==64:
+            d.c2_13_5 = sheet[c].value
+        elif i==65:
+            d.c2_13_6 = sheet[c].value
+        elif i==66:
+            d.c2_13_7 = sheet[c].value
+        elif i==67:
+            d.c2_13_8 = sheet[c].value
+        elif i==68:
+            d.c2_13_9 = sheet[c].value
+        elif i==69:
+            d.c2_13_10 = sheet[c].value
+        elif i==70:
+            d.c2_13_11 = sheet[c].value
+        elif i==71:
+            d.c2_13_12 = sheet[c].value
+        elif i==72:
+            d.c2_13_13 = sheet[c].value
+        elif i==73:
+            d.c2_13_14 = sheet[c].value
+        elif i==74:
+            d.c2_13_15 = sheet[c].value
+        elif i==75:
+            d.c2_13_16 = sheet[c].value
+        elif i==76:
+            d.c2_13_17 = sheet[c].value
+        elif i==77:
+            d.c2_13_18 = sheet[c].value
+        elif i==78:
+            d.c2_13_19 = sheet[c].value
+        elif i==79:
+            d.c2_13_20 = sheet[c].value
+        elif i==80:
+            d.c2_13_21 = sheet[c].value
+        elif i==81:
+            d.c2_13_22 = sheet[c].value
+        elif i==82:
+            d.c2_13_23 = sheet[c].value  
+        elif i==83:
+            d.c2_13_24 = sheet[c].value
+        elif i==84:
+            d.c2_13_25 = sheet[c].value
+        elif i==85:
+            d.c2_13_26 = sheet[c].value
+        elif i==86:
+            d.c2_13_27 = sheet[c].value
+        elif i==87:
+            d.c2_13_28 = sheet[c].value
+        elif i==88:
+            d.c2_13_29 = sheet[c].value
+        elif i==89:
+            d.c2_13_30 = sheet[c].value
+        elif i==90:
+            d.c2_13_31 = sheet[c].value
+        elif i==91:
+            d.c2_13_32 = sheet[c].value
+        elif i==92:
+            d.c2_13_33 = sheet[c].value
+        elif i==93:
+            d.c2_13_34 = sheet[c].value
+        elif i==94:
+            d.c2_13_35 = sheet[c].value
+        elif i==95:
+            d.c2_13_36 = sheet[c].value
+        elif i==96:
+            d.c2_13_37 = sheet[c].value
+        elif i==97:
+            d.c2_13_38 = sheet[c].value
+        elif i==98:
+            d.c2_13_39 = sheet[c].value
+        elif i==99:
+            d.c2_13_40 = sheet[c].value
+        elif i==100:
+            d.c2_13_41 = sheet[c].value
+        elif i==101:
+            d.c2_13_42 = sheet[c].value
+        elif i==102:
+            d.c2_13_43 = sheet[c].value
+        elif i==103:
+            d.c2_13_44 = sheet[c].value
+        elif i==104:
+            d.c2_13_45 = sheet[c].value
+        elif i==105:
+            d.c2_13_46 = sheet[c].value
+        elif i==106:
+            d.c2_13_47 = sheet[c].value  
+        elif i==107:
+            d.c2_13_48 = sheet[c].value
+        elif i==108:
+            d.c2_13_49 = sheet[c].value
+        elif i==109:
+            d.c2_13_50 = sheet[c].value
+        elif i==110:
+            d.c2_13_51 = sheet[c].value
+        elif i==111:
+            d.c2_13_52 = sheet[c].value
+        elif i==112:
+            d.c2_13_53 = sheet[c].value
+        elif i==113:
+            d.c2_13_54 = sheet[c].value
+        elif i==114:
+            d.c2_13_55 = sheet[c].value
+        elif i==115:
+            d.c2_13_56 = sheet[c].value
+        elif i==116:
+            d.c2_13_57 = sheet[c].value
+        elif i==117:
+            d.c2_13_58 = sheet[c].value
+        elif i==118:
+            d.c2_13_59 = sheet[c].value
+        elif i==119:
+            d.c2_13_60 = sheet[c].value
+        elif i==120:
+            d.c2_13_61 = sheet[c].value
+        elif i==121:
+            d.c2_13_62 = sheet[c].value
+        elif i==122:
+            d.c2_13_63 = sheet[c].value
+        elif i==123:
+            d.c2_13_64 = sheet[c].value
+        elif i==124:
+            d.c2_13_65 = sheet[c].value
+        elif i==125:
+            d.c2_13_66 = sheet[c].value
+        elif i==126:
+            d.c2_13_67 = sheet[c].value
+        elif i==127:
+            d.c2_13_68 = sheet[c].value
+        elif i==128:
+            d.c2_13_69 = sheet[c].value
+        elif i==129:
+            d.c2_13_70 = sheet[c].value
+        elif i==130:
+            d.c2_13_71 = sheet[c].value  
+        elif i==131:
+            d.c2_13_72 = sheet[c].value
+        elif i==132:
+            d.c2_13_73 = sheet[c].value
+        elif i==133:
+            d.c2_13_74 = sheet[c].value
+        elif i==134:
+            d.c2_13_75 = sheet[c].value
+        elif i==135:
+            d.c2_13_76 = sheet[c].value
+        elif i==136:
+            d.c2_13_77 = sheet[c].value
+        elif i==137:
+            d.c2_13_78 = sheet[c].value
+        elif i==138:
+            d.c2_13_79 = sheet[c].value
+        elif i==139:
+            d.c2_13_80 = sheet[c].value
+        elif i==140:
+            d.c2_13_81 = sheet[c].value
+        elif i==141:
+            d.c2_13_82 = sheet[c].value
+        elif i==142:
+            d.c2_13_83 = sheet[c].value
+        elif i==143:
+            d.c2_13_84 = sheet[c].value
+        elif i==144:
+            d.c2_13_85 = sheet[c].value
+        elif i==145:
+            d.c2_13_86 = sheet[c].value
+        elif i==146:
+            d.c2_13_87 = sheet[c].value
+        elif i==147:
+            d.c2_13_88 = sheet[c].value
+        elif i==147:
+            d.c2_13_89 = sheet[c].value
+        elif i==148:
+            d.c2_13_90 = sheet[c].value
+        elif i==149:
+            d.c2_13_91 = sheet[c].value
+        elif i==150:
+            d.c2_13_92 = sheet[c].value
+        elif i==151:
+            d.c2_13_93 = sheet[c].value
+        elif i==152:
+            d.c2_13_94 = sheet[c].value
+        elif i==153:
+            d.c2_13_95 = sheet[c].value  
+        elif i==154:
+            d.c2_13_96 = sheet[c].value
+        elif i==155:
+            d.c2_13_97 = sheet[c].value
+        elif i==156:
+            d.c2_13_98 = sheet[c].value
+        elif i==157:
+            d.c2_13_99 = sheet[c].value
+        elif i==158:
+            d.c2_13_100 = sheet[c].value
+        elif i==159:
+            d.c2_13_101 = sheet[c].value
+        elif i==160:
+            d.c2_13_102= sheet[c].value
+        elif i==161:
+            d.c2_13_103 = sheet[c].value
+        elif i==162:
+            d.c2_13_104 = sheet[c].value
+        elif i==163:
+            d.c2_13_105 = sheet[c].value
+        elif i==164:
+            d.c2_13_106 = sheet[c].value
+        elif i==165:
+            d.c2_13_107 = sheet[c].value
+        elif i==166:
+            d.c2_13_108 = sheet[c].value
+        elif i==167:
+            d.c2_13_109 = sheet[c].value
+        elif i==168:
+            d.c2_13_110 = sheet[c].value
+        elif i==169:
+            d.c2_13_111 = sheet[c].value
+        elif i==170:
+            d.c2_13_112 = sheet[c].value
+        elif i==171:
+            d.c2_13_113 = sheet[c].value
+        elif i==172:
+            d.c2_13_114 = sheet[c].value
+        elif i==173:
+            d.c2_13_115 = sheet[c].value
+        elif i==174:
+            d.c2_13_116 = sheet[c].value
+        elif i==175:
+            d.c2_13_117 = sheet[c].value
+        elif i==176:
+            d.c2_13_118 = sheet[c].value
+        elif i==177:
+            d.c2_13_119 = sheet[c].value  
+        elif i==178:
+            d.c2_13_120 = sheet[c].value
+        elif i==179:
+            d.c2_13_121 = sheet[c].value
+        elif i==180:
+            d.c2_13_122 = sheet[c].value
+        elif i==181:
+            d.c2_13_123 = sheet[c].value
+        elif i==182:
+            d.c2_13_124 = sheet[c].value
+        elif i==183:
+            d.c2_14 = sheet[c].value
+        elif i==184:
+            d.c2_14_1 = sheet[c].value
+        elif i==185:
+            d.c2_14_2 = sheet[c].value
+        elif i==186:
+            d.c2_14_3 = sheet[c].value
+        elif i==187:
+            d.c2_14_4 = sheet[c].value
+        elif i==188:
+            d.c2_14_5 = sheet[c].value
+        elif i==189:
+            d.c2_14_6 = sheet[c].value
+        elif i==190:
+            d.c2_14_7 = sheet[c].value
+        elif i==191:
+            d.c2_14_8 = sheet[c].value
+        elif i==192:
+            d.c2_14_9 = sheet[c].value
+        elif i==193:
+            d.c2_14_10 = sheet[c].value
+        elif i==194:
+            d.c2_14_11 = sheet[c].value
+        elif i==195:
+            d.c2_14_12 = sheet[c].value
+        elif i==196:
+            d.c2_14_13 = sheet[c].value
+        elif i==197:
+            d.c2_14_14 = sheet[c].value
+        elif i==198:
+            d.c2_14_15 = sheet[c].value
+        elif i==199:
+            d.c2_14_16 = sheet[c].value
+        elif i==200:
+            d.c2_14_17 = sheet[c].value
+        elif i==201:
+            d.c2_14_18 = sheet[c].value  
+        elif i==202:
+            d.c2_14_19 = sheet[c].value
+        elif i==203:
+            d.c2_14_20 = sheet[c].value
+        elif i==204:
+            d.c2_14_21 = sheet[c].value
+        elif i==205:
+            d.c2_14_22 = sheet[c].value
+        elif i==206:
+            d.c2_14_23 = sheet[c].value
+        elif i==207:
+            d.c2_14_24 = sheet[c].value
+        elif i==208:
+            d.c2_14_25 = sheet[c].value
+        elif i==209:
+            d.c2_14_26 = sheet[c].value
+        elif i==210:
+            d.c2_14_27 = sheet[c].value
+        elif i==211:
+            d.c2_14_28 = sheet[c].value
+        elif i==212:
+            d.c2_14_29 = sheet[c].value
+        elif i==213:
+            d.c2_14_30 = sheet[c].value
+        elif i==214:
+            d.c2_14_31 = sheet[c].value
+        elif i==215:
+            d.c2_14_32 = sheet[c].value
+        elif i==216:
+            d.c2_14_33 = sheet[c].value
+        elif i==217:
+            d.c2_14_34 = sheet[c].value
+        elif i==218:
+            d.c2_14_35 = sheet[c].value
+        elif i==219:
+            d.c2_14_36 = sheet[c].value
+        elif i==220:
+            d.c2_14_37 = sheet[c].value
+        elif i==221:
+            d.c2_14_38 = sheet[c].value
+        elif i==222:
+            d.c2_14_39 = sheet[c].value
+        elif i==223:
+            d.c2_14_40 = sheet[c].value
+        elif i==224:
+            d.c2_14_41 = sheet[c].value
+        elif i==225:
+            d.c2_14_42 = sheet[c].value  
+        elif i==226:
+            d.c2_14_43 = sheet[c].value
+        elif i==227:
+            d.c2_14_44 = sheet[c].value
+        elif i==228:
+            d.c2_14_45 = sheet[c].value
+        elif i==229:
+            d.c2_15 = sheet[c].value
+        elif i==230:
+            d.c2_16 = sheet[c].value
+        elif i==231:
+            d.c2_17 = sheet[c].value
+        elif i==232:
+            d.c2_18 = sheet[c].value
+        elif i==233:
+            d.c2_19 = sheet[c].value
+        elif i==234:
+            d.c2_20 = sheet[c].value
+        elif i==235:
+            d.c2_21 = sheet[c].value
+        elif i==236:
+            d.c2_22 = sheet[c].value
+        elif i==237:
+            d.c2_23 = sheet[c].value
+        elif i==238:
+            d.c2_24 = sheet[c].value
+        elif i==239:
+            d.c2_25 = sheet[c].value
+        elif i==240:
+            d.c2_26 = sheet[c].value
+        elif i==241:
+            d.c2_27 = sheet[c].value
+        elif i==242:
+            d.c2_28 = sheet[c].value
+        elif i==243:
+            d.c3_1 = sheet[c].value
+        elif i==244:
+            d.c3_2 = sheet[c].value
+        elif i==245:
+            d.c3_3 = sheet[c].value
+        elif i==246:
+            d.c3_4 = sheet[c].value
+        elif i==247:
+            d.c3_5 = sheet[c].value
+        elif i==248:
+            d.c3_6 = sheet[c].value
+        elif i==249:
+            d.c3_7 = sheet[c].value  
+        elif i==250:
+            d.c3_8 = sheet[c].value
+        elif i==251:
+            d.c3_9 = sheet[c].value
+        elif i==252:
+            d.c3_10 = sheet[c].value
+        elif i==253:
+            d.c3_11 = sheet[c].value
+        elif i==254:
+            d.c3_12 = sheet[c].value
+        elif i==255:
+            d.c3_13 = sheet[c].value
+        elif i==256:
+            d.c3_14 = sheet[c].value
+        elif i==257:
+            d.c3_15 = sheet[c].value
+        elif i==258:
+            d.c3_16 = sheet[c].value
+        elif i==259:
+            d.c3_17 = sheet[c].value
+        elif i==260:
+            d.c3_18 = sheet[c].value
+        elif i==261:
+            d.c3_19 = sheet[c].value
+        elif i==262:
+            d.c3_20 = sheet[c].value
+        elif i==263:
+            d.c3_21 = sheet[c].value
+        elif i==264:
+            d.c3_22 = sheet[c].value
+        elif i==265:
+            d.c3_23 = sheet[c].value
+        elif i==266:
+            d.c3_24 = sheet[c].value
+        elif i==267:
+            d.c3_25 = sheet[c].value
+        elif i==268:
+            d.c3_26 = sheet[c].value
+        elif i==269:
+            d.c3_27 = sheet[c].value
+        elif i==270:
+            d.c3_28 = sheet[c].value
+        elif i==271:
+            d.c3_29 = sheet[c].value
+        elif i==272:
+            d.c3_30 = sheet[c].value
+        elif i==273:
+            d.c3_31 = sheet[c].value  
+        elif i==274:
+            d.c3_32 = sheet[c].value
+        elif i==275:
+            d.c3_33 = sheet[c].value
+        elif i==276:
+            d.c3_34 = sheet[c].value
+        elif i==277:
+            d.c3_35 = sheet[c].value
+        elif i==278:
+            d.c3_36 = sheet[c].value
+        elif i==279:
+            d.c3_37 = sheet[c].value
+        elif i==280:
+            d.c3_38 = sheet[c].value
+        elif i==281:
+            d.c4_1 = sheet[c].value
+        elif i==282:
+            d.c4_2 = sheet[c].value
+        elif i==283:
+            d.c4_3 = sheet[c].value
+        elif i==284:
+            d.c4_4 = sheet[c].value
+        elif i==285:
+            d.c4_5 = sheet[c].value
+        elif i==286:
+            d.c4_6 = sheet[c].value
+        elif i==287:
+            d.c4_7 = sheet[c].value
+        elif i==288:
+            d.c4_8 = sheet[c].value
+        elif i==289:
+            d.c4_9 = sheet[c].value
+        elif i==290:
+            d.c4_10 = sheet[c].value
+        elif i==291:
+            d.c4_11 = sheet[c].value
+        elif i==292:
+            d.c4_12 = sheet[c].value
+        elif i==293:
+            d.c4_13 = sheet[c].value
+        elif i==294:
+            d.c4_14 = sheet[c].value
+        elif i==295:
+            d.c4_15 = sheet[c].value
+
+    startrow = 307 
+    for i in range(0,38):
+        c = "C" + str(startrow + i)
+    for i in range(0,38):
+        c = "C" + str(startrow + i)
+        if   i==0:
+            d.p3_1 = sheet[c].value
+        if   i==1:
+            d.p3_2 = sheet[c].value
+        if   i==2:
+            d.p3_3 = sheet[c].value
+        if   i==3:
+            d.p3_4 = sheet[c].value
+        if   i==4:
+            d.p3_5 = sheet[c].value
+        if   i==5:
+            d.p3_6 = sheet[c].value
+        if   i==6:
+            d.p3_7 = sheet[c].value
+        if   i==7:
+            d.p3_8 = sheet[c].value
+        if   i==8:
+            d.p3_9 = sheet[c].value
+        if   i==9:
+            d.p3_10 = sheet[c].value
+        if   i==10:
+            d.p3_11 = sheet[c].value
+        if   i==11:
+            d.p3_12 = sheet[c].value
+        if   i==12:
+            d.p3_13 = sheet[c].value
+        if   i==13:
+            d.p3_14 = sheet[c].value
+        if   i==14:
+            d.p3_15 = sheet[c].value
+        if   i==15:
+            d.p3_16 = sheet[c].value
+        if   i==16:
+            d.p3_17 = sheet[c].value
+        if   i==17:
+            d.p3_18 = sheet[c].value
+        if   i==18:
+            d.p3_19 = sheet[c].value
+        if   i==19:
+            d.p3_20 = sheet[c].value
+        if   i==20:
+            d.p3_21 = sheet[c].value
+        if   i==21:
+            d.p3_22 = sheet[c].value
+        if   i==22:
+            d.p3_23 = sheet[c].value
+        if   i==23:
+            d.p3_24 = sheet[c].value
+        if   i==24:
+            d.p3_25 = sheet[c].value
+        if   i==25:
+            d.p3_26 = sheet[c].value
+        if   i==26:
+            d.p3_27 = sheet[c].value
+        if   i==27:
+            d.p3_28 = sheet[c].value
+        if   i==28:
+            d.p3_29 = sheet[c].value
+        if   i==29:
+            d.p3_30 = sheet[c].value
+        if   i==30:
+            d.p3_31 = sheet[c].value
+        if   i==31:
+            d.p3_32 = sheet[c].value
+        if   i==32:
+            d.p3_33 = sheet[c].value
+        if   i==33:
+            d.p3_34 = sheet[c].value
+        if   i==34:
+            d.p3_35 = sheet[c].value
+        if   i==35:
+            d.p3_36 = sheet[c].value
+        if   i==36:
+            d.p3_37 = sheet[c].value
+        if   i==37:
+            d.p3_38 = sheet[c].value        
+    d.save()    
+    return
 
     

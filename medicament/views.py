@@ -17,9 +17,9 @@ from medicament.forms import CommentForm
 from medicament.oper_with_base import save_doc, get_ids, statistic
 # по каждому типу докумпентов
 from medicament.Form.form1 import create_report_form1, calc_sum_form1,\
-    save_doc_form1,exp_to_excel_form1
+    save_doc_form1,exp_to_excel_form1,load_from_excel_form1
 from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
-    save_doc_form2,exp_to_excel_form2
+    save_doc_form2,exp_to_excel_form2,load_from_excel_form2
 
 import os
 import mimetypes
@@ -193,6 +193,7 @@ def monitoring_list(request, question_id ):
             stat.rec_edit     =  args['doc_list'].filter(status = 'E').count();        
             file_name = export_to_excel(args['doc_list'],period,region, 0, stat) 
             return redirect("/monitor/export/" + file_name)
+            
     else:   # Первый вход по GET
         if see_all: 
             args['doc_list']    =  doc.objects.all()            
@@ -254,6 +255,7 @@ def monitoring_form(request, question_id):
         status = gid[5]
         region = int(gid[6])
     else:
+        assert False
         page_number=1  
         m = 0  
         period = 0
@@ -278,7 +280,15 @@ def monitoring_form(request, question_id):
     isOk = True 
     actionComment =  Comment.EMPTY
     error = ''
+    ret_mess = [True,'OK']
+    
     if request.POST:
+        if  'button_load' in request.POST:
+#            assert False
+#            load_from_excel(request, question_id)
+            response = redirect('/load/' + str(type) + ',' + str(doc_id) + ','+ str(page_number) + ',' + str(m) \
+                                + ',' + str(period) + ',' + status + ',' + str(region))
+            return response
         if  'button_addComment' in request.POST:
             add_comment(request, question_id)    # 
             mode_comment = False
@@ -289,8 +299,9 @@ def monitoring_form(request, question_id):
             odoc = args['doc'][0];
             file_name = export_to_excel(args['doc'],odoc.period.id,region,1) 
             return redirect("/monitor/export/" + file_name)
-        
-        ret_mess = save_doc(request,type,doc_id, mode_comment)
+
+        if  not 'button_load' in request.POST:
+            ret_mess = save_doc(request,type,doc_id, mode_comment)
                     
         if ret_mess[0]:  # проверка прошла нормально
             if  'button_export' in request.POST:             # Эта ветка на память, сюда не должна попадать
@@ -298,7 +309,7 @@ def monitoring_form(request, question_id):
                 file_name = export_to_excel(args['doc'], doc.period,region,1) 
                 return redirect("/monitor/export/" + file_name)
             else:      
-                response = redirect('/form/' + str(type) + ',' + str(page_number) + ',' + str(m) \
+                response = redirect('/form/' + str(type) + ',' +  str(page_number) + ',' + str(m) \
                                 + ',' + str(period) + ',' + status + ',' + str(region))
                 return response
         else:
@@ -399,6 +410,51 @@ def contact_list(request):
     return render_to_response('medicament/contact_list.html', args)
 
 
+def load_from_excel(request, question_id):
+
+    args = {}
+    args.update(csrf(request))
+    gid = get_ids(question_id)
+#    assert False   
+    if request.user.is_authenticated() and len(gid) == 7:
+#        assert False   
+        stype = int(gid[0])
+        if stype == 1:
+           load_from_ex = load_from_excel_form1 
+        elif stype == 2:
+           load_from_ex = load_from_excel_form2
+            
+         
+        sdoc_id = gid[1]
+        spage_number = int(gid[2])
+        shosp = int(gid[3])  
+        speriod = int(gid[4])
+        sstatus = gid[5]
+        sregion = int(gid[6])
+        if request.POST:
+            if  'button_load' in request.POST:
+#                assert False
+                load_from_ex( int(sdoc_id), request.POST['filename'])
+                return redirect('/monitor/' + question_id)
+            else:
+                return redirect('/monitor/'  + question_id)
+
+        args['username'] = auth.get_user(request).username       
+        args['page_number']   =  spage_number       # для пагинации     
+        args['period'] = speriod       
+        args['status'] = sstatus       
+        args['hosp'] = shosp       
+        args['region'] = sregion       
+        args['doc_type']  = stype
+        if stype ==  1:
+            doc = Doc1
+        elif stype == 2:
+            doc = Doc2
+        args['doc']    =  doc.objects.get(pk=sdoc_id)            
+        return render_to_response("medicament/dialog_load.html", args)
+    else:
+        return redirect('/')
+        
 
 
 

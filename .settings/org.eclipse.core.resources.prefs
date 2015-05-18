@@ -3,6 +3,7 @@ encoding//Medic/settings.py=utf-8
 encoding//loginsys/views.py=UTF-8
 encoding//medicament/Form/form1.py=utf-8
 encoding//medicament/Form/form2.py=utf-8
+encoding//medicament/migrations/0001_initial.py=utf-8
 encoding//medicament/models.py=utf-8
 encoding//medicament/oper_with_base.py=utf-8
 encoding//medicament/templates/main.html=UTF-8

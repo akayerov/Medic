@@ -2,6 +2,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+def get_file_path(self, file):
+#    return ("pdf/datasheet/%s/%s/%s" % (file[0], file[1], file))
+    return ("C:\\" + file)
+
 # Create your models here.
 class Doc_type(models.Model):
     ''' Тип документа свода
@@ -101,14 +105,14 @@ class Doc1(Document):
     c2_7 = models.IntegerField('Кол2-7',  default=0)
     c2_8 = models.IntegerField('Кол2-8',  default=0)
     
-    c3_1 = models.IntegerField('Кол3-1', default=0)
-    c3_2 = models.IntegerField('Кол3-2', default=0)
-    c3_3 = models.IntegerField('Кол3-3', default=0)
-    c3_4 = models.IntegerField('Кол3-4', default=0)
-    c3_5 = models.IntegerField('Кол3-5',  default=0)
-    c3_6 = models.IntegerField('Кол3-6',  default=0)
-    c3_7 = models.IntegerField('Кол3-7',  default=0)
-    c3_8 = models.IntegerField('Кол3-8',  default=0)
+    c3_1 = models.IntegerField('КолПр3-1', default=0)
+    c3_2 = models.IntegerField('КолПр3-2', default=0)
+    c3_3 = models.IntegerField('КолПр3-3', default=0)
+    c3_4 = models.IntegerField('КолПр3-4', default=0)
+    c3_5 = models.IntegerField('КолПр3-5',  default=0)
+    c3_6 = models.IntegerField('КолПр3-6',  default=0)
+    c3_7 = models.IntegerField('КолПр3-7',  default=0)
+    c3_8 = models.IntegerField('КолПр3-8',  default=0)
     
     c4_1 = models.IntegerField('Кол4-1', default=0)
     c4_2 = models.IntegerField('Кол4-2',  default=0)
@@ -425,6 +429,47 @@ class Doc2(Document):
     c4_14     = models.IntegerField('Кол4_14', default=0)
     c4_15     = models.IntegerField('Кол4_15', default=0)
 
+    p3_1      = models.CharField('КолПр3_1', max_length=80, null=True, blank=True)
+    p3_2      = models.CharField('КолПр3_2', max_length=80, null=True, blank=True)
+    p3_3      = models.CharField('КолПр3_3', max_length=80, null=True, blank=True)
+    p3_4      = models.CharField('КолПр3_4', max_length=80, null=True, blank=True)
+    p3_5      = models.CharField('КолПр3_5', max_length=80, null=True, blank=True)
+    p3_6      = models.CharField('КолПр3_6', max_length=80, null=True, blank=True)
+    p3_7      = models.CharField('КолПр3_7', max_length=80, null=True, blank=True)
+    p3_8      = models.CharField('КолПр3_8', max_length=80, null=True, blank=True)
+    p3_9      = models.CharField('КолПр3_9', max_length=80, null=True, blank=True)
+    p3_10     = models.CharField('КолПр3_10', max_length=80, null=True, blank=True)
+    p3_11     = models.CharField('КолПр3_11', max_length=80, null=True, blank=True)
+    p3_12     = models.CharField('КолПр3_12', max_length=80, null=True, blank=True)
+    p3_13     = models.CharField('КолПр3_13', max_length=80, null=True, blank=True)
+    p3_14     = models.CharField('КолПр3_14', max_length=80, null=True, blank=True)
+    p3_15     = models.CharField('КолПр3_15', max_length=80, null=True, blank=True)
+    p3_16     = models.CharField('КолПр3_16', max_length=80, null=True, blank=True)
+    p3_17     = models.CharField('КолПр3_17', max_length=80, null=True, blank=True)
+    p3_18     = models.CharField('КолПр3_18', max_length=80, null=True, blank=True)
+    p3_19     = models.CharField('КолПр3_19', max_length=80, null=True, blank=True)
+    p3_20     = models.CharField('КолПр3_20', max_length=80, null=True, blank=True)
+    p3_21     = models.CharField('КолПр3_21', max_length=80, null=True, blank=True)
+    p3_22     = models.CharField('КолПр3_22', max_length=80, null=True, blank=True)
+    p3_23     = models.CharField('КолПр3_23', max_length=80, null=True, blank=True)
+    p3_24     = models.CharField('КолПр3_24', max_length=80, null=True, blank=True)
+    p3_25     = models.CharField('КолПр3_25', max_length=80, null=True, blank=True)
+    p3_26     = models.CharField('КолПр3_26', max_length=80, null=True, blank=True)
+    p3_27     = models.CharField('КолПр3_27', max_length=80, null=True, blank=True)
+    p3_28     = models.CharField('КолПр3_28', max_length=80, null=True, blank=True)
+    p3_29     = models.CharField('КолПр3_29', max_length=80, null=True, blank=True)
+    p3_30     = models.CharField('КолПр3_30', max_length=80, null=True, blank=True)
+    p3_31     = models.CharField('КолПр3_31', max_length=80, null=True, blank=True)
+    p3_32     = models.CharField('КолПр3_32', max_length=80, null=True, blank=True)
+    p3_33     = models.CharField('КолПр3_33', max_length=80, null=True, blank=True)
+    p3_34     = models.CharField('КолПр3_34', max_length=80, null=True, blank=True)
+    p3_35     = models.CharField('КолПр3_35', max_length=80, null=True, blank=True)
+    p3_36     = models.CharField('КолПр3_36', max_length=80, null=True, blank=True)
+    p3_37     = models.CharField('КолПр3_37', max_length=80, null=True, blank=True)
+    p3_38     = models.CharField('КолПр3_38', max_length=80, null=True, blank=True)
+
+    
+    
     def __str__(self):              # __unicode__ on Python 2
         return str(self.period) + ':' + str(self.hosp)
 

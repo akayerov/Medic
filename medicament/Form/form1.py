@@ -219,5 +219,6 @@ def exp_to_excel_form1(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
     
     return name_file
 
-
+def load_from_excel_form1(odoc):
+    return
     
