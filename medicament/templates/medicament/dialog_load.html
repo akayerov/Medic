@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class="row full-width">
+<div class="large-12 columns">
+     <h4><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h4>
+    
+ {% if doc %}
+          <form >
+           {% csrf_token %}
+           <div class="row">
+               <h5>Excel файл для заполнения формы должен находиться в папке C:\medPlus</h5>
+               <input type="file" name="filename" accept="*.xlsx">
+  		       <button class="button" name="button_load" value="1" type="submit" formmethod="post">Загрузить</button>         
+     		   <button class="button" name="button_cancel" value="2" type="submit" formmethod="post">Отменить</button>         
+           </div>
+  		  </form>
+           
+    </div>
+ {% else %} 
+    <p>Мониторинги не найдены‹</p>
+{% endif %}
+</div>
+</div>
+{% endblock %}
