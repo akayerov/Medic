@@ -6,7 +6,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
-from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Doc1, Doc2
+from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Doc1, Doc2, Doc3
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
@@ -20,6 +20,8 @@ from medicament.Form.form1 import create_report_form1, calc_sum_form1,\
     save_doc_form1,exp_to_excel_form1,load_from_excel_form1
 from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
     save_doc_form2,exp_to_excel_form2,load_from_excel_form2
+from medicament.Form.form3 import create_report_form3, calc_sum_form3,\
+    save_doc_form3,exp_to_excel_form3
 
 import os
 import mimetypes
@@ -121,6 +123,14 @@ def monitoring_list(request, question_id ):
                   ]
         html_response_rep = 'medicament/report_form2.html'
         export_to_excel = exp_to_excel_form2
+    elif type==3:  # супертест
+        doc = Doc3                     # используемая модель
+        new_doc =  create_report_form3   # функция создания новых отчетов
+        calc_sum = calc_sum_form3
+        result = [['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]]
+        html_response_rep = 'medicament/report_form3.html'
+        export_to_excel = exp_to_excel_form3
+
  #### Далее не изменять без необходимости                    
     args = {}
     args.update(csrf(request))
@@ -273,6 +283,11 @@ def monitoring_form(request, question_id):
         save_doc = save_doc_form2
         html_response = "medicament/doc_form2.html"
         export_to_excel = exp_to_excel_form2
+    elif type == 3: 
+        doc = Doc3
+        save_doc = save_doc_form3
+        html_response = "medicament/doc_form3.html"
+        export_to_excel = exp_to_excel_form3
 # конец настройки по типам!
                    
     args = {}
@@ -462,8 +477,38 @@ def index(request):
     return HttpResponse("Hello, world. You're at the album index.")
 
 
-def test(request): 
-    return render_to_response('albums/test.html', {})
+def test(request, question_id):
+    doc = Doc2.objects.get(pk=14)
+    f2 = doc._meta.get_field('c2_1') # if you want one field    
+    i = f2.value_from_object(doc)
+    f3 = doc.c2_1
+    assert False 
+    return render_to_response('/', {})
+     
+#    for field in model_instance._meta.fields:
+#        print field.name
+
+ 
+#model_instance._meta.get_field('field_name') # if you want one field    
+#l = ct._meta.get_field('slug')
+#l.value_from_object(ct)
+'''
+               for f in q._meta.get_all_field_names():
+                    obj, model, direct, m2m = q._meta.get_field_by_name(f)
+                    if isinstance(obj, GenericRelation):
+                        continue
+                    if not direct:
+                        continue
+                    if m2m:
+                        l = {}
+                        val = obj.value_from_object(q)
+                        for ix,m in enumerate(obj.value_from_object(q)):
+                            l.update({ix:m.__unicode__()})
+                        field_list.update({f:l})
+                    else:
+                        field_list.update({f:obj.value_to_string(q)})
+'''
+
 
     
 

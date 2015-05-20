@@ -3,12 +3,8 @@
 '''
 @author: a_kayerov
 '''
+from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Doc1, Doc2
 
-from pyexcelerate import Workbook
-
-data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] # data is a 2D array
-
-wb = Workbook()
-wb.new_sheet("sheet name", data=data)
-wb.save("c:\output.xlsx")
-print("OK")
+doc = Doc2.objects.get(pk=14)
+assert False
+   

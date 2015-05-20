@@ -1,0 +1,114 @@
+﻿{% extends 'medicament/document_form.html' %}
+{% block monitorform %}
+ <ul class="tabs" data-tab role="tablist">
+  <li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Tab 1</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Tab 2</a></li>
+  <li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Tab 3</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Tab 4</a></li>
+</ul>
+<div class="tabs-content">
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+    <h2>First panel content goes here...</h2>
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <caption>Мониторинг: {{doc_type.name}}</caption>
+		   <tr>
+		    <th width="50%">Показатель</th>
+		    <th>Значение</th>
+		    <th>Прошлый период</th>
+		   </tr>
+		   <tr>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 1</h6></td>
+		     <td><input type="number" name="c1_1_1" min="0" max="9999" size="6" value="{{doc.c1_1_1}}"></td>
+		     <td>{{doc_prev.c1_1_1}}</td>
+		   <tr>
+		     <td><h6>Строка 2</h6></td>
+		     <td><input type="number" name="c1_1_2" min="0" max="9999" size="6" value="{{doc.c1_1_2}}"></td>
+		     <td>{{doc_prev.doc.c1_1_2}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 3</h6></td>
+		     <td><input type="number" name="c1_2" min="0" max="9999" size="6" value="{{doc.c1_2}}"></td>
+		     <td>{{doc_prev.c1_2}}</td>
+		   </tr>
+  		</table>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+    <h2>Second panel content goes here...</h2>
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <caption>Мониторинг: {{doc_type.name}}</caption>
+		   <tr>
+		    <th width="50%">Показатель</th>
+		    <th>Значение</th>
+		    <th>Прошлый период</th>
+		   </tr>
+		   <tr>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 4</h6></td>
+		     <td><input type="number" name="c2_1" min="0" max="9999" size="6" value="{{doc.c2_1}}"></td>
+		     <td>{{doc_prev.c2_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 5</h6></td>
+		     <td><input type="number" name="c2_2" min="0" max="9999" size="6" value="{{doc.c2_2}}"></td>
+		     <td>{{doc_prev.c2_2}}</td>
+		   </tr>
+  		</table>
+
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+    <h2>Third panel content goes here...</h2>
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <caption>Мониторинг: {{doc_type.name}}</caption>
+		   <tr>
+		    <th width="50%">Показатель</th>
+		    <th>Значение</th>
+		    <th>Прошлый период</th>
+		   </tr>
+		   <tr>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 6</h6></td>
+		     <td><input type="number" name="c3_1" min="0" max="9999" size="6" value="{{doc.c3_1}}"></td>
+		     <td>{{doc_prev.c3_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 7</h6></td>
+		     <td><input type="number" name="c3_2_1" min="0" max="9999" size="6" value="{{doc.c3_2_1}}"></td>
+		     <td>{{doc_prev.c3_2_1}}</td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 8</h6></td>
+		     <td><input type="number" name="c3_2_2" min="0" max="9999" size="6" value="{{doc.c3_2_2}}"></td>
+		     <td>{{doc_prev.c3_2_2}}</td>
+		   </tr>
+  		</table>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+    <h2>Fourth panel content goes here...</h2>
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <caption>Мониторинг: {{doc_type.name}}</caption>
+		   <tr>
+		    <th width="50%">Показатель</th>
+		    <th>Значение</th>
+		    <th>Прошлый период</th>
+		   </tr>
+		   <tr>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+		   </tr>
+		   <tr>
+		     <td><h6>Строка 9</h6></td>
+		     <td><input type="number" name="c4_1" min="0" max="9999" size="6" value="{{doc.c4_1}}"></td>
+		     <td>{{doc_prev.c4_1}}</td>
+		   </tr>
+  		</table>
+  </section>
+</div>
+
+{% endblock %}
+

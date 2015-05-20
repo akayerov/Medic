@@ -699,8 +699,6 @@ def is_valid_form2(doc, doc_prev):
                         int(doc.c2_13_55) + int(doc.c2_13_56) + int(doc.c2_13_57) + int(doc.c2_13_58) + int(doc.c2_13_59) + \
                         int(doc.c2_13_60) + int(doc.c2_13_61) + int(doc.c2_13_62) + int(doc.c2_13_63) + int(doc.c2_13_64) + \
                         int(doc.c2_13_65) + int(doc.c2_13_66) + int(doc.c2_13_67) + int(doc.c2_13_68) + int(doc.c2_13_69) + \
-                        int(doc.c2_13_60) + int(doc.c2_13_61) + int(doc.c2_13_62) + int(doc.c2_13_63) + int(doc.c2_13_64) + \
-                        int(doc.c2_13_65) + int(doc.c2_13_66) + int(doc.c2_13_67) + int(doc.c2_13_68) + int(doc.c2_13_69) + \
                         int(doc.c2_13_70) + int(doc.c2_13_71) + int(doc.c2_13_72) + int(doc.c2_13_73) + int(doc.c2_13_74) + \
                         int(doc.c2_13_75) + int(doc.c2_13_76) + int(doc.c2_13_77) + int(doc.c2_13_78) + int(doc.c2_13_79) + \
                         int(doc.c2_13_80) + int(doc.c2_13_81) + int(doc.c2_13_82) + int(doc.c2_13_83) + int(doc.c2_13_84) + \

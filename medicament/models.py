@@ -467,9 +467,21 @@ class Doc2(Document):
     p3_36     = models.CharField('КолПр3_36', max_length=80, null=True, blank=True)
     p3_37     = models.CharField('КолПр3_37', max_length=80, null=True, blank=True)
     p3_38     = models.CharField('КолПр3_38', max_length=80, null=True, blank=True)
+    def __str__(self):              # __unicode__ on Python 2
+        return str(self.period) + ':' + str(self.hosp)
 
-    
-    
+class Doc3(Document):
+# тест 
+# порядок именования полей сX_Y_Z   X-таблица номер Y-номер строки Z-номер подстроки
+    c1_1_1 = models.IntegerField('Кол1_1_1', default=0)
+    c1_1_2 = models.IntegerField('Кол1_1_2', default=0)
+    c1_2   = models.IntegerField('Кол1_2', default=0)
+    c2_1   = models.IntegerField('Кол2_1', default=0)
+    c2_2   = models.IntegerField('Кол2_2', default=0)
+    c3_1 = models.IntegerField('Кол3_1', default=0)
+    c3_2_1 = models.IntegerField('Кол3_2_1', default=0)
+    c3_2_2 = models.IntegerField('Кол3_2_2', default=0)
+    c4_1 = models.IntegerField('Кол4_1', default=0)
     def __str__(self):              # __unicode__ on Python 2
         return str(self.period) + ':' + str(self.hosp)
 

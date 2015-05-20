@@ -1,0 +1,946 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class="row">
+<div class="large-12 columns">
+     <h3><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h3>
+    
+ {% if doc_list %}
+     <div class="medium-3 columns">
+        <h4>ИТОГО</h4>
+     </div>     
+     <div class="medium-3 columns">
+        <h5>{{period_name}} ({{period_name.dateb|date:"d/m/y"}}-{{period_name.datee|date:"d/m/y"}})</h5>
+     </div>     
+     <div class="medium-3 columns">
+        <h5>{{region_name}}</h5>
+     </div>     
+  </div>     
+     <table>
+       <thead>
+		   <tr>
+		    <th></th>
+		    <th>Показатель</th>
+		    <th>Значение</th>
+		   </tr>
+        </thead>
+        {% for r in result %}
+        <tr class="itog_row">	
+ 	    <td>+</td>
+        {% for r1 in r %}
+		   <td>{{r1}}</td>
+		{% endfor%}    
+        </tr>
+   	       {% for q in doc_list %}
+            <tr class="detail_row">
+ 	 	      <td></td>
+ 		      {% if forloop.parentloop.counter0 == 0 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c2_1}}</td>
+              {% elif forloop.parentloop.counter0 == 1 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_2}}</td>
+              {% elif forloop.parentloop.counter0 == 2 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_3}}</td>
+              {% elif forloop.parentloop.counter0 == 3 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_3_1}}</td>
+              {% elif forloop.parentloop.counter0 == 4 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_3_2}}</td>
+              {% elif forloop.parentloop.counter0 == 5 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_3_3}}</td>
+              {% elif forloop.parentloop.counter0 == 6 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_4}}</td>
+              {% elif forloop.parentloop.counter0 == 7 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_4_1}}</td>
+              {% elif forloop.parentloop.counter0 == 8 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_4_2}}</td>
+              {% elif forloop.parentloop.counter0 == 9 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_4_3}}</td>
+              {% elif forloop.parentloop.counter0 == 10 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5}}</td>
+              {% elif forloop.parentloop.counter0 == 11 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_1}}</td>
+              {% elif forloop.parentloop.counter0 == 12 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_2}}</td>
+              {% elif forloop.parentloop.counter0 == 13 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_3}}</td>
+              {% elif forloop.parentloop.counter0 == 14 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_4}}</td>
+              {% elif forloop.parentloop.counter0 == 15 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_5}}</td>
+              {% elif forloop.parentloop.counter0 == 16 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_6}}</td>
+              {% elif forloop.parentloop.counter0 == 17 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_7}}</td>
+              {% elif forloop.parentloop.counter0 == 18 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_8}}</td>
+              {% elif forloop.parentloop.counter0 == 19 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_9}}</td>
+              {% elif forloop.parentloop.counter0 == 20 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_10}}</td>
+              {% elif forloop.parentloop.counter0 == 21 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_11}}</td>
+              {% elif forloop.parentloop.counter0 == 22 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_12}}</td>
+              {% elif forloop.parentloop.counter0 == 23 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_13}}</td>
+              {% elif forloop.parentloop.counter0 == 24 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_14}}</td>
+              {% elif forloop.parentloop.counter0 == 25 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_15}}</td>
+              {% elif forloop.parentloop.counter0 == 26 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_16}}</td>
+              {% elif forloop.parentloop.counter0 == 27 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_17}}</td>
+              {% elif forloop.parentloop.counter0 == 28 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_18}}</td>
+              {% elif forloop.parentloop.counter0 == 29 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_19}}</td>
+              {% elif forloop.parentloop.counter0 == 30 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_20}}</td>
+              {% elif forloop.parentloop.counter0 == 31 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_21}}</td>
+              {% elif forloop.parentloop.counter0 == 32 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_22}}</td>
+              {% elif forloop.parentloop.counter0 == 33 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_23}}</td>
+              {% elif forloop.parentloop.counter0 == 34 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_24}}</td>
+              {% elif forloop.parentloop.counter0 == 35 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_25}}</td>
+              {% elif forloop.parentloop.counter0 == 36 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_26}}</td>
+              {% elif forloop.parentloop.counter0 == 37 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_27}}</td>
+              {% elif forloop.parentloop.counter0 == 38 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_28}}</td>
+              {% elif forloop.parentloop.counter0 == 39 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_29}}</td>
+              {% elif forloop.parentloop.counter0 == 40 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_30}}</td>
+              {% elif forloop.parentloop.counter0 == 41 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_31}}</td>
+              {% elif forloop.parentloop.counter0 == 42 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_32}}</td>
+              {% elif forloop.parentloop.counter0 == 43 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_33}}</td>
+              {% elif forloop.parentloop.counter0 == 44 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_34}}</td>
+              {% elif forloop.parentloop.counter0 == 45 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_35}}</td>
+              {% elif forloop.parentloop.counter0 == 46 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_36}}</td>
+              {% elif forloop.parentloop.counter0 == 47 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_37}}</td>
+              {% elif forloop.parentloop.counter0 == 48 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_38}}</td>
+              {% elif forloop.parentloop.counter0 == 49 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_39}}</td>
+              {% elif forloop.parentloop.counter0 == 50 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_40}}</td>
+              {% elif forloop.parentloop.counter0 == 51 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_5_41}}</td>
+              {% elif forloop.parentloop.counter0 == 52 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_6}}</td>
+              {% elif forloop.parentloop.counter0 == 53 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_7}}</td>
+              {% elif forloop.parentloop.counter0 == 54 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_8}}</td>
+              {% elif forloop.parentloop.counter0 == 55 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_9}}</td>
+              {% elif forloop.parentloop.counter0 == 56 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_10}}</td>
+              {% elif forloop.parentloop.counter0 == 57 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_11}}</td>
+              {% elif forloop.parentloop.counter0 == 58 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_12}}</td>
+              {% elif forloop.parentloop.counter0 == 59 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13}}</td>
+              {% elif forloop.parentloop.counter0 == 60 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_1}}</td>
+              {% elif forloop.parentloop.counter0 == 61 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_2}}</td>
+              {% elif forloop.parentloop.counter0 == 62 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_3}}</td>
+              {% elif forloop.parentloop.counter0 == 63 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_4}}</td>
+              {% elif forloop.parentloop.counter0 == 64 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_5}}</td>
+              {% elif forloop.parentloop.counter0 == 65 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_6}}</td>
+              {% elif forloop.parentloop.counter0 == 66 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_7}}</td>
+              {% elif forloop.parentloop.counter0 == 67 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_8}}</td>
+              {% elif forloop.parentloop.counter0 == 68 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_9}}</td>
+              {% elif forloop.parentloop.counter0 == 69 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_10}}</td>
+              {% elif forloop.parentloop.counter0 == 70 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_11}}</td>
+              {% elif forloop.parentloop.counter0 == 71 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_12}}</td>
+              {% elif forloop.parentloop.counter0 == 72 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_13}}</td>
+              {% elif forloop.parentloop.counter0 == 73 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_14}}</td>
+              {% elif forloop.parentloop.counter0 == 74 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_15}}</td>
+              {% elif forloop.parentloop.counter0 == 75 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_16}}</td>
+              {% elif forloop.parentloop.counter0 == 76 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_17}}</td>
+              {% elif forloop.parentloop.counter0 == 77 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_18}}</td>
+              {% elif forloop.parentloop.counter0 == 78 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_19}}</td>
+              {% elif forloop.parentloop.counter0 == 79 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_20}}</td>
+              {% elif forloop.parentloop.counter0 == 80 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_21}}</td>
+              {% elif forloop.parentloop.counter0 == 81 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_22}}</td>
+              {% elif forloop.parentloop.counter0 == 82 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_23}}</td>
+              {% elif forloop.parentloop.counter0 == 83 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_24}}</td>
+              {% elif forloop.parentloop.counter0 == 84 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_25}}</td>
+              {% elif forloop.parentloop.counter0 == 85 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_26}}</td>
+              {% elif forloop.parentloop.counter0 == 86 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_27}}</td>
+              {% elif forloop.parentloop.counter0 == 87 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_28}}</td>
+              {% elif forloop.parentloop.counter0 == 88 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_29}}</td>
+              {% elif forloop.parentloop.counter0 == 89 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_30}}</td>
+              {% elif forloop.parentloop.counter0 == 90 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_31}}</td>
+              {% elif forloop.parentloop.counter0 == 91 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_32}}</td>
+              {% elif forloop.parentloop.counter0 == 92 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_33}}</td>
+              {% elif forloop.parentloop.counter0 == 93 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_34}}</td>
+              {% elif forloop.parentloop.counter0 == 94 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_35}}</td>
+              {% elif forloop.parentloop.counter0 == 95 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_36}}</td>
+              {% elif forloop.parentloop.counter0 == 96 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_37}}</td>
+              {% elif forloop.parentloop.counter0 == 97 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_38}}</td>
+              {% elif forloop.parentloop.counter0 == 98 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_39}}</td>
+              {% elif forloop.parentloop.counter0 == 99 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_40}}</td>
+              {% elif forloop.parentloop.counter0 == 100 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_41}}</td>
+              {% elif forloop.parentloop.counter0 == 101 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_42}}</td>
+              {% elif forloop.parentloop.counter0 == 102 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_43}}</td>
+              {% elif forloop.parentloop.counter0 == 103 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_44}}</td>
+              {% elif forloop.parentloop.counter0 == 104 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_45}}</td>
+              {% elif forloop.parentloop.counter0 == 105 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_46}}</td>
+              {% elif forloop.parentloop.counter0 == 106 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_47}}</td>
+              {% elif forloop.parentloop.counter0 == 107 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_48}}</td>
+              {% elif forloop.parentloop.counter0 == 108 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_49}}</td>
+              {% elif forloop.parentloop.counter0 == 109 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_50}}</td>
+              {% elif forloop.parentloop.counter0 == 110 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_51}}</td>
+              {% elif forloop.parentloop.counter0 == 111 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_52}}</td>
+              {% elif forloop.parentloop.counter0 == 112 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_53}}</td>
+              {% elif forloop.parentloop.counter0 == 113 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_54}}</td>
+              {% elif forloop.parentloop.counter0 == 114 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_55}}</td>
+              {% elif forloop.parentloop.counter0 == 115 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_56}}</td>
+              {% elif forloop.parentloop.counter0 == 116 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_57}}</td>
+              {% elif forloop.parentloop.counter0 == 117 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_58}}</td>
+              {% elif forloop.parentloop.counter0 == 118 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_59}}</td>
+              {% elif forloop.parentloop.counter0 == 119 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_60}}</td>
+              {% elif forloop.parentloop.counter0 == 120 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_61}}</td>
+              {% elif forloop.parentloop.counter0 == 121 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_62}}</td>
+              {% elif forloop.parentloop.counter0 == 122 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_63}}</td>
+              {% elif forloop.parentloop.counter0 == 123 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_64}}</td>
+              {% elif forloop.parentloop.counter0 == 124 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_65}}</td>
+              {% elif forloop.parentloop.counter0 == 125 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_66}}</td>
+              {% elif forloop.parentloop.counter0 == 126 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_67}}</td>
+              {% elif forloop.parentloop.counter0 == 127 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_68}}</td>
+              {% elif forloop.parentloop.counter0 == 128 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_69}}</td>
+              {% elif forloop.parentloop.counter0 == 129 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_70}}</td>
+              {% elif forloop.parentloop.counter0 == 130 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_71}}</td>
+              {% elif forloop.parentloop.counter0 == 131 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_72}}</td>
+              {% elif forloop.parentloop.counter0 == 132 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_73}}</td>
+              {% elif forloop.parentloop.counter0 == 133 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_74}}</td>
+              {% elif forloop.parentloop.counter0 == 134 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_75}}</td>
+              {% elif forloop.parentloop.counter0 == 135 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_76}}</td>
+              {% elif forloop.parentloop.counter0 == 136 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_77}}</td>
+              {% elif forloop.parentloop.counter0 == 137 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_78}}</td>
+              {% elif forloop.parentloop.counter0 == 138 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_79}}</td>
+              {% elif forloop.parentloop.counter0 == 139 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_80}}</td>
+              {% elif forloop.parentloop.counter0 == 140 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_81}}</td>
+              {% elif forloop.parentloop.counter0 == 141 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_82}}</td>
+              {% elif forloop.parentloop.counter0 == 142 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_83}}</td>
+              {% elif forloop.parentloop.counter0 == 143 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_84}}</td>
+              {% elif forloop.parentloop.counter0 == 144 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_85}}</td>
+              {% elif forloop.parentloop.counter0 == 145 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_86}}</td>
+              {% elif forloop.parentloop.counter0 == 146 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_87}}</td>
+              {% elif forloop.parentloop.counter0 == 147 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_89}}</td>
+              {% elif forloop.parentloop.counter0 == 148 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_90}}</td>
+              {% elif forloop.parentloop.counter0 == 149 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_91}}</td>
+              {% elif forloop.parentloop.counter0 == 150 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_92}}</td>
+              {% elif forloop.parentloop.counter0 == 151 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_93}}</td>
+              {% elif forloop.parentloop.counter0 == 152 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_94}}</td>
+              {% elif forloop.parentloop.counter0 == 153 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_95}}</td>
+              {% elif forloop.parentloop.counter0 == 154 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_96}}</td>
+              {% elif forloop.parentloop.counter0 == 155 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_97}}</td>
+              {% elif forloop.parentloop.counter0 == 156 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_98}}</td>
+              {% elif forloop.parentloop.counter0 == 157 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_99}}</td>
+              {% elif forloop.parentloop.counter0 == 158 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_100}}</td>
+              {% elif forloop.parentloop.counter0 == 159 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_101}}</td>
+              {% elif forloop.parentloop.counter0 == 160 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_102}}</td>
+              {% elif forloop.parentloop.counter0 == 161 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_103}}</td>
+              {% elif forloop.parentloop.counter0 == 162 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_104}}</td>
+              {% elif forloop.parentloop.counter0 == 163 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_105}}</td>
+              {% elif forloop.parentloop.counter0 == 164 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_106}}</td>
+              {% elif forloop.parentloop.counter0 == 165 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_107}}</td>
+              {% elif forloop.parentloop.counter0 == 166 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_108}}</td>
+              {% elif forloop.parentloop.counter0 == 167 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_109}}</td>
+              {% elif forloop.parentloop.counter0 == 168 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_110}}</td>
+              {% elif forloop.parentloop.counter0 == 169 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_111}}</td>
+              {% elif forloop.parentloop.counter0 == 170 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_112}}</td>
+              {% elif forloop.parentloop.counter0 == 171 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_113}}</td>
+              {% elif forloop.parentloop.counter0 == 172 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_114}}</td>
+              {% elif forloop.parentloop.counter0 == 173 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_115}}</td>
+              {% elif forloop.parentloop.counter0 == 174 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_116}}</td>
+              {% elif forloop.parentloop.counter0 == 175 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_117}}</td>
+              {% elif forloop.parentloop.counter0 == 176 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_118}}</td>
+              {% elif forloop.parentloop.counter0 == 177 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_119}}</td>
+              {% elif forloop.parentloop.counter0 == 178 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_120}}</td>
+              {% elif forloop.parentloop.counter0 == 179 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_121}}</td>
+              {% elif forloop.parentloop.counter0 == 180 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_122}}</td>
+              {% elif forloop.parentloop.counter0 == 181 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_123}}</td>
+              {% elif forloop.parentloop.counter0 == 182 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_13_124}}</td>
+              {% elif forloop.parentloop.counter0 == 183 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14}}</td>
+              {% elif forloop.parentloop.counter0 == 184 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_1}}</td>
+              {% elif forloop.parentloop.counter0 == 185 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_2}}</td>
+              {% elif forloop.parentloop.counter0 == 186 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_3}}</td>
+              {% elif forloop.parentloop.counter0 == 187 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_4}}</td>
+              {% elif forloop.parentloop.counter0 == 188 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_5}}</td>
+              {% elif forloop.parentloop.counter0 == 189 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_6}}</td>
+              {% elif forloop.parentloop.counter0 == 190 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_7}}</td>
+              {% elif forloop.parentloop.counter0 == 191 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_8}}</td>
+              {% elif forloop.parentloop.counter0 == 192 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_9}}</td>
+              {% elif forloop.parentloop.counter0 == 193 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_10}}</td>
+              {% elif forloop.parentloop.counter0 == 194 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_11}}</td>
+              {% elif forloop.parentloop.counter0 == 195 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_12}}</td>
+              {% elif forloop.parentloop.counter0 == 196 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_13}}</td>
+              {% elif forloop.parentloop.counter0 == 197 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_14}}</td>
+              {% elif forloop.parentloop.counter0 == 198 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_15}}</td>
+              {% elif forloop.parentloop.counter0 == 199 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_16}}</td>
+              {% elif forloop.parentloop.counter0 == 200 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_17}}</td>
+              {% elif forloop.parentloop.counter0 == 201 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_18}}</td>
+              {% elif forloop.parentloop.counter0 == 202 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_19}}</td>
+              {% elif forloop.parentloop.counter0 == 203 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_20}}</td>
+              {% elif forloop.parentloop.counter0 == 204 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_21}}</td>
+              {% elif forloop.parentloop.counter0 == 205 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_22}}</td>
+              {% elif forloop.parentloop.counter0 == 206 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_23}}</td>
+              {% elif forloop.parentloop.counter0 == 207 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_24}}</td>
+              {% elif forloop.parentloop.counter0 == 208 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_25}}</td>
+              {% elif forloop.parentloop.counter0 == 209 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_26}}</td>
+              {% elif forloop.parentloop.counter0 == 210 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_27}}</td>
+              {% elif forloop.parentloop.counter0 == 211 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_28}}</td>
+              {% elif forloop.parentloop.counter0 == 212 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_29}}</td>
+              {% elif forloop.parentloop.counter0 == 213 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_30}}</td>
+              {% elif forloop.parentloop.counter0 == 214 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_31}}</td>
+              {% elif forloop.parentloop.counter0 == 215 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_32}}</td>
+              {% elif forloop.parentloop.counter0 == 216 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_33}}</td>
+              {% elif forloop.parentloop.counter0 == 217 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_34}}</td>
+              {% elif forloop.parentloop.counter0 == 218 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_35}}</td>
+              {% elif forloop.parentloop.counter0 == 219 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_36}}</td>
+              {% elif forloop.parentloop.counter0 == 220 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_37}}</td>
+              {% elif forloop.parentloop.counter0 == 221 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_38}}</td>
+              {% elif forloop.parentloop.counter0 == 222 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_39}}</td>
+              {% elif forloop.parentloop.counter0 == 223 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_40}}</td>
+              {% elif forloop.parentloop.counter0 == 224 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_41}}</td>
+              {% elif forloop.parentloop.counter0 == 225 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_42}}</td>
+              {% elif forloop.parentloop.counter0 == 226 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_43}}</td>
+              {% elif forloop.parentloop.counter0 == 227 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_44}}</td>
+              {% elif forloop.parentloop.counter0 == 228 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_14_45}}</td>
+              {% elif forloop.parentloop.counter0 == 229 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_15}}</td>
+              {% elif forloop.parentloop.counter0 == 230 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_16}}</td>
+              {% elif forloop.parentloop.counter0 == 231 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_17}}</td>
+              {% elif forloop.parentloop.counter0 == 232 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_18}}</td>
+              {% elif forloop.parentloop.counter0 == 233 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_19}}</td>
+              {% elif forloop.parentloop.counter0 == 234 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_20}}</td>
+              {% elif forloop.parentloop.counter0 == 235 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_21}}</td>
+              {% elif forloop.parentloop.counter0 == 236 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_22}}</td>
+              {% elif forloop.parentloop.counter0 == 237 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_23}}</td>
+              {% elif forloop.parentloop.counter0 == 238 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_24}}</td>
+              {% elif forloop.parentloop.counter0 == 239 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_25}}</td>
+              {% elif forloop.parentloop.counter0 == 240 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_26}}</td>
+              {% elif forloop.parentloop.counter0 == 241 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_27}}</td>
+              {% elif forloop.parentloop.counter0 == 242 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c2_28}}</td>
+              {% elif forloop.parentloop.counter0 == 243 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c3_1}}</td>
+              {% elif forloop.parentloop.counter0 == 244 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_2}}</td>
+              {% elif forloop.parentloop.counter0 == 245 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_3}}</td>
+              {% elif forloop.parentloop.counter0 == 246 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_4}}</td>
+              {% elif forloop.parentloop.counter0 == 247 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_5}}</td>
+              {% elif forloop.parentloop.counter0 == 248 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_6}}</td>
+              {% elif forloop.parentloop.counter0 == 249 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_7}}</td>
+              {% elif forloop.parentloop.counter0 == 250 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_8}}</td>
+              {% elif forloop.parentloop.counter0 == 251 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_9}}</td>
+              {% elif forloop.parentloop.counter0 == 252 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_10}}</td>
+              {% elif forloop.parentloop.counter0 == 253 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c3_11}}</td>
+              {% elif forloop.parentloop.counter0 == 254 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_12}}</td>
+              {% elif forloop.parentloop.counter0 == 255 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_13}}</td>
+              {% elif forloop.parentloop.counter0 == 256 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_14}}</td>
+              {% elif forloop.parentloop.counter0 == 257 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_15}}</td>
+              {% elif forloop.parentloop.counter0 == 258 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_16}}</td>
+              {% elif forloop.parentloop.counter0 == 259 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_17}}</td>
+              {% elif forloop.parentloop.counter0 == 260 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_18}}</td>
+              {% elif forloop.parentloop.counter0 == 261 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_19}}</td>
+              {% elif forloop.parentloop.counter0 == 262 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_20}}</td>
+              {% elif forloop.parentloop.counter0 == 263 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c3_21}}</td>
+              {% elif forloop.parentloop.counter0 == 264 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_22}}</td>
+              {% elif forloop.parentloop.counter0 == 265 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_23}}</td>
+              {% elif forloop.parentloop.counter0 == 266 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_24}}</td>
+              {% elif forloop.parentloop.counter0 == 267 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_25}}</td>
+              {% elif forloop.parentloop.counter0 == 268 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_26}}</td>
+              {% elif forloop.parentloop.counter0 == 269 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_27}}</td>
+              {% elif forloop.parentloop.counter0 == 270 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_28}}</td>
+              {% elif forloop.parentloop.counter0 == 271 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_29}}</td>
+              {% elif forloop.parentloop.counter0 == 272 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_30}}</td>
+              {% elif forloop.parentloop.counter0 == 273 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c3_31}}</td>
+              {% elif forloop.parentloop.counter0 == 274 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_32}}</td>
+              {% elif forloop.parentloop.counter0 == 275 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_33}}</td>
+              {% elif forloop.parentloop.counter0 == 276 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_34}}</td>
+              {% elif forloop.parentloop.counter0 == 277 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_35}}</td>
+              {% elif forloop.parentloop.counter0 == 278 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_36}}</td>
+              {% elif forloop.parentloop.counter0 == 279 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_37}}</td>
+              {% elif forloop.parentloop.counter0 == 280 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c3_38}}</td>
+              {% elif forloop.parentloop.counter0 == 281 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c4_1}}</td>
+              {% elif forloop.parentloop.counter0 == 282 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_2}}</td>
+              {% elif forloop.parentloop.counter0 == 283 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_3}}</td>
+              {% elif forloop.parentloop.counter0 == 284 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_4}}</td>
+              {% elif forloop.parentloop.counter0 == 285 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_5}}</td>
+              {% elif forloop.parentloop.counter0 == 286 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_6}}</td>
+              {% elif forloop.parentloop.counter0 == 287 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_7}}</td>
+              {% elif forloop.parentloop.counter0 == 288 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_8}}</td>
+              {% elif forloop.parentloop.counter0 == 289 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_9}}</td>
+              {% elif forloop.parentloop.counter0 == 290 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_10}}</td>
+              {% elif forloop.parentloop.counter0 == 291 %}
+	            <td>{{q.hosp}}</td>
+	            <td>{{q.c4_11}}</td>
+              {% elif forloop.parentloop.counter0 == 292 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_12}}</td>
+              {% elif forloop.parentloop.counter0 == 293 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_13}}</td>
+              {% elif forloop.parentloop.counter0 == 294 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_14}}</td>
+              {% elif forloop.parentloop.counter0 == 295 %}
+	            <td>{{q.hosp}}</td>
+		        <td>{{q.c4_15}}</td>
+              {% endif %}
+            </tr>
+		   {% endfor%}    
+ 		{% endfor%}        
+     </table>
+     <form>
+         {%csrf_token%}
+         <button class="button" name="button_export" value="7" type="submit" formmethod="post">Экспорт в Excel</button>   
+         <input  class="par_hidden" type="text" size="1" name="mo[]" value={{hosp}}>
+         <input  class="par_hidden" type="text" size="1" name="period" value={{period}}>
+         <input  class="par_hidden" type="text" size="1" name="status" value={{status}}>
+         <input  class="par_hidden" type="text" size="1" name="region" value={{region}}>
+     </form>
+ {% else %} 
+    <p>Мониторинги не найдены</p>
+{% endif %}
+</div>
+
+</div>
+
+{% endblock %}

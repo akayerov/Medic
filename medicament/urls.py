@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     url(r'^monitor/add_comment/(?P<question_id>.+)/$', views.add_comment, name='add_comment'),
     url(r'^monitor/export/(?P<question_id>.+)/$', views.export, name='export'),
     url(r'^monitor/(?P<question_id>.+)/$', views.monitoring_form, name='monitoring_form'),
+    url(r'^test/(?P<question_id>.+)/$', views.test, name='test'),
 
 )
