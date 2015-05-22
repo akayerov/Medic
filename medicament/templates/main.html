@@ -6,6 +6,8 @@
      Мед+ Мониторинги
    </title>
    <link rel="stylesheet" type="text/css" href="{% static 'css/foundation.css'%}" />
+   <script src="{% static 'js/vendor/modernizr.js'%}"></script>
+
    <style>
      .rowsel:hover {background: #f0f080}
      .errmess {background: #dd0000}
@@ -23,9 +25,46 @@
         display: none !important
      } 
    </style>
-    <script type="text/javascript" src="{% static 'js/jquery-1.4.js'%}"></script>
-    <script type="text/javascript" src="{% static 'js/jqia2.support.js'%}"></script>
-    <script type="text/javascript">
+    
+</head>
+<body>
+ 
+<div class="top-bar">
+    <section class="top-bar-section">
+    <ul class = "right">
+       <li><a href="/contact">Контакты</a></li>
+       {% if username %}
+          <li><a href="/auth/logout">Выйти ({{username}})</a></li>
+       {% else %}
+          <li><a href="/auth/login">Вход</a></li>
+       {% endif %}
+    </ul>  
+    </section>
+</div>
+
+<div class="row full-width" >
+<div class="large-12 columns">
+<h1><a href="/">Мед+ МИАЦ мониторинги</a></h1>
+</div>   
+</div>   
+      {% block monitorlist %} {% endblock %}
+      {% block login %} {% endblock %}
+
+<div class="top-bar">
+    <section class="top-bar-section">
+    <ul class = "left">
+       <li><a href="/">(С) Мед+ МИАЦ, Ярославль 2015</a></li>
+    </ul>  
+    </section>
+</div>
+  <script src="{% static 'js/vendor/jquery.js'%}"></script>
+  <script src="{% static 'js/vendor/fastclick.js'%}"></script>
+  <script src="{% static 'js/foundation.min.js'%}"></script>
+  <script type="text/javascript" src="{% static 'js/jqia2.support.js'%}"></script>
+  <script>
+    $(document).foundation();
+  </script>
+  <script type="text/javascript">
         $(function(){
            /* $("table").click(swapThemOn).dblclick(swapThemOff);*/
           $("table").bind('click', ftrigger )
@@ -51,40 +90,8 @@
         function swapThemOff() {
             $('tr.detail_row').hide();
         }
-
-    </script>
-   
-</head>
-<body>
- 
-<div class="top-bar">
-    <section class="top-bar-section">
-    <ul class = "right">
-       <li><a href="/contact">Контакты</a></li>
-       {% if username %}
-          <li><a href="/auth/logout">Выйти ({{username}})</a></li>
-       {% else %}
-          <li><a href="/auth/login">Вход</a></li>
-       {% endif %}
-    </ul>  
-    </section>
-</div>
-
-<div class="row full-width" >
-<div class="large-12 columns">
-<h1><a href="/">Мед+ МИАЦ мониторинги</a></h1>
-</div>   
-</div>   
-      {% block monitorlist %} {% endblock %}
-      {% block login %} {% endblock %}
+ </script>
+	
 </body>
-
-<div class="top-bar">
-    <section class="top-bar-section">
-    <ul class = "left">
-       <li><a href="/">(С) Мед+ МИАЦ, Ярославль 2015</a></li>
-    </ul>  
-    </section>
-</div>
 
 </html>

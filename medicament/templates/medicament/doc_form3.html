@@ -1,23 +1,22 @@
 ﻿{% extends 'medicament/document_form.html' %}
 {% block monitorform %}
+ <h4>Мониторинг: {{doc_type.name}}</h4>
  <ul class="tabs" data-tab role="tablist">
-  <li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Tab 1</a></li>
-  <li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Tab 2</a></li>
-  <li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Tab 3</a></li>
-  <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Tab 4</a></li>
+  <li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Таблица 1</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Таблица 2</a></li>
+  <li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Таблица 3</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Таблица 4</a></li>
 </ul>
 <div class="tabs-content">
   <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
-    <h2>First panel content goes here...</h2>
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
-		   <caption>Мониторинг: {{doc_type.name}}</caption>
 		   <tr>
 		    <th width="50%">Показатель</th>
 		    <th>Значение</th>
 		    <th>Прошлый период</th>
 		   </tr>
 		   <tr>
-  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица 1. XXXX XXXXX</h5></td>
 		   </tr>
 		   <tr>
 		     <td><h6>Строка 1</h6></td>
@@ -36,7 +35,6 @@
   		</table>
   </section>
   <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
-    <h2>Second panel content goes here...</h2>
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <caption>Мониторинг: {{doc_type.name}}</caption>
 		   <tr>
@@ -45,7 +43,7 @@
 		    <th>Прошлый период</th>
 		   </tr>
 		   <tr>
-  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица 2. XXXX XXXXX</h5></td>
 		   </tr>
 		   <tr>
 		     <td><h6>Строка 4</h6></td>
@@ -61,7 +59,6 @@
 
   </section>
   <section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
-    <h2>Third panel content goes here...</h2>
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <caption>Мониторинг: {{doc_type.name}}</caption>
 		   <tr>
@@ -70,7 +67,7 @@
 		    <th>Прошлый период</th>
 		   </tr>
 		   <tr>
-  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица 3. XXXX XXXXX</h5></td>
 		   </tr>
 		   <tr>
 		     <td><h6>Строка 6</h6></td>
@@ -90,7 +87,6 @@
   		</table>
   </section>
   <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
-    <h2>Fourth panel content goes here...</h2>
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <caption>Мониторинг: {{doc_type.name}}</caption>
 		   <tr>
@@ -99,7 +95,7 @@
 		    <th>Прошлый период</th>
 		   </tr>
 		   <tr>
-  	         <td class="row_mess" colspan="3" ><h5>Таблица .1. XXXX XXXXX</h5></td>
+  	         <td class="row_mess" colspan="3" ><h5>Таблица 4. XXXX XXXXX</h5></td>
 		   </tr>
 		   <tr>
 		     <td><h6>Строка 9</h6></td>
