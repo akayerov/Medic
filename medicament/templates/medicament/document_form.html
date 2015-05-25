@@ -31,7 +31,7 @@
  
            <div class="row">
            <div class="medium-12 columns">
-           {% if right_operator %}
+           {% if right_operator or right_admin %}
            {% if doc.status == 'E' or doc.status == 'C' %}
  	     	 <div class="medium-2 columns">
    		       <button class="button" name="button_save" value="1" type="submit" formmethod="post">Сохранить</button>         
@@ -51,7 +51,7 @@
 
           {% endif %}
           {% endif %}
-          {% if right_control %}
+          {% if right_control or right_admin %}
           {% if doc.status == 'W' %}
        	    <div class="medium-2 columns">
   	    	<button class="button" name="button_isOK" value="4" type="submit" formmethod="post">Согласовано</button>         

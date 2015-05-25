@@ -54,10 +54,12 @@ class Role(models.Model):
     tel = models.CharField('Телефон',max_length=20)
     EDIT = 'Р'
     CONTROL = 'К'
+    ADMIN = 'F'
     
     STATE_IN_RIGHT = (
         (EDIT, 'Редактирование'),
         (CONTROL, 'Контроль'),
+        (ADMIN, 'Администратор'),
     )
     role = models.CharField('Роль',max_length=1,
                                       choices=STATE_IN_RIGHT,
@@ -495,12 +497,14 @@ class Comment(models.Model):
     ON_CONTROL = 'O'
     CONTROL_YES = 'Y'
     CONTROL_NO = 'N'
+    CHANGE = 'C'
 
     ACTION_COMMENT = (
         (EMPTY, ''),
         (ON_CONTROL, 'На согласование'),
         (CONTROL_YES, 'Согласовано'),
         (CONTROL_NO, 'Не согласовано'),
+        (CHANGE, 'Изменение'),
     )
     action = models.CharField('Действие',max_length=1,
                                       choices= ACTION_COMMENT,

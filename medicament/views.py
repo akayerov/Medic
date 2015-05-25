@@ -71,7 +71,7 @@ def monitoring_list(request, question_id ):
 #   Определение доступа
     usr =  auth.get_user(request)
     role = Role.objects.get(user=usr)
-    if role.role == "К":
+    if role.role == "К" or role.role == "F":
         see_all = True                # see_all  контроль и создание новых отчетов
         user_hosp = 0
     else:
@@ -246,12 +246,18 @@ def monitoring_form(request, question_id):
 #   Определение доступа
     usr =  auth.get_user(request)
     role = Role.objects.get(user=usr)
-    if role.role == "К":
+    if role.role == "F":
         see_all = True                # see_all  контроль и создание новых отчетов
         user_hosp = 0
+        see_admin = True
+    elif role.role == "К":
+        see_all = True                # see_all  контроль и создание новых отчетов
+        user_hosp = 0
+        see_admin = False
     else:
         see_all = False
         user_hosp = role.hosp
+        see_admin = False
 # Разделим question id на части     xxx,yyy,zzz где xxx - тип мониторинга, yyy - номер страницы paginator - для возвращения на страницу
 # zzz - сквозной номре документв
 
@@ -345,6 +351,8 @@ def monitoring_form(request, question_id):
 
     args['right_operator'] = not see_all       
     args['right_control'] = see_all       
+    args['right_admin']   = see_admin
+           
     args['isOk'] = isOk  
     args['error']   =  error     
     args['page_number']   =  page_number       # для пагинации     

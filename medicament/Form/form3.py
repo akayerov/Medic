@@ -32,21 +32,23 @@ def copy_fields_form3(ds, dd):
         Для каждой формы, 
         ВЫЗЫВАЕТСЯ ТОЛЬКО ДЛЯ ДОКУМЕНТОВ В СОСТОЯНИИ ЗАВЕШЕНО- незаполненные и несогласаванные документы такой обработке не подлежат!
     '''
-    
-#    dd.c1_1_1 = ds.c1_1_1 
-#    dd.c1_1_2 = ds.c1_1_2 
-#    dd.c1_2   = ds.c1_2
-#    dd.c2_1   = ds.c2_1
-#    dd.c2_2   = ds.c2_2
-#    dd.c3_1   = ds.c3_1
-#    dd.c3_2_1 = ds.c3_2_1
-#    dd.c3_2_2 = ds.c3_2_2
-#    dd.c4_1   = ds.c4_1
+    dd.c1_1_1 = ds.c1_1_1 
+    dd.c1_1_2 = ds.c1_1_2 
+    dd.c1_2   = ds.c1_2
+    dd.c2_1   = ds.c2_1
+    dd.c2_2   = ds.c2_2
+    dd.c3_1   = ds.c3_1
+    dd.c3_2_1 = ds.c3_2_1
+    dd.c3_2_2 = ds.c3_2_2
+    dd.c4_1   = ds.c4_1
+'''
     for f in dd._meta.get_all_field_names():
         if f[0] == 'c':
             obj, model, direct, m2m = dd._meta.get_field_by_name(f)
             objs, models, directs, m2ms = ds._meta.get_field_by_name(f)
-#           obj.value_from_object(dd) = objs.value_from_object(ds)
+            ares = objs.value_from_object(ds)
+            assert False
+'''
 #       if isinstance(obj, GenericRelation):
 #           continue
 #       if not direct:
@@ -60,7 +62,6 @@ def copy_fields_form3(ds, dd):
 #        else:
 #            field_list.update({f:obj.value_to_string(q)})
        
-    assert False
     
      
 
@@ -92,7 +93,7 @@ def calc_sum_form3(doc):
     '''
 #    assert False
     aq0= doc.aggregate(Sum('c1_1_1'),Sum('c1_1_2'),Sum('c1_2'),Sum('c2_1'),Sum('c2_2'), Sum('c3_1'), \
-                       Sum('c3_2_1'),Sum('c3_2_2'),Sum('c4_1'),Sum('c2_4_3'), \
+                       Sum('c3_2_1'),Sum('c3_2_2'),Sum('c4_1'), \
          )
     
     s = [["2.1. Число врачей (без аспирантов, интернов и ординаторов), работающих в медицинских организациях субъекта Российской Федерации ", aq0['c2_1__sum']],

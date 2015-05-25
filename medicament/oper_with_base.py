@@ -81,7 +81,10 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
         ret_mess = is_valid(doc, doc_prev)
         doc.status = Document.EDIT
         doc.date_mod = datetime.datetime.now()
+        actionComment = Comment.CHANGE
         doc.save()
+        if mode_comment:
+            add_action_in_comment(request, doc, actionComment)
         if not ret_mess[0]:      # [False,"Error_mess"]
             return ret_mess 
     elif 'button_send_control' in request.POST:
