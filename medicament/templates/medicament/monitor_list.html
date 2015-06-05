@@ -9,8 +9,13 @@
 
 {% if doc_type_list %}
      {% for q in doc_type_list %}
+         <h4><a href="/form/{{q.type.id}}">{{ q.type.name }}</a></h4>
+         <hr>
+{% comment %}
          <h4><a href="/form/{{q.id}}">{{ q.name }}</a></h4>
          <hr>
+{% endcomment %}
+
     {% endfor %}
  {% else %} 
     <p>Мониторинги не найдены</p>

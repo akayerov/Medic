@@ -5,6 +5,10 @@
 '''
 from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Doc1, Doc2
 
-doc = Doc2.objects.get(pk=14)
-assert False
-   
+s = 2
+print(type(s))
+False
+if isinstance(s, str):
+    print("String")
+else:   
+    print("NOTString")

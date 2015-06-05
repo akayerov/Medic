@@ -6,7 +6,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
-from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Doc1, Doc2, Doc3
+from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Right_type, Doc1, Doc2, Doc3
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
@@ -27,7 +27,7 @@ import os
 import mimetypes
 
 
-NUM_RECORD_ON_PAGE = 50   # число записей на странице списка
+NUM_RECORD_ON_PAGE = 75   # число записей на странице списка
 
 
 # простейший
@@ -36,8 +36,16 @@ def monitor_type_list(request):
         return redirect('/auth/login')
     args = {}
     args.update(csrf(request))
+ #   для зарегисторированных групп свои мониторинги
+#
+#    art = Right_type.objects.filter( group =  5)   #doc.objects.filter(hosp__region = region)
+    idgroup = request.user.groups.get_queryset()
+#    assert False   
+    irt = Right_type.objects.filter( group =  idgroup)   #doc.objects.filter(hosp__region = region)
+    args['doc_type_list']    =  irt            
+            
     
-    args['doc_type_list']    =  Doc_type.objects.all()            
+ #   args['doc_type_list']    =  Doc_type.objects.all()            
     args['username'] = auth.get_user(request).username       
     return render_to_response('medicament/monitor_list.html', args)
 
@@ -51,6 +59,23 @@ def monitoring_list(request, question_id ):
 # Разделим question id на части     xxx,yyy где xxx - тип мониторинга, yyy - номер страницы пагинации
     gid = get_ids(question_id)   
     type = int(gid[0])
+
+#   Определение доступа
+    usr =  auth.get_user(request)
+    try:
+        role = Role.objects.get(user=usr,type=type);
+    except ObjectDoesNotExist:
+        html_response_err = 'medicament/error_access.html'      
+        return render_to_response(html_response_err, {})
+
+    if role.role == "К" or role.role == "F":
+        see_all = True                # see_all  контроль и создание новых отчетов
+        user_hosp = 0
+    else:
+        see_all = False
+        user_hosp = role.hosp
+        m = role.hosp.id
+    
     if len(gid) > 1:
         page_number = int(gid[1])
     else:
@@ -60,24 +85,20 @@ def monitoring_list(request, question_id ):
     period = 0
     status = '0'
     start_filter = False
-    if len(gid) == 6:
+    if len(gid) >= 6:
         m = int(gid[2])
         period = int(gid[3])
         status = gid[4]
         region = int(gid[5])
         start_filter = True
         
-
-#   Определение доступа
-    usr =  auth.get_user(request)
-    role = Role.objects.get(user=usr)
-    if role.role == "К" or role.role == "F":
-        see_all = True                # see_all  контроль и создание новых отчетов
-        user_hosp = 0
+    if len(gid) == 7:   # уточнение детализация в отчете
+        detail = True
+        detail_line = int(gid[6])
     else:
-        see_all = False
-        user_hosp = role.hosp
-        m = role.hosp.id
+        detail = False
+        detail_line = 0
+
 # По типам документов        
     if type==1:   # Лекарства
         doc = Doc1                     # используемая модель
@@ -132,12 +153,12 @@ def monitoring_list(request, question_id ):
         export_to_excel = exp_to_excel_form3
 
  #### Далее не изменять без необходимости                    
-    args = {}
+    args = {} 
     args.update(csrf(request))
     isOk = True 
     html_response = 'medicament/document_list.html'
 
-    if  start_filter or request.POST:
+    if  start_filter or detail or request.POST:
         if see_all and 'button_create' in request.POST:
             if 'period_new' in request.POST:
                 if request.POST['period_new']:
@@ -188,11 +209,14 @@ def monitoring_list(request, question_id ):
         if not is_filter:
             args['doc_list']    =  doc.objects.all()
 # после выборки по фильтрам если надо считать отчет, то вызываю сответствующую функцию
-        if see_all and period > 0 and 'button_report' in request.POST:
+        if detail or (see_all and period > 0 and 'button_report' in request.POST):
             html_response = html_response_rep
             args['period_name']  =  Period.objects.get(pk=period)            
             if region > 0:
                 args['region_name']  =  Region.objects.get(pk=region)            
+            if detail:
+                args['detail_line']  =  detail_line            
+                args['detail']  =  True            
             
             result = calc_sum(args['doc_list'])
         elif see_all and 'button_export' in request.POST:
@@ -242,10 +266,18 @@ def monitoring_list(request, question_id ):
 def monitoring_form(request, question_id):
     if not request.user.is_authenticated():
         return redirect('/auth/login')
+
+    gid = get_ids(question_id)   
+    type = int(gid[0])
     
 #   Определение доступа
     usr =  auth.get_user(request)
-    role = Role.objects.get(user=usr)
+    try:
+        role = Role.objects.get(user=usr,type=type);
+    except ObjectDoesNotExist:
+        html_response_err = 'medicament/error_access.html'      
+        return render_to_response(html_response_err, {})
+
     if role.role == "F":
         see_all = True                # see_all  контроль и создание новых отчетов
         user_hosp = 0
@@ -258,11 +290,10 @@ def monitoring_form(request, question_id):
         see_all = False
         user_hosp = role.hosp
         see_admin = False
+
 # Разделим question id на части     xxx,yyy,zzz где xxx - тип мониторинга, yyy - номер страницы paginator - для возвращения на страницу
 # zzz - сквозной номре документв
 
-    gid = get_ids(question_id)   
-    type = int(gid[0])
     doc_id = gid[1]
     if len(gid) == 7:
         page_number = int(gid[2])
@@ -429,7 +460,7 @@ def contact_list(request):
     args.update(csrf(request))
     
     args['username'] = auth.get_user(request).username       
-    args['role']  =  Role.objects.all()
+    args['role']  =  Role.objects.all().order_by('hosp')
     return render_to_response('medicament/contact_list.html', args)
 
 

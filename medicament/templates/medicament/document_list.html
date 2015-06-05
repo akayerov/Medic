@@ -38,9 +38,9 @@
 			       
 			       {%  for page in   doc_page.paginator.page_range %}
 			           {% if page ==  doc_page.number  %}
-			               <li class="current"> <a href="/form/{{doc_type.id}},{{page}},{{hosp}},{{period}},{{status}}/">{{ page }}</a> </li>
+			               <li class="current"> <a href="/form/{{doc_type.id}},{{page}},{{hosp}},{{period}},{{status}},{{region}}/">{{ page }}</a> </li>
 			           {% else %}
-			               <li><a  href="/form/{{doc_type.id}},{{page}},{{hosp}},{{period}},{{status}}/">{{ page }}</a> </li>
+			               <li><a  href="/form/{{doc_type.id}},{{page}},{{hosp}},{{period}},{{status}},{{region}}/">{{ page }}</a> </li>
 			           {% endif %}
 			       {% endfor %}
 			       {% if  doc_page.has_next %}

@@ -107,3 +107,4 @@ TEMPLATE_DIRS = (
    '/medicament/templates',
 )
 
+#DECIMAL_SEPARATOR = ","

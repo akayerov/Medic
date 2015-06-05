@@ -27,12 +27,13 @@
         </thead>
         {% for r in result %}
         <tr class="itog_row">	
- 	    <td>+</td>
+   	    <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{forloop.counter0}}">+</a></td>
         {% for r1 in r %}
 		   <td>{{r1}}</td>
 		{% endfor%}    
         </tr>
-{% comment %}
+	       {% if detail %}
+           {% if forloop.counter0 == detail_line %} 
    	       {% for q in doc_list %}
             <tr class="detail_row">
  	 	      <td></td>
@@ -927,7 +928,9 @@
               {% endif %}
             </tr>
 		   {% endfor%}    
-{% endcomment %}
+		   {% endif %}  
+		   {% endif %}  
+
  		{% endfor%}        
      </table>
      <form>

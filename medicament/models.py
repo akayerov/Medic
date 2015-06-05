@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 def get_file_path(self, file):
 #    return ("pdf/datasheet/%s/%s/%s" % (file[0], file[1], file))
@@ -49,9 +49,12 @@ class Doc_Hosp(models.Model):
 class Role(models.Model):
     ''' Назначение ролей пользователей
     '''
+    type = models.ForeignKey( Doc_type)
+    contact = models.CharField('Ответственный',max_length=50, null=True, blank=True)
+    email   = models. EmailField('Email',max_length=60, null=True, blank=True)
     user = models.ForeignKey(User)
     hosp = models.ForeignKey(Hosp)
-    tel = models.CharField('Телефон',max_length=20)
+    tel = models.CharField('Телефон',max_length=20, null=True, blank=True)
     EDIT = 'Р'
     CONTROL = 'К'
     ADMIN = 'F'
@@ -65,8 +68,15 @@ class Role(models.Model):
                                       choices=STATE_IN_RIGHT,
                                       default=EDIT)
     def __str__(self):              # __unicode__ on Python 2
-        return str(self.hosp) + ':' + str(self.user)
+        return str(self.type) + ':' + str(self.hosp) + ':' + str(self.user)
 
+class Right_type(models.Model):
+    ''' Права групп пользователей на отдельный виды мониторингов
+    '''
+    group = models.ForeignKey(Group)
+    type = models.ForeignKey( Doc_type)
+    def __str__(self):              # __unicode__ on Python 2
+        return str(self.group) + ':' + str(self.type)
 
 
 class Document(models.Model):
@@ -483,7 +493,8 @@ class Doc3(Document):
     c3_1 = models.IntegerField('Кол3_1', default=0)
     c3_2_1 = models.IntegerField('Кол3_2_1', default=0)
     c3_2_2 = models.IntegerField('Кол3_2_2', default=0)
-    c4_1 = models.IntegerField('Кол4_1', default=0)
+    c4_1 = models.FloatField('Кол4_1', default=0)
+    c4_2 = models.CharField('КолПр3_38', max_length=80, null=True, blank=True)
     def __str__(self):              # __unicode__ on Python 2
         return str(self.period) + ':' + str(self.hosp)
 
