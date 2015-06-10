@@ -80,7 +80,7 @@
          {% endfor %}
          {% endif %}
          {% if doc.status != 'F' %}
-         <form action="monitor/add_comment/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}/" method = "post">
+         <form action="monitor/add_comment/{{doc_type.id}},{{doc_id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}/" method = "post">
             {%csrf_token%}
             {{form}}
   		    <button class="button" name="button_addComment" value="5" type="submit" formmethod="post">Добавить</button>         

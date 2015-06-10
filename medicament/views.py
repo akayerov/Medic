@@ -7,6 +7,9 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
 from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Right_type, Doc1, Doc2, Doc3
+from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000
+
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
@@ -22,6 +25,8 @@ from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
     save_doc_form2,exp_to_excel_form2,load_from_excel_form2
 from medicament.Form.form3 import create_report_form3, calc_sum_form3,\
     save_doc_form3,exp_to_excel_form3
+from medicament.Form.form4 import create_report_form4, calc_sum_form4,\
+    save_doc_form4,exp_to_excel_form4
 
 import os
 import mimetypes
@@ -47,6 +52,7 @@ def monitor_type_list(request):
     
  #   args['doc_type_list']    =  Doc_type.objects.all()            
     args['username'] = auth.get_user(request).username       
+    args['first_name'] = auth.get_user(request).first_name
     return render_to_response('medicament/monitor_list.html', args)
 
 
@@ -68,13 +74,6 @@ def monitoring_list(request, question_id ):
         html_response_err = 'medicament/error_access.html'      
         return render_to_response(html_response_err, {})
 
-    if role.role == "К" or role.role == "F":
-        see_all = True                # see_all  контроль и создание новых отчетов
-        user_hosp = 0
-    else:
-        see_all = False
-        user_hosp = role.hosp
-        m = role.hosp.id
     
     if len(gid) > 1:
         page_number = int(gid[1])
@@ -98,6 +97,15 @@ def monitoring_list(request, question_id ):
     else:
         detail = False
         detail_line = 0
+
+    if role.role == "К" or role.role == "F":
+        see_all = True                # see_all  контроль и создание новых отчетов
+        user_hosp = 0
+    else:
+        see_all = False
+        user_hosp = role.hosp
+        m = role.hosp.id
+
 
 # По типам документов        
     if type==1:   # Лекарства
@@ -145,12 +153,19 @@ def monitoring_list(request, question_id ):
         html_response_rep = 'medicament/report_form2.html'
         export_to_excel = exp_to_excel_form2
     elif type==3:  # супертест
-        doc = Doc3                     # используемая модель
+        doc = Doc3                    # используемая модель
         new_doc =  create_report_form3   # функция создания новых отчетов
         calc_sum = calc_sum_form3
         result = [['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]]
         html_response_rep = 'medicament/report_form3.html'
         export_to_excel = exp_to_excel_form3
+    elif type==4:  # Диспансеризация
+        doc = Doc4                    # используемая модель
+        new_doc =  create_report_form4   # функция создания новых отчетов
+        calc_sum = calc_sum_form4
+        result = [['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]]
+        html_response_rep = 'medicament/report_form4.html'
+        export_to_excel = exp_to_excel_form4
 
  #### Далее не изменять без необходимости                    
     args = {} 
@@ -219,7 +234,8 @@ def monitoring_list(request, question_id ):
                 args['detail']  =  True            
             
             result = calc_sum(args['doc_list'])
-        elif see_all and 'button_export' in request.POST:
+        if see_all and 'button_export' in request.POST:
+#            assert False
             stat.rec_fltr = args['doc_list'].count();        
             stat.rec_complete =  args['doc_list'].filter(status = 'F').count();        
             stat.rec_soglas   =  args['doc_list'].filter(status = 'W').count();        
@@ -242,7 +258,8 @@ def monitoring_list(request, question_id ):
         args['mo_list']  =  Hosp.objects.all()
         args['region_list']  =  Region.objects.all()
     args['period_list']  =  Period.objects.all()            
-    args['username'] = auth.get_user(request).username       
+    args['username'] = auth.get_user(request).username    
+    args['first_name'] = auth.get_user(request).first_name	
     args['right_all'] = see_all       
     args['isOk'] = isOk       
     
@@ -278,6 +295,25 @@ def monitoring_form(request, question_id):
         html_response_err = 'medicament/error_access.html'      
         return render_to_response(html_response_err, {})
 
+
+# Разделим question id на части     xxx,yyy,zzz где xxx - тип мониторинга, yyy - номер страницы paginator - для возвращения на страницу
+# zzz - сквозной номре документв
+
+    doc_id = gid[1]
+    if len(gid) == 7:
+        page_number = int(gid[2])
+        m = int(gid[3])  
+        period = int(gid[4])
+        status = gid[5]
+        region = int(gid[6])
+    else:
+#       assert False
+        page_number=1  
+        m = 0  
+        period = 0
+        status = '0'
+        region = 0
+
     if role.role == "F":
         see_all = True                # see_all  контроль и создание новых отчетов
         user_hosp = 0
@@ -291,23 +327,6 @@ def monitoring_form(request, question_id):
         user_hosp = role.hosp
         see_admin = False
 
-# Разделим question id на части     xxx,yyy,zzz где xxx - тип мониторинга, yyy - номер страницы paginator - для возвращения на страницу
-# zzz - сквозной номре документв
-
-    doc_id = gid[1]
-    if len(gid) == 7:
-        page_number = int(gid[2])
-        m = int(gid[3])  
-        period = int(gid[4])
-        status = gid[5]
-        region = int(gid[6])
-    else:
-        assert False
-        page_number=1  
-        m = 0  
-        period = 0
-        status = '0'
-        region = 0
 
 # Настройка типа документа  
     if type == 1:
@@ -325,7 +344,12 @@ def monitoring_form(request, question_id):
         save_doc = save_doc_form3
         html_response = "medicament/doc_form3.html"
         export_to_excel = exp_to_excel_form3
-# конец настройки по типам!
+    elif type == 4: 
+        doc = Doc4
+        save_doc = save_doc_form4
+        html_response = "medicament/doc_form4.html"
+        export_to_excel = exp_to_excel_form4
+## конец настройки по типам!
                    
     args = {}
     args.update(csrf(request))
@@ -378,7 +402,8 @@ def monitoring_form(request, question_id):
         args['doc_prev'] = doc_prevList[0]
 # для визуального контроля
 
-    args['username'] = auth.get_user(request).username       
+    args['username'] = auth.get_user(request).username   
+    args['first_name'] = auth.get_user(request).first_name    
 
     args['right_operator'] = not see_all       
     args['right_control'] = see_all       
@@ -396,7 +421,13 @@ def monitoring_form(request, question_id):
     args['status'] = status       
     args['hosp'] = m       
     args['region'] = region       
+    args['doc_id'] = doc_id       
 
+# Настройка типа документа  
+    if type == 4:
+        args['tab1000'] = Doc4Tab1000.objects.filter(doc=doc_id)       
+        args['tab2000'] = Doc4Tab2000.objects.filter(doc=doc_id)        
+# конец настройки по типу документа
     return render_to_response(html_response, args)
 
 
@@ -459,9 +490,22 @@ def contact_list(request):
     args = {}
     args.update(csrf(request))
     
-    args['username'] = auth.get_user(request).username       
+    args['username'] = auth.get_user(request).username
+    args['first_name'] = auth.get_user(request).first_name	
     args['role']  =  Role.objects.all().order_by('hosp')
     return render_to_response('medicament/contact_list.html', args)
+
+def document(request):
+    '''  Список контактов
+    '''
+	
+    return render_to_response('medicament/document_monit.html')
+	
+def FAQ(request):
+    '''  Список контактов
+    '''
+    
+    return render_to_response('medicament/FAQ.html')
 
 
 def load_from_excel(request, question_id):
@@ -493,7 +537,8 @@ def load_from_excel(request, question_id):
             else:
                 return redirect('/monitor/'  + question_id)
 
-        args['username'] = auth.get_user(request).username       
+        args['username'] = auth.get_user(request).username          
+        args['first_name'] = auth.get_user(request).first_name      
         args['page_number']   =  spage_number       # для пагинации     
         args['period'] = speriod       
         args['status'] = sstatus       

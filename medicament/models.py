@@ -14,6 +14,16 @@ class Doc_type(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return self.name
 
+class Rows(models.Model):
+    ''' Параметры (строки) мониторингов
+    '''
+    type = models.ForeignKey( Doc_type)
+    table =  models.CharField('Таблица',max_length=8)       
+    name  =  models.CharField('Наименование',max_length=100)
+    name1 =  models.CharField('Доп.Наименов',max_length=20, null=True, blank=True)
+    def __str__(self):              # __unicode__ on Python 2
+        return self.name
+
 
 class Period(models.Model):
     name =  models.CharField('Наименование',max_length=100)
@@ -193,11 +203,11 @@ class Doc2(Document):
     c2_5_41   = models.IntegerField('Кол2_5_41', default=0)
     c2_6      = models.IntegerField('Кол2_6', default=0)
     c2_7      = models.IntegerField('Кол2_7', default=0)
-    c2_8      = models.IntegerField('Кол2_8', default=0)
+    c2_8      = models.FloatField('Кол2_8', default=0)
     c2_9      = models.IntegerField('Кол2_9', default=0)
-    c2_10     = models.IntegerField('Кол2_10', default=0)
-    c2_11     = models.IntegerField('Кол2_11', default=0)
-    c2_12     = models.IntegerField('Кол2_12', default=0)
+    c2_10     = models.FloatField('Кол2_10', default=0)
+    c2_11     = models.FloatField('Кол2_11', default=0)
+    c2_12     = models.FloatField('Кол2_12', default=0)
     c2_13     = models.IntegerField('Кол2_13', default=0)
     c2_13_1   = models.IntegerField('Кол2_13_1', default=0)
     c2_13_2   = models.IntegerField('Кол2_13_2', default=0)
@@ -377,12 +387,12 @@ class Doc2(Document):
     c2_18     = models.IntegerField('Кол2_18', default=0)
     c2_19     = models.IntegerField('Кол2_19', default=0)
     c2_20     = models.IntegerField('Кол2_20', default=0)
-    c2_21     = models.IntegerField('Кол2_21', default=0)
-    c2_22     = models.IntegerField('Кол2_22', default=0)
-    c2_23     = models.IntegerField('Кол2_23', default=0)
-    c2_24     = models.IntegerField('Кол2_24', default=0)
-    c2_25     = models.IntegerField('Кол2_25', default=0)
-    c2_26     = models.IntegerField('Кол2_26', default=0)
+    c2_21     = models.FloatField('Кол2_21', default=0)
+    c2_22     = models.FloatField('Кол2_22', default=0)
+    c2_23     = models.FloatField('Кол2_23', default=0)
+    c2_24     = models.FloatField('Кол2_24', default=0)
+    c2_25     = models.FloatField('Кол2_25', default=0)
+    c2_26     = models.FloatField('Кол2_26', default=0)
     c2_27     = models.IntegerField('Кол2_27', default=0)
     c2_28     = models.IntegerField('Кол2_28', default=0)
     
@@ -497,7 +507,6 @@ class Doc3(Document):
     c4_2 = models.CharField('КолПр3_38', max_length=80, null=True, blank=True)
     def __str__(self):              # __unicode__ on Python 2
         return str(self.period) + ':' + str(self.hosp)
-
 
 class Comment(models.Model):
     document  = models.ForeignKey(Document)

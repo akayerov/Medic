@@ -9,16 +9,17 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('auth', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Comment',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('text', models.TextField(verbose_name='Текст комментария')),
                 ('date', models.DateTimeField(auto_now_add=True)),
-                ('action', models.CharField(choices=[('E', ''), ('O', 'На согласование'), ('Y', 'Согласовано'), ('N', 'Не согласовано')], max_length=1, default='E', verbose_name='Действие')),
+                ('action', models.CharField(choices=[('E', ''), ('O', 'На согласование'), ('Y', 'Согласовано'), ('N', 'Не согласовано'), ('C', 'Изменение')], verbose_name='Действие', max_length=1, default='E')),
             ],
             options={
             },
@@ -27,7 +28,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Doc_Hosp',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
             ],
             options={
             },
@@ -36,8 +37,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Doc_type',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Наименование')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('name', models.CharField(verbose_name='Наименование', max_length=100)),
             ],
             options={
             },
@@ -46,8 +47,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Document',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('E', 'Редактирование'), ('W', 'Согласование'), ('C', 'Корректировка'), ('F', 'Завершено')], max_length=1, default='E', verbose_name='Статус')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('status', models.CharField(choices=[('E', 'Редактирование'), ('W', 'Согласование'), ('C', 'Корректировка'), ('F', 'Завершено')], verbose_name='Статус', max_length=1, default='E')),
                 ('datef', models.DateField()),
                 ('date_mod', models.DateTimeField(auto_now_add=True)),
             ],
@@ -58,7 +59,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Doc2',
             fields=[
-                ('document_ptr', models.OneToOneField(serialize=False, primary_key=True, auto_created=True, to='medicament.Document', parent_link=True)),
+                ('document_ptr', models.OneToOneField(serialize=False, auto_created=True, to='medicament.Document', parent_link=True, primary_key=True)),
                 ('c2_1', models.IntegerField(default=0, verbose_name='Кол2_1')),
                 ('c2_2', models.IntegerField(default=0, verbose_name='Кол2_2')),
                 ('c2_3', models.IntegerField(default=0, verbose_name='Кол2_3')),
@@ -79,9 +80,9 @@ class Migration(migrations.Migration):
                 ('c2_5_7', models.IntegerField(default=0, verbose_name='Кол2_5_7')),
                 ('c2_5_8', models.IntegerField(default=0, verbose_name='Кол2_5_8')),
                 ('c2_5_9', models.IntegerField(default=0, verbose_name='Кол2_5_9')),
-                ('c2_5_10', models.IntegerField(default=0, verbose_name='Кол2_5_10')),
-                ('c2_5_11', models.IntegerField(default=0, verbose_name='Кол2_5_11')),
-                ('c2_5_12', models.IntegerField(default=0, verbose_name='Кол2_5_12')),
+                ('c2_5_10', models.FloatField(default=0, verbose_name='Кол2_5_10')),
+                ('c2_5_11', models.FloatField(default=0, verbose_name='Кол2_5_11')),
+                ('c2_5_12', models.FloatField(default=0, verbose_name='Кол2_5_12')),
                 ('c2_5_13', models.IntegerField(default=0, verbose_name='Кол2_5_13')),
                 ('c2_5_14', models.IntegerField(default=0, verbose_name='Кол2_5_14')),
                 ('c2_5_15', models.IntegerField(default=0, verbose_name='Кол2_5_15')),
@@ -356,6 +357,44 @@ class Migration(migrations.Migration):
                 ('c4_13', models.IntegerField(default=0, verbose_name='Кол4_13')),
                 ('c4_14', models.IntegerField(default=0, verbose_name='Кол4_14')),
                 ('c4_15', models.IntegerField(default=0, verbose_name='Кол4_15')),
+                ('p3_1', models.CharField(null=True, verbose_name='КолПр3_1', blank=True, max_length=80)),
+                ('p3_2', models.CharField(null=True, verbose_name='КолПр3_2', blank=True, max_length=80)),
+                ('p3_3', models.CharField(null=True, verbose_name='КолПр3_3', blank=True, max_length=80)),
+                ('p3_4', models.CharField(null=True, verbose_name='КолПр3_4', blank=True, max_length=80)),
+                ('p3_5', models.CharField(null=True, verbose_name='КолПр3_5', blank=True, max_length=80)),
+                ('p3_6', models.CharField(null=True, verbose_name='КолПр3_6', blank=True, max_length=80)),
+                ('p3_7', models.CharField(null=True, verbose_name='КолПр3_7', blank=True, max_length=80)),
+                ('p3_8', models.CharField(null=True, verbose_name='КолПр3_8', blank=True, max_length=80)),
+                ('p3_9', models.CharField(null=True, verbose_name='КолПр3_9', blank=True, max_length=80)),
+                ('p3_10', models.CharField(null=True, verbose_name='КолПр3_10', blank=True, max_length=80)),
+                ('p3_11', models.CharField(null=True, verbose_name='КолПр3_11', blank=True, max_length=80)),
+                ('p3_12', models.CharField(null=True, verbose_name='КолПр3_12', blank=True, max_length=80)),
+                ('p3_13', models.CharField(null=True, verbose_name='КолПр3_13', blank=True, max_length=80)),
+                ('p3_14', models.CharField(null=True, verbose_name='КолПр3_14', blank=True, max_length=80)),
+                ('p3_15', models.CharField(null=True, verbose_name='КолПр3_15', blank=True, max_length=80)),
+                ('p3_16', models.CharField(null=True, verbose_name='КолПр3_16', blank=True, max_length=80)),
+                ('p3_17', models.CharField(null=True, verbose_name='КолПр3_17', blank=True, max_length=80)),
+                ('p3_18', models.CharField(null=True, verbose_name='КолПр3_18', blank=True, max_length=80)),
+                ('p3_19', models.CharField(null=True, verbose_name='КолПр3_19', blank=True, max_length=80)),
+                ('p3_20', models.CharField(null=True, verbose_name='КолПр3_20', blank=True, max_length=80)),
+                ('p3_21', models.CharField(null=True, verbose_name='КолПр3_21', blank=True, max_length=80)),
+                ('p3_22', models.CharField(null=True, verbose_name='КолПр3_22', blank=True, max_length=80)),
+                ('p3_23', models.CharField(null=True, verbose_name='КолПр3_23', blank=True, max_length=80)),
+                ('p3_24', models.CharField(null=True, verbose_name='КолПр3_24', blank=True, max_length=80)),
+                ('p3_25', models.CharField(null=True, verbose_name='КолПр3_25', blank=True, max_length=80)),
+                ('p3_26', models.CharField(null=True, verbose_name='КолПр3_26', blank=True, max_length=80)),
+                ('p3_27', models.CharField(null=True, verbose_name='КолПр3_27', blank=True, max_length=80)),
+                ('p3_28', models.CharField(null=True, verbose_name='КолПр3_28', blank=True, max_length=80)),
+                ('p3_29', models.CharField(null=True, verbose_name='КолПр3_29', blank=True, max_length=80)),
+                ('p3_30', models.CharField(null=True, verbose_name='КолПр3_30', blank=True, max_length=80)),
+                ('p3_31', models.CharField(null=True, verbose_name='КолПр3_31', blank=True, max_length=80)),
+                ('p3_32', models.CharField(null=True, verbose_name='КолПр3_32', blank=True, max_length=80)),
+                ('p3_33', models.CharField(null=True, verbose_name='КолПр3_33', blank=True, max_length=80)),
+                ('p3_34', models.CharField(null=True, verbose_name='КолПр3_34', blank=True, max_length=80)),
+                ('p3_35', models.CharField(null=True, verbose_name='КолПр3_35', blank=True, max_length=80)),
+                ('p3_36', models.CharField(null=True, verbose_name='КолПр3_36', blank=True, max_length=80)),
+                ('p3_37', models.CharField(null=True, verbose_name='КолПр3_37', blank=True, max_length=80)),
+                ('p3_38', models.CharField(null=True, verbose_name='КолПр3_38', blank=True, max_length=80)),
             ],
             options={
             },
@@ -364,7 +403,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Doc1',
             fields=[
-                ('document_ptr', models.OneToOneField(serialize=False, primary_key=True, auto_created=True, to='medicament.Document', parent_link=True)),
+                ('document_ptr', models.OneToOneField(serialize=False, auto_created=True, to='medicament.Document', parent_link=True, primary_key=True)),
                 ('c1_1', models.IntegerField(default=0, verbose_name='Кол1-1')),
                 ('c1_2', models.IntegerField(default=0, verbose_name='Кол1-2')),
                 ('c1_3', models.IntegerField(default=0, verbose_name='Кол1-3')),
@@ -397,9 +436,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Hosp',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64, verbose_name='Наименование Краткое')),
-                ('name_full', models.CharField(max_length=255, verbose_name='Наименование Полное')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('name', models.CharField(verbose_name='Наименование Краткое', max_length=64)),
+                ('name_full', models.CharField(verbose_name='Наименование Полное', max_length=255)),
             ],
             options={
             },
@@ -408,8 +447,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Period',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Наименование')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('name', models.CharField(verbose_name='Наименование', max_length=100)),
                 ('dateb', models.DateField()),
                 ('datee', models.DateField()),
                 ('prev', models.ForeignKey(null=True, to='medicament.Period', blank=True)),
@@ -421,8 +460,19 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Region',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=32, verbose_name='Регион')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('name', models.CharField(verbose_name='Регион', max_length=32)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Right_type',
+            fields=[
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('group', models.ForeignKey(to='auth.Group')),
+                ('type', models.ForeignKey(to='medicament.Doc_type')),
             ],
             options={
             },
@@ -431,10 +481,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Role',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('tel', models.CharField(max_length=20, verbose_name='Телефон')),
-                ('role', models.CharField(choices=[('Р', 'Редактирование'), ('К', 'Контроль')], max_length=1, default='Р', verbose_name='Роль')),
+                ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
+                ('contact', models.CharField(null=True, verbose_name='Ответственный', blank=True, max_length=50)),
+                ('email', models.EmailField(null=True, verbose_name='Email', blank=True, max_length=60)),
+                ('tel', models.CharField(null=True, verbose_name='Телефон', blank=True, max_length=20)),
+                ('role', models.CharField(choices=[('Р', 'Редактирование'), ('К', 'Контроль'), ('F', 'Администратор')], verbose_name='Роль', max_length=1, default='Р')),
                 ('hosp', models.ForeignKey(to='medicament.Hosp')),
+                ('type', models.ForeignKey(to='medicament.Doc_type')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
