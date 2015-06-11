@@ -7,7 +7,7 @@ from random import random
 import openpyxl
 from openpyxl.styles import Font
 
-from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name
+from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name, get_name_input
 from medicament.models import Document,Doc_type, Hosp, Period, Role, Region, Comment, Doc_Hosp,Doc1,Doc2, Rows
 
 from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000, Doc4Tab3000, Doc4Tab4000, Doc4Tab5000, Doc4Tab5001, Doc4Tab6000, Doc4Tab7000
@@ -30,6 +30,7 @@ def create_report_form4(periodInt, datef):
         return False
     for dh in Doc_Hosp.objects.filter(doc_type = type):
         odoc = Doc4.objects.create(hosp=dh.hosp, period=period, datef=datef)
+        create_tab(4,odoc)     # создаем табличные части для нового отчета 4 - код мониторинга
         # если предыдущий период есть, попробуем заполнить документ из предыдущего
         if period_prev:       
             doc_prevList = Doc4.objects.filter(period = period_prev, hosp = dh.hosp, status='F')
@@ -37,9 +38,9 @@ def create_report_form4(periodInt, datef):
                 doc_prev = doc_prevList[0]
                 copy_fields_form4(doc_prev, odoc)
                 odoc.save()
-        create_tab(4,odoc)     # создаем таличный части для новогог отчета 4 - код мониторинга
                  
-    return create_new_report(4,Doc4,periodInt,datef, copy_fields_form4)
+#    return create_new_report(4,Doc4,periodInt,datef, copy_fields_form4)
+    return True
 
 def create_tab(type, odoc):
     ''' создатим табличные записи для нового отчета 
@@ -99,9 +100,7 @@ def save_doc_form4(request, type, id_doc, mode_comment):
     ''' Сохранить запись Document + комментарий с новой записью в комментрии с действием пользователя
         Установить собственый параментрв DOCx,set_fields_formx, is_valid_formx
     ''' 
-    assert False
     return save_doc(Doc4,set_fields_form4, is_valid_form4, request, type, id_doc, mode_comment)
-
 
 def copy_fields_form4(ds, dd):
     pass
@@ -111,17 +110,48 @@ def set_fields_form4(request, doc):
     ''' Заполнение полей модели данными формы . 
         Для каждой формы
     '''
+    if 'button_save' in request.POST:
+        type = 4
+    # поля формы (вне табличных частей)
+        doc.KodMO = request.POST['KodMO']   
+        doc.c7002 = request.POST['c7002'] 
+    
+    # Табличные части
+    # tab1000
+        table = 'tab1000'    
+        tabrs = Doc4Tab1000.objects.filter(doc=doc)
+        for tab in tabrs: 
+            tab.c3 = request.POST[get_name_input(table,tab.row.id,"c3")]
+            tab.c4 = request.POST[get_name_input(table,tab.row.id,"c4")]
+            tab.save()
+    # tab2000
+        table = 'tab2000'    
+        tabrs = Doc4Tab2000.objects.filter(doc=doc)
+        for tab in tabrs: 
+            tab.c3 = request.POST[get_name_input(table,tab.row.id,"c3")]
+            tab.c4 = request.POST[get_name_input(table,tab.row.id,"c4")]
+            tab.save()
+            
+    #  прочие табличные части заполнить аналогично
+        row = Rows.objects.filter(type  = type, table = 'tab3000')
+        for r in row:
+            pass
+        row = Rows.objects.filter(type  = type, table = 'tab4000')
+        for r in row:
+            pass
+        row = Rows.objects.filter(type  = type, table = 'tab5000')
+        for r in row:
+            pass
+        row = Rows.objects.filter(type  = type, table = 'tab5001')
+        for r in row:
+            pass
+        row = Rows.objects.filter(type  = type, table = 'tab6000')
+        for r in row:
+            pass
+        row = Rows.objects.filter(type  = type, table = 'tab7000')
+        for r in row:
+            pass
 
-    doc.c1_1_1 = request.POST['c1_1_1'] 
-    doc.c1_1_2 = request.POST['c1_1_2'] 
-    doc.c1_2 = request.POST['c1_2'] 
-    doc.c2_1 = request.POST['c2_1'] 
-    doc.c2_2 = request.POST['c2_2'] 
-    doc.c3_1 = request.POST['c3_1'] 
-    doc.c3_2_1 = request.POST['c3_2_1'] 
-    doc.c3_2_2 = request.POST['c3_2_2'] 
-    doc.c4_1 = request.POST['c4_1'] 
-    doc.c4_2 = request.POST['c4_2'] 
     
 
 

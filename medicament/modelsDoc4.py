@@ -6,8 +6,8 @@ class Doc4(Document):
 # тест 
 # порядок именования полей сX_Y_Z   X-таблица номер Y-номер строки Z-номер подстроки
     KodMO = models.IntegerField('Код МО', default=0)  # Сведения
-    с7000 = models.IntegerField('Кол 7000', default=0)  # Итоги
-    с7001 = models.IntegerField('Кол 7001', default=0)  # Итоги
+    c7002 = models.IntegerField('Кол 7002', default=0)  # Итоги
+
     def __str__(self):              # __unicode__ on Python 2
         return str(self.period) + ':' + str(self.hosp)
 

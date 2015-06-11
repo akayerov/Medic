@@ -21,6 +21,7 @@ class Rows(models.Model):
     table =  models.CharField('Таблица',max_length=8)       
     name  =  models.CharField('Наименование',max_length=100)
     name1 =  models.CharField('Доп.Наименов',max_length=20, null=True, blank=True)
+#    row =  models.CharField('Код2',max_length=2, null=True, blank=True)   Пока не ввожу в работу  
     def __str__(self):              # __unicode__ on Python 2
         return self.name
 
