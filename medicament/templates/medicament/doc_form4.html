@@ -16,7 +16,7 @@
 		   </tr>
 	       <tr>
  	        <td></td>
-	        <td><input type="number" name="c3_2_2" min="0" max="9999" value="{{doc.KodMO}}"></td>
+	        <td><input type="number" name="KodMO" min="0" max="9999" value="{{doc.KodMO}}"></td>
            <tr>
   		</table>
 
@@ -32,8 +32,8 @@
            {% for t in tab1000 %}
  		     <tr>
 		       <td>{{t.row}}</td>
-		       <td><input type="number" name="t1000_{{t.row.id}}_c3" value="{{t.c3}}"></td>
-		       <td><input type="number" name="t1000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
+		       <td><input type="number" name="tab1000_{{t.row.id}}_c3" value="{{t.c3}}"></td>
+		       <td><input type="number" name="tab1000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
 		     <tr>
            {% endfor %}  
   		</table>
@@ -49,14 +49,23 @@
            {% for t in tab2000 %}
  		     <tr>
 		       <td>{{t.row}}</td>
-		       <td><input type="number" name="t2000_{{t.row.id}}_c3"  value="{{t.c3}}"></td>
-		       <td><input type="number" name="t2000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
+		       <td><input type="number" name="tab2000_{{t.row.id}}_c3"  value="{{t.c3}}"></td>
+		       <td><input type="number" name="tab2000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
 		     <tr>
            {% endfor %}  
   		</table>
 
   </section>
   <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <tr>
+		    <th>Показатель</th>
+		    <th></th>
+		   </tr>
+ 	        <td>Кол 7002</td>
+	        <td><input type="number" name="c7002" min="0" max="9999" value="{{doc.c7002}}"></td>
+           <tr>
+  		</table>
   </section>
 </div>
 

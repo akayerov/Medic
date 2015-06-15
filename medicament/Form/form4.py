@@ -43,7 +43,7 @@ def create_report_form4(periodInt, datef):
     return True
 
 def create_tab(type, odoc):
-    ''' создатим табличные записи для нового отчета 
+    ''' создадим табличные записи для нового отчета 
     '''
     row = Rows.objects.filter(type  = type, table = 'tab1000')
     for r in row:
@@ -163,17 +163,49 @@ def is_valid_form4(doc, doc_prev):
 
 def calc_sum_form4(doc):
     ''' Возвращает Суммы данных отчетов
+        В отличие от предыдущих отчетов кроме основной DOC используются дополнительные таблицы 
     '''
-#    assert False
-    aq0= doc.aggregate(Sum('c1_1_1'),Sum('c1_1_2'),Sum('c1_2'),Sum('c2_1'),Sum('c2_2'), Sum('c3_1'), \
-                       Sum('c3_2_1'),Sum('c3_2_2'),Sum('c4_1'), \
+#   Суммирование по основной части документа
+    period = doc[0].period
+    aq1= doc.aggregate(Sum('c7002')
          )
-    
-    s = [["1. Показатель 1_1_1", aq0['c1_1_1__sum']],
-         ["2. Позазатель 1_1_2", aq0['c1_1_2__sum']],
-         ]
+    s1 = [["1. Показатель 7002", aq1['c7002__sum']],
+        ]
 
-    return s
+#   суммирование табличных частей документа
+#   ТАБЛИЦА 1000
+    row = Rows.objects.filter(type  = 4, table = 'tab1000')
+    s1000 = []
+    for r in row:
+        tab1000 = Doc4Tab1000.objects.filter(doc__period=period, row=r )
+        aq1000 = tab1000.aggregate(Sum('c3'),Sum('c4'))
+        obj = [tab1000[0].row,aq1000['c3__sum'],aq1000['c4__sum']]
+        s1000.append(obj) 
+        print("Строки таблицы 1000")
+        for t in tab1000: 
+            print(t.row, t.c3, t.c4)
+#   ТАБЛИЦА 2000
+    row = Rows.objects.filter(type  = 4, table = 'tab2000')
+    s2000 = []
+    for r in row:
+        tab2000 = Doc4Tab2000.objects.filter(doc__period=period, row=r )
+        aq2000 = tab2000.aggregate(Sum('c3'),Sum('c4'))
+        obj = [tab2000[0].row,aq2000['c3__sum'],aq2000['c4__sum']]
+        s2000.append(obj) 
+        print("Строки таблицы 2000")
+        for t in tab2000: 
+            print(t.row, t.c3, t.c4)
+# аналогично
+
+#    res = s1 + s1000 + s2000     Нормально
+#    res = [s1,s1000,s2000]       Хорошо
+    res = {'doc':s1,'tab1000':s1000,'tab2000':s2000}
+#    print("Test access")
+#    for t in res['tab1000']:
+#        print(t[0],t[1],t[2])
+    
+#    assert False             
+    return res
 
 
 

@@ -17,48 +17,87 @@
         <h5>{{region_name}}</h5>
      </div>     
   </div>     
-     <table>
-       <thead>
-		   <tr>
-		    <th></th>
-		    <th>Показатель</th>
-		    <th>Значение</th>
-		   </tr>
-        </thead>
-        {% for r in result %}
-        <tr class="itog_row">	
- 	    <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{forloop.counter0}}">+</a></td>
-        {% for r1 in r %}
-		   <td>{{r1}}</td>
-		{% endfor%}    
-        </tr>
 
-	       {% if detail %}
-           {% if forloop.counter0 == detail_line %} 
-   	       {% for q in doc_list %}
-            <tr class="detail_row">
- 	 	      <td></td>
- 		      {% if forloop.parentloop.counter0 == 0 %}
-	            <td>{{q.hosp}}</td>
-	            <td>{{q.c1_1_1}}</td>
-              {% elif forloop.parentloop.counter0 == 1 %}
-	            <td>{{q.hosp}}</td>
-		        <td>{{q.c1_1_2}}</td>
-              {% endif %}
-            </tr>
-		   {% endfor%}  
-		   {% endif %}  
-		   {% endif %}  
- 		{% endfor%}        
-     </table>
-     <form>
-         {%csrf_token%}
-         <button class="button" name="button_export" value="7" type="submit" formmethod="post">Экспорт в Excel</button>   
-         <input  class="par_hidden" type="text" size="1" name="mo[]" value={{hosp}}>
-         <input  class="par_hidden" type="text" size="1" name="period" value={{period}}>
-         <input  class="par_hidden" type="text" size="1" name="status" value={{status}}>
-         <input  class="par_hidden" type="text" size="1" name="region" value={{region}}>
-     </form>
+<ul class="tabs" data-tab role="tablist">
+  <li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Таблица стартовая</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Таблица 1000</a></li>
+  <li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Таблица 2000</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Таблица Финал</a></li>
+</ul>
+<div class="tabs-content">
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <tr>
+		    <th>Показатель</th>
+ 		    <th></th>
+ 		   </tr> 
+    	  </table>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <tr>
+		    <th>Показатель</th>
+		    <th>с3</th>
+		    <th>с4</th>
+		    <th>с4</th>
+		   </tr>
+           {% for line in result.tab1000 %}
+ 		        <tr>
+		          <td>{{line.0.name}}</td>
+		          <td>{{line.1}}</td>
+		          <td>{{line.2}}</td>
+		       <tr>
+           {% endfor %}  
+  		</table>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <tr>
+		    <th>Показатель</th>
+		    <th>с3</th>
+		    <th>с4</th>
+		    <th>с4</th>
+		   </tr>
+           {% for line in result.tab2000 %}
+ 		        <tr>
+		          <td>{{line.0.name}}</td>
+		          <td>{{line.1}}</td>
+		          <td>{{line.2}}</td>
+		       <tr>
+           {% endfor %}  
+  		</table>
+
+
+
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+          <table class="table" id="table1" cellpadding="1" cellspacing="1">
+		   <tr>
+		    <th>Показатель</th>
+		    <th></th>
+		   </tr>
+           {% for line in result.doc %}
+ 		        <tr>
+		          <td>{{line.0}}</td>
+		          <td>{{line.1}}</td>
+		       <tr>
+           {% endfor %}  
+           <tr>
+  		</table>
+  </section>
+</div>
+
+  
+
+
+  <form>
+    {%csrf_token%}
+    <button class="button" name="button_export" value="7" type="submit" formmethod="post">Экспорт в Excel</button>   
+    <input  class="par_hidden" type="text" size="1" name="mo[]" value={{hosp}}>
+    <input  class="par_hidden" type="text" size="1" name="period" value={{period}}>
+    <input  class="par_hidden" type="text" size="1" name="status" value={{status}}>
+    <input  class="par_hidden" type="text" size="1" name="region" value={{region}}>
+ </form>
  {% else %} 
     <p>Мониторинги не найдены</p>
 {% endif %}
