@@ -19,13 +19,13 @@
   </div>     
 
 <ul class="tabs" data-tab role="tablist">
-  <li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Таблица стартовая</a></li>
-  <li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Таблица 1000</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="false" controls="panel2-1">Таблица стартовая</a></li>
+  <li class="tab-title  active" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="true" controls="panel2-2">Таблица 1000</a></li>
   <li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Таблица 2000</a></li>
   <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Таблица Финал</a></li>
 </ul>
 <div class="tabs-content">
-  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+  <section role="tabpanel" aria-hidden="false" class="content" id="panel2-1">
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
 		    <th>Показатель</th>
@@ -33,56 +33,93 @@
  		   </tr> 
     	  </table>
   </section>
-  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-2">
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
+		    <th></th>
 		    <th>Показатель</th>
 		    <th>с3</th>
-		    <th>с4</th>
 		    <th>с4</th>
 		   </tr>
            {% for line in result.tab1000 %}
- 		        <tr>
+ 		        <tr class="itog_row">
+	      	      <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{line.0.id}},tab1000">+</a></td>
 		          <td>{{line.0.name}}</td>
 		          <td>{{line.1}}</td>
 		          <td>{{line.2}}</td>
 		       <tr>
+		       {% if detail_line == line.0.id %}
+               {% for t in tab %}
+ 		        <tr>
+	      	      <td></td>
+	      	      <td>{{t.doc.hosp}}</td>
+	      	      <td>{{t.c3}}</td>
+	      	      <td>{{t.c4}}</td>
+ 		        </tr>
+               {% endfor %}
+		       {% endif %}
+		       
            {% endfor %}  
   		</table>
   </section>
-  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+  <section role="tabpanel" aria-hidden="false" class="content" id="panel2-3">
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
+		    <th></th>
 		    <th>Показатель</th>
 		    <th>с3</th>
 		    <th>с4</th>
-		    <th>с4</th>
 		   </tr>
            {% for line in result.tab2000 %}
- 		        <tr>
+ 		        <tr class="itog_row">
+	      	      <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{line.0.id}},tab2000">+</a></td>
 		          <td>{{line.0.name}}</td>
 		          <td>{{line.1}}</td>
 		          <td>{{line.2}}</td>
 		       <tr>
+		       {% if detail_line == line.0.id %}
+               {% for t in tab %}
+ 		        <tr>
+	      	      <td></td>
+	      	      <td>{{t.doc.hosp}}</td>
+	      	      <td>{{t.c3}}</td>
+	      	      <td>{{t.c4}}</td>
+ 		        </tr>
+               {% endfor %}
+		       {% endif %}
+		       
            {% endfor %}  
   		</table>
-
-
-
   </section>
-  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+  <section role="tabpanel" aria-hidden="false" class="content" id="panel2-4">
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
+    	    <td></td>
 		    <th>Показатель</th>
 		    <th></th>
 		   </tr>
            {% for line in result.doc %}
- 		        <tr>
+ 		       <tr  class="itog_row">
+  		           <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{forloop.counter0}}">+</a></td>
 		          <td>{{line.0}}</td>
 		          <td>{{line.1}}</td>
-		       <tr>
+		       </tr>
+ 	         {% if detail %}
+               {% if forloop.counter0 == detail_line %} 
+   	             {% for q in doc_list %}
+                   <tr class="detail_row">
+ 	 	           <td></td>
+ 		           {% if forloop.parentloop.counter0 == 0 %}
+	                 <td>{{q.hosp}}</td>
+	                 <td>{{q.c7002}}</td>
+                   {% elif forloop.parentloop.counter0 == 1 %}
+                   {% elif forloop.parentloop.counter0 == 2 %}
+                   {% endif %}
+                   </tr>
+                 {% endfor %}  
+               {% endif %}
+             {% endif %}
            {% endfor %}  
-           <tr>
   		</table>
   </section>
 </div>

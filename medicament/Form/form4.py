@@ -181,9 +181,9 @@ def calc_sum_form4(doc):
         aq1000 = tab1000.aggregate(Sum('c3'),Sum('c4'))
         obj = [tab1000[0].row,aq1000['c3__sum'],aq1000['c4__sum']]
         s1000.append(obj) 
-        print("Строки таблицы 1000")
-        for t in tab1000: 
-            print(t.row, t.c3, t.c4)
+#        print("Строки таблицы 1000")
+#        for t in tab1000: 
+#            print(t.row, t.c3, t.c4)
 #   ТАБЛИЦА 2000
     row = Rows.objects.filter(type  = 4, table = 'tab2000')
     s2000 = []
@@ -192,9 +192,9 @@ def calc_sum_form4(doc):
         aq2000 = tab2000.aggregate(Sum('c3'),Sum('c4'))
         obj = [tab2000[0].row,aq2000['c3__sum'],aq2000['c4__sum']]
         s2000.append(obj) 
-        print("Строки таблицы 2000")
-        for t in tab2000: 
-            print(t.row, t.c3, t.c4)
+#        print("Строки таблицы 2000")
+#        for t in tab2000: 
+#            print(t.row, t.c3, t.c4)
 # аналогично
 
 #    res = s1 + s1000 + s2000     Нормально

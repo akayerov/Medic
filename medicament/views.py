@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
 
 from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Right_type, Doc1, Doc2, Doc3
-from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000
-
+from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000, Doc4Tab3000, Doc4Tab4000, Doc4Tab5000, Doc4Tab5001, \
+                                  Doc4Tab6000, Doc4Tab7000  
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
@@ -94,9 +94,15 @@ def monitoring_list(request, question_id ):
     if len(gid) == 7:   # уточнение детализация в отчете
         detail = True
         detail_line = int(gid[6])
+        detail_tab  = ''            # имя таблицы в табличной части для детализации 
+    elif len(gid) == 8:
+        detail = True
+        detail_line = int(gid[6])
+        detail_tab  = gid[7]            # имя таблицы в табличной части для детализации 
     else:
         detail = False
         detail_line = 0
+        detail_tab  = ''            # имя таблицы в табличной части для детализации 
 
     if role.role == "К" or role.role == "F":
         see_all = True                # see_all  контроль и создание новых отчетов
@@ -107,7 +113,8 @@ def monitoring_list(request, question_id ):
         m = role.hosp.id
 
 
-# По типам документов        
+# По типам документов  
+    tab = {}      
     if type==1:   # Лекарства
         doc = Doc1                     # используемая модель
         new_doc =  create_report_form1   # функция создания новых отчетов
@@ -160,7 +167,10 @@ def monitoring_list(request, question_id ):
         html_response_rep = 'medicament/report_form3.html'
         export_to_excel = exp_to_excel_form3
     elif type==4:  # Диспансеризация
-        doc = Doc4                    # используемая модель
+        doc = Doc4     # используемая модель
+        tab = {"tab1000":Doc4Tab1000, "tab2000":Doc4Tab2000,"tab3000":Doc4Tab3000, "tab4000":Doc4Tab4000,
+               "tab5000":Doc4Tab5000, "tab5000":Doc4Tab5001,"tab6000":Doc4Tab6000, "tab7000":Doc4Tab7000,}
+                       
         new_doc =  create_report_form4   # функция создания новых отчетов
         calc_sum = calc_sum_form4
         result = [['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0],['',0]]
@@ -232,7 +242,12 @@ def monitoring_list(request, question_id ):
             if detail:
                 args['detail_line']  =  detail_line            
                 args['detail']  =  True            
-            
+                if detail_tab != "":
+                    row_id = int(detail_line) 
+                    args['tab'] = tab[detail_tab].objects.filter(doc__period=period, row = row_id)  
+                    t = tab[detail_tab].objects.filter(doc__period=period, row = row_id)
+                    print(t[0].doc.hosp, t[0].c3,t[0].c4)
+ #                   assert False              
             result = calc_sum(args['doc_list'])
         if see_all and 'button_export' in request.POST:
 #            assert False
