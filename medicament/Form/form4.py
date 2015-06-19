@@ -197,14 +197,8 @@ def calc_sum_form4(doc):
 #            print(t.row, t.c3, t.c4)
 # аналогично
 
-#    res = s1 + s1000 + s2000     Нормально
-#    res = [s1,s1000,s2000]       Хорошо
+# в сл строке довавить остальные табличные части
     res = {'doc':s1,'tab1000':s1000,'tab2000':s2000}
-#    print("Test access")
-#    for t in res['tab1000']:
-#        print(t[0],t[1],t[2])
-    
-#    assert False             
     return res
 
 
@@ -221,7 +215,11 @@ def exp_to_excel_form4(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
         name_file = get_name("/static/Form/Form4_All.xlsx")
 
     wb = openpyxl.load_workbook(name_file)
-    sheet = wb.active
+    print(wb.get_sheet_names())
+
+    tab = 'Doc'
+    sheet = wb[tab]
+#    sheet = wb.active
     sheet['B2'] = speriod
     sheet['B1'] = sregion
     if mode==0:
@@ -239,28 +237,36 @@ def exp_to_excel_form4(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
         sheet['B316'] = "Редактирование"
         sheet['C316'] = stat.rec_edit
 
-
+# Обшая часть
     startrow = 7 
-    for i in range(0,296):
+    i = 0
+    d = res['doc']
+    for elem in d:
         srA = "B" + str(startrow + i)
         srB = "C" + str(startrow + i)
-        sheet[srA] = res[i][0]
-        sheet[srB] = res[i][1]
-# вывод только для конкретной МО для все  не выводится        
-    if mode == 1:
-#        res = calc_valf3_form2(doc)
-        startrow = 307 
-        for i in range(0,38):
-            srA = "B" + str(startrow + i)
-            srB = "C" + str(startrow + i)
-            sheet[srA] = res[i][0]
-            sheet[srB] = res[i][1]
-                
-        sheet['A346'] = "Выведено в системе Мед+ " + str(datetime.now()) 
-        sheet['A346'].font = Font(size=5)
-    else:
-        sheet['A318'] = "Выведено в системе Мед+ " + str(datetime.now()) 
-        sheet['A318'].font = Font(size=5)
+        sheet[srA] = elem[0]
+        sheet[srB] = elem[1]
+        i += 1
+# Таблицы
+#    tab = 'tab1000'
+    tab = 'tab1000'
+    sheet1 = wb[tab]
+    startrow = 12
+    i = 0
+    t = res[tab]
+#    assert False
+    for line in t:
+        srA = "B" + str(startrow + i)
+        srB = "C" + str(startrow + i)
+        srC = "D" + str(startrow + i)
+        sheet1[srA] = line[0].name
+        sheet1[srB] = line[1]
+        sheet1[srC] = line[2]
+        i += 1
+    
+    
+    sheet['A50'] = "Выведено в системе Мед+ " + str(datetime.now()) 
+    sheet['A50'].font = Font(size=5)
  
  #   name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
     name_file =  get_name("/medicament/Form/rep" + str(int(random()*100000000)) + ".xlsx") 

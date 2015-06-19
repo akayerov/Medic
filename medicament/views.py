@@ -239,14 +239,15 @@ def monitoring_list(request, question_id ):
             args['period_name']  =  Period.objects.get(pk=period)            
             if region > 0:
                 args['region_name']  =  Region.objects.get(pk=region)            
+
+            args['detail_tab']  =  detail_tab              # имеет доп смысл как стартовая вкладка            
             if detail:
                 args['detail_line']  =  detail_line            
                 args['detail']  =  True            
-                if detail_tab != "":
+                if detail_tab.startswith('tab'):             ### ВНИМАНИЕ секции табличных частей должны вызывать detail_tab с именами tab* 
                     row_id = int(detail_line) 
                     args['tab'] = tab[detail_tab].objects.filter(doc__period=period, row = row_id)  
                     t = tab[detail_tab].objects.filter(doc__period=period, row = row_id)
-                    print(t[0].doc.hosp, t[0].c3,t[0].c4)
  #                   assert False              
             result = calc_sum(args['doc_list'])
         if see_all and 'button_export' in request.POST:

@@ -19,21 +19,70 @@
   </div>     
 
 <ul class="tabs" data-tab role="tablist">
-  <li class="tab-title" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="false" controls="panel2-1">Таблица стартовая</a></li>
-  <li class="tab-title  active" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="true" controls="panel2-2">Таблица 1000</a></li>
+  {% if detail_tab == 'doc_1' or detail_tab == '' %}
+  <li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Таблица начало</a></li>
+  {% else %}
+  <li class="tab-title" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="false" controls="panel2-1">Таблица начало</a></li>
+  {% endif %}
+  {% if detail_tab == 'tab1000' %}
+  <li class="tab-title active" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="true" controls="panel2-2">Таблица 1000</a></li>
+  {% else %}
+  <li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Таблица 1000</a></li>
+  {% endif %}
+  {% if detail_tab == 'tab2000' %}
+  <li class="tab-title active" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="true" controls="panel2-3">Таблица 2000</a></li>
+  {% else %}
   <li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Таблица 2000</a></li>
-  <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Таблица Финал</a></li>
+  {% endif %}
+  {% if detail_tab == 'doc_2' %}
+  <li class="tab-title active" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="true" controls="panel2-4">Таблица Конец</a></li>
+  {% else %}
+  <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Таблица Конец</a></li>
+  {% endif %}
+  
 </ul>
 <div class="tabs-content">
-  <section role="tabpanel" aria-hidden="false" class="content" id="panel2-1">
+  {% if detail_tab == 'doc_1' or detail_tab == '' %}
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+  {% else %}
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-1">
+  {% endif %}
+   
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
+    	    <td></td>
 		    <th>Показатель</th>
- 		    <th></th>
- 		   </tr> 
-    	  </table>
+		    <th></th>
+		   </tr>
+           {% for line in result.doc %}
+ 		       <tr  class="itog_row">
+  		           <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{forloop.counter0}},"doc_1">+</a></td>
+		          <td>{{line.0}}</td>
+		          <td>{{line.1}}</td>
+		       </tr>
+ 	         {% if detail %}
+               {% if forloop.counter0 == detail_line %} 
+   	             {% for q in doc_list %}
+                   <tr class="detail_row">
+ 	 	           <td></td>
+ 		           {% if forloop.parentloop.counter0 == 0 %}
+ 		             <td>{{q.hosp}}</td>
+	                 <td>{{q.c7002}}</td>
+                   {% elif forloop.parentloop.counter0 == 1 %}
+                   {% elif forloop.parentloop.counter0 == 2 %}
+                   {% endif %}
+                   </tr>
+                 {% endfor %}  
+               {% endif %}
+             {% endif %}
+           {% endfor %}  
+  		</table>
   </section>
+  {% if detail_tab == 'tab1000' %}
   <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-2">
+  {% else %}
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+  {% endif %}
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
 		    <th></th>
@@ -62,7 +111,11 @@
            {% endfor %}  
   		</table>
   </section>
-  <section role="tabpanel" aria-hidden="false" class="content" id="panel2-3">
+  {% if detail_tab == 'tab2000' %}
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-3">
+  {% else %}
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+  {% endif %}
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
 		    <th></th>
@@ -91,7 +144,11 @@
            {% endfor %}  
   		</table>
   </section>
-  <section role="tabpanel" aria-hidden="false" class="content" id="panel2-4">
+  {% if detail_tab == 'doc_2' %}
+    <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-4">
+  {% else %} 
+    <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+  {% endif %} 
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
     	    <td></td>
@@ -100,7 +157,7 @@
 		   </tr>
            {% for line in result.doc %}
  		       <tr  class="itog_row">
-  		           <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{forloop.counter0}}">+</a></td>
+  		           <td><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}},{{forloop.counter0}},"doc_2">+</a></td>
 		          <td>{{line.0}}</td>
 		          <td>{{line.1}}</td>
 		       </tr>
