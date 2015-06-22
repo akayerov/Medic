@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
+import os
+import mimetypes
 from django.shortcuts import render, get_object_or_404, render_to_response,\
     redirect
 from django.http import Http404
-
 from django.http import HttpResponse
 from django.template import RequestContext, loader   # исп для index2
-
-from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Right_type, Doc1, Doc2, Doc3
-from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000, Doc4Tab3000, Doc4Tab4000, Doc4Tab5000, Doc4Tab5001, \
-                                  Doc4Tab6000, Doc4Tab7000  
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.context_processors import csrf
 from django.contrib import auth
-# пагинация урок 12
 from django.core.paginator import Paginator
+
 from medicament.forms import CommentForm
+from medicament.models import Document,Doc_type, Region, Hosp, Period, Role, Comment, Right_type, Doc1, Doc2, Doc3
+from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000, Doc4Tab3000, Doc4Tab4000, Doc4Tab5000, Doc4Tab5001, \
+                                  Doc4Tab6000, Doc4Tab7000  
 # мой модуль для работы с базами
 from medicament.oper_with_base import save_doc, get_ids, statistic
 # по каждому типу докумпентов
@@ -28,8 +27,9 @@ from medicament.Form.form3 import create_report_form3, calc_sum_form3,\
 from medicament.Form.form4 import create_report_form4, calc_sum_form4,\
     save_doc_form4,exp_to_excel_form4
 
-import os
-import mimetypes
+from medicament.forms import UploadFileForm
+from medicament.oper_with_base import handle_uploaded_file
+
 
 
 NUM_RECORD_ON_PAGE = 75   # число записей на странице списка
@@ -584,30 +584,24 @@ def test(request, question_id):
     f3 = doc.c2_1
     assert False 
     return render_to_response('/', {})
-     
-#    for field in model_instance._meta.fields:
-#        print field.name
 
- 
-#model_instance._meta.get_field('field_name') # if you want one field    
-#l = ct._meta.get_field('slug')
-#l.value_from_object(ct)
-'''
-               for f in q._meta.get_all_field_names():
-                    obj, model, direct, m2m = q._meta.get_field_by_name(f)
-                    if isinstance(obj, GenericRelation):
-                        continue
-                    if not direct:
-                        continue
-                    if m2m:
-                        l = {}
-                        val = obj.value_from_object(q)
-                        for ix,m in enumerate(obj.value_from_object(q)):
-                            l.update({ix:m.__unicode__()})
-                        field_list.update({f:l})
-                    else:
-                        field_list.update({f:obj.value_to_string(q)})
-'''
+
+# тест uoload  - взято из документации django 
+def upload_file(request):
+    args = {}
+    args.update(csrf(request))
+    
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return render_to_response('/', {})
+    else:
+        form = UploadFileForm()
+    args['form'] =  form
+
+    return render_to_response('medicament/upload.html', args)
+     
 
 
     

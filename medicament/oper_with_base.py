@@ -157,4 +157,12 @@ def get_period_namef(iperiod):
         return ""
 
 def get_name_input(table, id, col):
-    return table + '_' + str(id) + '_' + col 
+    return table + '_' + str(id) + '_' + col
+
+# тест обработчик загрузки файла
+def handle_uploaded_file(f):
+#    with open('some/file/name.txt', 'wb+') as destination:
+#    destination.write(chunk)
+    for chunk in f.chunks():
+        print(chunk)
+        assert False
