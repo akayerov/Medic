@@ -2,6 +2,7 @@
 '''
 @author: a_kayerov
 '''
+import os
 from django.db.models import Sum
 from random import random
 import openpyxl
@@ -9,10 +10,12 @@ from openpyxl.styles import Font
 
 from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name, get_name_input
 from medicament.models import Document,Doc_type, Hosp, Period, Role, Region, Comment, Doc_Hosp,Doc1,Doc2, Rows
+from medicament.oper_with_base import handle_uploaded_file
 
 from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000, Doc4Tab3000, Doc4Tab4000, Doc4Tab5000, Doc4Tab5001, Doc4Tab6000, Doc4Tab7000
 
 from _datetime import datetime
+from _overlapped import NULL
 
 
 def create_report_form4(periodInt, datef):
@@ -248,7 +251,6 @@ def exp_to_excel_form4(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
         sheet[srB] = elem[1]
         i += 1
 # Таблицы
-#    tab = 'tab1000'
     tab = 'tab1000'
     sheet1 = wb[tab]
     startrow = 12
@@ -275,4 +277,40 @@ def exp_to_excel_form4(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
     return name_file
 
 
+def ret_val(sheetval):
+    if sheetval == None:
+        return 0
+    else:    
+        return sheetval
+        
     
+def load_from_excel_form4(request, doc_id):
+    '''  загрузка формы их соответствующего Excel файла
+    '''
+#              
+    namefile = handle_uploaded_file(request.FILES['filename'])
+    doc  =  Doc4.objects.get(pk=doc_id)
+    name_file = (namefile)
+    wb = openpyxl.load_workbook(name_file)
+
+# Общая часть
+    tab = 'Doc'
+    sheet = wb[tab]
+    doc.c7002 = sheet["C7"].value
+    doc.save()
+
+# Таблицы
+    tab = 'tab1000'
+    sheet = wb[tab]
+    tabrs = Doc4Tab1000.objects.filter(doc=doc)
+    startrow = 12
+    i = 0 
+    for tab in tabrs:
+        sr = "C" + str(startrow + i)
+        tab.c3 = ret_val(sheet[sr].value)
+# аналогично другие поля таблицы tab1000        
+        i += 1
+        tab.save()
+        
+ # Другие табличный части  налогично   
+    os.remove(namefile)    

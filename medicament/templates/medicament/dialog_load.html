@@ -7,10 +7,10 @@
      <h4><a href="/form/{{doc_type.id}},{{page_number}},{{hosp}},{{period}},{{status}},{{region}}">{{doc_type.name}}</a></h4>
     
  {% if doc %}
-          <form >
+          <h4>Заполнение формы из подготовленной таблицы Excel</h4>
+          <form ENCTYPE="multipart/form-data">
            {% csrf_token %}
            <div class="row">
-               <h5>Excel файл для заполнения формы должен находиться в папке C:\medPlus</h5>
                <input type="file" name="filename" accept="*.xlsx">
   		       <button class="button" name="button_load" value="1" type="submit" formmethod="post">Загрузить</button>         
      		   <button class="button" name="button_cancel" value="2" type="submit" formmethod="post">Отменить</button>         

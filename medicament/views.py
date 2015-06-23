@@ -25,7 +25,7 @@ from medicament.Form.form2 import create_report_form2, calc_sum_form2,\
 from medicament.Form.form3 import create_report_form3, calc_sum_form3,\
     save_doc_form3,exp_to_excel_form3
 from medicament.Form.form4 import create_report_form4, calc_sum_form4,\
-    save_doc_form4,exp_to_excel_form4
+    save_doc_form4,exp_to_excel_form4 ,load_from_excel_form4
 
 from medicament.forms import UploadFileForm
 from medicament.oper_with_base import handle_uploaded_file
@@ -376,9 +376,7 @@ def monitoring_form(request, question_id):
     
     if request.POST:
         if  'button_load' in request.POST:
-#            assert False
-#            load_from_excel(request, question_id)
-            response = redirect('/load/' + str(type) + ',' + str(doc_id) + ','+ str(page_number) + ',' + str(m) \
+            response = redirect('/loadExcel/' + str(type) + ',' + str(doc_id) + ','+ str(page_number) + ',' + str(m) \
                                 + ',' + str(period) + ',' + status + ',' + str(region))
             return response
         if  'button_addComment' in request.POST:
@@ -442,7 +440,9 @@ def monitoring_form(request, question_id):
 # Настройка типа документа  
     if type == 4:
         args['tab1000'] = Doc4Tab1000.objects.filter(doc=doc_id)       
-        args['tab2000'] = Doc4Tab2000.objects.filter(doc=doc_id)        
+        args['tab2000'] = Doc4Tab2000.objects.filter(doc=doc_id)
+        args['isloadExcel'] = True        
+#        
 # конец настройки по типу документа
     return render_to_response(html_response, args)
 
@@ -537,6 +537,8 @@ def load_from_excel(request, question_id):
            load_from_ex = load_from_excel_form1 
         elif stype == 2:
            load_from_ex = load_from_excel_form2
+        elif stype == 4:
+           load_from_ex = load_from_excel_form4
             
          
         sdoc_id = gid[1]
@@ -548,7 +550,7 @@ def load_from_excel(request, question_id):
         if request.POST:
             if  'button_load' in request.POST:
 #                assert False
-                load_from_ex( int(sdoc_id), request.POST['filename'])
+                load_from_ex( request, int(sdoc_id))
                 return redirect('/monitor/' + question_id)
             else:
                 return redirect('/monitor/'  + question_id)
@@ -565,6 +567,8 @@ def load_from_excel(request, question_id):
             doc = Doc1
         elif stype == 2:
             doc = Doc2
+        elif stype == 4:
+            doc = Doc4
         args['doc']    =  doc.objects.get(pk=sdoc_id)            
         return render_to_response("medicament/dialog_load.html", args)
     else:
@@ -595,7 +599,7 @@ def upload_file(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             handle_uploaded_file(request.FILES['file'])
-            return render_to_response('/', {})
+            return redirect('/')
     else:
         form = UploadFileForm()
     args['form'] =  form

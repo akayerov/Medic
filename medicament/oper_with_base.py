@@ -10,6 +10,7 @@ import os
 # Умееет читать и изменять!!!!
 import openpyxl
 import datetime
+from django.utils.crypto import random
 
 class statistic():
     def init (self, rec_all=0, rec_fltr=0, rec_complete=0,rec_soglas=0,rec_correct=0,rec_edit=0): 
@@ -127,6 +128,8 @@ def save_doc( tdoc, set_fields, is_valid, request, type, id_doc, mode_comment):
 def get_name(namefile):
     return os.path.dirname(os.path.dirname(__file__)) +  namefile
 
+
+
 def get_period(iperiod):
     if iperiod > 0:
         return Period.objects.get(pk=iperiod)
@@ -159,10 +162,16 @@ def get_period_namef(iperiod):
 def get_name_input(table, id, col):
     return table + '_' + str(id) + '_' + col
 
+def get_rand_name(path):
+    name = "Tmp" + str(random.randint(0,100000))
+    return os.path.dirname(os.path.dirname(__file__)) +  path + name
+
 # тест обработчик загрузки файла
 def handle_uploaded_file(f):
-#    with open('some/file/name.txt', 'wb+') as destination:
-#    destination.write(chunk)
-    for chunk in f.chunks():
-        print(chunk)
-        assert False
+    namexlsx = get_rand_name('/static/Form/') + '.xlsx' 
+    with open(namexlsx, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+#            print(chunk)
+    return namexlsx
+

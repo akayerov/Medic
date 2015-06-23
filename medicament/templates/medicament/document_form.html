@@ -43,11 +43,11 @@
 	         </div>
  	     	 <div class="medium-2 columns">
 	         </div>
- 	     	 <div class="medium-2 columns">
-{% comment %}
+             {% if isloadExcel %}
+   	     	 <div class="medium-2 columns">
       	       <button class="button" name="button_load" value="6" type="submit" formmethod="post">Загрузить из Excel</button>         
-{% endcomment %}
 	         </div>
+             {% endif %}
 
           {% endif %}
           {% endif %}
