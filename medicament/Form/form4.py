@@ -8,7 +8,7 @@ from random import random
 import openpyxl
 from openpyxl.styles import Font
 
-from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name, get_name_input
+from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name, get_name_input, add_action_in_comment
 from medicament.models import Document,Doc_type, Hosp, Period, Role, Region, Comment, Doc_Hosp,Doc1,Doc2, Rows
 from medicament.oper_with_base import handle_uploaded_file
 
@@ -298,7 +298,8 @@ def load_from_excel_form4(request, doc_id):
     sheet = wb[tab]
     doc.c7002 = sheet["C7"].value
     doc.save()
-
+# запись в лог файл
+    add_action_in_comment(request,doc,Comment.CHANGE)
 # Таблицы
     tab = 'tab1000'
     sheet = wb[tab]
