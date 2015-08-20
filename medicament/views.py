@@ -29,6 +29,8 @@ from medicament.Form.form4 import create_report_form4, calc_sum_form4,\
 
 from medicament.forms import UploadFileForm
 from medicament.oper_with_base import handle_uploaded_file
+from pip._vendor.requests.models import Response
+from django.core import serializers
 
 
 
@@ -438,6 +440,8 @@ def monitoring_form(request, question_id):
     args['doc_id'] = doc_id       
 
 # Настройка типа документа  
+    if type == 1:
+        args['isloadExcel'] = True        
     if type == 4:
         args['tab1000'] = Doc4Tab1000.objects.filter(doc=doc_id)       
         args['tab2000'] = Doc4Tab2000.objects.filter(doc=doc_id)
@@ -590,7 +594,7 @@ def test(request, question_id):
     return render_to_response('/', {})
 
 
-# тест uoload  - взято из документации django 
+# Для загрузки из Excel файла - по моему, я уже несоклько запутался - не используется :) используется load_from_excel
 def upload_file(request):
     args = {}
     args.update(csrf(request))
@@ -605,7 +609,23 @@ def upload_file(request):
     args['form'] =  form
 
     return render_to_response('medicament/upload.html', args)
-     
+
+#test AJACS
+def test_ajacs(request):
+    args = {}
+    args.update(csrf(request))
+    
+    if request.method == 'POST':
+        return redirect('/')
+    args['data'] =  555
+
+    return render_to_response('medicament/test_ajacs.html', args)
+   
+def get_ajacs(request, id):
+    response = HttpResponse()
+    response['Content-Type'] = 'text/javascript'
+    response.write(serializers.serialize('json', Hosp.objects.filter(id=id)))
+    return response
 
 
     

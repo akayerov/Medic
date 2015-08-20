@@ -26,14 +26,18 @@
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
 		    <th>Показатель</th>
+		    <th>Строка</th>
 		    <th>с3</th>
 		    <th>с4</th>
+		    <th>Сумма</th>
 		   </tr>
            {% for t in tab1000 %}
  		     <tr>
 		       <td>{{t.row}}</td>
-		       <td><input type="number" name="tab1000_{{t.row.id}}_c3" value="{{t.c3}}"></td>
-		       <td><input type="number" name="tab1000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
+		       <td>{{t.row.nom}}</td>
+		       <td><input type="number" id ="tab1000_{{t.row.nom}}_c3" name="tab1000_{{t.row.id}}_c3" value="{{t.c3}}"></td>
+		       <td><input type="number" id ="tab1000_{{t.row.nom}}_c4"  name="tab1000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
+		       <td id ="tab1000_{{t.row.nom}}"></td>
 		     <tr>
            {% endfor %}  
   		</table>
@@ -43,14 +47,16 @@
           <table class="table" id="table1" cellpadding="1" cellspacing="1">
 		   <tr>
 		    <th>Показатель</th>
+		    <th>Строка</th>
 		    <th>с3</th>
 		    <th>с4</th>
 		   </tr>
            {% for t in tab2000 %}
  		     <tr>
 		       <td>{{t.row}}</td>
-		       <td><input type="number" name="tab2000_{{t.row.id}}_c3"  value="{{t.c3}}"></td>
-		       <td><input type="number" name="tab2000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
+		       <td>{{t.row.nom}}</td>
+		       <td><input type="number" id ="tab2000_{{t.row.nom}}_c3" name="tab2000_{{t.row.id}}_c3"  value="{{t.c3}}"></td>
+		       <td><input type="number" id ="tab2000_{{t.row.nom}}_c4" name="tab2000_{{t.row.id}}_c4" value="{{t.c4}}"></td>
 		     <tr>
            {% endfor %}  
   		</table>
@@ -68,6 +74,43 @@
   		</table>
   </section>
 </div>
-
+ 
+ <script>
+ $(document).ready(function(){
+//    $("#sum1000_1").html("Hello")
+     osum = $("#tab1000_1-1")
+     os1  = $("#tab1000_1-1_c3")
+     os2  = $("#tab1000_1-1_c4")
+     s1 = os1[0].value
+     sv1 = Number(s1)
+     sv2 = parseInt(os2[0].value)
+     res = sv1 + sv2
+     $("#tab1000_1-1").html(res)
+     
+     osum2 = $("#tab1000_1-2")
+     os3  = $("#tab1000_1-2_c3")
+     os4  = $("#tab1000_1-2_c4")
+     s1 = os3[0].value
+     sv1 = Number(s1)
+     sv2 = parseInt(os4[0].value)
+     res = sv1 + sv2
+     $("#tab1000_1-2").html(res)
+     
+ });
+ </script>
+  <script>
+ $(document).ready(function(){
+     os1  = $("#tab1000_1-1_c3")
+     os2  = $("#tab1000_1-1_c4")
+     s1 = os1[0].value
+     sv1 = Number(s1)
+     sv2 = parseInt(os2[0].value)
+     if(sv1 < sv2) {
+    	 $("<p>Error</p>").insertAfter("#tab1000_1-1_c4");
+     }
+ });
+ </script>
+ 
+ 
 {% endblock %}
 

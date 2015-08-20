@@ -7,9 +7,12 @@ from random import random
 import openpyxl
 from openpyxl.styles import Font
 
-from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name
-from medicament.models import Doc1
+from medicament.oper_with_base import create_new_report, save_doc, get_name, get_period_namef, get_region_name, get_name_input, add_action_in_comment
+
+from medicament.models import Doc1,Comment
 from _datetime import datetime
+from medicament.oper_with_base import handle_uploaded_file
+
 
 
 def create_report_form1(periodInt, datef):
@@ -163,6 +166,7 @@ def exp_to_excel_form1(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
 
     wb = openpyxl.load_workbook(name_file)
     sheet = wb.active
+    
     sheet['B2'] = speriod
     sheet['A1'] = sregion
     if mode==0:
@@ -184,41 +188,82 @@ def exp_to_excel_form1(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
     sheet['A28'].font = Font(size=5)
 
     
-    sheet['B8'] = res[0][1]
-    sheet['C8'] = res[0][2]
-    sheet['D8'] = res[0][3]
-    sheet['E8'] = res[0][4]
-    sheet['F8'] = res[0][5]
+    sheet['C8'] = res[0][1]
+    sheet['D8'] = res[0][2]
+    sheet['E8'] = res[0][3]
+    sheet['F8'] = res[0][4]
+    sheet['G8'] = res[0][5]
 
-    sheet['G10'] = res[1][6]
-    sheet['H10'] = res[1][7]
-    sheet['I10'] = res[1][8]
+    sheet['H10'] = res[1][6]
+    sheet['I10'] = res[1][7]
+    sheet['J10'] = res[1][8]
 
-    sheet['B11'] = res[2][1]
-    sheet['C11'] = res[2][2]
-    sheet['D11'] = res[2][3]
-    sheet['E11'] = res[2][4]
-    sheet['F11'] = res[2][5]
-    sheet['G11'] = res[2][6]
-    sheet['H11'] = res[2][7]
-    sheet['I11'] = res[2][8]
+    sheet['C11'] = res[2][1]
+    sheet['D11'] = res[2][2]
+    sheet['E11'] = res[2][3]
+    sheet['F11'] = res[2][4]
+    sheet['G11'] = res[2][5]
+    sheet['H11'] = res[2][6]
+    sheet['I11'] = res[2][7]
+    sheet['J11'] = res[2][8]
 
-    sheet['B13'] = res[3][1]
-    sheet['C13'] = res[3][2]
-    sheet['D13'] = res[3][3]
-    sheet['E13'] = res[3][4]
-    sheet['F13'] = res[3][5]
-    sheet['G13'] = res[3][6]
-    sheet['H13'] = res[3][7]
-    sheet['I13'] = res[3][8]
+    sheet['C13'] = res[3][1]
+    sheet['D13'] = res[3][2]
+    sheet['E13'] = res[3][3]
+    sheet['F13'] = res[3][4]
+    sheet['G13'] = res[3][5]
+    sheet['H13'] = res[3][6]
+    sheet['I13'] = res[3][7]
+    sheet['J13'] = res[3][8]
 
 
- #   name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
     name_file =  get_name("/medicament/Form/rep" + str(int(random()*100000000)) + ".xlsx") 
     wb.save(name_file)
     
     return name_file
 
-def load_from_excel_form1(odoc):
+def load_from_excel_form1(request, doc_id):
+    '''  загрузка формы их соответствующего Excel файла
+    '''
+#              
+    namefile = handle_uploaded_file(request.FILES['filename'])
+    doc  =  Doc1.objects.get(pk=doc_id)
+    name_file = (namefile)
+    wb = openpyxl.load_workbook(name_file)
+    sheet = wb.active
+
+    
+    doc.c1_1 = sheet['C8'].value
+    doc.c1_2 = sheet['D8'].value
+    doc.c1_3 = sheet['E8'].value
+    doc.c1_4 = sheet['F8'].value
+    doc.c1_5 = sheet['G8'].value
+
+    doc.c2_6 = sheet['H10'].value
+    doc.c2_7 = sheet['I10'].value
+    doc.c2_8 = sheet['J10'].value
+
+
+    doc.c3_1 = sheet['C11'].value
+    doc.c3_2 = sheet['D11'].value
+    doc.c3_3 = sheet['E11'].value
+    doc.c3_4 = sheet['F11'].value
+    doc.c3_5 = sheet['G11'].value
+    doc.c3_6 = sheet['G11'].value
+    doc.c3_7 = sheet['H11'].value
+    doc.c3_8 = sheet['J11'].value
+
+    doc.c4_1 = sheet['C13'].value
+    doc.c4_2 = sheet['D13'].value
+    doc.c4_3 = sheet['E13'].value
+    doc.c4_4 = sheet['F13'].value
+    doc.c4_5 = sheet['G13'].value
+    doc.c4_6 = sheet['G13'].value
+    doc.c4_7 = sheet['H13'].value
+    doc.c4_8 = sheet['J13'].value
+
+    doc.save()
+# запись в лог файл
+    add_action_in_comment(request,doc,Comment.CHANGE)
     return
     

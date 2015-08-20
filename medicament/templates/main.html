@@ -8,6 +8,12 @@
    <link rel="stylesheet" type="text/css" href="{% static 'css/foundation.css'%}" />
    <script src="{% static 'js/vendor/modernizr.js'%}"></script>
 
+   <script src="{% static 'js/vendor/jquery.js'%}"></script>
+   <script src="{% static 'js/vendor/fastclick.js'%}"></script>
+   <script src="{% static 'js/foundation.min.js'%}"></script>
+   <script type="text/javascript" src="{% static 'js/jqia2.support.js'%}"></script>
+
+
    <style>
      .rowsel:hover {background: #f0f080}
      .errmess {background: #dd0000}
@@ -57,13 +63,9 @@
     </ul>  
     </section>
 </div>
-  <script src="{% static 'js/vendor/jquery.js'%}"></script>
-  <script src="{% static 'js/vendor/fastclick.js'%}"></script>
-  <script src="{% static 'js/foundation.min.js'%}"></script>
-  <script type="text/javascript" src="{% static 'js/jqia2.support.js'%}"></script>
-  <script>
-    $(document).foundation();
-  </script>
+   <script>
+     $(document).foundation();
+   </script>
   <script type="text/javascript">
         $(function(){
            /* $("table").click(swapThemOn).dblclick(swapThemOff);*/
@@ -91,6 +93,7 @@
             $('tr.detail_row').hide();
         }
  </script>
+
 	
 </body>
 

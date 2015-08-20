@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block monitorlist %}
+<div class="row full-width">
+<div class="large-12 columns">
+    
+   <h4>Тест Ajacs</h4>
+   <form>
+   {% csrf_token %}
+      <div class="row">
+         <a id ="txt1_2"></a> 
+         <input type="text" id ="txt1" name="txt1" value="Привет">
+  	     <button class="button" name="button_load" value="1" type="submit" formmethod="post">Загрузить</button>         
+    	 <button class="button" name="button_cancel" value="2" type="submit" formmethod="post">Отменить</button>         
+         <h4 id ="txt1_3"> Результат </h4> 
+         </div>
+   </form>
+           
+</div>
+</div>
+
+ <script>
+ $(document).ready(function(){
+    $("#txt1_2").html('hello')
+    $("#txt1").html('Hello wordls')
+    $("#txt1_3").html('Hello wordls')
+     
+ });
+ </script>
+ 
+{% endblock %}

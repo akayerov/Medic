@@ -15,7 +15,7 @@ from medicament.oper_with_base import handle_uploaded_file
 from medicament.modelsDoc4 import Doc4, Doc4Tab1000, Doc4Tab2000, Doc4Tab3000, Doc4Tab4000, Doc4Tab5000, Doc4Tab5001, Doc4Tab6000, Doc4Tab7000
 
 from _datetime import datetime
-from _overlapped import NULL
+
 
 
 def create_report_form4(periodInt, datef):
@@ -106,25 +106,21 @@ def save_doc_form4(request, type, id_doc, mode_comment):
     return save_doc(Doc4,set_fields_form4, is_valid_form4, request, type, id_doc, mode_comment)
 
 def copy_fields_form4(ds, dd):
-    pass
-     
+    pass     
 
-def set_fields_form4(request, doc):
-    ''' Заполнение полей модели данными формы . 
-        Для каждой формы
-    '''
-    if 'button_save' in request.POST:
-        type = 4
-    # поля формы (вне табличных частей)
-        doc.KodMO = request.POST['KodMO']   
-        doc.c7002 = request.POST['c7002'] 
-    
+def save_tab_form4(request, doc):
     # Табличные части
     # tab1000
+    print(datetime.now())
+    i = 1
+    maxi = 1000
+    for i in range(maxi):
+        print("cycle=",i)
         table = 'tab1000'    
         tabrs = Doc4Tab1000.objects.filter(doc=doc)
         for tab in tabrs: 
             tab.c3 = request.POST[get_name_input(table,tab.row.id,"c3")]
+            tab.c3 = i
             tab.c4 = request.POST[get_name_input(table,tab.row.id,"c4")]
             tab.save()
     # tab2000
@@ -134,26 +130,40 @@ def set_fields_form4(request, doc):
             tab.c3 = request.POST[get_name_input(table,tab.row.id,"c3")]
             tab.c4 = request.POST[get_name_input(table,tab.row.id,"c4")]
             tab.save()
-            
+    print(datetime.now())
+
+
+def set_fields_form4(request, doc):
+    ''' Заполнение полей модели данными формы . 
+        Для каждой формы
+    '''
+    if 'button_save' in request.POST or 'button_send_control' in request.POST:
+        type = 4
+    # поля формы (вне табличных частей)
+        doc.KodMO = request.POST['KodMO']   
+        doc.c7002 = request.POST['c7002'] 
+    # табличные части в отдельную функцию и далее обеспечить отдельный проыесс( поток) для ускорения
+
+    save_tab_form4(request, doc)
     #  прочие табличные части заполнить аналогично
-        row = Rows.objects.filter(type  = type, table = 'tab3000')
-        for r in row:
-            pass
-        row = Rows.objects.filter(type  = type, table = 'tab4000')
-        for r in row:
-            pass
-        row = Rows.objects.filter(type  = type, table = 'tab5000')
-        for r in row:
-            pass
-        row = Rows.objects.filter(type  = type, table = 'tab5001')
-        for r in row:
-            pass
-        row = Rows.objects.filter(type  = type, table = 'tab6000')
-        for r in row:
-            pass
-        row = Rows.objects.filter(type  = type, table = 'tab7000')
-        for r in row:
-            pass
+    row = Rows.objects.filter(type  = type, table = 'tab3000')
+    for r in row:
+        pass
+    row = Rows.objects.filter(type  = type, table = 'tab4000')
+    for r in row:
+        pass
+    row = Rows.objects.filter(type  = type, table = 'tab5000')
+    for r in row:
+        pass
+    row = Rows.objects.filter(type  = type, table = 'tab5001')
+    for r in row:
+        pass
+    row = Rows.objects.filter(type  = type, table = 'tab6000')
+    for r in row:
+        pass
+    row = Rows.objects.filter(type  = type, table = 'tab7000')
+    for r in row:
+        pass
 
     
 
@@ -180,18 +190,18 @@ def calc_sum_form4(doc):
     row = Rows.objects.filter(type  = 4, table = 'tab1000')
     s1000 = []
     for r in row:
-        tab1000 = Doc4Tab1000.objects.filter(doc__period=period, row=r )
+        tab1000 = Doc4Tab1000.objects.filter(doc=doc, doc__period=period, row=r )
         aq1000 = tab1000.aggregate(Sum('c3'),Sum('c4'))
         obj = [tab1000[0].row,aq1000['c3__sum'],aq1000['c4__sum']]
         s1000.append(obj) 
-#        print("Строки таблицы 1000")
-#        for t in tab1000: 
-#            print(t.row, t.c3, t.c4)
+        print("Строки таблицы 1000")
+        for t in tab1000: 
+            print(t.row, t.c3, t.c4)
 #   ТАБЛИЦА 2000
     row = Rows.objects.filter(type  = 4, table = 'tab2000')
     s2000 = []
     for r in row:
-        tab2000 = Doc4Tab2000.objects.filter(doc__period=period, row=r )
+        tab2000 = Doc4Tab2000.objects.filter(doc=doc, doc__period=period, row=r )
         aq2000 = tab2000.aggregate(Sum('c3'),Sum('c4'))
         obj = [tab2000[0].row,aq2000['c3__sum'],aq2000['c4__sum']]
         s2000.append(obj) 
@@ -209,6 +219,8 @@ def calc_sum_form4(doc):
 
 
 def exp_to_excel_form4(doc, iperiod, iregion, mode, stat = None):    # mode = 0 по региону или группе больниц  mode = 1 - по конкретной больнице
+    print("mode=", mode)
+    print("doc=", doc)
     res =  calc_sum_form4(doc)
     speriod = get_period_namef(iperiod)
     sregion = get_region_name(mode,doc,iregion)
@@ -270,7 +282,7 @@ def exp_to_excel_form4(doc, iperiod, iregion, mode, stat = None):    # mode = 0 
     sheet['A50'] = "Выведено в системе Мед+ " + str(datetime.now()) 
     sheet['A50'].font = Font(size=5)
  
- #   name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
+#   name_file =  get_name("\\medicament\\Form\\rep" + str(int(random()*100000000)) + ".xlsx") 
     name_file =  get_name("/medicament/Form/rep" + str(int(random()*100000000)) + ".xlsx") 
     wb.save(name_file)
     
@@ -283,7 +295,7 @@ def ret_val(sheetval):
     else:    
         return sheetval
         
-    
+# шаблон загрузки из Excel Файла    
 def load_from_excel_form4(request, doc_id):
     '''  загрузка формы их соответствующего Excel файла
     '''
